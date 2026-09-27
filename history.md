@@ -29,3 +29,5 @@ Retired, archived and discontinued projects that shaped real-life Jarvis. They'r
 ## Interfaces
 
 - [eDEX-UI](https://github.com/GitSquared/edex-ui) - The canonical sci-fi fullscreen terminal and system monitor, inspired by TRON Legacy.
+- [Arwes](https://github.com/arwes/arwes) - Futuristic sci-fi web UI framework with animated frames, glows and sounds, no longer maintained as of 2026.
+- [OpenGlass](https://github.com/BasedHardware/OpenGlass) - About $25 in parts to turn any glasses into AI camera glasses, dormant since 2025.
