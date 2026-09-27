@@ -181,7 +181,7 @@ Real Jarvis ideas in working code that are too young, too thin or too risky to v
 
 ### Omarchy
 
-Omarchy 4 made the whole desktop a plugin surface, and its [plugin marketplace](https://plugins.omarchy.org) grew a Jarvis scene within weeks. Install with `omarchy plugin add <repo>`.
+Omarchy 4 made the whole desktop a plugin surface, and its [plugin marketplace](https://plugins.omarchy.org) grew a Jarvis scene within weeks. Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, through [Omarchy M](https://omarchy.org/news/2026/09/introducing-omarchy-m/), on Apple Silicon Macs.
 
 - [hey-jarvis](https://github.com/Atzingen/hey-jarvis) - Local "hey jarvis" wake word, Whisper, Piper and barge-in, with a live conversation window, handing requests to Codex or Claude Code behind per-command consent windows.
 - [omarchy-voice](https://github.com/wombatoperator/omarchy-voice) - Experimental OpenAI Realtime voice control with a state orb and durable background workers, including Codex, that you can list, cancel and resume by voice.
