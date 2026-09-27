@@ -12,25 +12,26 @@ Tony Stark never typed a prompt. He talked to Jarvis, watched the work take shap
 - **Visual presence.** An orb, HUD, avatar, overlay or dashboard that shows its state and the work in progress, not just a chat transcript.
 - **Oversight.** It dispatches, supervises and reports on other agents, such as sub-agents, coding agents and background workers, with approvals and a kill switch.
 
-Every Jarvis agent below was reviewed against its code and docs, not its README, and scored in the scorecard. Building blocks follow for each layer. New to this? Read the [blueprint](blueprint.md) for a reference architecture and three starter builds.
+Every agent in the scorecard was checked against its code or vendor documentation, not its marketing, by two independent reviews. Building blocks follow for each layer. New to this? Read the [blueprint](blueprint.md) for a reference architecture and three starter builds.
 
 ## Contents
 
 - [Jarvis Agents](#jarvis-agents)
 	- [Scorecard](#scorecard)
 	- [Open Source](#open-source)
-	- [Omarchy](#omarchy)
 	- [macOS](#macos)
-	- [Windows](#windows)
 	- [Linux](#linux)
 	- [Android](#android)
-	- [Glasses](#glasses)
 	- [Commercial](#commercial)
 - [Mission Control](#mission-control)
 	- [Voice Oversight](#voice-oversight)
 	- [Command Centers](#command-centers)
 	- [Agent Presence](#agent-presence)
 	- [Hosted Mission Control](#hosted-mission-control)
+- [Watch List](#watch-list)
+	- [Omarchy](#omarchy)
+	- [Voice Oversight Contenders](#voice-oversight-contenders)
+	- [Desktop, Mobile and Glasses](#desktop-mobile-and-glasses)
 - [Voice Assistants](#voice-assistants)
 - [AI Devices](#ai-devices)
 - [Ears](#ears)
@@ -71,132 +72,76 @@ Every Jarvis agent below was reviewed against its code and docs, not its README,
 
 ## Jarvis Agents
 
-Complete assistants that already combine at least two of the three pillars, including voice or oversight.
+Complete assistants that are strong on at least two of the three pillars, including voice or oversight.
 
 ### Scorecard
 
-● shipped and working, ◐ partial, limited or experimental, ○ absent. Scores come from reading each project's code and docs in September 2026.
+● shipped and working, ◐ partial, limited or experimental, ○ absent. Open-source rows were scored from code by two independent reviews in September 2026, the second blind to the first. Commercial rows were scored from vendor documentation. Several agents run coding agents with permission checks turned off by default, so read the last column before you install.
 
-| Agent                  | Platform                     | Voice | Visual | Oversight |
-| ---------------------- | ---------------------------- | :---: | :----: | :-------: |
-| OpenClaw               | macOS, iOS, Android, server  |   ●   |   ●    |     ●     |
-| Hermes Agent           | Desktop, server, chat apps   |   ●   |   ●    |     ●     |
-| Qwen Audio Agent       | macOS, Windows, Linux        |   ●   |   ●    |     ●     |
-| usejarvis              | Daemon plus desktop sidecars |   ●   |   ●    |     ●     |
-| JARVIS for Claude Code | macOS                        |   ●   |   ●    |     ●     |
-| Personal Jarvis        | Windows, macOS, Linux        |   ●   |   ●    |     ●     |
-| QwenPaw                | Desktop, server, phone calls |   ◐   |   ●    |     ●     |
-| Moltis                 | Server, web                  |   ●   |   ◐    |     ●     |
-| ZeroClaw               | Server, web                  |   ◐   |   ●    |     ●     |
-| OpenJarvis             | Desktop                      |   ◐   |   ◐    |     ●     |
-| isair/jarvis           | macOS, Windows, Linux        |   ●   |   ●    |     ○     |
-| GLaDOS                 | Linux, macOS                 |   ●   |   ◐    |     ◐     |
-| AIRI                   | Windows, macOS, Linux, web   |   ●   |   ●    |     ◐     |
-| N.E.K.O                | Windows, macOS, Linux        |   ●   |   ●    |     ◐     |
-| hey-jarvis             | Omarchy                      |   ●   |   ●    |     ◐     |
-| Omarvis                | Omarchy                      |   ●   |   ◐    |     ●     |
-| omarchy-voice          | Omarchy                      |   ●   |   ◐    |     ●     |
-| omavoice               | Omarchy                      |   ●   |   ●    |     ◐     |
-| Jarvis × Codex         | macOS                        |   ●   |   ●    |     ◐     |
-| OpenClicky             | macOS                        |   ●   |   ●    |     ◐     |
-| Mark LIV               | Windows, macOS, Linux        |   ●   |   ●    |     ○     |
-| Newelle                | Linux (GNOME)                |   ●   |   ●    |     ◐     |
-| Operit                 | Android                      |   ●   |   ●    |     ◐     |
-| VisionClaw             | Meta Ray-Ban glasses         |   ●   |   ◐    |     ◐     |
-| cc-g2                  | Even Realities G2 glasses    |   ◐   |   ●    |     ●     |
-| Paseo                  | Desktop, mobile, CLI         |   ●   |   ●    |     ●     |
-| Happy                  | iOS, Android, web, macOS     |   ●   |   ◐    |     ●     |
-| Bosun                  | Desktop, Telegram            |   ●   |   ●    |     ●     |
-| herdr-voice            | macOS                        |   ●   |   ●    |     ●     |
-| TapQ                   | macOS, AirPods               |   ●   |   ○    |     ●     |
-| ChatGPT and Codex      | Desktop, mobile, web         |   ●   |   ●    |     ●     |
-| Claude                 | Desktop, mobile, web         |   ●   |   ●    |     ●     |
-| Perplexity Comet       | Desktop, mobile              |   ●   |   ●    |     ●     |
-| Microsoft Copilot      | Windows                      |   ●   |   ●    |     ◐     |
-| Meta Muse              | App, WhatsApp, glasses       |   ●   |   ●    |     ◐     |
+| Agent                  | Platform                    | Voice | Visual | Oversight | Watch out                                  |
+| ---------------------- | --------------------------- | :---: | :----: | :-------: | ------------------------------------------ |
+| OpenClaw               | macOS, iOS, Android, server |   ●   |   ●    |     ●     | Yolo mode is opt-in                        |
+| Hermes Agent           | Linux, macOS, Windows       |   ●   |   ●    |     ●     | None found                                 |
+| Qwen Audio Agent       | macOS, Windows, Linux       |   ●   |   ●    |     ●     | Cloud voice by default, Mandarin wake word |
+| usejarvis              | Daemon plus desktop sidecar |   ●   |   ●    |     ●     | Source-available, telemetry on (opt-out)   |
+| JARVIS for Claude Code | macOS                       |   ●   |   ●    |     ●     | Skips permissions, non-commercial          |
+| Sutando                | macOS                       |   ●   |   ●    |     ●     | Skips permissions, telemetry on (opt-out)  |
+| OpenClicky             | macOS                       |   ●   |   ●    |     ●     | Codex full access, prebuilt binaries       |
+| N.E.K.O                | Windows, macOS, Linux       |   ●   |   ●    |     ●     | Free tier uses the project's server        |
+| AIRI                   | Web, Windows, macOS, Linux  |   ●   |   ●    |     ◐     | Analytics on (opt-out)                     |
+| Operit                 | Android                     |   ●   |   ●    |     ◐     | Bundled APKs, root or Shizuku              |
+| Newelle                | Linux                       |   ●   |   ●    |     ◐     | Flatpak can run host commands              |
+| Paseo                  | Desktop, mobile, web        |   ●   |   ●    |     ●     | Voice control of agents is opt-in          |
+| Happy                  | iOS, Android, web, macOS    |   ●   |   ●    |     ●     | Paid voice, analytics on (opt-out)         |
+| TapQ                   | macOS, AirPods              |   ●   |   ○    |     ●     | Beta, its sessions skip permissions        |
+| ChatGPT and Codex      | Desktop, mobile, web        |   ●   |   ●    |     ●     | Approvals on screen only                   |
+| Claude                 | Desktop, mobile, web        |   ●   |   ◐    |     ●     | Voice mode is beta                         |
+| Gemini                 | Mobile, Mac, web            |   ●   |   ◐    |     ●     | Spark needs Pro or Ultra                   |
+| Perplexity Comet       | Desktop, Android            |   ●   |   ◐    |     ●     | Parallel tasks need Max                    |
+| Microsoft Copilot      | Windows                     |   ●   |   ●    |     ◐     | Actions are experimental                   |
 
 ### Open Source
 
-- [OpenClaw](https://github.com/openclaw/openclaw) - Self-hosted personal agent gateway with memory, skills, dozens of chat channels and heartbeat proactivity, plus a wake word and interruptible Talk mode on macOS, iOS, Android and Apple Watch, live per-session dashboards, and sub-agents and coding agents (Claude Code, Codex and others) driven over ACP behind exec approvals.
-- [Hermes Agent](https://github.com/NousResearch/hermes-agent) - Nous Research's self-improving assistant with curated memory, self-written skills, cron and a multi-platform chat gateway, plus interruptible voice with an optional on-device wake word, a desktop app with an always-on-top HUD and live sub-agent view, and delegation and Kanban boards behind approval gates.
-- [Qwen Audio Agent](https://github.com/QwenAudio/qwen-audio-agent) - Full-duplex voice assistant with a floating desktop orb that hands tasks to Claude Code, Codex, OpenCode and other agents over ACP, tracks and cancels them while you keep talking, relays their permission prompts, and tells you when results are ready (cloud voice by default, local pipeline optional).
-- [usejarvis](https://github.com/vierisid/jarvis) - Always-on daemon with hands-free wake listening, a cursor-following orb that spawns a visible sub-orb for each background agent, a role hierarchy of delegated agents, screen awareness through sidecars and enforced authority limits (source-available license).
-- [JARVIS for Claude Code](https://github.com/ethanplusai/jarvis) - macOS voice butler with an audio-reactive orb and live dashboard that plans projects out loud, spawns Claude Code builds with permission checks skipped, and speaks up when any Claude Code session needs you (Chrome and Fish Audio required, non-commercial license).
-- [Personal Jarvis](https://github.com/PersonalJarvis/PersonalJarvis) - Windows-first voice orchestrator (also macOS and Linux) with a local wake word and speech, a desktop orb overlay, and a coding workspace that fans spoken orders out to parallel Claude Code and Codex terminals addressed by call sign (young project).
-- [QwenPaw](https://github.com/agentscope-ai/QwenPaw) - AgentScope's personal assistant (formerly CoPaw) with a built-in local model runtime, interruptible voice over phone calls, an always-on-top desktop pet and web console that show agent state, and sub-agents plus coding agents driven over ACP with approval gates.
-- [Moltis](https://github.com/moltis-org/moltis) - Rust personal agent server with sandboxed execution and memory, hands-free voice in the web UI and over phone calls, and sub-agents plus Claude Code, Codex and other ACP agents behind approval prompts.
-- [ZeroClaw](https://github.com/zeroclaw-labs/zeroclaw) - Always-on Rust assistant with about 20 LLM providers and 30+ channels, a web dashboard with a live agent canvas and a run monitor with cancel, and sub-agents plus Claude Code and Codex runners behind approval gates (voice limited to voice notes).
-- [OpenJarvis](https://github.com/open-jarvis/OpenJarvis) - Local-first agent framework from Stanford with a desktop dashboard that runs, pauses and approves persistent and scheduled agents, including Claude Code, with push-to-talk voice and spoken daily digests.
-- [isair/jarvis](https://github.com/isair/jarvis) - Fully local voice assistant for macOS, Windows and Linux that hears "Jarvis" anywhere in a sentence, follows the conversation in the room and shows its state on an animated desktop face (non-commercial license).
-- [GLaDOS](https://github.com/dnhkng/GLaDOS) - Local, interruptible, low-latency voice persona that watches through a camera, speaks up on its own and runs background sub-agents for mood, news and memory, shown in a terminal dashboard.
-- [AIRI](https://github.com/moeru-ai/airi) - Self-hosted companion with realtime voice, a Live2D or VRM character on your desktop or the web, memory, and agent services that play Minecraft and react to Claude Code hook events.
-- [N.E.K.O](https://github.com/Project-N-E-K-O/N.E.K.O) - Proactive desktop companion with realtime voice and vision, Live2D, VRM or desk-pet avatars, and task delegation to computer-use and OpenClaw agents.
-
-### Omarchy
-
-Omarchy 4 made the whole desktop a plugin surface, and its [plugin marketplace](https://plugins.omarchy.org) grew a Jarvis scene within weeks. Install with `omarchy plugin add <repo>`. These are young projects, so expect rough edges.
-
-- [hey-jarvis](https://github.com/Atzingen/hey-jarvis) - Omarchy plugin with an always-on "hey jarvis" wake word, barge-in and follow-up turns, and a live conversation window, which hands each request to Claude Code or Codex, gates every command behind a consent prompt and narrates progress aloud.
-- [Omarvis](https://github.com/eliasstravik/omarvis) - Omarchy plugin for realtime ElevenLabs voice sessions that control the desktop, drive the browser, and list, prompt and close Herdr coding agents, asking for a spoken yes before risky actions, with a HUD strip and phone access over Tailscale.
-- [omarchy-voice](https://github.com/wombatoperator/omarchy-voice) - Experimental OpenAI Realtime voice control for Omarchy that moves windows, reads pages and the camera, and hands long jobs to durable background workers, including Codex, that you can inspect, cancel and resume by voice.
-- [omavoice](https://github.com/baranskyi/omavoice) - Omarchy voice overlay where OpenAI Realtime handles interruptible speech and Codex or Claude Code does the work, with a live waterfall of the agent's actions and a consent window before it acts.
-- [Jarvis for Omarchy](https://github.com/jburchel/omarchy-jarvis) - Voice layer for terminal coding agents with a "Hey Jarvis" wake word into dictation, Edge or Piper speech, a bar state widget, and a Claude Code adapter that reads out turn summaries and approval requests for each session.
+- [OpenClaw](https://github.com/openclaw/openclaw) - Self-hosted agent gateway with native macOS, iOS and Android apps that add a wake word, an interruptible talk mode with an orb overlay, a Canvas window and a web control UI, plus sub-agents and ACP coding agents behind exec approvals.
+- [Hermes Agent](https://github.com/NousResearch/hermes-agent) - Nous Research's assistant with a local "Hey Hermes" wake word, full-duplex voice with barge-in, a desktop app with an always-on-top pet overlay and live sub-agent panel, and parallel delegation with interrupt and command approvals.
+- [Qwen Audio Agent](https://github.com/QwenAudio/qwen-audio-agent) - Full-duplex voice front end with a desktop orb and task cards that hands work to Claude Code, Codex, OpenCode and other ACP agents, tracks and cancels them while you talk, and relays their permission prompts (cloud voice by default, local option).
+- [usejarvis](https://github.com/vierisid/jarvis) - Daemon with a "Hey Jarvis" wake word, interruptible speech, a cursor-following status orb with a sub-orb for each background agent, and delegated sub-agents with approvals and kill controls (source-available license).
+- [N.E.K.O](https://github.com/Project-N-E-K-O/N.E.K.O) - Desktop companion with full-duplex voice and barge-in, Live2D, VRM or MMD avatars, and an agent HUD that dispatches and cancels computer-use, browser and OpenClaw tasks.
+- [AIRI](https://github.com/moeru-ai/airi) - Self-hosted Live2D and VRM companion for web, desktop and mobile with always-on voice, sub-agents such as its Minecraft player, and an approval-gated computer-use service.
 
 ### macOS
 
-- [Jarvis × Codex](https://github.com/Big-Guan/jarvis-codex) - "Hey Jarvis" voice front end for Codex with a transparent animated character that reflects task state, interruptible realtime voice, a stop-all button and per-workspace Codex threads with permission profiles.
-- [OpenClicky](https://github.com/jasonkneen/openclicky) - Open-source menu-bar buddy that lives next to your cursor with wake word and push-to-talk voice, sees your screen and points at UI, and runs a Codex agent mode with its own HUD.
-- [Sutando](https://github.com/sonichi/sutando) - Gemini Live voice agent for the browser, phone and meetings that delegates work to a background Claude Code or Codex core, with a proactive loop, menu-bar app and status dashboard.
-
-### Windows
-
-- [Mark LIV](https://github.com/FatihMakes/Mark-LIV) - Windows-first (also macOS and Linux) Gemini Live assistant with a "Hey Jarvis" wake word, a JARVIS-style HUD with a lip-synced holographic head, screen and webcam vision, and desktop control.
-- [Jarvis Vocal](https://github.com/sosoj92/jarvis-assistant-vocal) - French-language Windows 11 assistant with a "Hey Jarvis" wake word, local Whisper, an arc-reactor HUD and a no-focus answer overlay, which delegates research to a sandboxed Hermes agent and reaches other rooms through Raspberry Pi satellites.
+- [JARVIS for Claude Code](https://github.com/ethanplusai/jarvis) - Voice butler with always-on listening, barge-in and an audio-reactive orb that spawns, watches and cancels Claude Code runs and announces any blocked session (runs skip permission checks, non-commercial license).
+- [Sutando](https://github.com/sonichi/sutando) - Gemini Live voice agent for the browser, phone and meetings that queues work to a Claude Code or Codex core, with cancel and status by voice, a menu-bar avatar and a dashboard (alpha; the core skips permission checks).
+- [OpenClicky](https://github.com/jasonkneen/openclicky) - Menu-bar buddy with a "Hey Clicky" wake word, a cursor-pointing overlay and a HUD that runs and stops several Codex agents (build from source; Codex runs with full access by default).
 
 ### Linux
 
-- [Newelle](https://github.com/qwersyk/Newelle) - GNOME assistant on Flathub with wake-word hands-free voice, a floating layer-shell voice pill, terminal and MCP tools, scheduled tasks and in-app sub-agents on local or cloud models.
-- [J.A.R.V.I.S. for KDE](https://github.com/novik133/jarvis) - Offline KDE Plasma 6 plasmoid with a "Jarvis" wake word, bundled llama.cpp and whisper.cpp, Piper speech and system actions.
+- [Newelle](https://github.com/qwersyk/Newelle) - GNOME assistant with a wake word, hands-free voice shown in a desktop overlay pill, MCP tools, in-chat sub-agents and ask-by-default command permissions.
 
 ### Android
 
-- [Operit](https://github.com/AAswordman/Operit) - Android agent that can replace the default assistant, with wake phrases, continuous voice, a floating overlay with avatars, UI-automation sub-agents, parallel agent chats, an on-device Ubuntu terminal, workflows and MCP.
-- [WakeHermesClaw](https://github.com/yuga-hashimoto/openclaw-assistant) - Android and Wear OS voice client for OpenClaw and Hermes Agent with a wake word, voice overlay, continuous conversation and default-assistant integration, plus a bridge that grants the agent phone capabilities with time-limited approvals.
-
-### Glasses
-
-- [VisionClaw](https://github.com/Intent-Lab/VisionClaw) - iOS and Android app that turns Meta Ray-Ban glasses into a Gemini Live voice and vision assistant, handing actions to OpenClaw or a hosted Claude agent and tracking the async tasks (self-hosted gateway required).
-- [OpenVision](https://github.com/rayl15/OpenVision) - iOS app for Meta Ray-Ban glasses with an "Ok Vision" wake word, live voice and vision mode, and a choice of on-device or cloud backends, including OpenClaw.
-- [cc-g2](https://github.com/wmoto-ai/cc-g2) - Even Realities G2 companion that shows Claude Code, Codex and Copilot CLI completions on the HUD, lets you approve their permission prompts and answer their questions, and launches sessions by voice.
+- [Operit](https://github.com/AAswordman/Operit) - Android agent that can replace the default assistant, with a custom wake word, hands-free voice, floating avatar overlays, an on-device Ubuntu terminal, a UI-automation sub-agent and ask-by-default tool permissions.
 
 ### Commercial
 
-Status as of September 2026.
+Status as of September 2026, from vendor documentation.
 
-- [ChatGPT](https://chatgpt.com) - Full-duplex GPT-Live voice on mobile and desktop that can start and track several Codex tasks in parallel, plus memory, scheduled tasks and an agent mode you can watch operate a browser.
-- [Claude](https://claude.com) - Hands-free voice mode, Cowork with scheduled tasks, Dispatch from your phone and a visible task-progress view, browser actions through Claude in Chrome, and Claude Code sub-agents and agent teams.
-- [Perplexity Comet](https://www.perplexity.ai/comet) - AI browser with a realtime, screen-aware voice mode that steers an agent you can watch click, fill forms and navigate, plus parallel background assistants on the top tier.
-- [Microsoft Copilot](https://copilot.microsoft.com) - "Hey Copilot" wake word and Copilot Vision on Windows, an animated avatar that shows listening and thinking, and experimental opt-in Copilot Actions that operate apps and files in a separate agent workspace.
-- [Meta Muse](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/) - Meta's personal agent with memory, proactive suggestions and voice conversation that keeps working in a watchable cloud VM while a supervising agent gates sensitive actions, with glasses support announced.
-- [Gemini](https://gemini.google.com) - Live voice with camera and screen sharing, personal context from Google apps, and Gemini Spark, a 24/7 background agent with schedules and approval checks for paid subscribers.
-- [Siri](https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here/) - Wake-word assistant rebuilt as an opt-in beta across Apple's version 27 platforms, with personal context, on-screen awareness and cross-app actions.
-- [Alexa+](https://www.aboutamazon.com/news/devices/new-alexa-generative-artificial-intelligence) - Always-listening generative Alexa on Echo devices, Fire TV, the app and the web that runs smart-home routines, with bookings through partner services rolling out.
-- [Grok](https://grok.com) - "Hey Grok" voice assistant in Tesla vehicles that controls car functions and, on the top tier, handles email, calendar and errands after spoken confirmation.
+- [ChatGPT](https://learn.chatgpt.com/docs/features/voice) - Full-duplex GPT-Live voice that, in the desktop app, starts, checks and steers several Codex and Work tasks, with scheduled tasks, memory, a watchable browser agent and a floating status overlay.
+- [Claude](https://claude.com/docs/cowork/guide/dispatch) - Hands-free voice mode (beta), Cowork scheduled tasks, and Dispatch, which fans work out to parallel sessions with per-task status and forwarded approvals on desktop or phone.
+- [Gemini](https://gemini.google/overview/agent/spark/) - Interruptible Gemini Live voice with camera and screen sharing, plus Gemini Spark, a 24/7 cloud agent with schedules, a progress panel, stop and take-over controls, and approval before major actions.
+- [Perplexity Comet](https://www.perplexity.ai/comet) - AI browser whose realtime voice mode sees the page and acts by voice, plus background assistants that run many agent tasks in parallel with confirmations in one place.
+- [Microsoft Copilot](https://support.microsoft.com/en-us/topic/getting-started-with-copilot-on-windows-1159c61f-86c3-4755-bf83-7fbff7e0982d) - "Hey Copilot" wake word, Copilot Vision screen sharing, the animated Mico avatar in voice mode, and experimental Copilot Actions in an isolated agent workspace.
 
 ## Mission Control
 
-Jarvis's staff. Tools for dispatching, watching and approving many agents at once, ideally by voice.
+Jarvis's staff. Tools for dispatching, watching and approving many agents at once.
 
 ### Voice Oversight
 
-- [Paseo](https://github.com/getpaseo/paseo) - Desktop, mobile and CLI command center for Claude Code, Codex, Copilot and OpenCode whose local-first voice mode creates, monitors and kills agents across machines, with schedules and heartbeats.
-- [Happy](https://github.com/slopus/happy) - Encrypted mobile, web and macOS client for Claude Code and Codex whose realtime voice agent relays instructions to sessions, reports background completions and approves or denies permission requests by voice (voice needs a paid plan or your own ElevenLabs agent).
-- [Bosun](https://github.com/virtengine/bosun) - Control plane that routes coding tasks across Codex, Claude, Copilot and OpenCode, with a realtime barge-in voice agent, voice overlay and fleet dashboard on the desktop and in Telegram.
-- [herdr-voice](https://github.com/brogrammerMW/herdr-voice) - Hands-free, interruptible macOS voice agent with an orb that lists, starts, prompts and watches the coding agents in your Herdr panes, approves their prompts on your spoken yes and summarizes results aloud (very new).
-- [TapQ](https://github.com/spaceamoeba-t/tapq) - Headless macOS voice supervisor that speaks Claude Code, Codex, Cursor and OpenCode prompts from every session into your AirPods, takes answers by voice or head nod, reports finished runs and queues your next instructions (beta).
-- [OpenYabby](https://github.com/OpenYabby/OpenYabby) - macOS orchestrator with a "Yabby" wake word and realtime voice that plans work and spawns teams of Claude Code or Codex agents, with a live project dashboard, plan approval and kill controls.
-- [OpenLive](https://github.com/katipally/openlive) - On-device voice and vision layer with interruptible local speech that drives Claude Code, Codex, Cursor, OpenCode or Hermes over ACP and answers their permission prompts by voice.
-- [VoiceMode](https://github.com/mbailey/voicemode) - MCP server and Claude Code plugin for two-way spoken conversations with local Whisper and Kokoro or cloud voices, with speaker coordination across agents, on Linux, macOS, Windows and NixOS.
+- [Paseo](https://github.com/getpaseo/paseo) - Daemon plus desktop, mobile and web clients that run Claude Code, Codex, Copilot and OpenCode agents in parallel, with an interruptible local voice mode that can create, prompt, approve and kill agents once tool injection is turned on.
+- [Happy](https://github.com/slopus/happy) - Mobile, web and macOS client for supervising many Claude Code and Codex sessions, whose realtime voice assistant messages any session and approves or denies permissions (hosted voice is paid after 20 free minutes a month).
+- [TapQ](https://github.com/spaceamoeba-t/tapq) - Screenless macOS supervisor that speaks Claude Code, Codex, Cursor and OpenCode prompts into your AirPods and takes answers by voice or head gesture, with a "hey tapq" wake word (beta).
 
 ### Command Centers
 
@@ -205,10 +150,12 @@ Jarvis's staff. Tools for dispatching, watching and approving many agents at onc
 - [Maestro](https://github.com/RunMaestro/Maestro) - Desktop command center for many Claude Code, Codex and OpenCode agents with unattended playbooks, a moderator-led group chat, spoken completion alerts and phone remote control.
 - [Agent Orchestrator](https://github.com/Untrivial-ai/agent-orchestrator) - Orchestrator agent that splits plans into tasks and supervises a team of coding-agent workers on a live kanban, from desktop, web or phone.
 - [AionUi](https://github.com/iOfficeAI/AionUi) - Desktop app that teams up Claude Code, Codex, OpenClaw, Hermes and other CLI agents under a leader agent, with per-agent approval prompts and speech input.
-- [Nerve](https://github.com/daggerhashimoto/openclaw-nerve) - Web cockpit for OpenClaw with wake-phrase voice, a sub-agent session tree, a kanban board for delegating and reviewing work, and live cost tracking.
+- [QwenPaw](https://github.com/agentscope-ai/QwenPaw) - AgentScope's assistant server with a desktop-style web console that spawns sub-agents and delegates to Claude Code, Codex and OpenCode over ACP with cancel and approvals (voice is dictation and phone calls; telemetry on, opt-out).
+- [ZeroClaw](https://github.com/zeroclaw-labs/zeroclaw) - Single-binary Rust agent with a web dashboard (live canvas, runs, ACP console, approvals) and background delegation with cancel, plus Claude Code and Codex tools.
+- [Moltis](https://github.com/moltis-org/moltis) - Rust agent server with a web UI, hands-free voice mode, nested sub-agents with cancel, and approval-gated control of Claude Code, Codex and ACP agents.
+- [OpenJarvis](https://github.com/open-jarvis/OpenJarvis) - Local-first framework from Stanford with a desktop GUI for running, pausing and approving persistent agents, including Claude Code (analytics on by default; installer telemetry cannot be disabled).
 - [Paperclip](https://github.com/paperclipai/paperclip) - Self-hosted dashboard that runs agents from any runtime as an org chart with heartbeats, budgets, approval gates and cost tracking.
 - [Mission Control](https://github.com/builderz-labs/mission-control) - Self-hosted control plane that dispatches tasks to OpenClaw, Claude Code and Codex, gates them with approvals and tracks their spend.
-- [Infomarchy](https://github.com/nixfred/infomarchy) - Omarchy plugin that turns the wallpaper into a live dashboard of every running coding agent, with busy and stale states, stop controls, usage limits and machine stats.
 - [Langfuse](https://github.com/langfuse/langfuse) - Self-hostable tracing and evaluation that shows what each agent and sub-agent did and what it cost.
 
 ### Agent Presence
@@ -223,20 +170,59 @@ Ambient ways to see what your agents are doing without reading logs.
 
 ### Hosted Mission Control
 
-- [Codex](https://openai.com/codex/) - OpenAI's multi-agent coding app, which ChatGPT's full-duplex desktop voice can direct: start, check on and steer several parallel agents by talking, and control it from your phone.
-- [Claude Code Remote Control](https://code.claude.com/docs/en/remote-control) - Drive local Claude Code sessions, including many at once in server mode, from the Claude app or web, with push notifications when a session needs a permission or answer.
-- [GitHub Agent HQ](https://github.blog/ai-and-ml/github-copilot/how-to-orchestrate-agents-using-mission-control/) - Mission control for assigning, watching and steering coding agents from several vendors across web, IDE, CLI and mobile.
-- [Antigravity Agent Manager](https://antigravity.google/docs/agent) - Google's view for spawning parallel agents and reviewing their plans, screenshots and recordings from one inbox.
+- [Codex](https://openai.com/codex) - OpenAI's coding agent in the ChatGPT desktop app, running parallel tasks in worktrees or the cloud that ChatGPT's voice can start and steer, with phone control of a connected computer.
+- [Claude Code Remote Control](https://code.claude.com/docs/en/remote-control) - Server mode that runs up to 32 Claude Code sessions, each in its own worktree, driven from the Claude app or web with push notifications for permission prompts.
+- [GitHub Agent HQ](https://github.blog/news-insights/company-news/welcome-home-agents/) - Mission control for assigning, steering and stopping parallel Copilot, Claude and Codex coding agents across web, VS Code, mobile and CLI.
+- [Google Antigravity](https://antigravity.google/blog/introducing-google-antigravity) - Agent-first IDE whose Agent Manager spawns and watches parallel agents that produce reviewable plans, screenshots and browser recordings.
+
+## Watch List
+
+Real Jarvis ideas in working code that are too young, too thin or too risky to vouch for yet. Check activity and read the code before you depend on one. Entries graduate or drop out as they mature. No open-source Windows-native agent meets the bar yet; the cross-platform entries above cover Windows.
+
+### Omarchy
+
+Omarchy 4 made the whole desktop a plugin surface, and its [plugin marketplace](https://plugins.omarchy.org) grew a Jarvis scene within weeks. Install with `omarchy plugin add <repo>`.
+
+- [hey-jarvis](https://github.com/Atzingen/hey-jarvis) - Local "hey jarvis" wake word, Whisper, Piper and barge-in, with a live conversation window, handing requests to Codex or Claude Code behind per-command consent windows.
+- [omarchy-voice](https://github.com/wombatoperator/omarchy-voice) - Experimental OpenAI Realtime voice control with a state orb and durable background workers, including Codex, that you can list, cancel and resume by voice.
+- [omavoice](https://github.com/baranskyi/omavoice) - OpenAI Realtime voice panel that delegates questions to Codex or Claude Code, with a live trace of the agent's work and cancel control.
+- [Omarvis](https://github.com/eliasstravik/omarvis) - ElevenLabs voice sessions that run allowlisted desktop and browser commands and steer Herdr coding agents, with spoken confirmation for risky actions.
+- [Jarvis for Omarchy](https://github.com/jburchel/omarchy-jarvis) - Voice layer for terminal coding agents with a "Hey Jarvis" wake word, Edge or Piper speech and a Claude Code adapter that reads out turn summaries and approval requests.
+- [Infomarchy](https://github.com/nixfred/infomarchy) - Turns the wallpaper into a live dashboard of every running coding agent, with busy and stale states, stop controls and usage limits.
+
+### Voice Oversight Contenders
+
+- [herdr-voice](https://github.com/brogrammerMW/herdr-voice) - macOS voice agent with an orb that starts, prompts and watches the coding agents in your Herdr panes and approves their prompts on your spoken yes.
+- [OpenLive](https://github.com/katipally/openlive) - On-device voice loop with barge-in in front of one ACP coding agent per call, speaking its permission requests for yes or no answers and showing its live plan.
+- [Bosun](https://github.com/virtengine/bosun) - Control plane with an orb-style realtime voice assistant that starts and polls coding-agent sessions (executors skip permission checks by default; activity paused for months).
+- [OpenYabby](https://github.com/OpenYabby/OpenYabby) - macOS orchestrator with a "Yabby" wake word and realtime voice that plans work and spawns teams of Claude Code or Codex agents with plan approval and kill controls.
+- [Nerve](https://github.com/daggerhashimoto/openclaw-nerve) - Web cockpit for OpenClaw with wake-phrase voice, a sub-agent session tree and a kanban board for delegating and reviewing work.
+
+### Desktop, Mobile and Glasses
+
+- [Personal Jarvis](https://github.com/PersonalJarvis/PersonalJarvis) - Wake-word voice orchestrator with an orb and mission deck that runs Claude Code and Codex missions in worktrees (one developer's largely AI-generated code, failing CI, workers skip permission checks).
+- [Jarvis × Codex](https://github.com/Big-Guan/jarvis-codex) - macOS "Hey Jarvis" voice front end for Codex with an animated character that reflects task state and a stop-all button.
+- [Jarvis Vocal](https://github.com/sosoj92/jarvis-assistant-vocal) - French-language Windows assistant with a "Hey Jarvis" wake word, an arc-reactor HUD and research delegated to a local Hermes agent (launcher auto-updates from Git).
+- [WakeHermesClaw](https://github.com/yuga-hashimoto/openclaw-assistant) - Android and Wear OS voice client for OpenClaw and Hermes Agent with a wake word and default-assistant integration.
+- [VisionClaw](https://github.com/Intent-Lab/VisionClaw) - Meta Ray-Ban glasses app with interruptible Gemini Live or OpenAI Realtime voice and vision that delegates tasks to OpenClaw or a hosted agent (no open-source license; uploads transcripts to its gateway).
+- [OpenVision](https://github.com/rayl15/OpenVision) - iOS app for Meta Ray-Ban glasses with an "Ok Vision" wake word and on-device or cloud backends, including OpenClaw.
+- [cc-g2](https://github.com/wmoto-ai/cc-g2) - Even Realities G2 companion that shows coding-agent completions on the HUD and lets you approve their permission prompts.
+- [Meta Muse](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/) - Meta's personal agent in a cloud VM you can watch and take over, with a separate agent that gates its actions; voice mode and glasses support are announced, not shipped.
 
 ## Voice Assistants
 
-Open replacements for Alexa and Google Home. Strong on voice, light on visuals and oversight.
+Strong on voice, light on visuals and oversight. Good ears and a mouth for a Jarvis, or a Jarvis in its own right if you don't need a staff.
 
 - [Home Assistant Assist](https://www.home-assistant.io/voice_control/) - Home Assistant's voice pipeline (wake word, speech-to-text, conversation agent, text-to-speech) with satellites in every room, fully local or LLM-backed, that can start conversations on its own.
+- [isair/jarvis](https://github.com/isair/jarvis) - Local always-listening assistant that hears "Jarvis" anywhere in a sentence, with an animated state face, memory and MCP tools (non-commercial license).
+- [GLaDOS](https://github.com/dnhkng/GLaDOS) - Always-listening, interruptible local voice persona with vision, autonomous background minds and a terminal dashboard.
 - [xiaozhi-esp32](https://github.com/78/xiaozhi-esp32) - ESP32 voice firmware for 130+ boards with offline wake word, streaming or realtime LLM speech (full duplex on boards with echo cancellation), speaker recognition, an expressive emoji display and MCP, using the vendor's cloud by default.
 - [OpenVoiceOS](https://github.com/OpenVoiceOS/ovos-core) - Community continuation of Mycroft with skills, an LLM persona fallback, and Raspberry Pi and Docker images.
 - [Neon AI](https://github.com/NeonGeckoCom/NeonCore) - Mycroft-derived, Linux-only voice assistant core with multi-user support, an LLM fallback skill and containerized speech services.
 - [Dicio](https://github.com/DicioTeam/dicio-android) - Free, offline Android voice assistant with Vosk recognition, an openWakeWord wake word and a fixed set of on-device skills.
+- [Siri](https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here/) - Apple's rebuilt Siri, an opt-in English beta across the version 27 platforms with personal context, on-screen awareness and cross-app actions.
+- [Alexa+](https://www.aboutamazon.com/news/devices/alexa-plus-available-free-prime-members-us) - Amazon's generative Alexa in the US and Canada that builds smart-home routines by voice and books services for you.
+- [Grok in Tesla](https://www.tesla.com/support/grok) - "Hey Grok" voice assistant (beta) with vehicle commands in supported Teslas.
 
 ## AI Devices
 
@@ -244,7 +230,7 @@ Dedicated hardware for talking to an assistant. Status as of September 2026.
 
 - [Meta Ray-Ban Display](https://www.meta.com/ai-glasses/meta-ray-ban-display/) - Glasses with a monocular in-lens display, an EMG wristband for gestures and handwriting, and hands-free "Hey Meta" voice with navigation and live captions.
 - [Ray-Ban Meta](https://www.meta.com/ai-glasses/) - Voice-first camera glasses without a display, joined by camera-free audio glasses, for hands-free access to Meta's assistant.
-- [Muse Charm](https://www.meta.com/blog/meta-connect-2026-everything-we-announced/) - Palm-sized Meta device with an animated Muse avatar on a small screen, realtime voice and cameras (announced for December 2026).
+- [Muse Charm](https://www.meta.com/blog/meta-connect-2026-everything-we-announced/) - Pocket Meta device for talking to the Muse agent with a realtime voice model (announced at Connect 2026, not yet shipping).
 - [Brilliant Labs Halo](https://brilliant.xyz/products/halo) - Open-source glasses with a color display, bone-conduction audio and Noa, a conversational assistant that remembers what you see and hear.
 - [Omi](https://github.com/BasedHardware/omi) - Open-source pendant and desktop app that captures what you hear and see, transcribes it live, turns it into memories and action items, and answers by voice through your phone or earbuds.
 - [Rabbit r1](https://www.rabbit.tech/updates) - Push-to-talk pocket device that fronts rabbit OS3, a cloud agent with persistent memory and bring-your-own model keys that operates up to five connected computers and confirms sensitive actions.
@@ -334,6 +320,7 @@ The plumbing that connects ears, brain and voice in real time.
 - [RealtimeTTS](https://github.com/KoljaB/RealtimeTTS) - Python library that streams LLM text into speech with minimal latency across many engines, with fallbacks.
 - [Speaches](https://github.com/speaches-ai/speaches) - Self-hosted OpenAI-compatible speech server with faster-whisper, Kokoro and Piper, plus a Realtime API endpoint.
 - [mlx-audio](https://github.com/Blaizzy/mlx-audio) - Speech recognition, synthesis and speech-to-speech on Apple silicon with MLX, with an OpenAI-compatible server.
+- [VoiceMode](https://github.com/mbailey/voicemode) - MCP server and Claude Code plugin for two-way spoken conversations with local Whisper and Kokoro or cloud voices, on Linux, macOS, Windows and NixOS.
 - [Wyoming](https://github.com/OHF-Voice/wyoming) - Simple protocol that connects wake word, speech and satellite services in the Home Assistant voice ecosystem.
 
 ## Brain
