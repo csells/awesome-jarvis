@@ -6,15 +6,14 @@
 
 > Real-life J.A.R.V.I.S.: personal AI agents you talk to, that show you what they are doing, and that run a staff of other agents on your behalf.
 
-Tony Stark never typed a prompt. He talked to Jarvis, watched the work take shape on a heads-up display and let Jarvis run everything else in the building. You can build most of that yourself today. The trick is telling the projects that actually deliver from the ones that bolted a microphone button onto a chat window. So everything here is held to four hallmarks:
-<!-- CHRIS[C01] proposed-opinion: The "microphone button onto a chat window" jab is mine, based on the entries the reviews rejected. Keep it, soften it, or cut it? -->
+Tony Stark never typed a prompt. He talked to Jarvis, watched the work take shape on a heads-up display and let Jarvis run everything else in the building. You can build most of that yourself today. The trick is telling the projects that actually deliver from the ones that bolted a microphone button onto a chat window. So I hold everything here to four hallmarks:
 
 - **Voice.** It's always listening or has a wake word, it answers out loud, and you can interrupt it.
 - **Hands-free.** The whole job works without touching anything, including approving, denying and cancelling what the agent does.
 - **Visual presence.** An orb, HUD, avatar, overlay or dashboard shows its state and the work in progress, not just a chat transcript.
 - **Oversight.** It dispatches, supervises and reports on other agents (sub-agents, coding agents, background workers), with approvals and a kill switch.
 
-Every agent in the scorecard was checked against its code or the vendor's docs, not its marketing, by two independent reviews. Most were then installed and run in a test lab where they had to hear, answer and take orders out loud ([results](testing.md)). The short version: nobody is fully hands-free yet, and several of the most popular agents ship with their approvals switched off or automated. After the agents come the building blocks, layer by layer. If you're building your own, start with the [blueprint](blueprint.md).
+I didn't take anyone's marketing at face value. Two independent reviews checked every agent in the scorecard against its code, or against the vendor's docs for the commercial ones, and then most of them went into a test lab where they had to hear, answer and take orders out loud ([results](testing.md)). The short version: nobody is fully hands-free yet, and several of the most popular agents ship with their approvals switched off or automated. After the agents come the building blocks, layer by layer. If you're building your own, start with the [blueprint](blueprint.md).
 
 ## Contents
 
@@ -79,9 +78,9 @@ This is where the complete assistants live, not the parts. Each one is strong on
 
 ### Scorecard
 
-● means shipped and working, ◐ means partial, limited or experimental, and ○ means absent. Two independent reviews scored every row in September 2026, the second one blind to the first, working from the code for open-source projects and the vendor's docs for commercial ones. "Tested" tells you how far we went beyond reading: Hands-on means we ran it, Partial means we ran it but couldn't exercise every hallmark, and Code or Docs means we didn't run it. The [test results](testing.md#results) have the details.
+● means shipped and working, ◐ means partial, limited or experimental, and ○ means absent. Two independent reviews scored every row in September 2026, with the second reviewer blind to the first. They worked from the code for open-source projects and from the vendor's docs for commercial ones. The Tested column tells you how far things went beyond reading: Hands-on means the agent ran in the lab, Partial means it ran but the lab couldn't exercise every hallmark, and Code or Docs means nobody ran it. The [test results](testing.md#results) have the details.
 
-Two things jumped out. First, nobody is fully hands-free: every agent needs a click or a keypress to approve or cancel something. Second, several of them run their coding agents with approvals turned off or automated by default, so read the last column before you install anything.
+Two things jumped out at me. First, nobody is fully hands-free: every agent needs a click or a keypress to approve or cancel something. Second, several of them run their coding agents with approvals turned off or automated by default, so read the last column before you install anything.
 
 | Agent                  | Platform                    | Voice | Hands-free | Visual | Oversight | Tested   | Watch out                                                     |
 | ---------------------- | --------------------------- | :---: | :--------: | :----: | :-------: | -------- | ------------------------------------------------------------- |
@@ -117,9 +116,9 @@ Two things jumped out. First, nobody is fully hands-free: every agent needs a cl
 
 ### Omarchy
 
-Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, thanks to [Omarchy M](https://omarchy.org/news/2026/09/introducing-omarchy-m/), on Apple Silicon Macs, too.
+Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, thanks to [Omarchy M](https://omarchy.org/news/2026/09/introducing-omarchy-m/), on Apple silicon Macs, too.
 
-- [hey-jarvis](https://github.com/Atzingen/hey-jarvis) - Omarchy plugin with a local "hey jarvis" wake word, Whisper, Piper and barge-in, a live conversation window, and requests handed to Claude Code or Codex behind per-command consent windows (the consent window currently needs a click).
+- [hey-jarvis](https://github.com/Atzingen/hey-jarvis) - Omarchy plugin with a local "hey jarvis" wake word, Whisper, Piper, barge-in and a live conversation window that hands requests to Claude Code or Codex behind per-command consent windows (for now, you have to click to consent).
 
 ### macOS
 
@@ -129,7 +128,7 @@ Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, thanks
 
 ### Linux
 
-- [Newelle](https://github.com/qwersyk/Newelle) - GNOME assistant with a wake word, hands-free voice shown in a desktop overlay pill, MCP tools, in-chat sub-agents and ask-by-default command permissions.
+- [Newelle](https://github.com/qwersyk/Newelle) - GNOME assistant with a wake word, hands-free voice that shows up in a desktop overlay pill, MCP tools, in-chat sub-agents and ask-by-default command permissions.
 
 ### Android
 
@@ -137,7 +136,7 @@ Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, thanks
 
 ### Commercial
 
-Status as of September 2026, from vendor documentation.
+These come from the vendors' own documentation as of September 2026.
 
 - [ChatGPT](https://learn.chatgpt.com/docs/features/voice) - Full-duplex GPT-Live voice that, in the desktop app, starts, checks and steers several Codex and Work tasks, with scheduled tasks, memory, a watchable browser agent and a floating status overlay.
 - [Claude](https://claude.com/docs/cowork/guide/dispatch) - Hands-free voice mode (beta), Cowork scheduled tasks, and Dispatch, which fans work out to parallel sessions with per-task status and forwarded approvals on desktop or phone.
@@ -151,8 +150,8 @@ Every Jarvis needs a staff. These tools dispatch, watch and approve many agents 
 
 ### Voice Oversight
 
-- [Paseo](https://github.com/getpaseo/paseo) - Daemon plus desktop, mobile and web clients that run Claude Code, Codex, Copilot and OpenCode agents in parallel, with an interruptible local voice mode that can create, prompt, approve and kill agents once tool injection is turned on.
-- [Happy](https://github.com/slopus/happy) - Mobile, web and macOS client for supervising many Claude Code and Codex sessions, whose realtime voice assistant messages any session and approves or denies permissions (hosted voice is paid after 20 free minutes a month).
+- [Paseo](https://github.com/getpaseo/paseo) - Daemon plus desktop, mobile and web clients that run Claude Code, Codex, Copilot and OpenCode agents in parallel, with an interruptible local voice mode that can create, prompt, approve and kill agents once you turn on tool injection.
+- [Happy](https://github.com/slopus/happy) - Mobile, web and macOS client for supervising many Claude Code and Codex sessions, whose realtime voice assistant messages any session and approves or denies permissions (hosted voice costs money after 20 free minutes a month).
 - [TapQ](https://github.com/spaceamoeba-t/tapq) - Screenless macOS supervisor that speaks Claude Code, Codex, Cursor and OpenCode prompts into your AirPods and takes answers by voice or head gesture, with a "hey tapq" wake word (beta).
 
 ### Command Centers
@@ -165,7 +164,7 @@ Every Jarvis needs a staff. These tools dispatch, watch and approve many agents 
 - [QwenPaw](https://github.com/agentscope-ai/QwenPaw) - AgentScope's assistant server with a desktop-style web console that spawns sub-agents and delegates to Claude Code, Codex and OpenCode over ACP with cancel and approvals (voice is dictation and phone calls; telemetry on, opt-out).
 - [ZeroClaw](https://github.com/zeroclaw-labs/zeroclaw) - Single-binary Rust agent with a web dashboard (live canvas, runs, ACP console, approvals) and background delegation with cancel, plus Claude Code and Codex tools.
 - [Moltis](https://github.com/moltis-org/moltis) - Rust agent server with a web UI, hands-free voice mode, nested sub-agents with cancel, and approval-gated control of Claude Code, Codex and ACP agents.
-- [OpenJarvis](https://github.com/open-jarvis/OpenJarvis) - Local-first framework from Stanford with a desktop GUI for running, pausing and approving persistent agents, including Claude Code (analytics on by default; installer telemetry cannot be disabled).
+- [OpenJarvis](https://github.com/open-jarvis/OpenJarvis) - Local-first framework from Stanford with a desktop GUI for running, pausing and approving persistent agents, including Claude Code (analytics on by default, and you can't turn off the installer's telemetry).
 - [Paperclip](https://github.com/paperclipai/paperclip) - Self-hosted dashboard that runs agents from any runtime as an org chart with heartbeats, budgets, approval gates and cost tracking.
 - [Mission Control](https://github.com/builderz-labs/mission-control) - Self-hosted control plane that dispatches tasks to OpenClaw, Claude Code and Codex, gates them with approvals and tracks their spend.
 - [Langfuse](https://github.com/langfuse/langfuse) - Self-hostable tracing and evaluation that shows what each agent and sub-agent did and what it cost.
@@ -183,14 +182,13 @@ Ambient ways to see what your agents are doing without reading logs.
 ### Hosted Mission Control
 
 - [Codex](https://openai.com/codex) - OpenAI's coding agent in the ChatGPT desktop app, running parallel tasks in worktrees or the cloud that ChatGPT's voice can start and steer, with phone control of a connected computer.
-- [Claude Code Remote Control](https://code.claude.com/docs/en/remote-control) - Server mode that runs up to 32 Claude Code sessions, each in its own worktree, driven from the Claude app or web with push notifications for permission prompts.
+- [Claude Code Remote Control](https://code.claude.com/docs/en/remote-control) - Server mode that runs up to 32 Claude Code sessions, each in its own worktree, that you drive from the Claude app or web, with push notifications for permission prompts.
 - [GitHub Agent HQ](https://github.blog/news-insights/company-news/welcome-home-agents/) - Mission control for assigning, steering and stopping parallel Copilot, Claude and Codex coding agents across web, VS Code, mobile and CLI.
 - [Google Antigravity](https://antigravity.google/blog/introducing-google-antigravity) - Agent-first IDE whose Agent Manager spawns and watches parallel agents that produce reviewable plans, screenshots and browser recordings.
 
 ## Watch List
 
-I can't vouch for these yet. They're real Jarvis ideas in working code, but they're too young, too thin or too risky to recommend, so check the activity and read the code before you depend on one. Entries graduate or drop off as they mature. And if you're on Windows, nothing Windows-native makes the bar, so the cross-platform entries above are your best bet.
-<!-- CHRIS[C02] choice: "I can't vouch for these" puts you in the first person as the curator. Keep the "I", or go back to the impersonal voice here? -->
+I can't vouch for these yet. They're real Jarvis ideas in working code, but they're too young, too thin or too risky for me to recommend, so check the activity and read the code before you depend on one. I'll graduate them or drop them as they mature (or don't). And if you're on Windows, nothing Windows-native makes the bar, so the cross-platform entries above are your best bet.
 
 ### Omarchy Contenders
 
@@ -219,7 +217,7 @@ Omarchy 4 turned the whole desktop into a plugin surface, and its [plugin market
 - [VisionClaw](https://github.com/Intent-Lab/VisionClaw) - Meta Ray-Ban glasses app with interruptible Gemini Live or OpenAI Realtime voice and vision that delegates tasks to OpenClaw or a hosted agent (no open-source license; uploads transcripts to its gateway).
 - [OpenVision](https://github.com/rayl15/OpenVision) - iOS app for Meta Ray-Ban glasses with an "Ok Vision" wake word and on-device or cloud backends, including OpenClaw.
 - [cc-g2](https://github.com/wmoto-ai/cc-g2) - Even Realities G2 companion that shows coding-agent completions on the HUD and lets you approve their permission prompts.
-- [Meta Muse](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/) - Meta's personal agent in a cloud VM you can watch and take over, with a separate agent that gates its actions; voice mode and glasses support are announced, not shipped.
+- [Meta Muse](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/) - Meta's personal agent in a cloud VM you can watch and take over, with a separate agent that gates its actions; Meta has announced voice mode and glasses support but hasn't shipped them.
 
 ## Voice Assistants
 
@@ -242,7 +240,7 @@ Dedicated hardware for talking to an assistant. Status as of September 2026.
 
 - [Meta Ray-Ban Display](https://www.meta.com/ai-glasses/meta-ray-ban-display/) - Glasses with a monocular in-lens display, an EMG wristband for gestures and handwriting, and hands-free "Hey Meta" voice with navigation and live captions.
 - [Ray-Ban Meta](https://www.meta.com/ai-glasses/) - Voice-first camera glasses without a display, joined by camera-free audio glasses, for hands-free access to Meta's assistant.
-- [Muse Charm](https://www.meta.com/blog/meta-connect-2026-everything-we-announced/) - Pocket Meta device for talking to the Muse agent with a realtime voice model (announced at Connect 2026, not yet shipping).
+- [Muse Charm](https://www.meta.com/blog/meta-connect-2026-everything-we-announced/) - Pocket Meta device for talking to the Muse agent with a realtime voice model (Meta announced it at Connect 2026, but it isn't shipping yet).
 - [Brilliant Labs Halo](https://brilliant.xyz/products/halo) - Open-source glasses with a color display, bone-conduction audio and Noa, a conversational assistant that remembers what you see and hear.
 - [Omi](https://github.com/BasedHardware/omi) - Open-source pendant and desktop app that captures what you hear and see, transcribes it live, turns it into memories and action items, and answers by voice through your phone or earbuds.
 - [Rabbit r1](https://www.rabbit.tech/updates) - Push-to-talk pocket device that fronts rabbit OS3, a cloud agent with persistent memory and bring-your-own model keys that operates up to five connected computers and confirms sensitive actions.
@@ -254,17 +252,17 @@ Dedicated hardware for talking to an assistant. Status as of September 2026.
 
 - [openWakeWord](https://github.com/dscripka/openWakeWord) - Offline wake word framework that runs on a CPU or Raspberry Pi, trains custom words from synthetic speech, and powers Home Assistant's wake word add-on.
 - [microWakeWord](https://github.com/OHF-Voice/micro-wake-word) - Trains tiny streaming wake word models for ESP32-S3 microcontrollers, running on-device in ESPHome and the Home Assistant Voice Preview Edition.
-- [LiveKit WakeWord](https://github.com/livekit/livekit-wakeword) - Wake word trainer built on openWakeWord's front end with a conv-attention classifier, openWakeWord-compatible models and synthetic training data in 30 languages.
+- [LiveKit WakeWord](https://github.com/livekit/livekit-wakeword) - Wake word trainer that builds on openWakeWord's front end with a conv-attention classifier, openWakeWord-compatible models and synthetic training data in 30 languages.
 - [Porcupine](https://github.com/Picovoice/porcupine) - Commercial on-device wake word engine with SDKs for microcontrollers, mobile, web and desktop, and a free tier.
 
 ### Voice Activity and Turn Detection
 
-Voice activity detection hears that someone is talking. Turn detection decides whether they are done, which is what makes a conversation feel natural.
+Voice activity detection hears that someone is talking. Turn detection decides whether they're done, which is what makes a conversation feel natural.
 
 - [Silero VAD](https://github.com/snakers4/silero-vad) - De facto open voice activity detector, a 2 MB model that processes a 30 ms chunk in under 1 ms on one CPU thread.
 - [TEN VAD](https://github.com/TEN-framework/ten-vad) - Low-latency frame-level voice activity detector that catches speech-to-silence transitions faster than Silero, with C, Python, WebAssembly and mobile builds.
 - [Smart Turn](https://github.com/pipecat-ai/smart-turn) - Audio-native turn detection model that uses prosody as well as silence, in an 8 MB CPU build covering 23 languages.
-- [LiveKit Turn Detector](https://huggingface.co/livekit/turn-detector) - Semantic end-of-turn model that reads the transcript to decide whether the user is finished, running on CPU in 14 languages (licensed for use with LiveKit Agents only).
+- [LiveKit Turn Detector](https://huggingface.co/livekit/turn-detector) - Semantic end-of-turn model that reads the transcript to decide whether the user has finished, running on CPU in 14 languages (its license covers use with LiveKit Agents only).
 
 ### Speech-to-Text
 
@@ -272,7 +270,7 @@ Voice activity detection hears that someone is talking. Turn detection decides w
 - [faster-whisper](https://github.com/SYSTRAN/faster-whisper) - CTranslate2 reimplementation of Whisper that is up to 4x faster with less memory, the backbone of most self-hosted Whisper servers.
 - [Parakeet TDT](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3) - NVIDIA's 600M-parameter model for 25 European languages with very high throughput, one of the best choices for fast local transcription.
 - [Nemotron ASR Streaming](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b) - NVIDIA's 600M cache-aware streaming model for 40 language-locales, with chunk sizes down to 80 ms for voice agents.
-- [Moonshine](https://github.com/moonshine-ai/moonshine) - On-device streaming speech recognition for Python, WebAssembly, iOS, Android and Raspberry Pi, built to transcribe while the user is still speaking.
+- [Moonshine](https://github.com/moonshine-ai/moonshine) - On-device streaming speech recognition for Python, WebAssembly, iOS, Android and Raspberry Pi that transcribes while the user is still speaking.
 - [Voxtral Realtime](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) - Mistral's Apache-2.0 4B natively streaming model in 13 languages, with a configurable delay (480 ms recommended) that matches offline accuracy.
 - [Kyutai STT](https://github.com/kyutai-labs/delayed-streams-modeling) - Streaming speech-to-text and text-to-speech models with semantic voice activity detection and batched Rust serving.
 - [Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR) - Open 0.6B and 1.7B streaming recognition models for 52 languages and dialects, with language identification and a companion forced aligner for timestamps.
@@ -280,7 +278,7 @@ Voice activity detection hears that someone is talking. Turn detection decides w
 - [VibeVoice](https://github.com/microsoft/VibeVoice) - Microsoft's open speech family, with one-pass transcription of an hour of multi-speaker audio, a streaming variant that labels speakers live, a CPU-only BitNet build and a small realtime text-to-speech model.
 - [pyannote.audio](https://github.com/pyannote/pyannote-audio) - Leading open speaker diarization toolkit, for knowing which household member is talking.
 - [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) - Offline speech recognition, synthesis, voice activity detection and keyword spotting on ONNX Runtime, from RISC-V boards to servers.
-- [Speech-to-Phrase](https://github.com/OHF-Voice/speech-to-phrase) - Fast local recognition for Home Assistant that is trained on your own device and area names, so it matches home commands instead of transcribing open speech.
+- [Speech-to-Phrase](https://github.com/OHF-Voice/speech-to-phrase) - Fast local recognition for Home Assistant that trains on your own device and area names, so it matches home commands instead of transcribing open speech.
 - [FluidAudio](https://github.com/FluidInference/FluidAudio) - Swift and Core ML SDK that runs streaming Parakeet with end-of-utterance detection, Kokoro and Pocket TTS, Silero VAD, live diarization and echo cancellation on the Apple Neural Engine.
 - [Deepgram Flux](https://deepgram.com/flux) - Cloud conversational speech recognition with built-in end-of-turn detection for voice agents.
 - [AssemblyAI Universal-Streaming](https://www.assemblyai.com/universal-streaming) - Cloud streaming recognition for voice agents with neural end-of-turn detection.
@@ -292,7 +290,7 @@ Voice activity detection hears that someone is talking. Turn detection decides w
 
 If you want a butler-style voice, design one from a text description (VoxCPM, Qwen3-TTS and OmniVoice all do this) instead of cloning a real person. And only clone voices you have the rights to.
 
-- [Piper](https://github.com/OHF-Voice/piper1-gpl) - Fast local neural voices that run in real time on a Raspberry Pi, in dozens of languages including British English, maintained by the Open Home Foundation.
+- [Piper](https://github.com/OHF-Voice/piper1-gpl) - Fast local neural voices that run in real time on a Raspberry Pi, in dozens of languages including British English, from the Open Home Foundation.
 - [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M) - 82M-parameter Apache-2.0 model that is the most widely deployed small local voice, fast on CPU, with US and UK English voices.
 - [Pocket TTS](https://github.com/kyutai-labs/pocket-tts) - Kyutai's 100M-parameter streaming model that runs in real time on a CPU after a `pip install`, with voice cloning.
 - [KittenTTS](https://github.com/KittenML/KittenTTS) - Tiny ONNX models (15M to 80M parameters) for CPU-only and embedded devices.
@@ -302,7 +300,7 @@ If you want a butler-style voice, design one from a text description (VoxCPM, Qw
 - [OmniVoice](https://github.com/k2-fsa/OmniVoice) - Voice cloning in 600+ languages, with voice design from attributes such as gender, age and accent.
 - [Fish Speech](https://github.com/fishaudio/fish-speech) - Multilingual LLM-based speech with voice cloning and free-form delivery tags (research license; commercial use needs a license).
 - [ElevenLabs](https://elevenlabs.io/) - Leading commercial speech and voice-cloning platform, with expressive audio tags and low-latency models for agents.
-- [Cartesia Sonic](https://cartesia.ai/sonic) - State-space streaming speech built for voice agents, with time to first audio under 100 ms.
+- [Cartesia Sonic](https://cartesia.ai/sonic) - State-space streaming speech for voice agents, with time to first audio under 100 ms.
 - [Inworld TTS](https://inworld.ai/tts) - Context-aware speech that conditions on prior conversation audio and takes natural-language delivery directions.
 - [OpenAI TTS](https://developers.openai.com/api/docs/guides/text-to-speech) - Steerable speech that follows text instructions such as "speak like a dry, formal British butler."
 
@@ -311,7 +309,7 @@ If you want a butler-style voice, design one from a text description (VoxCPM, Qw
 Models that listen and speak directly, skipping the text round trip. Full-duplex models can listen while they talk.
 
 - [Moshi](https://github.com/kyutai-labs/moshi) - Kyutai's full-duplex speech-text model and Mimi codec with about 200 ms latency, running locally on PyTorch, MLX or Rust.
-- [PersonaPlex](https://github.com/NVIDIA/personaplex) - NVIDIA's full-duplex 7B model built on Moshi that adds persona control through role prompts and voice conditioning.
+- [PersonaPlex](https://github.com/NVIDIA/personaplex) - NVIDIA's full-duplex 7B model that builds on Moshi and adds persona control through role prompts and voice conditioning.
 - [MiniCPM-o](https://github.com/OpenBMB/MiniCPM-V) - Version 4.5 is a 9B open omni model that sees, hears and speaks full-duplex at once and can speak up proactively.
 - [Qwen3-Omni](https://github.com/QwenLM/Qwen3-Omni) - Open 30B-A3B mixture-of-experts omni model that understands text, audio, images and video and streams speech back in real time.
 - [Fun-Audio-Chat](https://github.com/QwenAudio/Fun-Audio-Chat) - Open 8B large audio language model for low-latency voice interaction with speech function calling.
@@ -327,7 +325,7 @@ The plumbing that connects ears, brain and voice in real time.
 - [LiveKit Agents](https://github.com/livekit/agents) - Realtime voice agent framework on the self-hostable LiveKit WebRTC server, with a turn-detector model, interruption handling, dozens of provider plugins and telephony.
 - [TEN Framework](https://github.com/TEN-framework/ten-framework) - Graph-based framework for conversational voice agents in C++, Go, Python and Node.
 - [Unmute](https://github.com/kyutai-labs/unmute) - Gives any text LLM ears and a mouth with Kyutai's streaming speech models and semantic turn detection.
-- [speech-to-speech](https://github.com/huggingface/speech-to-speech) - Hugging Face's modular open pipeline (VAD, STT, LLM, TTS) served as a drop-in OpenAI Realtime API, fully local on Apple silicon or NVIDIA.
+- [speech-to-speech](https://github.com/huggingface/speech-to-speech) - Hugging Face's modular open pipeline (VAD, STT, LLM, TTS) that serves a drop-in OpenAI Realtime API, fully local on Apple silicon or NVIDIA.
 - [RealtimeSTT](https://github.com/KoljaB/RealtimeSTT) - Python library that combines voice activity detection, a wake word and faster-whisper for instant transcription.
 - [RealtimeTTS](https://github.com/KoljaB/RealtimeTTS) - Python library that streams LLM text into speech with minimal latency across many engines, with fallbacks.
 - [Speaches](https://github.com/speaches-ai/speaches) - Self-hosted OpenAI-compatible speech server with faster-whisper, Kokoro and Piper, plus a Realtime API endpoint.
@@ -348,7 +346,7 @@ For a private Jarvis that works when the internet doesn't.
 - [vLLM](https://github.com/vllm-project/vllm) - High-throughput serving engine for when one GPU box serves a whole household or many concurrent agents.
 - [LocalAI](https://github.com/mudler/LocalAI) - Self-hosted OpenAI API replacement serving LLMs, speech, vision and images, including a Realtime API for local speech-to-speech with tool calling, without a GPU.
 - [exo](https://github.com/exo-explore/exo) - Splits large models across several home devices so they act as one inference cluster.
-- [Lemonade](https://github.com/lemonade-sdk/lemonade) - Local LLM server tuned for AMD GPUs and Ryzen AI NPUs.
+- [Lemonade](https://github.com/lemonade-sdk/lemonade) - Local LLM server that targets AMD GPUs and Ryzen AI NPUs.
 - [Jetson Containers](https://github.com/dusty-nv/jetson-containers) - Prebuilt containers for LLMs, vision models, Whisper and Piper on NVIDIA Jetson edge boxes.
 
 ### Open-Weight Models
@@ -356,9 +354,9 @@ For a private Jarvis that works when the internet doesn't.
 A few strong assistant brains as of September 2026. The leaders change monthly, so check the benchmarks below.
 
 - [Qwen](https://huggingface.co/Qwen/Qwen3.8-27B) - Alibaba's model family, whose Apache-2.0 Qwen3.8-27B (image and video input, 262K context) is a strong single-GPU assistant.
-- [Gemma](https://huggingface.co/google/gemma-4-E4B-it) - Google's Apache-2.0 family, from on-device models that handle speech, images and text up to 31B, suited to phones and edge devices.
+- [Gemma](https://huggingface.co/google/gemma-4-E4B-it) - Google's Apache-2.0 family, from 31B down to on-device models that handle speech, images and text on phones and edge devices.
 - [gpt-oss](https://github.com/openai/gpt-oss) - OpenAI's Apache-2.0 open-weight reasoning models with native tool calling; the 20B runs on a 16 GB machine.
-- [GLM](https://huggingface.co/zai-org/GLM-5.3-Flash) - Z.ai's MIT-licensed 320B-A18B natively multimodal mixture-of-experts model, tuned for agentic tool use.
+- [GLM](https://huggingface.co/zai-org/GLM-5.3-Flash) - Z.ai's MIT-licensed 320B-A18B natively multimodal mixture-of-experts model, aimed at agentic tool use.
 - [DeepSeek](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash) - MIT-licensed sparse mixture-of-experts models with 1M context and strong agentic benchmarks, for server-class hardware.
 - [MiniCPM](https://github.com/OpenBMB/MiniCPM) - Small on-device models sized for phones and wearables that need a local brain.
 
@@ -382,8 +380,8 @@ Harnesses for building an agent that runs sub-agents with visibility and approva
 What turns a chatbot into an assistant that knows you.
 
 - [Mem0](https://github.com/mem0ai/mem0) - Memory layer that extracts, stores and retrieves user facts and preferences across sessions, self-hosted or managed.
-- [Letta](https://github.com/letta-ai/letta-code) - Stateful agents with self-editing memory from the MemGPT team, now shipped as Letta Code with a terminal UI, desktop app, app server and chat channels.
-- [Graphiti](https://github.com/getzep/graphiti) - Temporal knowledge-graph engine that tracks how facts about you change over time, also available managed as Zep.
+- [Letta](https://github.com/letta-ai/letta-code) - Stateful agents with self-editing memory from the MemGPT team, which now ships as Letta Code with a terminal UI, desktop app, app server and chat channels.
+- [Graphiti](https://github.com/getzep/graphiti) - Temporal knowledge-graph engine that tracks how facts about you change over time and powers Zep's managed service.
 - [Cognee](https://github.com/topoteretes/cognee) - Self-hostable memory engine that turns documents and conversations into a knowledge graph plus vectors.
 - [Supermemory](https://github.com/supermemoryai/supermemory) - Memory engine, API and app that can run fully locally and ingests notes, bookmarks and chats.
 - [LangMem](https://github.com/langchain-ai/langmem) - Semantic, episodic and procedural memory, with background consolidation in LangGraph.
@@ -393,17 +391,17 @@ What turns a chatbot into an assistant that knows you.
 
 ### Tools and Protocols
 
-- [Model Context Protocol](https://modelcontextprotocol.io) - The open standard for connecting assistants to tools and data, governed by the Linux Foundation's Agentic AI Foundation.
+- [Model Context Protocol](https://modelcontextprotocol.io) - The open standard for connecting assistants to tools and data, now under the Linux Foundation's Agentic AI Foundation.
 - [MCP servers](https://github.com/modelcontextprotocol/servers) - Official reference servers (filesystem, fetch, Git, memory, time) and an index of third-party ones.
 - [MCP Registry](https://registry.modelcontextprotocol.io) - Official registry and API for discovering published MCP servers.
 - [MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview) - Official MCP extension that lets tools render interactive UIs inside the assistant.
 - [Agent Client Protocol](https://agentclientprotocol.com/) - Open protocol for driving coding agents such as Claude Code, Codex and Gemini CLI from another client, including their permission prompts, the dispatch layer most voice overseers use.
 - [A2A](https://github.com/a2aproject/A2A) - Agent2Agent protocol for handing tasks to other agents across vendors.
-- [AG-UI](https://github.com/ag-ui-protocol/ag-ui) - Event protocol that streams an agent's state, tool calls and approval requests into a live front end, supported by the major agent frameworks.
+- [AG-UI](https://github.com/ag-ui-protocol/ag-ui) - Event protocol that streams an agent's state, tool calls and approval requests into a live front end, which the major agent frameworks support.
 - [Agent Skills](https://github.com/agentskills/agentskills) - Open spec for packaging instructions, scripts and resources as skills that load on demand.
 - [Composio](https://github.com/ComposioHQ/composio) - 1,000+ managed toolkits with OAuth, so an agent can act in Gmail, Calendar, Slack and more without custom integrations.
 - [Zapier MCP](https://docs.zapier.com/mcp/home) - Hosted MCP server that exposes thousands of Zapier apps through a few meta-tools.
-- [n8n](https://github.com/n8n-io/n8n) - Self-hostable workflow automation with AI agent nodes and MCP support, often used for a Jarvis's triggers and integrations.
+- [n8n](https://github.com/n8n-io/n8n) - Self-hostable workflow automation with AI agent nodes and MCP support, a common home for a Jarvis's triggers and integrations.
 
 ### Computer and Browser Use
 
@@ -414,9 +412,9 @@ Hands for the screen: agents that click, type and navigate while you watch.
 - [OpenAI computer use](https://developers.openai.com/api/docs/guides/tools-computer-use) - Responses API tool for GUI control.
 - [browser-use](https://github.com/browser-use/browser-use) - The most popular open-source library for letting LLM agents drive a real browser.
 - [Playwright MCP](https://github.com/microsoft/playwright-mcp) - Drives browsers through accessibility snapshots rather than pixels.
-- [agent-browser](https://github.com/vercel-labs/agent-browser) - Token-efficient browser automation CLI built for agents.
+- [agent-browser](https://github.com/vercel-labs/agent-browser) - Token-efficient browser automation CLI for agents.
 - [MagenticLite](https://github.com/microsoft/magentic-ui) - Microsoft's browser-and-files agent that checks in before critical actions and lets you steer, approve or take over, running in a VM sandbox.
-- [UI-TARS Desktop](https://github.com/bytedance/UI-TARS-desktop) - Multimodal agent stack and desktop app for native GUI control, built on the UI-TARS models.
+- [UI-TARS Desktop](https://github.com/bytedance/UI-TARS-desktop) - Multimodal agent stack and desktop app for native GUI control that runs on the UI-TARS models.
 - [Agent S](https://github.com/simular-ai/Agent-S) - Open framework that uses a computer the way a person does.
 - [Cua](https://github.com/trycua/cua) - Sandboxes, drivers and benchmarks for computer-use agents in cross-OS VMs, including macOS.
 - [UFO](https://github.com/microsoft/UFO) - Microsoft's Windows desktop automation agents that coordinate across devices.
@@ -425,7 +423,7 @@ Hands for the screen: agents that click, type and navigate while you watch.
 
 ### Proactivity
 
-"Sir, you have a meeting in ten minutes." Ways to make an assistant act without being asked.
+"Sir, you have a meeting in ten minutes." Ways to make an assistant act before you ask.
 
 - [OpenClaw Heartbeat](https://docs.openclaw.ai/gateway/heartbeat) - Periodic runs through a checklist (inbox, calendar) that message you only when something needs attention.
 - [Hermes Agent cron](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron) - Natural-language or cron-scheduled tasks that run unattended and report back over any chat platform.
@@ -438,15 +436,15 @@ Hands for the screen: agents that click, type and navigate while you watch.
 
 For the Iron Man look: orbs, avatars and screens that show what the assistant is doing.
 
-- [LiveKit Agents UI](https://livekit.com/products/agents-ui) - Components built on shadcn/ui with five audio visualizers, including an aura orb, that react to connecting, listening, thinking and speaking states.
-- [ElevenLabs UI](https://github.com/elevenlabs/ui) - Components built on shadcn/ui for voice agents, including an animated orb, waveforms and a live transcript.
+- [LiveKit Agents UI](https://livekit.com/products/agents-ui) - Components on top of shadcn/ui with five audio visualizers, including an aura orb, that react to connecting, listening, thinking and speaking states.
+- [ElevenLabs UI](https://github.com/elevenlabs/ui) - Components on top of shadcn/ui for voice agents, including an animated orb, waveforms and a live transcript.
 - [Pipecat Voice UI Kit](https://github.com/pipecat-ai/voice-ui-kit) - React components, visualizers and a debug console for Pipecat voice bots.
 - [TalkingHead](https://github.com/met4citizen/TalkingHead) - JavaScript class for realtime lip-synced 3D avatars that an LLM can speak and gesture through.
 - [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber) - Hands-free, interruptible voice chat with any LLM through a Live2D avatar, including a transparent desktop-pet mode.
 - [MediaPipe](https://github.com/google-ai-edge/mediapipe) - On-device hand, pose, face and gesture tracking, the usual basis for Iron Man-style gesture control of a HUD.
 - [View Assist](https://github.com/dinki/View-Assist) - Gives Home Assistant voice a screen on wall tablets for responses, timers and camera views.
 - [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) - Modular always-on smart-mirror display, a classic ambient screen for a home Jarvis.
-- [Open WebUI](https://github.com/open-webui/open-webui) - Self-hosted LLM chat front end with a hands-free, interruptible voice and video call mode backed by local Whisper and many TTS engines (branding-restricted license).
+- [Open WebUI](https://github.com/open-webui/open-webui) - Self-hosted LLM chat front end with a hands-free, interruptible voice and video call mode that uses local Whisper and many TTS engines (branding-restricted license).
 
 ## Home
 
@@ -479,7 +477,7 @@ Microphones and speakers for every room.
 - [Satellite1](https://futureproofhomes.net/) - Open-source voice satellite with an XMOS audio DSP, four microphones, environmental sensors and a connector for an optional mmWave presence radar.
 - [ESPHome](https://github.com/esphome/esphome) - YAML-configured firmware for ESP32 boards that runs most DIY voice satellites and presence sensors.
 - [ESPHome wake word voice assistants](https://github.com/esphome/wake-word-voice-assistants) - Official firmware for ESP32-S3-BOX-3, M5Stack Atom Echo and other boards.
-- [reSpeaker Lite](https://wiki.seeedstudio.com/respeaker_lite_ha/) - Low-cost dual-microphone kit with an ESP32-S3, set up as a voice satellite.
+- [reSpeaker Lite](https://wiki.seeedstudio.com/respeaker_lite_ha/) - Low-cost dual-microphone kit with an ESP32-S3 that works as a voice satellite.
 - [reSpeaker XVF3800 for ESPHome](https://github.com/formatBCE/Respeaker-XVF3800-ESPHome-integration) - Turns Seeed's 4-microphone beamforming array into a far-field satellite.
 - [Willow](https://github.com/HeyWillow/willow) - Community-maintained ESP32-S3-BOX wake-word firmware that sends voice commands to Home Assistant, openHAB or REST through a self-hosted application server.
 - [Linux Voice Assistant](https://github.com/OHF-Voice/linux-voice-assistant) - Official satellite for any Linux box, with local wake word, timers, announcements and continued conversation.
@@ -504,7 +502,7 @@ Jarvis with hands.
 
 - [Reachy Mini](https://github.com/pollen-robotics/reachy_mini) - Open-source desktop robot from Pollen Robotics and Hugging Face with an app store and an LLM conversation app.
 - [LeRobot](https://github.com/huggingface/lerobot) - Hugging Face's robot learning library for datasets, policies and affordable arms.
-- [XLeRobot](https://github.com/Vector-Wangel/XLeRobot) - Low-cost open-source dual-arm mobile home robot built on LeRobot.
+- [XLeRobot](https://github.com/Vector-Wangel/XLeRobot) - Low-cost open-source dual-arm mobile home robot that builds on LeRobot.
 - [Stretch AI](https://github.com/hello-robot/stretch_ai) - Open-vocabulary "find and pick up X" stack for the Stretch home robot.
 - [1X NEO](https://www.1x.tech/discover/neo-home-robot) - Consumer humanoid with a built-in LLM for conversation and memory that falls back to remote teleoperation for new tasks.
 
@@ -512,7 +510,7 @@ Jarvis with hands.
 
 ### Agent Foundations
 
-- [ReAct](https://arxiv.org/abs/2210.03629) - The reason-then-act loop that nearly every tool-using assistant is built on (2022).
+- [ReAct](https://arxiv.org/abs/2210.03629) - The reason-then-act loop that nearly every tool-using assistant builds on (2022).
 - [HuggingGPT](https://arxiv.org/abs/2303.17580) - Microsoft's "JARVIS": an LLM controller that plans tasks and hands them to specialist models (2023).
 - [Generative Agents](https://arxiv.org/abs/2304.03442) - A memory stream with reflection and planning, a template for assistants that remember (2023).
 - [Voyager](https://arxiv.org/abs/2305.16291) - An agent that writes and reuses its own skill library, a model for a Jarvis that learns new abilities (2023).
@@ -543,19 +541,19 @@ Jarvis with hands.
 
 - [Moshi](https://arxiv.org/abs/2410.00037) - The first open full-duplex speech model, listening while it talks at about 200 ms latency (2024).
 - [Qwen2.5-Omni](https://arxiv.org/abs/2503.20215) - Thinker-Talker architecture for a model that sees, hears and speaks in real time (2025).
-- [From Turn-Taking to Synchronous Dialogue](https://arxiv.org/abs/2509.14515) - Survey of full-duplex spoken language models that can be interrupted and backchannel (2025).
+- [From Turn-Taking to Synchronous Dialogue](https://arxiv.org/abs/2509.14515) - Survey of full-duplex spoken language models that handle interruptions and backchannel (2025).
 
 ### Personal and Proactive Assistants
 
 - [Personal LLM Agents](https://arxiv.org/abs/2401.05459) - Survey of personal agents covering capability levels, efficiency, on-device tradeoffs and security (2024).
 - [The Ethics of Advanced AI Assistants](https://arxiv.org/abs/2404.16244) - Google DeepMind's study of alignment, trust, manipulation and privacy risks of personal assistants (2024).
-- [Proactive Agent](https://arxiv.org/abs/2410.12361) - Moving agents from reactive answers to offering help before being asked (2024).
-- [ContextAgent](https://arxiv.org/abs/2505.14668) - Proactive assistance driven by wearable video and audio context (2025).
+- [Proactive Agent](https://arxiv.org/abs/2410.12361) - Moving agents from reactive answers to offering help before you ask (2024).
+- [ContextAgent](https://arxiv.org/abs/2505.14668) - Proactive assistance that draws on wearable video and audio context (2025).
 - [Proactive Agent Research Environment](https://arxiv.org/abs/2604.00842) - Simulated users for testing whether a proactive assistant helps or annoys (2026).
 
 ### Computer-Use Agents
 
-- [Large Language Model-Brained GUI Agents](https://arxiv.org/abs/2411.18279) - Comprehensive, frequently updated survey of GUI agents (2024).
+- [Large Language Model-Brained GUI Agents](https://arxiv.org/abs/2411.18279) - Comprehensive, living survey of GUI agents (2024).
 - [UI-TARS-2](https://arxiv.org/abs/2509.02544) - Multi-turn reinforcement learning for long computer-use tasks (2025).
 
 ## Benchmarks
@@ -591,7 +589,7 @@ How to tell whether your Jarvis is getting better.
 - [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Anthropic's patterns for choosing between workflows and autonomous agents.
 - [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/) - Lilian Weng's classic breakdown of agents into planning, memory and tool use.
 - [Voice Agents](https://platform.openai.com/docs/guides/voice-agents) - OpenAI's guide to speech-to-speech and chained voice agent designs.
-- [Year of the Voice](https://www.home-assistant.io/blog/2022/12/20/year-of-voice/) - The kickoff of Home Assistant's open, local voice effort, followed by [numbered chapters](https://www.home-assistant.io/blog/categories/assist/).
+- [Year of the Voice](https://www.home-assistant.io/blog/2022/12/20/year-of-voice/) - The kickoff of Home Assistant's open, local voice effort, which it followed with [numbered chapters](https://www.home-assistant.io/blog/categories/assist/).
 - [AI in Home Assistant](https://www.home-assistant.io/blog/2025/09/11/ai-in-home-assistant/) - How to mix local LLMs with deterministic home control.
 - [AI Agents for the Smart Home](https://www.home-assistant.io/blog/2024/06/07/ai-agents-for-the-smart-home/) - Lessons from benchmarking LLMs as home-control agents.
 - [Crossing the Uncanny Valley of Conversational Voice](https://www.sesame.com/blog/crossing-the-uncanny-valley-of-voice) - What "voice presence" means and why most assistants lack it.
@@ -607,7 +605,7 @@ How to tell whether your Jarvis is getting better.
 
 ## Inspiration
 
-The spec sheet, as written by science fiction and visionaries.
+The spec sheet, as science fiction and visionaries wrote it.
 
 - [J.A.R.V.I.S.](https://marvelcinematicuniverse.fandom.com/wiki/J.A.R.V.I.S.) - Everything JARVIS does across the films, which amounts to a feature list.
 - [Jayse Hansen](https://jayse.io/) - Designer of the Iron Man and Avengers HUD and hologram screens, the visual reference for a Jarvis interface.
@@ -620,7 +618,7 @@ The spec sheet, as written by science fiction and visionaries.
 - [Knowledge Navigator](https://en.wikipedia.org/wiki/Knowledge_Navigator) - Apple's 1987 concept video of a conversational agent acting for its user.
 - [The Computer for the 21st Century](https://www.scientificamerican.com/article/the-computer-for-the-21st-century/) - Mark Weiser's 1991 essay that founded ubiquitous computing.
 - [AI Is About to Completely Change How You Use Computers](https://www.gatesnotes.com/AI-agents) - Bill Gates' 2023 prediction of a personal agent for everyone.
-- [A Universal AI Assistant](https://blog.google/technology/google-deepmind/gemini-universal-ai-assistant/) - Demis Hassabis on turning Gemini into a universal assistant built on a world model.
+- [A Universal AI Assistant](https://blog.google/technology/google-deepmind/gemini-universal-ai-assistant/) - Demis Hassabis on turning Gemini into a universal assistant with a world model at its core.
 - [Personal Superintelligence](https://www.meta.com/superintelligence/) - Mark Zuckerberg on AI that knows you, delivered through glasses.
 
 ## Communities
@@ -648,12 +646,12 @@ The spec sheet, as written by science fiction and visionaries.
 
 ## Contributing
 
-Contributions are welcome, especially hands-on test results. Read the [contribution guidelines](contributing.md) first.
+I'd love your contributions, especially hands-on test results. Please read the [contribution guidelines](contributing.md) first.
 
 ## Footnotes
 
-- Retired and archived projects that shaped the field, such as Mycroft, Rhasspy, Snowboy and eDEX-UI, are in [history.md](history.md).
-- The test report covers the [lab environments](testing.md#environments), the hands-on results, and the free local voice stack used in place of paid keys.
-- The [testing methodology](methodology.md) explains how agents are scored and how to test a new one.
-- The [test lab](lab/README.md) has the scripts, container and VM recipes, and curated evidence used for the hands-on tests, ready to reuse for new entries.
-- Scores reflect code, docs and tests from September 2026. This space moves fast, so if a score, link or claim goes stale, please open an issue or a pull request.
+- Retired and archived projects that shaped the field, such as Mycroft, Rhasspy, Snowboy and eDEX-UI, live in [history.md](history.md).
+- The test report covers the [lab environments](testing.md#environments), the hands-on results, and the free local voice stack that stood in for paid keys.
+- The [testing methodology](methodology.md) explains how I score agents and how you can test a new one.
+- The [test lab](lab/README.md) has the scripts, container and VM recipes, and curated evidence behind the hands-on tests, ready to reuse for new entries.
+- Scores reflect code, docs and tests from September 2026. This space moves fast, so a [weekly check](scripts/README.md) opens an issue when a link dies, a repo goes quiet or a score gets old. If you spot one first, please open an issue or a pull request.

@@ -1,12 +1,12 @@
 # Hands-On Testing
 
-The [scorecard](readme.md#scorecard) is built in three passes, described in full in the [testing methodology](methodology.md) so new entries can be tested the same way:
+I build the [scorecard](readme.md#scorecard) in three passes. The [testing methodology](methodology.md) describes them in full so you can test new entries the same way. AI agents (Claude, through Claude Code) did the reviews and ran the lab tests under my direction.
 
-1. **Code review.** Every agent was scored on each pillar from its source code and docs, not its README.
-2. **Blind review.** A second, independent review re-scored every agent without seeing the first review's scores. Where the two disagreed, the blind score won.
-3. **Hands-on lab.** The agents were installed and run on a Mac mini (M4, 32 GB) in September 2026. Speech was fed into a virtual microphone, and what each agent said out loud was recorded and transcribed. Screenshots were taken of its visual state, and a reviewer checked each one.
+1. **Code review.** A reviewer scored every agent on each pillar from its source code and docs, not its README.
+2. **Blind review.** A second, independent reviewer re-scored every agent without seeing the first review's scores. Where the two disagreed, the blind score won.
+3. **Hands-on lab.** The agents ran on a Mac mini (M4, 32 GB) in September 2026. A text-to-speech engine spoke each test phrase into a virtual microphone, a virtual speaker captured what the agent said out loud, and Whisper transcribed it. Screenshots captured each agent's visual state, and a reviewer looked at every one.
 
-Model access in the lab was a Claude subscription through the official Claude Code CLI, plus free local models through Ollama. No other paid API keys were used. When a feature needed one, it is marked **BLOCKED** rather than scored against the project.
+The lab reached models through a Claude subscription on the official Claude Code CLI, plus free local models through Ollama, and used no other paid API keys. When a feature needed one, the result says **BLOCKED** rather than counting against the project.
 
 ## Environments
 
