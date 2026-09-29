@@ -1,0 +1,4 @@
+MIC: The quick brown fox jumps over the lazy dog.
+OUT: Testing the speaker capture path, 123.
+MIC during speaker (expect silence): RMS=0.000015 vs mic RMS=0.055669
+SHOT: /Volumes/My Shared Files/out/selftest/screen.png

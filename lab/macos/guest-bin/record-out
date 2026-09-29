@@ -1,0 +1,4 @@
+#!/bin/bash
+# record-out <seconds> <file.wav> : record what apps play (BlackHole 16ch) as 16 kHz mono
+source "$HOME/lab/bin/lab-env"
+exec sox -q -t coreaudio "$LAB_OUT_DEV" -r 16000 -c 1 -b 16 "$2" remix - trim 0 "$1"

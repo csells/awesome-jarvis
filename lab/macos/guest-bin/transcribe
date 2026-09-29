@@ -1,0 +1,7 @@
+#!/bin/bash
+# transcribe <file.wav> : whisper.cpp base.en, prints text only
+source "$HOME/lab/bin/lab-env"
+in=$1; t=$(mktemp -t tr).wav
+sox -q "$in" -r 16000 -c 1 -b 16 "$t"
+whisper-cli -m "$WHISPER_MODEL" -nt -np -f "$t" 2>/dev/null | sed 's/^ *//' | grep -v '^$'
+rm -f "$t"

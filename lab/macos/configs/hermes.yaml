@@ -1,0 +1,26 @@
+# Hermes Agent (desktop app) in the macOS test VM, restricted to a local Ollama model on the host.
+# ${LAB_HOST_IP} is the host's address as seen from the guest (`../vm.sh host-ip`; Tart's default NAT
+# network uses 192.168.64.1). Render with:
+#   LAB_HOST_IP=$(../vm.sh host-ip) envsubst < hermes.yaml > /tmp/hermes.yaml && ../vm.sh put /tmp/hermes.yaml .hermes/config.yaml
+# NEVER use provider "anthropic" here: it would adopt Claude Code's OAuth login and call the API directly.
+model:
+  provider: custom
+  default: qwen3:4b-instruct-2507-q4_K_M
+  base_url: http://${LAB_HOST_IP}:11434/v1
+  api_key: ollama              # Ollama ignores it; any non-empty string works
+fallback_providers: []
+auth:
+  adopt_external_logins: false
+delegation:
+  provider: custom
+  model: qwen3:4b-instruct-2507-q4_K_M
+  base_url: http://${LAB_HOST_IP}:11434/v1
+  api_key: ollama
+  fallback_providers: []
+auxiliary:
+  free_only: true
+stt:
+  enabled: true
+  provider: local
+tts:
+  provider: piper

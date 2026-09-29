@@ -55,7 +55,7 @@ Give each reviewer this brief, a link to one project, and nothing else. It works
 
 ## The Lab
 
-Test on the platform the agent targets. The reference lab ran on an Apple silicon Mac mini (32 GB):
+Test on the platform the agent targets. The reference lab ran on an Apple silicon Mac mini (32 GB), and its scripts, container and VM recipes, and curated evidence are in [lab/](lab/README.md):
 
 | Target | Environment |
 |---|---|

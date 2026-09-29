@@ -1,0 +1,11 @@
+# jarvis-lab PulseAudio graph (loaded with `pulseaudio -n -F`):
+#   speaker        null sink = the "speakers"; agents play here (default sink)
+#   speaker.monitor          -> record-out captures what the agent says
+#   vmic_in        null sink = feed for the virtual microphone (`say` plays here)
+#   vmic           remap of vmic_in.monitor = the "microphone" (default source)
+load-module module-native-protocol-unix auth-anonymous=1 socket=/run/user/0/pulse/native
+load-module module-null-sink sink_name=speaker rate=48000 sink_properties=device.description=Lab-Speaker
+load-module module-null-sink sink_name=vmic_in rate=48000 sink_properties=device.description=Lab-VirtualMic-Feed
+load-module module-remap-source master=vmic_in.monitor source_name=vmic source_properties=device.description=Lab-VirtualMic
+set-default-sink speaker
+set-default-source vmic

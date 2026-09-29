@@ -1,0 +1,12 @@
+#!/bin/bash
+# cdp <python-snippet> : run a Playwright snippet against the lab Chrome (CDP :9222). `page` = first tab.
+#   cdp 'page.click("text=Dashboard")'   cdp 'print(page.evaluate("document.title"))'
+# Needs a Python with playwright installed: LAB_PLAYWRIGHT_PYTHON (default: python3 on PATH).
+exec "${LAB_PLAYWRIGHT_PYTHON:-python3}" - "$@" <<'PY'
+import sys
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    b = p.chromium.connect_over_cdp("http://127.0.0.1:9222")
+    page = b.contexts[0].pages[0]
+    exec(sys.argv[1])
+PY

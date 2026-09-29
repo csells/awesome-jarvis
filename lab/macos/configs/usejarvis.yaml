@@ -1,0 +1,24 @@
+# usejarvis (vierisid/jarvis) 0.14.0 in the macOS test VM, keyless/local providers only.
+# Copy to ~/.jarvis/config.yaml in the guest. The LLM is set afterwards through its API (see ../../README.md).
+daemon:
+  port: 3142
+  data_dir: "~/.jarvis"
+  db_path: "~/.jarvis/jarvis.db"
+auth:
+  insecure_open_access: true   # lab VM only, loopback; avoids the sidecar-enrollment UI dance
+telemetry:
+  enabled: false
+stt:
+  provider: local
+  language: en
+  local:
+    endpoint: "http://127.0.0.1:8178"
+    server_type: whisper_cpp
+tts:
+  enabled: true
+  provider: edge               # free Microsoft Edge TTS (cloud, no key)
+  voice: "en-US-GuyNeural"
+voice:
+  wake_engine: openwakeword
+awareness:
+  enabled: false               # no periodic screen capture to the LLM

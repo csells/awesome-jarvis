@@ -1,0 +1,3 @@
+# jarvis-lab: the Hermes user may run only the Claude Code launcher as `claude`, no password, env reset.
+Defaults:hermes env_reset
+hermes ALL=(claude) NOPASSWD: /usr/local/libexec/claude-as-claude

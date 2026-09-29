@@ -1,0 +1,96 @@
+#!/bin/bash
+# voicectl — local OpenAI-compatible voice stack for the lab (runs natively on an Apple silicon Mac, MLX/Metal).
+#   realtime  HF speech-to-speech (pinned commit): OpenAI Realtime API ws://HOST:8765/v1/realtime + POST /v1/realtime/calls (WebRTC)
+#             VAD Silero -> STT Parakeet TDT 0.6B v3 (MLX) -> LLM Ollama /v1 chat-completions -> TTS Kokoro-82M (MLX)
+#   audio     mlx-audio 0.5.6 + OpenAI compat layer: POST /v1/audio/transcriptions, POST /v1/audio/speech  http://HOST:8766/v1
+# Usage: ./voicectl setup | start [realtime|audio|all] | stop [realtime|audio|all] | status | logs [realtime|audio] [N] | warm
+#   setup  creates the two Python 3.12 venvs from requirements-*.lock.txt with uv (a few GB); models download on first start
+# Env:   VOICE_HOME (venvs, model cache, logs, launchd plists; default ./local, git-ignored)
+#        VOICE_HOST (default 127.0.0.1: reachable from Docker via host.docker.internal and from QEMU user-net via
+#        10.0.2.2; a Tart VM needs the host's address on Tart's network, e.g. VOICE_HOST=192.168.64.1, see macos/vm.sh host-ip),
+#        VOICE_RT_PORT 8765, VOICE_AUDIO_PORT 8766,
+#        VOICE_LLM_MODEL (Ollama tag, default qwen2.5:7b-instruct-q4_K_M), VOICE_LLM_BASE (http://127.0.0.1:11434/v1),
+#        VOICE_DEFAULT_VOICE (Kokoro voice, default bm_fable), VOICE_RT_ARGS (extra speech-to-speech flags,
+#        e.g. "--no_smart_turn"), VOICE_OFFLINE=1 (HF_HUB_OFFLINE=1 once models are cached), VOICE_LLM_TIMEOUT (90 s)
+# Servers run as *transient* launchd jobs in gui/<uid> with ProcessType Interactive (nothing is installed in
+# ~/Library/LaunchAgents; `stop` boots them out). The servers have no authentication: keep VOICE_HOST on a
+# private interface. Must be run outside any agent sandbox (Metal + launchctl).
+set -euo pipefail
+D=$(cd "$(dirname "$0")" && pwd)
+V=${VOICE_HOME:-$D/local}
+R=$V/run; mkdir -p "$R" "$V/logs" "$V/bin"
+HOST=${VOICE_HOST:-127.0.0.1}; RT_PORT=${VOICE_RT_PORT:-8765}; AU_PORT=${VOICE_AUDIO_PORT:-8766}
+LLM_MODEL=${VOICE_LLM_MODEL:-qwen2.5:7b-instruct-q4_K_M}; LLM_BASE=${VOICE_LLM_BASE:-http://127.0.0.1:11434/v1}
+VOICE=${VOICE_DEFAULT_VOICE:-bm_fable}
+PROMPT=${VOICE_PROMPT:-"You are JARVIS, a concise, witty voice assistant. Answer in one or two short spoken sentences. No markdown, no lists, no emojis."}
+ENVV=(HF_HOME="$V/hf" PATH="$V/bin:$D/bin:/usr/bin:/bin:/usr/sbin:/sbin" VOICE_DEFAULT_VOICE="$VOICE" MLX_AUDIO_ALLOWED_ORIGINS="http://localhost" TOKENIZERS_PARALLELISM=false ${VOICE_OFFLINE:+HF_HUB_OFFLINE=1})
+label() { echo "com.jarvislab.voice-$1"; }
+
+gone() { for _ in $(seq 50); do launchctl print "gui/$(id -u)/$1" >/dev/null 2>&1 || return 0; sleep 0.2; done; }
+start_one() {
+  local s=$1 L; L=$(label "$s")
+  local -a argv
+  if [ "$s" = realtime ]; then
+    argv=("$V/s2s-venv/bin/python" "$D/bin/s2s_serve.py" serve --host "$HOST" --port "$RT_PORT"
+      --stt parakeet-tdt --tts kokoro --kokoro_voice "$VOICE"
+      --llm_backend chat-completions --model_name "$LLM_MODEL"
+      --responses_api_base_url "$LLM_BASE" --responses_api_api_key ollama --responses_api_stream
+      --init_chat_prompt "$PROMPT" ${VOICE_RT_ARGS:-})
+  else
+    argv=("$V/mlx-audio-venv/bin/python" "$D/bin/audio_serve.py" --host "$HOST" --port "$AU_PORT")
+  fi
+  /usr/bin/python3 - "$R/$s.plist" "$L" "$V/logs/$s.log" "$D" "${ENVV[@]}" -- "${argv[@]}" <<'PY'
+import plistlib, sys
+out, label, log, cwd, *rest = sys.argv[1:]
+i = rest.index("--"); env = dict(e.split("=", 1) for e in rest[:i]); argv = rest[i + 1:]
+plistlib.dump({"Label": label, "ProgramArguments": argv, "EnvironmentVariables": env, "WorkingDirectory": cwd,
+               "ProcessType": "Interactive", "RunAtLoad": True, "KeepAlive": False,
+               "StandardOutPath": log, "StandardErrorPath": log}, open(out, "wb"))
+PY
+  launchctl bootout "gui/$(id -u)/$L" 2>/dev/null || true; gone "$L"
+  echo "=== $(date '+%F %T') start $s on $HOST" >> "$V/logs/$s.log"
+  launchctl bootstrap "gui/$(id -u)" "$R/$s.plist"
+  echo "started $s ($L), log: $V/logs/$s.log"
+}
+stop_one() {
+  local L; L=$(label "$1")
+  if launchctl print "gui/$(id -u)/$L" >/dev/null 2>&1; then launchctl bootout "gui/$(id -u)/$L"; gone "$L"; echo "stopped $1"; else echo "$1 not running"; fi
+}
+wait_up() {  # wait_up URL seconds
+  for _ in $(seq "$2"); do curl -fsS -m 2 "$1" >/dev/null 2>&1 && return 0; sleep 1; done; return 1
+}
+warm() {  # keep the Ollama model resident for 30 min so the first voice turn is not a cold load
+  curl -s -m 120 http://127.0.0.1:11434/api/generate -d "{\"model\":\"$LLM_MODEL\",\"prompt\":\"hi\",\"keep_alive\":\"30m\",\"options\":{\"num_predict\":1}}" >/dev/null && echo "ollama $LLM_MODEL warm"
+}
+which_() { case "${1:-all}" in all) echo realtime audio ;; realtime|audio) echo "$1" ;; *) sed -n '2,18p' "$0"; exit 2 ;; esac; }
+
+setup() {  # reproduce the reference venvs (Python 3.12, exact versions from the lock files)
+  command -v uv >/dev/null || { echo "needs uv (brew install uv)" >&2; exit 1; }
+  uv venv -q -p 3.12 "$V/s2s-venv" && uv pip install -q --python "$V/s2s-venv/bin/python" -r "$D/requirements-realtime.lock.txt"
+  uv venv -q -p 3.12 "$V/mlx-audio-venv" && uv pip install -q --python "$V/mlx-audio-venv/bin/python" -r "$D/requirements-audio.lock.txt"
+  # ffmpeg for mp3/opus/aac output: the pinned imageio-ffmpeg wheel's static build
+  ln -sf "$("$V/mlx-audio-venv/bin/python" -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" "$V/bin/ffmpeg"
+  echo "venvs ready in $V; now: ollama pull $LLM_MODEL && $0 start"
+}
+
+case "${1:-}" in
+  setup) setup ;;
+  start)
+    for s in $(which_ "${2:-all}"); do start_one "$s"; done
+    warm || true
+    for s in $(which_ "${2:-all}"); do
+      if [ "$s" = realtime ]; then u="http://$HOST:$RT_PORT/v1/pool"; else u="http://$HOST:$AU_PORT/health"; fi
+      if wait_up "$u" 600; then echo "$s up: $u"; else echo "$s did not come up; see $V/logs/$s.log" >&2; fi
+    done ;;
+  stop)   for s in $(which_ "${2:-all}"); do stop_one "$s"; done ;;
+  status)
+    for s in realtime audio; do
+      L=$(label "$s"); pid=$(launchctl print "gui/$(id -u)/$L" 2>/dev/null | awk '/^\tpid =/{print $3}' || true)
+      echo "$s: ${pid:+running pid $pid}${pid:-not running}"
+    done
+    curl -fsS -m 2 "http://$HOST:$RT_PORT/v1/pool" 2>/dev/null | head -c 300 || true; echo
+    curl -fsS -m 2 "http://$HOST:$AU_PORT/health" 2>/dev/null || true; echo ;;
+  logs)   tail -n "${3:-60}" "$V/logs/${2:-realtime}.log" ;;
+  warm)   warm ;;
+  *) sed -n '2,18p' "$0"; exit 2 ;;
+esac

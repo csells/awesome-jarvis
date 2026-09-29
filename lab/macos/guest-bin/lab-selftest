@@ -1,0 +1,16 @@
+#!/bin/bash
+# lab-selftest [outdir] : model-free proof of the audio loop + isolation + screenshot
+source "$HOME/lab/bin/lab-env"; set -u
+d=${1:-$HOME/lab/out/selftest}; mkdir -p "$d"; cd "$d"
+audio-route | tee routes.txt
+# 1) mic loop: speak into the mic, record the mic
+record-mic 7 mic.wav & sleep 0.5; say-mic "The quick brown fox jumps over the lazy dog." --keep injected.wav; wait
+echo "MIC: $(transcribe mic.wav)" | tee result.txt
+# 2) speaker loop: an app playing to default output (afplay -> BlackHole 16ch), record it
+say -o spk.aiff "Testing the speaker capture path, one two three."
+record-out 7 out.wav & sleep 0.5; afplay spk.aiff; wait
+echo "OUT: $(transcribe out.wav)" | tee -a result.txt
+# 3) isolation: speaker audio must not leak into the mic
+record-mic 5 mic-while-speaker.wav & sleep 0.3; afplay spk.aiff; wait
+echo "MIC during speaker (expect silence): RMS=$(sox mic-while-speaker.wav -n stat 2>&1 | awk "/RMS +amplitude/{print \$3}") vs mic RMS=$(sox mic.wav -n stat 2>&1 | awk "/RMS +amplitude/{print \$3}")" | tee -a result.txt
+shot "$d/screen.png" && echo "SHOT: $d/screen.png" | tee -a result.txt

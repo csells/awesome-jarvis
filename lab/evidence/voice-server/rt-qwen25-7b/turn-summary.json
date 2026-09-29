@@ -1,0 +1,61 @@
+{
+  "url": "ws://127.0.0.1:8765/v1/realtime?model=gpt-realtime",
+  "scenario": "turn",
+  "marks": {
+    "session.created": [
+      {
+        "t": 0.573
+      }
+    ],
+    "session.updated": [
+      {
+        "t": 0.575
+      }
+    ],
+    "speech_begin": [
+      {
+        "t": 1.575,
+        "utt": "q1"
+      }
+    ],
+    "input_audio_buffer.speech_started": [
+      {
+        "t": 1.984
+      }
+    ],
+    "speech_end": [
+      3.216
+    ],
+    "input_audio_buffer.speech_stopped": [
+      {
+        "t": 4.209
+      }
+    ],
+    "conversation.item.input_audio_transcription.completed": [
+      {
+        "t": 4.209,
+        "transcript": "What is the capital of France?"
+      }
+    ],
+    "response_created": [
+      4.209
+    ]
+  },
+  "responses": [
+    {
+      "transcript": "Paris.",
+      "created": 4.209,
+      "first_audio": 4.338,
+      "status": "completed",
+      "status_details": {
+        "error": null,
+        "reason": null,
+        "type": "completed"
+      },
+      "done": 4.397,
+      "audio_seconds": 0.64,
+      "wav": "out/voice-server/rt-qwen25-7b/turn-resp0.wav",
+      "latency_speech_end_to_first_audio_s": 1.122
+    }
+  ]
+}

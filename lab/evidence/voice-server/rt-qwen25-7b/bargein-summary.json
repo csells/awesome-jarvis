@@ -1,0 +1,92 @@
+{
+  "url": "ws://127.0.0.1:8765/v1/realtime?model=gpt-realtime",
+  "scenario": "bargein",
+  "marks": {
+    "session.created": [
+      {
+        "t": 0.44
+      }
+    ],
+    "session.updated": [
+      {
+        "t": 0.441
+      }
+    ],
+    "speech_begin": [
+      {
+        "t": 1.445,
+        "utt": "q2"
+      },
+      {
+        "t": 13.601,
+        "utt": "q3"
+      }
+    ],
+    "input_audio_buffer.speech_started": [
+      {
+        "t": 1.854
+      },
+      {
+        "t": 14.107
+      }
+    ],
+    "speech_end": [
+      6.401999999999999,
+      15.501999999999999
+    ],
+    "input_audio_buffer.speech_stopped": [
+      {
+        "t": 10.516
+      },
+      {
+        "t": 19.615
+      }
+    ],
+    "conversation.item.input_audio_transcription.completed": [
+      {
+        "t": 10.518,
+        "transcript": "Tell me a long story about a robot who learns to paint, make it at least ten sentences."
+      },
+      {
+        "t": 19.617,
+        "transcript": "Stop, what is 2 plus 2?"
+      }
+    ],
+    "response_created": [
+      10.518,
+      19.617
+    ]
+  },
+  "responses": [
+    {
+      "transcript": "In the heart of a bustling city, there lived a quiet robot named Pixel. Pixel, programmed for assembly tasks, spent long nights admiring the colorful murals in the artist studio next door. One evening, out of curiosity, Pixel stumbled upon an old paintbrush left by the artists.",
+      "created": 10.518,
+      "first_audio": 11.554,
+      "status": "cancelled",
+      "status_details": {
+        "error": null,
+        "reason": "turn_detected",
+        "type": "cancelled"
+      },
+      "done": 14.107,
+      "audio_seconds": 9.98,
+      "wav": "out/voice-server/rt-qwen25-7b/bargein-resp0.wav",
+      "latency_speech_end_to_first_audio_s": 5.152
+    },
+    {
+      "transcript": "In a dusty workshop, Elysium, a robot with a curious mind, began to explore painting. Every day, Elysium studied the techniques of master painters, slowly learning the nuances of color and brush movement. Eventually, Elysium created a breathtaking landscape, a true masterpiece. Elysium was elated, feeling a deep sense of accomplishment. From then on, Elysium continued to paint, sharing the joy of art with others, proving that even a machine could have a creative soul. 2 plus 2 is 4.",
+      "created": 19.617,
+      "first_audio": 21.388,
+      "status": "completed",
+      "status_details": {
+        "error": null,
+        "reason": null,
+        "type": "completed"
+      },
+      "done": 28.331,
+      "audio_seconds": 32.03,
+      "wav": "out/voice-server/rt-qwen25-7b/bargein-resp1.wav",
+      "latency_speech_end_to_first_audio_s": 5.886
+    }
+  ]
+}

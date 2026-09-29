@@ -1,0 +1,13 @@
+#!/bin/bash
+# Minimal lab config: local gateway, Codex harness sharing the lab's Codex
+# login (appServer.homeScope=user -> $CODEX_HOME=/root/.codex), OpenAI agent model.
+set -x
+openclaw config set gateway.mode local
+openclaw config set plugins.entries.codex.enabled true --strict-json
+openclaw config set plugins.entries.codex.config.appServer.homeScope '"user"' --strict-json
+# lab-local gateway token (not a model credential), so the Control UI can be opened headlessly
+openclaw config set gateway.auth.mode token
+umask 077; head -c 16 /dev/urandom | od -An -tx1 | tr -d ' \n' > /root/.openclaw/lab-gateway-token
+openclaw config set gateway.auth.token "$(cat /root/.openclaw/lab-gateway-token)"
+openclaw config set update.checkOnStart false --strict-json
+true

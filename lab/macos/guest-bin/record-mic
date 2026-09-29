@@ -1,0 +1,4 @@
+#!/bin/bash
+# record-mic <seconds> <file.wav> : record the virtual mic (what apps hear)
+source "$HOME/lab/bin/lab-env"
+exec sox -q -t coreaudio "$LAB_MIC_DEV" -r 16000 -c 1 -b 16 "$2" remix - trim 0 "$1"

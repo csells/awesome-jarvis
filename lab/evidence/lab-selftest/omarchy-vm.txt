@@ -1,0 +1,13 @@
+== audio graph: sink=speaker source=vmic
+== 1. virtual microphone: say -> vmic -> record-mic -> transcribe
+transcript: Hey, Jarvis, what time is it?
+PASS mic-loop
+== 2. output sink: say --speaker -> speaker -> record-out -> transcribe
+transcript: It is half past three in the afternoon, sir.
+PASS output-capture
+== 3. isolation: mic must not hear the speaker
+mic peak while speaker plays: 0.000031
+PASS isolation
+== 4. screenshot (grim on Hyprland)
+/home/lab/lab-out/selftest-desktop.png
+== result: 4 passed, 0 failed

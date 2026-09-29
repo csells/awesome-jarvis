@@ -1,0 +1,8 @@
+#!/bin/bash
+# eval "$(hyprenv)" — adopt the logged-in Hyprland session's environment in an SSH shell
+# (uwsm exports it to the systemd --user manager: WAYLAND_DISPLAY, HYPRLAND_INSTANCE_SIGNATURE, OMARCHY_PATH, PATH...).
+rt=/run/user/$(id -u)
+echo "export XDG_RUNTIME_DIR=$rt DBUS_SESSION_BUS_ADDRESS=unix:path=$rt/bus"
+XDG_RUNTIME_DIR=$rt DBUS_SESSION_BUS_ADDRESS=unix:path=$rt/bus systemctl --user show-environment 2>/dev/null |
+  grep -E '^(WAYLAND_DISPLAY|HYPRLAND_INSTANCE_SIGNATURE|OMARCHY_PATH|PATH|XDG_CURRENT_DESKTOP|XDG_SESSION_TYPE|XDG_SESSION_DESKTOP|DISPLAY)=' |
+  sed "s/^\([A-Z_]*\)=\(.*\)$/export \1='\2'/"

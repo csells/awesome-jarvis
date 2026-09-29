@@ -1,0 +1,92 @@
+{
+  "url": "ws://127.0.0.1:8765/v1/realtime?model=gpt-realtime",
+  "scenario": "bargein",
+  "marks": {
+    "session.created": [
+      {
+        "t": 2.407
+      }
+    ],
+    "session.updated": [
+      {
+        "t": 2.408
+      }
+    ],
+    "speech_begin": [
+      {
+        "t": 3.429,
+        "utt": "q2"
+      },
+      {
+        "t": 13.767,
+        "utt": "q3"
+      }
+    ],
+    "input_audio_buffer.speech_started": [
+      {
+        "t": 3.863
+      },
+      {
+        "t": 14.174
+      }
+    ],
+    "speech_end": [
+      8.368,
+      15.648
+    ],
+    "input_audio_buffer.speech_stopped": [
+      {
+        "t": 10.627
+      },
+      {
+        "t": 16.567
+      }
+    ],
+    "conversation.item.input_audio_transcription.completed": [
+      {
+        "t": 10.627,
+        "transcript": "Tell me a long story about a robot who learns to paint, make it at least ten sentences."
+      },
+      {
+        "t": 16.568,
+        "transcript": "Stop, what is 2 plus 2?"
+      }
+    ],
+    "response_created": [
+      10.628,
+      16.568
+    ]
+  },
+  "responses": [
+    {
+      "transcript": "Sure, here's a story about a robot named Nova who learns to paint. Nova was built to follow instructions, not to feel or dream, but one rainy afternoon, it noticed a child sketching in a notebook with faded colors. The child said, \"Paint is like a secret language.\"",
+      "created": 10.628,
+      "first_audio": 11.71,
+      "status": "cancelled",
+      "status_details": {
+        "error": null,
+        "reason": "turn_detected",
+        "type": "cancelled"
+      },
+      "done": 14.174,
+      "audio_seconds": 17.47,
+      "wav": "out/voice-server/rt-nosmartturn/bargein-resp0.wav",
+      "latency_speech_end_to_first_audio_s": 3.342
+    },
+    {
+      "transcript": "Two plus two is four.",
+      "created": 16.568,
+      "first_audio": 17.376,
+      "status": "completed",
+      "status_details": {
+        "error": null,
+        "reason": null,
+        "type": "completed"
+      },
+      "done": 17.388,
+      "audio_seconds": 1.66,
+      "wav": "out/voice-server/rt-nosmartturn/bargein-resp1.wav",
+      "latency_speech_end_to_first_audio_s": 1.728
+    }
+  ]
+}

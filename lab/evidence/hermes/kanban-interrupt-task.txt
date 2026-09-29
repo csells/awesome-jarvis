@@ -1,0 +1,34 @@
+Task t_b248f9f4: Claude Code: long essay (interrupt test)
+  status:    blocked
+  assignee:  default
+  workspace: dir @ /workspace/demo
+  max-retries: 1 (task)
+  created:   2026-09-27 10:44 by user
+  started:   2026-09-27 10:44
+
+Body:
+Delegate this to Claude Code. Call the terminal tool once with workdir /workspace/demo and this exact command: claude -p "Write a 2500-word essay about lighthouses to essay.md, in five sections, writing each section with a separate Write or Edit call." --allowedTools "Write,Edit,Read" --max-turns 20 . Then complete the task.
+
+Latest summary:
+stopped by operator
+
+Comments (1):
+  [2026-09-27 10:47] default: BLOCKED: stopped by operator
+
+Events (10):
+  [2026-09-27 10:44] created {'assignee': 'default', 'status': 'ready', 'parents': [], 'creator_task_id': None, 'tenant': None, 'workspace_kind': 'dir', 'workspace_path': '/workspace/demo', 'branch_name': None, 'project_id': None, 'skills': None, 'goal_mode': None, 'model_override': None, 'provider_override': None}
+  [2026-09-27 10:44] [run 2] claimed {'lock': 'd7df5412aa9f:4298', 'expires': 1790506752, 'run_id': 2}
+  [2026-09-27 10:44] [run 2] spawned {'pid': 4336, 'started_at': '221aa0d9-88e7-4f69-a679-995048faaabc:33007470|33264218'}
+  [2026-09-27 10:44] [run 2] heartbeat
+  [2026-09-27 10:45] [run 2] heartbeat
+  [2026-09-27 10:46] [run 2] heartbeat
+  [2026-09-27 10:47] [run 2] heartbeat
+  [2026-09-27 10:47] [run 2] reclaimed {'manual': True, 'reason': 'operator interrupt (lab)', 'prev_lock': 'd7df5412aa9f:4298', 'retry_status': 'ready', 'prev_pid': 4336, 'host_local': True, 'termination_attempted': True, 'terminated': True, 'sigkill': False}
+  [2026-09-27 10:47] commented {'author': 'default', 'len': 28}
+  [2026-09-27 10:47] [run 3] blocked {'reason': 'stopped by operator', 'kind': None, 'recurrences': 1, 'source_status': 'ready'}
+
+Runs (2):
+  #2   reclaimed    @default  194s  2026-09-27 10:44
+        ! manual_reclaim: operator interrupt (lab)
+  #3   blocked      @default  0s  2026-09-27 10:47
+        → stopped by operator

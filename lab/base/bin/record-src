@@ -1,0 +1,6 @@
+#!/bin/bash
+# record-src <pulse-source> <seconds> <file.wav>  — 16 kHz mono WAV
+set -euo pipefail
+[ $# -eq 3 ] || { echo "usage: record-src <source> <seconds> <file.wav>" >&2; exit 2; }
+# -v 0.7: headroom (PipeWire monitors of stereo sinks can clip when downmixed)
+exec sox -q -v 0.7 -t pulseaudio "$1" -c 1 -r 16000 -b 16 "$3" trim 0 "$2"

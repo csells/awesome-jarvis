@@ -1,0 +1,9 @@
+#!/bin/bash
+# Omarchy-like session: PipeWire + headless compositor, then the Jarvis
+# voice service (like graphical-session.target would start it).
+/lab/bin/lab-init
+if [ "${JARVIS_AUTOSTART:-1}" = 1 ]; then
+  systemctl --user start voice-launcher.service
+fi
+if [ "${OMARCHY_SHELL:-0}" = 1 ]; then /lab/bin/omarchy-shell-start; fi
+exec "$@"

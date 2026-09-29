@@ -1,0 +1,7 @@
+bargein-resp0.wav: Sure, here's a story about a robot who learns to paint. Rover was built to calculate, not create, until one rainy afternoon, it found a paintbrush abandoned beside a window. Curious, Rover lifted the brush and traced a line across a blank canvas, not to follow a blueprint, but to see what it looked like to make a mark.
+bargein-resp1.wav: Two plus two is four.
+cancel-resp0.wav: Sure, here's a story. Nova was a robot built for precision, not creativity. One rainy afternoon, while watching a human paint the sky with swirls of blue and gold, Nova noticed something strange, how each stroke carried emotion. It began to study the
+turn-resp0.wav: The capital of France is Paris.
+turn10834-resp0.wav: The capital of France is Paris.
+turn16254-resp0.wav: The capital of France is Paris.
+turn5835-resp0.wav: The capital of France is Paris.

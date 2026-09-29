@@ -1,0 +1,69 @@
+diff --git a/Executables/tapq/TapQMain.swift b/Executables/tapq/TapQMain.swift
+index 136037f..e5ddd36 100644
+--- a/Executables/tapq/TapQMain.swift
++++ b/Executables/tapq/TapQMain.swift
+@@ -45,7 +45,7 @@ struct TapQMain {
+         // guard — framework, OS version, device eligibility — lives here rather than in
+         // the portable CLI. An ineligible device throws a named reason rather than
+         // yielding nothing silently, so the host can report why it degraded.
+-        #if canImport(FoundationModels)
++        #if canImport(FoundationModels) && TAPQ_WITH_FOUNDATION_MODELS
+         let reasonerLoader: TapQReasonerLoading? = { config, diagnostics in
+             if #available(macOS 26.0, iOS 26.0, *), FoundationModelReasoner.isSupported {
+                 let reasoner = FoundationModelReasoner(
+diff --git a/Sources/TapQContextBaseline/FoundationModelClassifier.swift b/Sources/TapQContextBaseline/FoundationModelClassifier.swift
+index 72364f6..a425405 100644
+--- a/Sources/TapQContextBaseline/FoundationModelClassifier.swift
++++ b/Sources/TapQContextBaseline/FoundationModelClassifier.swift
+@@ -1,4 +1,4 @@
+-#if canImport(FoundationModels)
++#if canImport(FoundationModels) && TAPQ_WITH_FOUNDATION_MODELS
+ import Foundation
+ import FoundationModels
+ import TapQContracts
+diff --git a/Sources/TapQContextBaseline/FoundationModelReasoner.swift b/Sources/TapQContextBaseline/FoundationModelReasoner.swift
+index 4553316..ad47636 100644
+--- a/Sources/TapQContextBaseline/FoundationModelReasoner.swift
++++ b/Sources/TapQContextBaseline/FoundationModelReasoner.swift
+@@ -1,4 +1,4 @@
+-#if canImport(FoundationModels)
++#if canImport(FoundationModels) && TAPQ_WITH_FOUNDATION_MODELS
+ import Foundation
+ import FoundationModels
+ import TapQContracts
+diff --git a/Sources/TapQContextBaseline/FoundationModelSummarizer.swift b/Sources/TapQContextBaseline/FoundationModelSummarizer.swift
+index de7354b..b78337f 100644
+--- a/Sources/TapQContextBaseline/FoundationModelSummarizer.swift
++++ b/Sources/TapQContextBaseline/FoundationModelSummarizer.swift
+@@ -1,4 +1,4 @@
+-#if canImport(FoundationModels)
++#if canImport(FoundationModels) && TAPQ_WITH_FOUNDATION_MODELS
+ import Foundation
+ import FoundationModels
+ import TapQContracts
+diff --git a/Sources/TapQContextBaseline/ResponseQuestionClassifier.swift b/Sources/TapQContextBaseline/ResponseQuestionClassifier.swift
+index a0b8513..3168dc1 100644
+--- a/Sources/TapQContextBaseline/ResponseQuestionClassifier.swift
++++ b/Sources/TapQContextBaseline/ResponseQuestionClassifier.swift
+@@ -184,7 +184,7 @@ public enum QuestionClassifierFactory {
+             )
+         }
+ 
+-        #if canImport(FoundationModels)
++        #if canImport(FoundationModels) && TAPQ_WITH_FOUNDATION_MODELS
+         if allowFoundationModel,
+            #available(macOS 26.0, iOS 26.0, *),
+            FoundationModelClassifier.isSupported {
+diff --git a/Sources/TapQContextBaseline/SpokenSummary.swift b/Sources/TapQContextBaseline/SpokenSummary.swift
+index 606b09b..a669c1f 100644
+--- a/Sources/TapQContextBaseline/SpokenSummary.swift
++++ b/Sources/TapQContextBaseline/SpokenSummary.swift
+@@ -217,7 +217,7 @@ public enum SpeechSummarizerFactory {
+             )
+         }
+ 
+-        #if canImport(FoundationModels)
++        #if canImport(FoundationModels) && TAPQ_WITH_FOUNDATION_MODELS
+         if allowFoundationModel,
+            #available(macOS 26.0, iOS 26.0, *),
+            FoundationModelSummarizer.isSupported {

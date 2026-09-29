@@ -1,0 +1,6 @@
+# source me: PATH for non-interactive SSH shells in the guest
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="$HOME/lab/bin:$HOME/.local/bin:$HOME/.npm-global/bin:/opt/homebrew/opt/node@22/bin:/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
+export LAB_MIC_DEV="BlackHole 2ch"      # the "microphone": apps' default input
+export LAB_OUT_DEV="BlackHole 16ch"     # the "speaker": apps' default output, recorded by record-out
+export WHISPER_MODEL="$HOME/lab/models/ggml-base.en.bin"

@@ -1,0 +1,9 @@
+#!/bin/bash
+# jl-omarchy-m PID-1 wrapper (root): prepare the runtime dir and the optional
+# Codex volume, then run the session as the Omarchy user `lab`.
+mkdir -p /run/user/1000 /tmp/lab-logs /lab/out && chown lab:lab /run/user/1000 && chmod 700 /run/user/1000
+chmod 1777 /tmp/lab-logs
+if mountpoint -q /root/.codex 2>/dev/null || [ -d /root/.codex ]; then
+  chmod 711 /root; chown -R lab:lab /root/.codex 2>/dev/null   # lab (uid 1000) runs codex with CODEX_HOME=/root/.codex
+fi
+exec runuser -u lab -- /lab/bin/omarchy-m-session "$@"

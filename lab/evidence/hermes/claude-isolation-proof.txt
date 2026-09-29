@@ -1,0 +1,15 @@
+## isolation proof Sun Sep 27 10:50:28 UTC 2026
+[publication note: the three account lines printed by `claude auth status` (login method, organization, email) were removed]
+drwx------ 11 claude claude 4096 Sep 27 10:47 /lab-claude
+env CLAUDE* in gateway process:
+bash: line 1: /proc/211/environ: Permission denied
+0
+as hermes:
+ls: cannot open directory '/lab-claude': Permission denied
+cat: /lab-claude/.credentials.json: Permission denied
+
+sudoers:
+# jarvis-lab: the Hermes user may run only the Claude Code launcher as `claude`, no password, env reset.
+Defaults:hermes env_reset
+hermes ALL=(claude) NOPASSWD: /usr/local/libexec/claude-as-claude
+2026-09-27 10:20:53,836 INFO agent.credential_sources: External CLI logins (Codex CLI, Claude Code) are not adopted: auth.adopt_external_logins is false. Hermes uses only its own logins; run `hermes a

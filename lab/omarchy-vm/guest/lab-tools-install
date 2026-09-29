@@ -1,0 +1,21 @@
+#!/bin/bash
+# lab-tools-install — install the jarvis-lab audio/STT/TTS tools for the guest user (idempotent).
+# Pins: faster-whisper 1.2.1, piper-tts 1.8.0, Piper voice en_US-lessac-medium @ rhasspy/piper-voices 39ab474 (sha256-checked).
+set -euo pipefail
+L=$HOME/.local/share/jarvis-lab
+mkdir -p "$L/bin" "$L/voices" "$L/models" "$HOME/.config/systemd/user"
+pacman -T sox mesa-utils >/dev/null || sudo pacman -S --needed --noconfirm sox mesa-utils
+[ -x "$L/venv/bin/python" ] || python -m venv "$L/venv"
+"$L/venv/bin/pip" install -q "faster-whisper==1.2.1" "piper-tts==1.8.0"
+v=$L/voices/en_US-lessac-medium.onnx
+base=https://huggingface.co/rhasspy/piper-voices/resolve/39ab474be869e9181350af6a65e4953eef67aaa0/en/en_US/lessac/medium
+[ -f "$v" ] || { curl -fsSL -o "$v" $base/en_US-lessac-medium.onnx; curl -fsSL -o "$v.json" $base/en_US-lessac-medium.onnx.json; }
+echo "5efe09e69902187827af646e1a6e9d269dee769f9877d17b16b1b46eeaaf019f  $v" | sha256sum -c -
+"$L/venv/bin/python" -c "from faster_whisper import WhisperModel; WhisperModel('base.en', device='cpu', compute_type='int8', download_root='$L/models')"
+src=$(dirname "$(readlink -f "$0")")
+cp "$src"/{say,record-out,record-mic,record-src,transcribe,transcribe.py,shot,hyprenv,lab-audio-setup,lab-selftest,jarvis-vm-e2e,idle-lock-reload-test} "$L/bin/"
+cp "$src/jarvis-lab-audio.service" "$HOME/.config/systemd/user/"
+systemctl --user daemon-reload
+systemctl --user enable --now jarvis-lab-audio.service
+grep -q jarvis-lab/bin "$HOME/.bashrc" || echo 'export PATH="$HOME/.local/share/jarvis-lab/bin:$PATH"' >> "$HOME/.bashrc"
+echo "lab tools installed in $L/bin"

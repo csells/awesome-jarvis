@@ -1,0 +1,5 @@
+#!/bin/bash
+# Run a command as the image's `hermes` user with the Hermes + lab environment.
+eval "$(/lab/bin/lab-env)"
+export HOME=/opt/data HERMES_HOME=/opt/data CODEX_HOME=/root/.codex PATH=/lab/bin:/opt/hermes/bin:/opt/hermes/.venv/bin:/usr/local/bin:/usr/bin:/bin
+exec /command/s6-setuidgid hermes "$@"

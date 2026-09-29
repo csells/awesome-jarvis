@@ -1,0 +1,25 @@
+#!/bin/bash
+# Hermes Linux voice smoke test (no model login needed up to the model call):
+# CLI (in tmux, as the `hermes` user) with wake word "hey hermes" (openWakeWord,
+# local capture from the PulseAudio virtual mic) -> VAD recording -> local
+# faster-whisper STT -> agent turn. Plus dashboard screenshots.
+set -u
+OUT=${1:-/lab/out/hermes}; mkdir -p "$OUT"
+/lab/bin/hermes-lab-voice-setup >/dev/null
+tmux kill-session -t hermes 2>/dev/null
+TERM=xterm-256color tmux new-session -d -s hermes -x 150 -y 45 "/lab/bin/hermes-as-user hermes"
+for _ in $(seq 60); do tmux capture-pane -p -t hermes | grep -q "Set up a provider now" && { tmux send-keys -t hermes n Enter; break; }
+  tmux capture-pane -p -t hermes | grep -q "Wake word listening" && break; sleep 1; done
+for _ in $(seq 60); do tmux capture-pane -p -t hermes | grep -q "Wake word listening" && break; sleep 1; done
+record-out ${RECORD_SECONDS:-35} "$OUT/hermes-speech.wav" & rec=$!
+sleep 0.5
+echo ">> say: hey hermes"; say "hey hermes"
+sleep 2.5
+echo ">> say: ${QUESTION:-what time is it}"; say "${QUESTION:-what time is it}"
+for _ in $(seq 60); do tmux capture-pane -p -t hermes | grep -qE "not connected to any AI provider|^⚕|☤ .*│ ctx [0-9]" && break; sleep 1; done
+sleep 3
+tmux capture-pane -p -t hermes -S -80 | grep -v '^\s*$' > "$OUT/hermes-cli.txt"
+echo "== Hermes CLI (tail)"; grep -A12 "Wake word detected" "$OUT/hermes-cli.txt" | head -20
+wait $rec
+echo "== what Hermes said (record-out -> transcribe; empty until a model is connected)"; transcribe "$OUT/hermes-speech.wav"
+for p in / /sessions /kanban; do n=$(echo "${p#/}" | sed 's/^$/dashboard/'); hermes-dashboard-shot "$OUT/$n.png" "$p"; done

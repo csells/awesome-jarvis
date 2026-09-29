@@ -1,0 +1,4 @@
+#!/bin/bash
+# play-mic <file.wav|aiff>  : play a file into the virtual microphone (BlackHole 2ch) in real time
+source "$HOME/lab/bin/lab-env"
+exec sox -q "$1" -t coreaudio "$LAB_MIC_DEV"

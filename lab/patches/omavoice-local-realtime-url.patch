@@ -1,0 +1,13 @@
+diff --git a/daemon/omavoice/realtime.py b/daemon/omavoice/realtime.py
+index 34c1441..2bb19e3 100644
+--- a/daemon/omavoice/realtime.py
++++ b/daemon/omavoice/realtime.py
+@@ -30,7 +30,7 @@ from .config import Config
+ 
+ log = logging.getLogger("omavoice.realtime")
+ 
+-WS_URL = "wss://api.openai.com/v1/realtime"
++WS_URL = "ws://10.0.2.2:8765/v1/realtime"  # LAB-ONLY patch: local OpenAI-compatible Realtime server
+ 
+ # The biggest thing the Realtime API sends is one audio delta: base64 of PCM16
+ # at the session's rate. At 24 kHz that is 48 000 bytes of audio per second, and

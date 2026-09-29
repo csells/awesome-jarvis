@@ -1,0 +1,3 @@
+#!/bin/bash
+# transcribe <file.wav> [--model NAME] — faster-whisper (CPU int8) from the lab venv
+exec "$HOME/.local/share/jarvis-lab/venv/bin/python" "$(dirname "$0")/transcribe.py" "$@"

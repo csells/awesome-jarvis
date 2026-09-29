@@ -1,0 +1,23 @@
+#!/bin/bash
+# Omarchy session for the lab user: PipeWire, compositor (real Hyprland if it can
+# start, otherwise headless sway), omarchy-shell via Omarchy's own launcher,
+# then the command.
+OUT=/lab/out/omarchy-m; mkdir -p "$OUT" 2>/dev/null || OUT=/tmp
+export XDG_CURRENT_DESKTOP=Hyprland XDG_SESSION_TYPE=wayland
+if [ "${OMARCHY_M_COMPOSITOR:-auto}" != sway ]; then
+  /lab/bin/hyprland-headless-probe --keep >"/tmp/lab-logs/hyprland-probe.txt" 2>&1
+  cp /tmp/lab-logs/hyprland-probe.txt "$OUT/" 2>/dev/null
+fi
+if ls "$XDG_RUNTIME_DIR"/hypr/*/.socket.sock >/dev/null 2>&1; then
+  export LAB_WAYLAND=0            # Hyprland is up; lab-init must not start sway
+fi
+/lab/bin/lab-init
+eval "$(/lab/bin/lab-env)"
+if [ "${OMARCHY_SHELL:-1}" = 1 ]; then
+  setsid nohup omarchy-launch-shell >/tmp/lab-logs/omarchy-launch-shell.log 2>&1 </dev/null &
+  for _ in $(seq 60); do omarchy-shell -q shell ping >/dev/null 2>&1 && omarchy-shell shell ping >/dev/null 2>&1 && break; sleep 0.5; done
+fi
+if [ -f "$HOME/.config/systemd/user/voice-launcher.service" ] && [ "${JARVIS_AUTOSTART:-1}" = 1 ]; then
+  systemctl --user start voice-launcher.service
+fi
+exec "$@"

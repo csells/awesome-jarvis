@@ -1,0 +1,5 @@
+#!/bin/bash
+# lab shim: no initramfs/boot in a container. Omarchy's omarchy-refresh-plymouth
+# (called by omarchy-reinstall-configs) regenerates the initramfs; record and skip.
+mkdir -p /tmp/lab-logs; echo "$(date '+%F %T') [lab-shim] mkinitcpio $* skipped (no boot in container)" >>/tmp/lab-logs/shim.log
+exit 0

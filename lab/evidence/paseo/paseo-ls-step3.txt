@@ -1,0 +1,3 @@
+AGENT ID      NAME                  PROVIDER                THINKING      STATUS      CWD                             CREATED        
+b5f169a       voice-host            claude/claude-sonnet-5  auto          idle        /workspace/demo                 19 minutes ago 
+f5d5944       Write hello.txt       claude/claude-sonnet-5  auto          closed      /workspace/demo                 16 minutes ago 

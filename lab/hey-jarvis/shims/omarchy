@@ -1,0 +1,12 @@
+#!/bin/bash
+# jarvis-lab shim for Omarchy's `omarchy` CLI. `omarchy pkg add` maps to pacman
+# (no-op when already installed); everything else is forwarded to the pinned
+# Omarchy checkout's own CLI when present.
+if [ "${1:-}" = pkg ] && [ "${2:-}" = add ]; then
+  shift 2
+  pacman -Q "$@" >/dev/null 2>&1 && { echo "[omarchy-shim] already installed: $*"; exit 0; }
+  exec pacman -Sy --needed --noconfirm "$@"
+fi
+real=${OMARCHY_PATH:-/root/.local/share/omarchy}/bin/omarchy
+[ -x "$real" ] && exec "$real" "$@"
+echo "[omarchy-shim] unsupported in the lab: omarchy $*" >&2; exit 1

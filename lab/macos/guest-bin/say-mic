@@ -1,0 +1,6 @@
+#!/bin/bash
+# say-mic "text" [--keep f.wav] : speak text into the virtual mic with the guest's `say` (0.3 s lead-in)
+source "$HOME/lab/bin/lab-env"
+t=$(mktemp -t saymic).aiff; say -o "$t" "$1"
+if [ "${2:-}" = --keep ]; then sox -q "$t" -r 16000 -c 1 "$3"; fi
+sox -q "$t" -t coreaudio "$LAB_MIC_DEV" pad 0.3 0; rm -f "$t"

@@ -1,0 +1,9 @@
+4a898879-fbe5-4cca-bb67-ba89edfb989d cli running 
+23687e15-de5f-41e7-9094-64be19e60654 cli succeeded 
+c5723c46-f073-4cd3-877d-d9e6b1492182 subagent succeeded roman-empire-history
+cancel 4a898879-fbe5-4cca-bb67-ba89edfb989d
+Cancelled 4a898879-fbe5-4cca-bb67-ba89edfb989d (cli) run F5E5CDF8-F91F-405E-9055-DB7BDBEBFFD1.
+Task       Kind     Status     Delivery       Run        Child Session                        Summary
+4a898879-… cli      cancelled  not_applicable F5E5CDF8-… agent:main:main                      Cancelled by operator.
+23687e15-… cli      succeeded  not_applicable 6CA5D8AE-… agent:main:main                      completed
+c5723c46-… subagent succeeded  delivered      f0bb12c9-… agent:main:subagent:880cba03-e6c1-4… roman-empire-history

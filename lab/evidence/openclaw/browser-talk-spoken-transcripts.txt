@@ -1,0 +1,9 @@
+t1: Paris 
+t2: Let me check that for you. 
+t3: Let me check that for you. 
+t4: I need your spoken confirmation to run a shell command to list the workspace files, please confirm. 
+t5:  
+t6: I couldn't retrieve the file list. Let me know if you'd like me to try something else. 
+t7:  
+t8: The task has been canceled. 
+t9-bargein: Once upon a time in a quiet coastal town building, 2 plus 2 is far. 

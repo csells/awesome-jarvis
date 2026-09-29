@@ -1,0 +1,1 @@
+You have two agents. The first is voice host, which is this current session, and it's still running. The second is the one I created earlier called righthello.txt. It's idle now, since it already finished creating the hello.txt file with hello world inside it.

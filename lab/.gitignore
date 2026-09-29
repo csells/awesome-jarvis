@@ -1,0 +1,18 @@
+# Local state the lab creates; never commit it.
+out/
+**/ssh/
+omarchy-vm/run/
+omarchy-vm/qemu/
+omarchy-vm/dl/
+omarchy-vm/*.utm/
+voice-server/local/
+android/grpc/
+android/apk/
+android/.venv/
+macos/.venv/
+*.wav
+*.qcow2
+.env
+*.env
+.DS_Store
+__pycache__/

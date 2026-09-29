@@ -1,0 +1,64 @@
+#!/bin/bash
+# Idempotently start PulseAudio (virtual mic + speaker), Xvfb and (unless
+# LAB_WAYLAND=0) a headless sway compositor. Writes /run/user/0/lab.env.
+set -u
+RT=${XDG_RUNTIME_DIR:-/run/user/0}
+mkdir -p "$RT" /lab/out /tmp/lab-logs && chmod 700 "$RT"
+LOG=/tmp/lab-logs
+
+if ! pactl info >/dev/null 2>&1; then
+  mkdir -p "$RT/pulse"
+  if [ "${LAB_AUDIO:-pulseaudio}" = pipewire ]; then
+    # PipeWire + WirePlumber + pipewire-pulse (what Omarchy/Arch runs), same graph via pactl.
+    if [ ! -S "$RT/bus" ]; then
+      dbus-daemon --session --fork --address="unix:path=$RT/bus" --nopidfile >$LOG/dbus.log 2>&1
+    fi
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=$RT/bus"
+    nohup pipewire >$LOG/pipewire.log 2>&1 &
+    sleep 0.5
+    nohup wireplumber >$LOG/wireplumber.log 2>&1 &
+    nohup pipewire-pulse >$LOG/pipewire-pulse.log 2>&1 &
+    for _ in $(seq 100); do pactl info >/dev/null 2>&1 && break; sleep 0.1; done
+    pactl load-module module-null-sink sink_name=speaker rate=48000 sink_properties=device.description=Lab-Speaker >/dev/null
+    pactl load-module module-null-sink sink_name=vmic_in rate=48000 sink_properties=device.description=Lab-VirtualMic-Feed >/dev/null
+    pactl load-module module-remap-source master=vmic_in.monitor source_name=vmic source_properties=device.description=Lab-VirtualMic >/dev/null
+    sleep 0.3
+    pactl set-default-sink speaker; pactl set-default-source vmic
+  else
+    sock=${PULSE_SERVER:-unix:$RT/pulse/native}; sock=${sock#unix:}
+    mkdir -p "$(dirname "$sock")"; chmod 755 "$(dirname "$sock")"
+    sed "s|/run/user/0/pulse/native|$sock|" /lab/etc/default.pa > /tmp/lab-default.pa
+    pulseaudio -n -F /tmp/lab-default.pa --exit-idle-time=-1 --disallow-exit \
+      --daemonize=yes --log-target=file:$LOG/pulseaudio.log 2>>$LOG/pulseaudio.log
+    for _ in $(seq 50); do pactl info >/dev/null 2>&1 && break; sleep 0.1; done
+  fi
+fi
+
+if [ "${LAB_X11:-1}" != 0 ] && ! xdpyinfo -display "${DISPLAY:-:99}" >/dev/null 2>&1; then
+  rm -f /tmp/.X99-lock
+  nohup Xvfb "${DISPLAY:-:99}" -screen 0 1280x800x24 -nolisten tcp >$LOG/xvfb.log 2>&1 &
+  for _ in $(seq 50); do xdpyinfo -display "${DISPLAY:-:99}" >/dev/null 2>&1 && break; sleep 0.1; done
+fi
+
+wl_sock() { ls "$RT" 2>/dev/null | grep -E '^wayland-[0-9]+$' | head -1; }
+if [ "${LAB_WAYLAND:-1}" != 0 ] && [ -z "$(wl_sock)" ]; then
+  ( export WLR_BACKENDS=headless WLR_RENDERER=${WLR_RENDERER:-pixman} WLR_LIBINPUT_NO_DEVICES=1 WLR_HEADLESS_OUTPUTS=1
+    unset DISPLAY WAYLAND_DISPLAY
+    nohup ${LAB_COMPOSITOR_CMD:-sway -c ${LAB_SWAY_CONFIG:-/lab/etc/sway.config}} >$LOG/compositor.log 2>&1 & )
+  for _ in $(seq 100); do [ -n "$(wl_sock)" ] && break; sleep 0.1; done
+fi
+
+{
+  echo "export XDG_RUNTIME_DIR=$RT"
+  echo "export PULSE_SERVER=${PULSE_SERVER:-unix:$RT/pulse/native}"
+  [ "${LAB_X11:-1}" != 0 ] && echo "export DISPLAY=${DISPLAY:-:99}"
+  [ -S "$RT/bus" ] && echo "export DBUS_SESSION_BUS_ADDRESS=unix:path=$RT/bus"
+  h=$(ls "$RT/hypr" 2>/dev/null | head -1); [ -n "$h" ] && echo "export HYPRLAND_INSTANCE_SIGNATURE=$h"
+  s=$(wl_sock); [ -n "$s" ] && echo "export WAYLAND_DISPLAY=$s"
+  ss=$(ls "$RT"/sway-ipc.*.sock 2>/dev/null | head -1); [ -n "$ss" ] && echo "export SWAYSOCK=$ss"
+} > "$RT/lab.env"
+
+if [ "${LAB_QUIET:-0}" != 1 ]; then
+  echo "[lab] pulse: $(pactl get-default-sink 2>/dev/null) / $(pactl get-default-source 2>/dev/null)" \
+       "| X11: ${DISPLAY:-:99} | wayland: $(wl_sock || true)"
+fi

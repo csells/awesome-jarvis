@@ -1,0 +1,7 @@
+total 28
+drwxrwsr-x 2 hermes work 4096 Sep 27 10:40 .
+drwxrwsr-x 3 hermes work 4096 Sep 27 10:16 ..
+-rw-rw-r-- 1 claude work   21 Sep 27 10:19 hello.py
+-rw-rw-r-- 1 claude work    7 Sep 27 10:34 notes.txt
+-rw-rw-r-- 1 claude work 5801 Sep 27 10:40 primes.py
+-rw-rw-r-- 1 claude work 3952 Sep 27 10:40 test_primes.py

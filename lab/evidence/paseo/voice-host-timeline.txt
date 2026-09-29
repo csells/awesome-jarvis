@@ -1,0 +1,44 @@
+[User] Reply with exactly: ready. Do not use any tools.
+ready.
+[User] <spoken-input>
+Create a new clawed code agent that writes a file called hello.txt containing hello world.
+</spoken-input>
+<instruction>This message was spoken by the user. Respond using the speak tool only, not normal messages, because the user may not be looking at the chat.</instruction>
+[Toolsearch]
+[Toolsearch]
+[List providers] {}
+[List models] {"provider":"claude"}
+Now I'll create the Claude Code agent with the task.
+[Create agent] {"title":"Write hello.txt","provider":"claude/claude-sonnet-5","initialPrompt":"Create a file called hello.txt containing the text \"hello world\"."}
+[Speak] "I've created a new Claude Code agent that's now working on writing hello dot txt with hello world inside it. I'll let you know when it's done."
+[Toolsearch]
+This is exactly the requested write, so approving it.
+[Respond to permission] {"agentId":"f5d59444-6e16-4916-b77b-2f53a16dd911","requestId":"permission-ba31a30a-e165-4453-b3fa-3545274ed3a7","response":{"behavior":"allow"}}
+[Speak] "The agent asked for permission to write the file, and I approved it. It should be finishing up now."
+[Speak] "All done. The agent created hello dot txt containing hello world."
+Done — the agent finished and hello.txt now contains "hello world".
+[User] <spoken-input>
+Please list all of my agents and tell me what each one is doing.
+</spoken-input>
+<instruction>This message was spoken by the user. Respond using the speak tool only, not normal messages, because the user may not be looking at the chat.</instruction>
+[List agents] {}
+[Speak] "You have two agents. The first is voice-host, which is this current session, and it's still running. The second is the one I created earlier called Write hello dot txt — it's idle now, since it already finished creating the hello dot txt file with hello world inside it."
+Reported via voice — you have two agents: this session ("voice-host", still running) and the "Write hello.txt" agent, which is idle after completing its task.
+[User] <spoken-input>
+Now please kill the agent that wrote the hello.txt file.
+</spoken-input>
+<instruction>This message was spoken by the user. Respond using the speak tool only, not normal messages, because the user may not be looking at the chat.</instruction>
+[Toolsearch]
+[Kill agent] {"agentId":"f5d59444-6e16-4916-b77b-2f53a16dd911"}
+[Speak] "Done. I've killed the agent that wrote hello dot txt."
+Confirmed via voice — the hello.txt agent has been terminated.
+[User] <spoken-input>
+Please explain in detail, in about 200 words, everything that Pesio voice mode can do for a developer.
+</spoken-input>
+<instruction>This message was spoken by the user. Respond using the speak tool only, not normal messages, because the user may not be looking at the chat.</instruction>
+[Tool]
+[User] <spoken-input>
+Stop, stop talking, please. That is enough.
+</spoken-input>
+<instruction>This message was spoken by the user. Respond using the speak tool only, not normal messages, because the user may not be looking at the chat.</instruction>
+Stopped — no further response needed.

@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+"""vmqmp — drive the headless lab's Omarchy QEMU VM through its QMP Unix socket (omarchy-vm/run/qmp.sock).
+
+  vmqmp shot FILE.png            screendump of the VM console (PNG)
+  vmqmp type 'text'              type text (US layout); use \\n for Enter
+  vmqmp type-file FILE          type the first line of FILE (secrets stay out of argv)
+  vmqmp key ctrl-alt-f2 ret ...  send key chords (QEMU qcode names joined by '-')
+  vmqmp click X Y               move the tablet pointer to X,Y (guest pixels) and left-click
+  vmqmp status                   query-status
+  vmqmp powerdown                ACPI power button (clean shutdown)
+  vmqmp raw '{"execute":...}'    any QMP command
+"""
+import json, os, socket, sys, time
+
+SOCK = os.environ.get("VMQMP_SOCK", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "run", "qmp.sock"))
+
+SHIFTED = {'~': 'grave_accent', '!': '1', '@': '2', '#': '3', '$': '4', '%': '5', '^': '6',
+           '&': '7', '*': '8', '(': '9', ')': '0', '_': 'minus', '+': 'equal', '{': 'bracket_left',
+           '}': 'bracket_right', '|': 'backslash', ':': 'semicolon', '"': 'apostrophe',
+           '<': 'comma', '>': 'dot', '?': 'slash'}
+PLAIN = {'`': 'grave_accent', '-': 'minus', '=': 'equal', '[': 'bracket_left', ']': 'bracket_right',
+         '\\': 'backslash', ';': 'semicolon', "'": 'apostrophe', ',': 'comma', '.': 'dot',
+         '/': 'slash', ' ': 'spc', '\n': 'ret', '\t': 'tab'}
+
+
+class QMP:
+    def __init__(self):
+        self.s = socket.socket(socket.AF_UNIX); self.s.settimeout(30); self.s.connect(SOCK)
+        self.f = self.s.makefile("rw")
+        json.loads(self.f.readline())  # greeting
+        self.cmd("qmp_capabilities")
+
+    def cmd(self, name, **args):
+        msg = {"execute": name}
+        if args:
+            msg["arguments"] = args
+        self.f.write(json.dumps(msg) + "\n"); self.f.flush()
+        while True:
+            r = json.loads(self.f.readline())
+            if "event" in r:
+                continue
+            if "error" in r:
+                raise SystemExit(f"QMP {name}: {r['error']}")
+            return r.get("return")
+
+
+def keys_for(ch):
+    if ch.isalpha():
+        return (['shift'] if ch.isupper() else []) + [ch.lower()]
+    if ch.isdigit():
+        return [ch]
+    if ch in SHIFTED:
+        return ['shift', SHIFTED[ch]]
+    if ch in PLAIN:
+        return [PLAIN[ch]]
+    raise SystemExit(f"cannot type {ch!r}")
+
+
+def send(q, names, hold=None):
+    # Explicit press/release events in one input-send-event call: send-key releases on a timer, and when that
+    # timer fires late the guest's autorepeat duplicates characters (seen as "9988" -> "99988").
+    ev = lambda n, down: {"type": "key", "data": {"down": down, "key": {"type": "qcode", "data": n}}}
+    q.cmd("input-send-event", events=[ev(n, True) for n in names] + [ev(n, False) for n in reversed(names)])
+
+
+def main():
+    if len(sys.argv) < 2:
+        print(__doc__); sys.exit(2)
+    op, rest = sys.argv[1], sys.argv[2:]
+    q = QMP()
+    if op == "shot":
+        out = os.path.abspath(rest[0])
+        q.cmd("screendump", filename=out, format="png"); print(out)
+    elif op == "type":
+        text = " ".join(rest).encode().decode("unicode_escape")
+        for ch in text:
+            send(q, keys_for(ch)); time.sleep(float(os.environ.get("VMQMP_DELAY", "0.05")))
+    elif op == "type-file":   # type the first line of a file (e.g. a password) without it appearing in argv
+        for ch in open(rest[0]).readline().rstrip("\n"):
+            send(q, keys_for(ch)); time.sleep(float(os.environ.get("VMQMP_DELAY", "0.05")))
+    elif op == "key":
+        for chord in rest:
+            send(q, chord.split("-") if chord != "minus" else ["minus"]); time.sleep(0.15)
+    elif op == "click":   # vmqmp click X Y  (pixels on the 1920x1080 guest display; absolute tablet)
+        x, y = int(rest[0]), int(rest[1]); W, H = int(os.environ.get("VM_W", "1920")), int(os.environ.get("VM_H", "1080"))
+        abs_ = lambda a, v: {"type": "abs", "data": {"axis": a, "value": v}}
+        q.cmd("input-send-event", events=[abs_("x", x * 32767 // (W - 1)), abs_("y", y * 32767 // (H - 1))])
+        time.sleep(0.15)
+        q.cmd("input-send-event", events=[{"type": "btn", "data": {"down": True, "button": "left"}}]); time.sleep(0.08)
+        q.cmd("input-send-event", events=[{"type": "btn", "data": {"down": False, "button": "left"}}])
+    elif op == "status":
+        print(q.cmd("query-status"))
+    elif op == "powerdown":
+        q.cmd("system_powerdown"); print("powerdown sent")
+    elif op == "raw":
+        m = json.loads(rest[0]); print(json.dumps(q.cmd(m["execute"], **m.get("arguments", {})), indent=1))
+    else:
+        print(__doc__); sys.exit(2)
+
+
+if __name__ == "__main__":
+    main()

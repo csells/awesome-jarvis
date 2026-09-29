@@ -1,0 +1,6 @@
+#!/bin/bash
+# chrome-lab <url> [profile] : Chrome in the GUI session, auto-accepting mic/camera permission prompts
+# (--use-fake-ui-for-media-stream keeps the real device, BlackHole 2ch) and allowing audio autoplay.
+osascript -e 'quit app "Google Chrome"' 2>/dev/null; sleep 2
+open -na "Google Chrome" --args --user-data-dir="$HOME/lab/chrome-${2:-lab}" --no-first-run --no-default-browser-check \
+  --use-fake-ui-for-media-stream --autoplay-policy=no-user-gesture-required --remote-debugging-port=9222 --window-position=0,25 --window-size=1024,740 "$1"

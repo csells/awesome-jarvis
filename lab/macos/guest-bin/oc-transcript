@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+# oc-transcript [N] : last N user/assistant text messages of OpenClaw's main session
+import json, glob, os, sys
+n = int(sys.argv[1]) if len(sys.argv) > 1 else 10
+files = sorted(glob.glob(os.path.expanduser("~/.openclaw/agents/main/sessions/*.jsonl")), key=os.path.getmtime)
+out = []
+for line in open(files[-1]):
+    try: e = json.loads(line)
+    except Exception: continue
+    m = e.get("message") or {}
+    role = m.get("role") or e.get("type")
+    c = m.get("content")
+    if isinstance(c, list):
+        c = " ".join(p.get("text", "") if p.get("type") == "text" else f"[{p.get('type')}:{p.get('name','')}]" for p in c if isinstance(p, dict))
+    if role in ("user", "assistant") and c:
+        out.append(f"{e.get('timestamp','')[:19]} {role}: {str(c)[:400]}")
+print(os.path.basename(files[-1])); print("\n".join(out[-n:]))

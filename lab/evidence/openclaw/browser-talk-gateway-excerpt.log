@@ -1,0 +1,21 @@
+2026-09-28T03:15:09.693+00:00 [agent/cli-backend] cli exec: provider=claude-cli model=claude-sonnet-5 promptChars=25 trigger=unknown useResume=false session=none resumeSession=none reuse=none historyPrompt=none
+2026-09-28T03:15:11.177+00:00 [agent/cli-backend] cli exec: provider=claude-cli model=claude-sonnet-5 promptChars=25 trigger=user useResume=false session=none resumeSession=none reuse=none historyPrompt=none
+2026-09-28T03:15:12.399+00:00 [agent/cli-backend] cli turn: provider=claude-cli model=claude-sonnet-5 durationMs=2707 outBytes=19 outHash=fe1d14ec308e
+2026-09-28T03:15:13.364+00:00 [agent/cli-backend] cli turn: provider=claude-cli model=claude-sonnet-5 durationMs=2187 outBytes=5 outHash=b24d6d33736e
+2026-09-28T03:15:57.394+00:00 [ws] ⇄ res ✗ talk.client.create 2ms errorCode=INVALID_REQUEST errorMessage=gateway-relay does not support browser video frames conn=6dd79235…d072 id=124:a2280e36…066a
+2026-09-28T03:22:44.776+00:00 [reload] config change detected; evaluating reload (talk.realtime.instructions)
+2026-09-28T03:22:56.855+00:00 [ws] ⇄ res ✗ talk.client.create 2ms errorCode=INVALID_REQUEST errorMessage=gateway-relay does not support browser video frames conn=6dd79235…d072 id=2622:f10e80f…52dd
+2026-09-28T03:23:23.052+00:00 [agent/cli-backend] cli exec: provider=claude-cli model=claude-sonnet-5 promptChars=236 trigger=user useResume=true session=present resumeSession=59e55b196384 reuse=reusable-drift:prompt-tools historyPrompt=non
+2026-09-28T03:23:23.058+00:00 [agent/cli-backend] cli terminal failure: provider=claude-cli model=claude-sonnet-5 durationMs=723 runId=talk-call_39eb3ac4ad47412caf8d58870cd59a68-e48e2c23-7bfc-408e-b61e-161ab2df8aee error=Managed CLI live se
+2026-09-28T03:25:04.120+00:00 [agent/cli-backend] cli exec: provider=claude-cli model=claude-sonnet-5 promptChars=55 trigger=user useResume=false session=none resumeSession=none reuse=none historyPrompt=none
+2026-09-28T03:25:12.464+00:00 [agent/cli-backend] cli turn: provider=claude-cli model=claude-sonnet-5 durationMs=8345 outBytes=102 outHash=095695cb9f0a
+2026-09-28T03:26:24.193+00:00 [agent/cli-backend] cli exec: provider=claude-cli model=claude-sonnet-5 promptChars=55 trigger=user useResume=true session=present resumeSession=1fb19a75f408 reuse=reusable historyPrompt=none
+2026-09-28T03:28:30.589+00:00 [ws] ⇄ res ✓ plugin.approval.waitDecision 119964ms conn=1712ed47…a528 id=2:1dd84642-1…9d46
+2026-09-28T03:29:09.605+00:00 [ws] ⇄ res ✓ plugin.approval.waitDecision 32608ms conn=0a7c4e3e…be1f id=2:d8d1e52e-b…710a
+2026-09-28T03:30:23.463+00:00 [agent/cli-backend] cli turn: provider=claude-cli model=claude-sonnet-5 durationMs=239269 outBytes=77 outHash=6c419eaf6803
+2026-09-28T03:30:25.128+00:00 [agent/cli-backend] cli exec: provider=claude-cli model=claude-sonnet-5 promptChars=55 trigger=user useResume=false session=none resumeSession=none reuse=invalidated:missing-transcript historyPrompt=none
+2026-09-28T03:31:17.407+00:00 [ws] ⇄ res ✓ plugin.approval.waitDecision 120002ms conn=63ed2690…427f id=2:2fb272c3-2…8f41
+2026-09-28T03:31:52.009+00:00 [ws] ⇄ res ✓ plugin.approval.waitDecision 82248ms conn=66b88da1…de45 id=2:eb07aba5-3…9c0c
+2026-09-28T03:33:27.567+00:00 [ws] ⇄ res ✓ plugin.approval.waitDecision 90251ms conn=628ca575…e061 id=2:a62ba063-e…4a2d
+2026-09-28T03:33:27.587+00:00 [ws] ⇄ res ✓ plugin.approval.resolve 52ms conn=6dd79235…d072 id=6582:e4631fd…d64d
+2026-09-28T03:33:31.527+00:00 [agent/cli-backend] cli turn: provider=claude-cli model=claude-sonnet-5 durationMs=186400 outBytes=180 outHash=f389e0479e9b

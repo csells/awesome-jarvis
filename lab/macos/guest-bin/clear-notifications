@@ -1,0 +1,24 @@
+#!/bin/bash
+# clear-notifications : dismiss Notification Center banners/alerts (they cover top-right overlays)
+osascript <<'OSA'
+tell application "System Events" to tell process "NotificationCenter"
+  set n to 0
+  repeat 10 times
+    try
+      set g to first UI element of UI element 1 of scroll area 1 of group 1 of group 1 of window 1
+      set acts to name of actions of g
+      repeat with a in acts
+        if (a as text) is "Close" or (a as text) starts with "AXClose" or (a as text) contains "Name:Close" then
+          perform action a of g
+          set n to n + 1
+          exit repeat
+        end if
+      end repeat
+    on error
+      exit repeat
+    end try
+    delay 0.3
+  end repeat
+  return n
+end tell
+OSA

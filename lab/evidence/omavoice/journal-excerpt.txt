@@ -1,0 +1,94 @@
+Sep 27 20:54:21 jarvis-omarchy python[8411]: 20:54:21 DEBUG omavoice.ipc: client connected (3 total)
+Sep 27 20:54:21 jarvis-omarchy python[8411]: 20:54:21 DEBUG omavoice.ipc: client gone (2 left)
+Sep 27 20:54:29 jarvis-omarchy python[8411]: 20:54:29 DEBUG omavoice.realtime: event input_audio_buffer.speech_started
+Sep 27 20:54:31 jarvis-omarchy python[8411]: 20:54:31 DEBUG omavoice.realtime: event conversation.item.input_audio_transcription.delta
+Sep 27 20:54:33 jarvis-omarchy python[8411]: 20:54:33 DEBUG omavoice.realtime: event input_audio_buffer.speech_stopped
+Sep 27 20:54:33 jarvis-omarchy python[8411]: 20:54:33 DEBUG omavoice.realtime: event input_audio_buffer.committed
+Sep 27 20:54:33 jarvis-omarchy python[8411]: 20:54:33 DEBUG omavoice.realtime: event conversation.item.created
+Sep 27 20:54:33 jarvis-omarchy python[8411]: 20:54:33 DEBUG omavoice.realtime: event conversation.item.input_audio_transcription.completed
+Sep 27 20:54:33 jarvis-omarchy python[8411]: 20:54:33 INFO omavoice: heard: What is the code word in my notes file?
+Sep 27 20:54:33 jarvis-omarchy python[8411]: 20:54:33 INFO omavoice.realtime: session.updated: turn_detection={'type': 'server_vad', 'create_response': True, 'idle_timeout_ms': None, 'interrupt_response': None, 'prefix_padding_ms': 300, 'silence_duration_ms': 1100, 'threshold': 0.5} input_format={'r
+Sep 27 20:54:33 jarvis-omarchy python[8411]: 20:54:33 DEBUG omavoice.realtime: event session.updated
+Sep 27 20:54:33 jarvis-omarchy python[8411]: 20:54:33 DEBUG omavoice.realtime: event response.created
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.realtime: event response.output_item.added
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.realtime: event response.content_part.added
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.realtime: event response.output_item.added
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 INFO omavoice: state -> thinking
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 INFO omavoice: brain(claude): Что такое кодовое слово в моих заметках?
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.brain: running claude -p --disallowedTools Write,Edit,MultiEdit,NotebookEdit,WebFetch,WebSearch,WebBrowser --strict-mcp-config --setting-sources
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.realtime: event response.output_item.done
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 INFO omavoice: state -> speaking
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.realtime: event response.output_audio.done
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.realtime: event response.output_audio_transcript.done
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 INFO omavoice: said: Let me look.
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.realtime: event response.content_part.done
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.realtime: event response.output_item.done
+Sep 27 20:54:41 jarvis-omarchy python[8411]: 20:54:41 DEBUG omavoice.realtime: event response.done
+Sep 27 20:54:42 jarvis-omarchy python[8411]: 20:54:42 INFO omavoice: state -> listening
+Sep 27 20:54:43 jarvis-omarchy python[8411]: 20:54:43 DEBUG omavoice.realtime: event conversation.item.created
+Sep 27 20:54:43 jarvis-omarchy python[8411]: 20:54:43 DEBUG omavoice.realtime: event response.created
+Sep 27 20:54:45 jarvis-omarchy python[8411]: 20:54:45 DEBUG omavoice.realtime: event response.output_item.added
+Sep 27 20:54:45 jarvis-omarchy python[8411]: 20:54:45 DEBUG omavoice.realtime: event response.content_part.added
+Sep 27 20:54:45 jarvis-omarchy python[8411]: 20:54:45 INFO omavoice: state -> speaking
+Sep 27 20:54:46 jarvis-omarchy python[8411]: 20:54:46 DEBUG omavoice.realtime: event response.output_audio.done
+Sep 27 20:54:46 jarvis-omarchy python[8411]: 20:54:46 DEBUG omavoice.realtime: event response.output_audio_transcript.done
+Sep 27 20:54:46 jarvis-omarchy python[8411]: 20:54:46 INFO omavoice: said: It seems there was an issue accessing your file. Can you confirm your credentials or try signing in again?
+Sep 27 20:54:46 jarvis-omarchy python[8411]: 20:54:46 DEBUG omavoice.realtime: event response.content_part.done
+Sep 27 20:54:46 jarvis-omarchy python[8411]: 20:54:46 DEBUG omavoice.realtime: event response.output_item.done
+Sep 27 20:54:46 jarvis-omarchy python[8411]: 20:54:46 DEBUG omavoice.realtime: event response.done
+Sep 27 20:54:51 jarvis-omarchy python[8411]: 20:54:51 INFO omavoice: state -> listening
+Sep 27 20:56:19 jarvis-omarchy python[8411]: 20:56:19 DEBUG omavoice.ipc: client gone (1 left)
+Sep 27 20:56:56 jarvis-omarchy python[8411]: 20:56:56 DEBUG omavoice.ipc: client connected (2 total)
+Sep 27 20:58:46 jarvis-omarchy systemd[749]: Stopping Omavoice — voice assistant daemon...
+Sep 27 20:58:46 jarvis-omarchy python[8411]: 20:58:46 INFO omavoice: shutting down
+Sep 27 20:58:46 jarvis-omarchy python[8411]: 20:58:46 INFO omavoice.realtime: realtime stream ended cleanly
+Sep 27 20:58:46 jarvis-omarchy python[8411]: 20:58:46 INFO omavoice: state -> idle
+Sep 27 20:58:46 jarvis-omarchy python[8411]: 20:58:46 DEBUG omavoice.ipc: client gone (0 left)
+Sep 27 20:58:54 jarvis-omarchy python[9505]: 20:58:54 DEBUG omavoice.ipc: client gone (2 left)
+Sep 27 20:59:04 jarvis-omarchy python[9505]: 20:59:04 DEBUG omavoice.realtime: event input_audio_buffer.speech_started
+Sep 27 20:59:12 jarvis-omarchy python[9505]: 20:59:12 DEBUG omavoice.realtime: event input_audio_buffer.speech_stopped
+Sep 27 20:59:12 jarvis-omarchy python[9505]: 20:59:12 DEBUG omavoice.realtime: event input_audio_buffer.committed
+Sep 27 20:59:12 jarvis-omarchy python[9505]: 20:59:12 DEBUG omavoice.realtime: event conversation.item.created
+Sep 27 20:59:12 jarvis-omarchy python[9505]: 20:59:12 DEBUG omavoice.realtime: event conversation.item.input_audio_transcription.completed
+Sep 27 20:59:12 jarvis-omarchy python[9505]: 20:59:12 INFO omavoice: heard: Tell me a long story about a robot who learns to paint. Make it at least ten sentences.
+Sep 27 20:59:12 jarvis-omarchy python[9505]: 20:59:12 INFO omavoice.realtime: session.updated: turn_detection={'type': 'server_vad', 'create_response': True, 'idle_timeout_ms': None, 'interrupt_response': None, 'prefix_padding_ms': 300, 'silence_duration_ms': 1100, 'threshold': 0.5} input_format={'r
+Sep 27 20:59:12 jarvis-omarchy python[9505]: 20:59:12 DEBUG omavoice.realtime: event session.updated
+Sep 27 20:59:12 jarvis-omarchy python[9505]: 20:59:12 DEBUG omavoice.realtime: event response.created
+Sep 27 20:59:18 jarvis-omarchy python[9505]: 20:59:18 DEBUG omavoice.realtime: event response.output_item.added
+Sep 27 20:59:18 jarvis-omarchy python[9505]: 20:59:18 DEBUG omavoice.realtime: event response.content_part.added
+Sep 27 20:59:19 jarvis-omarchy python[9505]: 20:59:19 INFO omavoice: state -> speaking
+Sep 27 20:59:25 jarvis-omarchy python[9505]: 20:59:25 DEBUG omavoice.realtime: event response.output_audio.done
+Sep 27 20:59:25 jarvis-omarchy python[9505]: 20:59:25 DEBUG omavoice.realtime: event response.output_audio_transcript.done
+Sep 27 20:59:25 jarvis-omarchy python[9505]: 20:59:25 INFO omavoice: said: Sure, here's a story about a robot who learns to paint:
+Sep 27 20:59:25 jarvis-omarchy python[9505]: In the bustling city of Artville, among metallic frames and beeping circuits, there stood a robot named
+Sep 27 20:59:25 jarvis-omarchy python[9505]: 20:59:25 DEBUG omavoice.realtime: event response.content_part.done
+Sep 27 20:59:25 jarvis-omarchy python[9505]: 20:59:25 DEBUG omavoice.realtime: event response.output_item.done
+Sep 27 20:59:25 jarvis-omarchy python[9505]: 20:59:25 DEBUG omavoice.realtime: event response.done
+Sep 27 20:59:25 jarvis-omarchy python[9505]: 20:59:25 DEBUG omavoice.realtime: event input_audio_buffer.speech_started
+Sep 27 20:59:26 jarvis-omarchy python[9505]: 20:59:26 INFO omavoice: state -> listening
+Sep 27 20:59:27 jarvis-omarchy python[9505]: 20:59:27 DEBUG omavoice.realtime: event conversation.item.input_audio_transcription.delta
+Sep 27 20:59:30 jarvis-omarchy python[9505]: 20:59:30 DEBUG omavoice.realtime: event input_audio_buffer.speech_stopped
+Sep 27 20:59:30 jarvis-omarchy python[9505]: 20:59:30 DEBUG omavoice.realtime: event input_audio_buffer.committed
+Sep 27 20:59:30 jarvis-omarchy python[9505]: 20:59:30 DEBUG omavoice.realtime: event conversation.item.created
+Sep 27 20:59:30 jarvis-omarchy python[9505]: 20:59:30 DEBUG omavoice.realtime: event conversation.item.input_audio_transcription.completed
+Sep 27 20:59:30 jarvis-omarchy python[9505]: 20:59:30 INFO omavoice: heard: Top, top, let us talk about something else.
+Sep 27 20:59:30 jarvis-omarchy python[9505]: 20:59:30 DEBUG omavoice.realtime: event response.created
+Sep 27 20:59:30 jarvis-omarchy python[9505]: 20:59:30 DEBUG omavoice.realtime: event response.output_item.added
+Sep 27 20:59:30 jarvis-omarchy python[9505]: 20:59:30 DEBUG omavoice.realtime: event response.content_part.added
+Sep 27 20:59:32 jarvis-omarchy python[9505]: 20:59:32 INFO omavoice: state -> speaking
+Sep 27 20:59:32 jarvis-omarchy python[9505]: 20:59:32 DEBUG omavoice.audio: speaker: /usr/bin/setpriv --pdeathsig TERM /usr/bin/pw-play --raw --rate 24000 --channels 1 --format s16 --target phones -
+Sep 27 20:59:53 jarvis-omarchy python[9505]: 20:59:53 DEBUG omavoice.realtime: event response.output_audio.done
+Sep 27 20:59:53 jarvis-omarchy python[9505]: 20:59:53 DEBUG omavoice.realtime: event response.output_audio_transcript.done
+Sep 27 20:59:53 jarvis-omarchy python[9505]: 20:59:53 INFO omavoice: said: Let me look. One sec. Sure, here's my best story about a robot who learns to paint. In a lab filled with digital circuits and wires, Zephyr, a state-of-the-art
+Sep 27 20:59:53 jarvis-omarchy python[9505]: 20:59:53 DEBUG omavoice.realtime: event response.content_part.done
+Sep 27 20:59:53 jarvis-omarchy python[9505]: 20:59:53 DEBUG omavoice.realtime: event response.output_item.done
+Sep 27 20:59:53 jarvis-omarchy python[9505]: 20:59:53 DEBUG omavoice.realtime: event response.done
+Sep 27 21:00:37 jarvis-omarchy python[9505]: 21:00:37 INFO omavoice: state -> listening
+Sep 27 21:01:43 jarvis-omarchy systemd[749]: Stopping Omavoice — voice assistant daemon...
+Sep 27 21:01:43 jarvis-omarchy python[9505]: 21:01:43 INFO omavoice: shutting down
+Sep 27 21:01:43 jarvis-omarchy python[9505]: 21:01:43 INFO omavoice.realtime: realtime stream ended cleanly
+Sep 27 21:01:43 jarvis-omarchy python[9505]: 21:01:43 INFO omavoice: state -> idle
+Sep 27 21:01:43 jarvis-omarchy python[9505]: 21:01:43 DEBUG omavoice.ipc: client gone (0 left)
+Sep 27 21:01:43 jarvis-omarchy python[9505]: 21:01:43 DEBUG omavoice.ipc: client gone (0 left)
+Sep 27 21:01:43 jarvis-omarchy systemd[749]: Stopped Omavoice — voice assistant daemon.
+Sep 27 21:01:43 jarvis-omarchy systemd[749]: omavoice.service: Consumed 4.315s CPU time over 2min 56.956s wall clock time, 26M memory peak.

@@ -1,0 +1,117 @@
+#!/bin/bash
+# omarchy-m-install — run Omarchy Mac's own install.sh (pinned checkout in
+# ~/omarchy-mac) step by step inside a container. The installer's functions are
+# used as-is; only steps that need real hardware, a bootloader, or a running
+# systemd are replaced, and each replacement is recorded in
+# /usr/share/omarchy-m-lab/skipped.txt with the reason.
+set -uo pipefail
+export USER=${USER:-$(id -un)} HOME=${HOME:-/home/$(id -un)}
+CHECKOUT=$HOME/omarchy-mac
+LABDIR=/usr/share/omarchy-m-lab
+sudo mkdir -p "$LABDIR" && sudo chown "$USER" "$LABDIR"
+SKIPPED=$LABDIR/skipped.txt STEPS=$LABDIR/steps.txt
+: >"$SKIPPED"; : >"$STEPS"
+note() { printf '\033[35m[omarchy-m]\033[0m %s\n' "$*"; }
+skip() { printf '%s\t%s\n' "$1" "$2" >>"$SKIPPED"; note "SKIP $1 — $2"; }
+step() { # step <name> <critical 0|1> cmd...
+  local name=$1 critical=$2; shift 2
+  note "STEP $name"
+  if (( critical )); then "$@"; else ( "$@" ); fi
+  local rc=$?
+  if (( rc == 0 )); then printf 'OK\t%s\n' "$name" >>"$STEPS"
+  else printf 'FAIL(%s)\t%s\n' "$rc" "$name" >>"$STEPS"; note "FAILED $name (exit $rc)"
+       (( critical )) && exit "$rc"; fi
+  return 0
+}
+
+# Load the installer's functions: install.sh minus its final `main "$@"` line.
+[[ $(tail -n1 "$CHECKOUT/install.sh") == 'main "$@"' ]] || { echo "install.sh layout changed" >&2; exit 1; }
+sed '$d' "$CHECKOUT/install.sh" >"$CHECKOUT/.omarchy-m-install-lib.sh"
+# shellcheck disable=SC1091
+source "$CHECKOUT/.omarchy-m-install-lib.sh"
+set +e   # install.sh sets -e; this driver decides per step
+
+# ---- main(), default (no --channel) path, in order ----------------------------
+step check_preconditions 1 check_preconditions
+step ensure_utf8_locale 1 ensure_utf8_locale
+step ensure_arm_package_repo 1 ensure_arm_package_repo     # pacman.conf: [omarchy] Usage=Sync + [omarchy-aarch64]; -Syu + omarchy/hyprland targets
+step ensure_gum 0 ensure_gum
+# ensure_aur_helper would makepkg yay from the AUR; Omarchy Mac's install repo ships the same yay binary.
+skip "install.sh:ensure_aur_helper (AUR build of yay)" "yay installed from [omarchy-aarch64] instead of building it from aur.archlinux.org"
+step yay-from-omarchy-aarch64 1 sudo pacman -S --needed --noconfirm omarchy-aarch64/yay
+step ensure_aur_helper 1 ensure_aur_helper
+step ensure_package_sources 1 ensure_package_sources         # pinned omacom/omarchy-pkgs recipes
+step build_omarchy_packages 1 build_omarchy_packages         # omarchy, omarchy-settings, keyrings, fonts (arch=any) from this checkout
+step install_omarchy_packages 1 install_omarchy_packages
+
+# Default package set: trim what a container cannot use (hardware, boot, system
+# daemons) and, unless OMARCHY_FULL_PACKAGES=1, large end-user apps.
+pkgfile=$CHECKOUT/install/omarchy-base.packages
+cp -n "$pkgfile" "$pkgfile.orig"
+container_only=(plymouth sddm kernel-modules-hook zram-generator asdcontrol bolt brightnessctl ddcutil
+  power-profiles-daemon bluez bluez-tools bluez-utils wireless-regdb networkmanager ufw ufw-docker
+  avahi nss-mdns cups cups-filters cups-pk-helper system-config-printer docker docker-buildx docker-compose
+  lazydocker qemu-user-static-binfmt)
+heavy_apps=(chromium libreoffice-fresh kdenlive obs-studio pinta obsidian gpu-screen-recorder moonlight-qt
+  xournalpp localsend dotnet-runtime clang llvm mariadb-libs postgresql-libs tesseract tesseract-data-eng
+  gnome-disk-utility evince sushi nautilus nautilus-python gvfs-mtp gvfs-nfs gvfs-smb)
+for p in "${container_only[@]}"; do
+  grep -qx "$p" "$pkgfile" && sed -i "/^${p}$/d" "$pkgfile" && skip "package:$p" "hardware/boot/system-daemon package; nothing to drive it in a container"
+done
+if [[ ${OMARCHY_FULL_PACKAGES:-0} != 1 ]]; then
+  for p in "${heavy_apps[@]}"; do
+    grep -qx "$p" "$pkgfile" && sed -i "/^${p}$/d" "$pkgfile" && skip "package:$p" "large end-user app not needed for voice-agent tests (build with OMARCHY_FULL_PACKAGES=1 to include)"
+  done
+fi
+step install_default_package_set 0 install_default_package_set
+step verify_published_pair 0 verify_published_pair
+skip "mkinitcpio (via omarchy-refresh-plymouth in omarchy-reinstall-configs)" "initramfs regeneration — no boot in a container (/usr/local/bin/mkinitcpio shim)"
+step seed_user_defaults 0 seed_user_defaults               # omarchy-reinstall-configs
+
+# run_system_setup = omarchy-apply-system (root) + ensure_arm_package_repo + omarchy-provision-user.
+# Run the real entry points against a copy of $OMARCHY_PATH/install in which only
+# the hardware/boot/systemd-only scripts are replaced by logged no-ops.
+LABINSTALL=$LABDIR/install
+sudo rm -rf "$LABINSTALL"; sudo cp -a "$OMARCHY_PATH/install" "$LABINSTALL"; sudo chown -R "$USER" "$LABINSTALL"
+stub() { # stub <relative script> <reason>
+  printf 'echo "[omarchy-m-lab] skipped %s: %s"\n' "$1" "$2" >"$LABINSTALL/$1"
+  skip "install/$1" "$2"
+}
+stub hardware/all.sh "hardware setup (zram, wifi regdom, bluetooth, GPU/Vulkan pick via lspci and /proc/device-tree, Apple SPI keyboard/notch/NVMe fixes) — container has no such hardware"
+stub login/sddm.sh "display manager autologin — the lab starts the compositor itself"
+stub login/plymouth.sh "boot splash / initramfs — no boot in a container"
+stub login/alt-bootloaders.sh "bootloader configuration — no boot in a container"
+stub config/enable-services.sh "systemctl enable of system services (cups, avahi, NetworkManager, sddm, oomd, docker…) — no PID-1 systemd"
+stub config/firewall.sh "ufw/iptables rules — would need NET_ADMIN and would touch the Docker VM's netfilter"
+stub post-install/optional-apps.sh "1Password proprietary download — not needed"
+stub user/mise.sh "mise installs 14 unpinned agent CLIs (codex, claude, gh, opencode, …); the image installs pinned codex/claude via npm instead"
+stub user/hermes.sh "installs the Hermes CLI via its own installer — out of scope here"
+[[ ${OMARCHY_FULL_PACKAGES:-0} == 1 ]] || stub user/chromium.sh "chromium not installed (heavy-app trim)"
+step omarchy-apply-system 0 sudo env OMARCHY_INSTALL="$LABINSTALL" OMARCHY_INSTALL_LOG_FILE=/var/log/omarchy-install.log \
+  "$OMARCHY_PATH/bin/omarchy-apply-system" --install-user "$USER" --first-install
+# post-install/pacman.sh rewrote /etc/pacman.conf from pacman-edge.conf; put back the container-only sandbox switch.
+grep -q '^DisableSandbox' /etc/pacman.conf || sudo sed -i '/^\[options\]/a DisableSandboxFilesystem\nDisableSandboxSyscalls' /etc/pacman.conf
+skip "pacman.conf:DisableSandbox*" "pacman 7 Landlock/seccomp download sandbox cannot run in Docker Desktop's VM (re-added after post-install/pacman.sh)"
+step ensure_arm_package_repo#2 0 ensure_arm_package_repo
+# omarchy-provision-user calls xdg-user-dirs-update, but no Omarchy Mac package list
+# (base/other) and no dependency of omarchy pulls in xdg-user-dirs; add it.
+skip "gap:xdg-user-dirs" "not in any Omarchy Mac package list but required by omarchy-provision-user (line 107); installed by the lab"
+step xdg-user-dirs 0 sudo pacman -S --needed --noconfirm xdg-user-dirs
+step omarchy-provision-user 0 env OMARCHY_INSTALL="$LABINSTALL" PATH="$OMARCHY_PATH/bin:$PATH" "$OMARCHY_PATH/bin/omarchy-provision-user" --first-install
+if grep -q "^FAIL.*omarchy-provision-user" "$STEPS" && [[ ${OMARCHY_FULL_PACKAGES:-0} != 1 ]]; then
+  # Expected with the heavy-app trim: `xdg-settings set default-web-browser chromium.desktop`
+  # fails because chromium is not installed. Finish the remaining lines of omarchy-provision-user.
+  skip "omarchy-provision-user:default-web-browser" "chromium not installed (heavy-app trim); ran the script's remaining lines (mailto handler, migration markers, done marker) by hand"
+  finish_user() {
+    export PATH="$OMARCHY_PATH/bin:$PATH"
+    xdg-mime default HEY.desktop x-scheme-handler/mailto
+    mkdir -p "$HOME/.local/state/omarchy/migrations"
+    for m in "$OMARCHY_PATH"/migrations/*.sh; do [[ -f $m ]] && touch "$HOME/.local/state/omarchy/migrations/$(basename "$m")"; done
+    omarchy-done mark finalize-user
+  }
+  step omarchy-provision-user:finish 0 finish_user
+fi
+skip "install.sh:snapshot_factory_baseline" "btrfs @factory snapshot — container root is overlayfs"
+sudo cp /var/log/omarchy-install.log "$LABDIR/omarchy-install.log" 2>/dev/null
+note "done. steps:"; cat "$STEPS"
+! grep -q '^FAIL' "$STEPS" || note "some non-critical steps failed — see $STEPS and $LABDIR/omarchy-install.log"

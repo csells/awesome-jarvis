@@ -1,0 +1,4 @@
+#!/bin/bash
+# gui <cmd...> : run a command inside the guest user's GUI (Aqua) session, e.g. gui open -a Foo
+u=${LAB_GUEST_USER:-$(id -un)}
+exec sudo launchctl asuser "$(id -u "$u")" sudo -u "$u" "$@"

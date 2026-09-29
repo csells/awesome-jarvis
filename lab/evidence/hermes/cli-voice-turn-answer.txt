@@ -1,0 +1,4 @@
+== user (mic):
+Hey Hermes, what is the capital of France answer in one sentence?
+== hermes (speaker):
+Paris is the capital of France.

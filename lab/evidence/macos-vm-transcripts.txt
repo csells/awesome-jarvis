@@ -1,0 +1,11 @@
+# What the agents SAID (recorded from the guest's BlackHole 16ch output, whisper.cpp base.en)
+selftest   mic:  "The quick brown fox jumps over the lazy dog."  out: "Testing the speaker capture path, 123."
+tapq       wake1-out.wav        "Yes? No AirPods detected, running voice only. Nothing is waiting."   (after "Hey tap queue" + "Status")
+tapq       approve-yes-out.wav  "Claude code. Run echo hello from tap. Hello TXT. Approved?"  -> said "Yes, approve." -> hello.txt created, claude -p replied DONE.
+tapq       deny-out.wav         "clog code, run R M F Hello TXT, approve ... finished"         -> said "No. Cancel that." -> tool denied, claude replied BLOCKED, file kept.
+usejarvis  wake3-out.wav        "... 2 + 2 = 4 ..."  (Edge TTS reply to "Jarvis, what is two plus two?", ~89 s LLM latency)
+usejarvis  delegate-out.wav     "On it. I'll delegate that task to a specialist subagent. The content writer has completed the task. Here are three kinds of fruit: apple, banana, orange."
+hermes     voice2-out.wav       "The largest planet in the solar system is Jupiter." (x3: playback repeated 3 times)
+hermes     voice3-cancel-out.wav "I'm unable to generate a 1,000-word story ... I can provide a shorter version, a key scene," [cut off by spoken "Stop. Cancel that." = barge-in]
+openclaw   talk1/talk2-out.wav  (silence) Talk-mode STT never received audio in the VM: AVAudioEngine voice processing (VPIO) returns silence from BlackHole ("No speech detected", reproduced with lab/bin/live-stt vp)
+ethan-jarvis                    no audio: FISH_API_KEY not set (first_audio=none in server.log); text replies in voice-transcript.log

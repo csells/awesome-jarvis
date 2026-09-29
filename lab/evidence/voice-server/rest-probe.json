@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8766/v1",
+  "stt": [
+    {
+      "file": "out/base/mic.wav",
+      "run": 0,
+      "text": "Hey Jarvis, what time is it?",
+      "seconds": 1.504
+    },
+    {
+      "file": "out/base/mic.wav",
+      "run": 1,
+      "text": "Hey Jarvis, what time is it?",
+      "seconds": 0.124
+    },
+    {
+      "file": "out/paseo/utt.wav",
+      "run": 0,
+      "text": "Create a new agent that fixes the failing tests.",
+      "seconds": 0.09
+    },
+    {
+      "file": "out/paseo/utt.wav",
+      "run": 1,
+      "text": "Create a new agent that fixes the failing tests.",
+      "seconds": 0.079
+    }
+  ],
+  "tts": [
+    {
+      "voice": "fable",
+      "format": "mp3",
+      "bytes": 60236,
+      "seconds": 0.473,
+      "input": "Good evening, sir. All systems are online and the lab is ready for testing.",
+      "roundtrip_transcript": "Good evening sir. All systems are online, and the lab is ready for testing.",
+      "stt_seconds": 0.119,
+      "file": "out/voice-server/rest/tts-fable.mp3"
+    },
+    {
+      "voice": "alloy",
+      "format": "wav",
+      "bytes": 180044,
+      "seconds": 0.28,
+      "input": "The quick brown fox jumps over the lazy dog.",
+      "roundtrip_transcript": "The quick brown fox jumps over the lazy dog.",
+      "stt_seconds": 0.083,
+      "file": "out/voice-server/rest/tts-alloy.wav"
+    },
+    {
+      "voice": "marin",
+      "format": "pcm",
+      "bytes": 157200,
+      "seconds": 0.267,
+      "input": "Barge in whenever you like; I will stop talking.",
+      "roundtrip_transcript": "Barge in whenever you like, I will stop talking.",
+      "stt_seconds": 0.081,
+      "file": "out/voice-server/rest/tts-marin.pcm.wav"
+    }
+  ]
+}

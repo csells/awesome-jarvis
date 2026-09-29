@@ -1,0 +1,9 @@
+#!/bin/bash
+# Foreground OpenClaw Gateway for the lab (Control UI on :18789, loopback bind
+# inside the container unless OPENCLAW_BIND is set). First run seeds a minimal
+# local config (no channels, no model auth).
+cd /app 2>/dev/null || cd "$(dirname "$(readlink -f "$(command -v openclaw)")")"
+if [ ! -f /root/.openclaw/openclaw.json ]; then
+  /lab/bin/openclaw-lab-config >/tmp/lab-logs/openclaw-config.log 2>&1
+fi
+exec openclaw gateway run --bind "${OPENCLAW_BIND:-loopback}" --port 18789 2>&1 | tee -a /tmp/lab-logs/openclaw-gateway.log

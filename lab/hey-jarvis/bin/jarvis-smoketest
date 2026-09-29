@@ -1,0 +1,32 @@
+#!/bin/bash
+# End-to-end hey-jarvis smoke test against the virtual mic (no model login needed
+# up to the model call): wake word -> greeting (TTS) -> VAD capture -> STT ->
+# model call (Codex) -> spoken answer; screenshots of the Quickshell window and
+# the omarchy-shell bar panel.
+set -u
+OUT=${1:-/lab/out/omarchy}; mkdir -p "$OUT"
+eval "$(lab-env)"
+export PATH=/root/.local/share/omarchy/bin:$PATH OMARCHY_PATH=/root/.local/share/omarchy
+LOG=/tmp/lab-logs/voice-launcher.service.log
+QUESTION=${QUESTION:-"what time is it"}
+systemctl --user is-active --quiet voice-launcher || systemctl --user start voice-launcher
+for _ in $(seq 60); do grep -q "pronto" "$LOG" 2>/dev/null && break; sleep 1; done
+pgrep -f "quickshell -n -p" >/dev/null || { omarchy-shell-start; sleep 5; }
+start=$(wc -l < "$LOG")
+record-out ${RECORD_SECONDS:-40} "$OUT/jarvis-speech.wav" & rec=$!
+sleep 0.5
+echo ">> say: hey jarvis"; say "hey jarvis"
+sleep 4
+echo ">> say: $QUESTION"; say "$QUESTION"
+sleep 4; shot "$OUT/conversation-thinking.png" >/dev/null
+for _ in $(seq 90); do tail -n +$start "$LOG" | grep -q "^\[ans\]" && break; sleep 1; done
+sleep 6; shot "$OUT/conversation-answer.png" >/dev/null
+wait $rec
+echo "== voice-launcher log (this run)"; tail -n +$start "$LOG" | grep -v '^\[barge\]'
+echo "== what Jarvis heard (STT, from jarvis-state.json)"
+python3 -c "import json;s=json.load(open('$XDG_RUNTIME_DIR/jarvis-state.json'));[print('  q:',e.get('q'),'\n  a:',(e.get('a') or '')[:300].replace('\n',' ')) for e in s.get('exchanges',[])[-1:]]" 2>/dev/null
+echo "== what Jarvis said (record-out -> transcribe)"
+transcribe "$OUT/jarvis-speech.wav"
+omarchy-shell shell togglePanelAt center 2 >/dev/null 2>&1; sleep 2; shot "$OUT/omarchy-bar-panel.png" >/dev/null
+omarchy-shell shell togglePanelAt center 2 >/dev/null 2>&1
+echo "== screenshots: $OUT/conversation-thinking.png $OUT/conversation-answer.png $OUT/omarchy-bar-panel.png"

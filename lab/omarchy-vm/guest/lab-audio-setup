@@ -1,0 +1,16 @@
+#!/bin/bash
+# lab-audio-setup — create the jarvis-lab audio graph in the user's PipeWire session (idempotent):
+#   speaker  null sink, default sink          -> speaker.monitor  (record-out: what apps say)
+#   vmic_in  null sink fed by `say`           -> vmic_in.monitor -> remap -> vmic (default source = the mic)
+# Run by the user unit jarvis-lab-audio.service after pipewire-pulse.
+set -euo pipefail
+for _ in $(seq 100); do pactl info >/dev/null 2>&1 && break; sleep 0.2; done
+has() { pactl list short "$1" | awk '{print $2}' | grep -qx "$2"; }
+has sinks speaker || pactl load-module module-null-sink sink_name=speaker rate=48000 sink_properties=device.description=Lab-Speaker >/dev/null
+has sinks vmic_in || pactl load-module module-null-sink sink_name=vmic_in rate=48000 sink_properties=device.description=Lab-VirtualMic-Feed >/dev/null
+sleep 0.3
+has sources vmic || pactl load-module module-remap-source master=vmic_in.monitor source_name=vmic source_properties=device.description=Lab-VirtualMic >/dev/null
+sleep 0.3
+pactl set-default-sink speaker
+pactl set-default-source vmic
+echo "[lab-audio] default sink: $(pactl get-default-sink) / default source: $(pactl get-default-source)"

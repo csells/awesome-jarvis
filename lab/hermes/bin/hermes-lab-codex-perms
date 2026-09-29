@@ -1,0 +1,7 @@
+#!/bin/bash
+# Hermes' supervised gateway/dashboard run as the non-root `hermes` user, but the
+# lab keeps the Codex login in /root/.codex (shared volume jarvis-lab-codex).
+# Let `hermes` reach it: traverse /root, own the volume contents (root in the
+# other lab containers can still read everything).
+chmod 711 /root
+chown -R hermes:hermes /root/.codex 2>/dev/null || true

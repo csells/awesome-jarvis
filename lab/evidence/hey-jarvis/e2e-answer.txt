@@ -1,0 +1,26 @@
+>> say: hey jarvis
+>> say: what is the capital of France
+   [08:02:31] phase=recording -> phase-01-recording.png
+   [08:02:32] phase=transcribing -> phase-02-transcribing.png
+   [08:02:38] phase=thinking -> phase-03-thinking.png
+   [08:02:41] phase=speaking -> phase-04-speaking.png
+   [08:02:42] phase=followup -> phase-05-followup.png
+   [08:03:02] phase=closed -> phase-06-closed.png
+== voice-launcher journal (this run)
+[wake] hey_jarvis detectado (score=0.98)
+[narr] modo=templates (Ollama não responde e sem chave OpenAI)
+[rec]  aguardando fala (janela 6s, fim após 1.2s de silêncio)...
+[stt]  transcrevendo 2.8s de fala...
+[stt]  <30 chars> (4.5s)
+[cmd]  ask
+[ask]  provider=claude sonnet/low q=<30 chars>
+[ans]  2.5s [claude sonnet/low]  :: <11 chars>
+[rec]  aguardando fala (janela 20s, fim após 1.2s de silêncio)...
+[conv] janela de follow-up expirou — conversa encerrada
+== last exchange (jarvis-state.json)
+  q: What is the capital of France? 
+  a: Paris, sir.
+== what Jarvis heard (record-mic -> transcribe)
+Hey Jarvis, what is the capital of France?
+== what Jarvis said (record-out -> transcribe)
+What shall we work on, sir? Paris, sir?

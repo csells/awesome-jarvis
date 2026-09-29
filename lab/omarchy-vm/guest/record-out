@@ -1,0 +1,4 @@
+#!/bin/bash
+# record-out <seconds> <file.wav>  — capture what agents play to the output sink
+[ $# -eq 2 ] || { echo "usage: record-out <seconds> <file.wav>" >&2; exit 2; }
+exec $(dirname "$0")/record-src speaker.monitor "$1" "$2"

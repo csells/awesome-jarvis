@@ -1,0 +1,3 @@
+t2.wav: One sec let me look 
+t3.wav: Let me look. It seems there was an issue accessing your file. Can you confirm your credentials or try signing in again? 
+t4-bargein.wav: Shua, he is a story about a robot who learns to paint. In the bustling city of Otville, among metallic frames and beeping stuff, let me look, one sec. Shua, he is my best story about a robot who learns to paint. In a lab filled with digital circuits and wires, Zepha, a state-of-the-art robot, was created with one mission to serve humanity. However, its creators underestimated the curious nature of Zepha, one day while wondering the halls of the art gallery. 

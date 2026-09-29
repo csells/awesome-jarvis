@@ -1,0 +1,13 @@
+diff --git a/src/omarchy_voice/realtime.py b/src/omarchy_voice/realtime.py
+index 854459f..f07335b 100644
+--- a/src/omarchy_voice/realtime.py
++++ b/src/omarchy_voice/realtime.py
+@@ -43,7 +43,7 @@ from .persona import PERSONA
+ from .session import ControlServer, _matches
+ from .tools import TOOL_SCHEMAS, Executor, tools_for
+ 
+-REALTIME_URL = "wss://api.openai.com/v1/realtime"
++REALTIME_URL = "ws://10.0.2.2:8765/v1/realtime"  # LAB-ONLY patch: local OpenAI-compatible Realtime server
+ 
+ # How long after her own audio stops before the microphone counts again.
+ # Speakers and a room both lag: the tail is PipeWire's buffer plus however long

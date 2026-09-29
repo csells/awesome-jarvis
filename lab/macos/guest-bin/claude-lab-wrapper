@@ -1,0 +1,6 @@
+#!/bin/bash
+# claude wrapper for apps that scrub CLAUDE_CODE_OAUTH_TOKEN from child envs (OpenClaw's claude-cli backend).
+# Loads the lab's shared login (~/.claude-lab-token, written by macos/share-claude-login.sh) and runs the
+# real Claude Code CLI. Only point apps that call the official `claude` executable at this wrapper.
+[ -r "$HOME/.claude-lab-token" ] && export CLAUDE_CODE_OAUTH_TOKEN="$(cat "$HOME/.claude-lab-token")"
+exec "$HOME/.local/bin/claude" "$@"

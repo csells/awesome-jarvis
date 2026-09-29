@@ -1,0 +1,3 @@
+#!/bin/bash
+# jarvis-lab shim: log desktop notifications (no notification daemon in the lab).
+echo "[notify] $*" >> /tmp/lab-logs/notify.log

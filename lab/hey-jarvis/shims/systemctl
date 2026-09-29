@@ -1,0 +1,46 @@
+#!/bin/bash
+# jarvis-lab shim for `systemctl --user` inside a container without systemd.
+# Runs user units found in ~/.config/systemd/user/*.service as plain background
+# processes (ExecStart, Environment=, UMask ignored); scopes/timers are no-ops.
+# Anything else falls through to the real /usr/bin/systemctl.
+STATE=${XDG_RUNTIME_DIR:-/run/user/0}/lab-svc; mkdir -p "$STATE"
+LOGS=/tmp/lab-logs; mkdir -p "$LOGS"
+user=0 quiet=0 args=()
+for a in "$@"; do case "$a" in --user) user=1;; --quiet|-q) quiet=1;; --no-pager|--plain|--no-legend) ;; *) args+=("$a");; esac; done
+verb=${args[0]:-}; unit=${args[1]:-}
+[ "$verb" = suspend ] && { echo "[lab-shim] suspend requested (ignored in container)" | tee -a $LOGS/shim.log; exit 0; }
+[ $user = 1 ] || exec /usr/bin/systemctl "$@"
+[[ "$unit" == *.* || -z "$unit" ]] || unit="$unit.service"
+pidf="$STATE/$unit.pid"
+alive() { [ -f "$pidf" ] && kill -0 "$(cat "$pidf")" 2>/dev/null; }
+unitfile() { echo "$HOME/.config/systemd/user/$unit"; }
+start() {
+  alive && return 0
+  [ -n "${LAB_SVC_NOSTART:-}" ] && { echo "[lab-shim] LAB_SVC_NOSTART set; not starting $unit"; return 0; }
+  local f; f=$(unitfile); [ -f "$f" ] || { [[ "$unit" == *.service ]] && { echo "Unit $unit not found." >&2; return 5; }; return 0; }
+  local exec; exec=$(sed -n 's/^ExecStart=//p' "$f" | head -1 | sed "s|%h|$HOME|g")
+  local envs; envs=$(sed -n 's/^Environment=//p' "$f" | sed "s|%h|$HOME|g" | tr '\n' ' ')
+  ( eval "$(cat ${XDG_RUNTIME_DIR:-/run/user/0}/lab.env 2>/dev/null)"; cd "$HOME"
+    env $envs setsid bash -c "exec $exec" >>"$LOGS/$unit.log" 2>&1 & echo $! > "$pidf" )
+  date +%s > "$STATE/$unit.since"
+}
+stop() { alive && { kill "$(cat "$pidf")"; for _ in $(seq 50); do alive || break; sleep 0.1; done; alive && kill -9 "$(cat "$pidf")"; }; rm -f "$pidf"; return 0; }
+case "$verb" in
+  daemon-reload|enable|disable|reset-failed|mask|unmask) exit 0;;
+  list-units) exit 0;;
+  start)   [[ "$unit" == *.service ]] && start || exit 0;;
+  stop)    [[ "$unit" == *.service ]] && stop || exit 0;;
+  restart) stop; start;;
+  is-active) if alive; then [ $quiet = 1 ] || echo active; exit 0; else [ $quiet = 1 ] || echo inactive; exit 3; fi;;
+  is-enabled) echo enabled;;
+  status) if alive; then echo "● $unit - active (running) pid $(cat $pidf) [lab-shim]"; tail -n 10 "$LOGS/$unit.log" 2>/dev/null; exit 0; else echo "○ $unit - inactive [lab-shim]"; exit 3; fi;;
+  show)    # show UNIT -p Prop --value
+    p=""; for ((i=0;i<${#args[@]};i++)); do [ "${args[$i]}" = -p ] && p=${args[$((i+1))]}; done
+    case "$p" in ActiveEnterTimestamp) [ -f "$STATE/$unit.since" ] && date -d "@$(cat $STATE/$unit.since)";; MainPID) cat "$pidf" 2>/dev/null || echo 0;; esac;;
+  kill)    sig=TERM; for ((i=0;i<${#args[@]};i++)); do case "${args[$i]}" in -s) sig=${args[$((i+1))]};; --signal=*) sig=${args[$i]#--signal=};; esac; done
+    for a in "$@"; do case "$a" in -s*) ;; esac; done
+    u=""; for a in "${args[@]:1}"; do [[ "$a" == *.service || "$a" == voice-launcher ]] && u=$a; done
+    [ -n "$u" ] && { unit=$u; [[ "$unit" == *.* ]] || unit="$unit.service"; pidf="$STATE/$unit.pid"; }
+    alive && kill -s "${sig#SIG}" "$(cat "$pidf")";;
+  *) exit 0;;
+esac

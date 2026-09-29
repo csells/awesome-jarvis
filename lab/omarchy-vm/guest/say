@@ -1,0 +1,27 @@
+#!/bin/bash
+# say [--speaker|--sink NAME] [--espeak] [--keep FILE.wav] "text"
+# Synthesize text (Piper en_US-lessac-medium, or espeak-ng) and play it in
+# real time into the virtual microphone (sink vmic_in -> source vmic).
+# --speaker plays it to the output sink instead (to test record-out).
+set -euo pipefail
+sink=vmic_in engine=piper keep=""
+while [ $# -gt 0 ]; do case "$1" in
+  --speaker) sink=speaker; shift;;
+  --sink) sink=$2; shift 2;;
+  --espeak) engine=espeak; shift;;
+  --keep) keep=$2; shift 2;;
+  --) shift; break;;
+  *) break;;
+esac; done
+text="$*"; [ -n "$text" ] || { echo "usage: say [--speaker] \"text\"" >&2; exit 2; }
+wav=$(mktemp --suffix=.wav)
+trap 'rm -f "$wav"' EXIT
+if [ "$engine" = piper ]; then
+  printf "%s" "$text" | $HOME/.local/share/jarvis-lab/venv/bin/piper -m "${LAB_VOICE:-$HOME/.local/share/jarvis-lab/voices/en_US-lessac-medium.onnx}" -f "$wav" >/dev/null 2>${TMPDIR:-/tmp}/lab-say.err || { cat ${TMPDIR:-/tmp}/lab-say.err >&2; exit 1; }
+else
+  espeak-ng -v en-us -s 150 -w "$wav" "$text"
+fi
+# 0.3 s of leading silence: the first milliseconds of a fresh Pulse stream can be lost
+sox -q "$wav" "$wav.pad.wav" pad 0.3 0 && mv "$wav.pad.wav" "$wav"
+[ -n "$keep" ] && cp "$wav" "$keep"
+paplay --device="$sink" "$wav"

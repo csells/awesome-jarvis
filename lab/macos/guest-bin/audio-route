@@ -1,0 +1,7 @@
+#!/bin/bash
+# audio-route : default input = BlackHole 2ch (mic), default + system output = BlackHole 16ch (speaker)
+source "$HOME/lab/bin/lab-env"
+SwitchAudioSource -t input  -s "$LAB_MIC_DEV" >/dev/null
+SwitchAudioSource -t output -s "$LAB_OUT_DEV" >/dev/null
+SwitchAudioSource -t system -s "$LAB_OUT_DEV" >/dev/null
+echo "input:  $(SwitchAudioSource -c -t input)"; echo "output: $(SwitchAudioSource -c -t output)"; echo "system: $(SwitchAudioSource -c -t system)"

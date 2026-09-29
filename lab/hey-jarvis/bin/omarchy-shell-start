@@ -1,0 +1,36 @@
+#!/bin/bash
+# Start Omarchy 4's omarchy-shell (Quickshell) on the headless compositor with
+# the hey-jarvis bar widget enabled (atzingen.jarvis), like
+# `omarchy plugin add ... --enable` + omarchy-launch-shell would.
+set -u
+eval "$(/lab/bin/lab-env)"
+export OMARCHY_PATH=${OMARCHY_PATH:-/root/.local/share/omarchy}
+THEME=${OMARCHY_THEME:-tokyo-night}
+S=$HOME/.local/state/omarchy/current
+if [ ! -f "$S/theme/colors.toml" ]; then
+  rm -rf "$S/next-theme"; mkdir -p "$S/next-theme"
+  cp -r "$OMARCHY_PATH/themes/$THEME/"* "$S/next-theme/"
+  PATH="$OMARCHY_PATH/bin:$PATH" omarchy-theme-set-templates >/tmp/lab-logs/omarchy-theme.log 2>&1
+  rm -rf "$S/theme"; mv "$S/next-theme" "$S/theme"; echo "$THEME" > "$S/theme.name"
+fi
+mkdir -p "$HOME/.config/omarchy"
+[ -f "$HOME/.config/omarchy/shell.json" ] || cat > "$HOME/.config/omarchy/shell.json" <<'JSON'
+{
+  "version": 1,
+  "idle": { "screensaver": 0, "lock": 0 },
+  "bar": {
+    "position": "top",
+    "transparent": false,
+    "centerAnchor": "omarchy.clock",
+    "layout": {
+      "left":   [ { "id": "omarchy.menu" }, { "id": "omarchy.workspaces" } ],
+      "center": [ { "id": "omarchy.clock", "format": "dddd HH:mm" }, { "id": "atzingen.jarvis" } ],
+      "right":  [ { "id": "omarchy.audio" } ]
+    }
+  }
+}
+JSON
+pkill -f "quickshell -n -p $OMARCHY_PATH/shell" 2>/dev/null
+QS_DISABLE_FILE_WATCHER=1 QS_NO_RELOAD_POPUP=1 setsid nohup quickshell -n -p "$OMARCHY_PATH/shell" \
+  >/tmp/lab-logs/omarchy-shell.log 2>&1 </dev/null &
+echo "omarchy-shell started (log: /tmp/lab-logs/omarchy-shell.log)"

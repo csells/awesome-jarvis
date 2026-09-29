@@ -1,0 +1,25 @@
+#!/bin/bash
+# lab-selftest [outdir] — prove the audio loop with no model (say -> vmic, say --speaker -> record-out, isolation) + a grim shot
+set -uo pipefail
+export PATH="$HOME/.local/share/jarvis-lab/bin:$PATH"
+OUT=${1:-$HOME/lab-out}; mkdir -p "$OUT"
+PHRASE_IN=${PHRASE_IN:-"hey jarvis what time is it"}
+PHRASE_OUT=${PHRASE_OUT:-"It is half past three in the afternoon, sir."}
+lower() { tr 'A-Z' 'a-z' | tr -cd 'a-z ' | tr -s ' ' | sed 's/^ //;s/ $//'; }
+pass=0 fail=0
+check() { if [ "$(printf '%s' "$2" | lower)" = "$(printf '%s' "$3" | lower)" ]; then echo "PASS $1"; pass=$((pass+1)); else echo "FAIL $1 (expected '$2')"; fail=$((fail+1)); fi; }
+echo "== audio graph: sink=$(pactl get-default-sink) source=$(pactl get-default-source)"
+echo "== 1. virtual microphone: say -> vmic -> record-mic -> transcribe"
+record-mic 9 "$OUT/mic.wav" & rec=$!; sleep 1.5; say "$PHRASE_IN"; wait $rec
+t1=$(transcribe "$OUT/mic.wav"); echo "transcript: $t1"; check mic-loop "$PHRASE_IN" "$t1"
+echo "== 2. output sink: say --speaker -> speaker -> record-out -> transcribe"
+record-out 9 "$OUT/speaker.wav" & rec=$!; sleep 1.5; say --speaker "$PHRASE_OUT"; wait $rec
+t2=$(transcribe "$OUT/speaker.wav"); echo "transcript: $t2"; check output-capture "$PHRASE_OUT" "$t2"
+echo "== 3. isolation: mic must not hear the speaker"
+record-mic 5 "$OUT/mic-isolation.wav" & rec=$!; sleep 0.5; say --speaker "this should not reach the microphone"; wait $rec
+peak=$(sox "$OUT/mic-isolation.wav" -n stat 2>&1 | awk '/Maximum amplitude/{print $3}')
+echo "mic peak while speaker plays: $peak"; awk "BEGIN{exit !($peak < 0.01)}" && { echo "PASS isolation"; pass=$((pass+1)); } || { echo "FAIL isolation"; fail=$((fail+1)); }
+echo "== 4. screenshot (grim on Hyprland)"
+shot "$OUT/selftest-desktop.png" && pass=$((pass+1)) || fail=$((fail+1))
+echo "== result: $pass passed, $fail failed"
+[ $fail -eq 0 ]

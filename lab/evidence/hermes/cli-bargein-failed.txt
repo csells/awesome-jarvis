@@ -1,0 +1,4 @@
+Hermes barge-in attempt (10:49): TTS (Piper) started 10:49:18; user said "Stop. Stop talking." at 10:49:22 (via vmic).
+Hermes kept synthesizing/playing further segments at 10:49:24, 10:49:32, 10:49:41 -> no barge-in observed.
+speaker transcript: The lighthouse keeper, Elias, stood on the weathered stone tower, ... He had weathered countless scales, but tonight's storm felt different deeper, more
+mic transcript: Hey Hermes! Tell me a story about a lighthouse keeper, about 150 words long. Stop, stop talking.

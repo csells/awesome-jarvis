@@ -1,0 +1,40 @@
+Operit AI v1.12.2 (AAswordman/Operit) on AVD jarvis-android (Android 15 google_apis arm64, 720x1600, 4 GB, swiftshader, headless)
+Captured 2026-09-27 02:20-08:50 PDT on a heavily oversubscribed host (load 15-36 on 10 cores, 10-12 GB swap in use by all tracks).
+
+Install / provenance
+  gh release download v1.12.2 -R AAswordman/Operit -p app-release.apk   (published 2026-09-18 by AAswordman)
+  sha256 a04d283464b72d5734af22bff77a025c2b56b5679a95cbe5d57b8c31b41c0cb0 == GitHub asset digest
+  apksigner: v2+v3 signed, 1 signer, CN=Operit Release 2026, O=Operit, cert SHA-256 70f26fd71ffd15188da19095c511af595bdd872328d5a1a49d69849af3eb0d0a
+  versionName 1.12.2 / versionCode 51 / targetSdk 34 ; package com.ai.assistance.operit
+  First run: agreement (5 s countdown) -> feature tour -> basic permissions (storage/overlay/battery/location) -> permission level
+  (chose "Accessibility Permissions") -> remote announcement dialog in Chinese -> model setup.             01..05-*.png
+  No account/login. Default brain = DeepSeek (needs a key).
+
+Brain: local Ollama on the host (no keys)
+  Provider "Ollama (Local Model)", endpoint http://10.0.2.2:11434/v1/chat/completions, "Get Models List" listed
+  qwen2.5-coder / qwen3-vl:4b / qwen3:4b from the host Ollama; chose qwen3-vl:4b + "Model supports vision".  20-models-list.png, 21-model-config.png
+  Text chat: "Reply in one short sentence: what is the capital of France?" -> "The capital of France is Paris."   26-text-chat-reply.png
+  (Ollama log: POST /v1/chat/completions 200 52.9 s / 1m25s; DB transcript: chat-transcript.txt)
+
+Default assistant
+  cmd role add-role-holder android.app.role.ASSISTANT com.ai.assistance.operit ->
+  Settings > Digital assistant app = "Operit AI", voice_interaction_service=.services.assistant.OperitVoiceInteractionService  40-default-assistant.png
+  am start -a android.intent.action.ASSIST -> Operit full-screen voice overlay with avatar                        41-assist-invoked.png
+
+Visual presence
+  Full-screen floating voice UI over other apps (SYSTEM_ALERT_WINDOW) with the cat avatar, chat bubbles, "Mute / Screen Content /
+  Notification / Position" chips, "Shrink to Ball", "Back to Window Mode".                                        30-voice-mode.png, 31-voice-call.png, 64-voicecall.png
+
+Voice (NOT achieved)
+  Voice Call starts a real capture: dumpsys audio "rec start ... src:VOICE_COMMUNICATION pack:com.ai.assistance.operit",
+  Sherpa-ncnn (zh-en zipformer) + Silero VAD loaded. Injected speech never produced a user turn (DB has no voice turns).
+  Root cause is the lab, not Operit: the emulator's host mic backend fails ("coreaudio: Could not initialize record ...
+  Failed to create voice virtio-snd-mic0") because an agent-launched emulator has no macOS microphone (TCC) grant, and the
+  gRPC injectAudio path then segfaults the emulator (../qemu-system-aarch64-headless-2026-09-27-0822*.ips / 0854*.ips).
+  Wake phrase, hands-free loop, spoken replies (system TTS) and barge-in (tap-avatar only per source) remain UNTESTED.
+
+UI-automation sub-agent / permission prompt (NOT achieved)
+  "Use the run_ui_subagent tool to open the Android Settings app..." -> qwen3-vl:4b called Operit's hidden-tool `search`
+  ("open android settings" -> "Hidden tool search results") but never issued the proxy call, so no ASK prompt appeared.
+  A 4B local model does not handle Operit's two-step search/proxy tool protocol; a larger local model or native tool-calling
+  toggle ("Model supports ToolCall") is the next thing to try. Accessibility provider APK was not installed/enabled.

@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+"""vmqga — talk to qemu-guest-agent in the lab's Omarchy VM (omarchy-vm/run/qga.sock).
+
+  vmqga ping                 guest-ping (is the agent up?)
+  vmqga exec CMD [ARGS...]   run a command as root in the guest, print stdout/stderr, exit with its code
+"""
+import base64, json, os, socket, sys, time
+
+SOCK = os.environ.get("VMQGA_SOCK", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "run", "qga.sock"))
+
+
+def call(f, name, **args):
+    msg = {"execute": name}
+    if args:
+        msg["arguments"] = args
+    f.write(json.dumps(msg) + "\n"); f.flush()
+    while True:
+        line = f.readline()
+        if not line:
+            raise SystemExit("qga: connection closed")
+        r = json.loads(line)
+        if "error" in r:
+            raise SystemExit(f"qga {name}: {r['error']}")
+        if "return" in r:
+            return r["return"]
+
+
+def main():
+    if len(sys.argv) < 2:
+        print(__doc__); sys.exit(2)
+    s = socket.socket(socket.AF_UNIX); s.settimeout(float(os.environ.get("VMQGA_TIMEOUT", "5"))); s.connect(SOCK)
+    f = s.makefile("rw", encoding="latin-1")
+    # resync so stale replies from an earlier client are discarded
+    sync_id = int(time.time()) & 0x7fffffff
+    f.write("\xff"); f.flush()
+    f.write(json.dumps({"execute": "guest-sync-delimited", "arguments": {"id": sync_id}}) + "\n"); f.flush()
+    while True:
+        line = f.readline().lstrip("\xff")
+        if line.strip() and json.loads(line).get("return") == sync_id:
+            break
+    s.settimeout(None)
+    if sys.argv[1] == "ping":
+        call(f, "guest-ping"); print("pong")
+    elif sys.argv[1] == "exec":
+        pid = call(f, "guest-exec", path=sys.argv[2], arg=sys.argv[3:], **{"capture-output": True})["pid"]
+        while True:
+            st = call(f, "guest-exec-status", pid=pid)
+            if st.get("exited"):
+                break
+            time.sleep(0.3)
+        sys.stdout.write(base64.b64decode(st.get("out-data", "")).decode(errors="replace"))
+        sys.stderr.write(base64.b64decode(st.get("err-data", "")).decode(errors="replace"))
+        sys.exit(st.get("exitcode", 0))
+    else:
+        print(__doc__); sys.exit(2)
+
+
+if __name__ == "__main__":
+    main()

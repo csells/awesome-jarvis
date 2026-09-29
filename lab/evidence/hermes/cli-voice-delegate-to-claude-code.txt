@@ -1,0 +1,4 @@
+== user (mic):
+Hey Hermes! Ask Claude Code to create a file called notes.txt containing the word banana.
+== hermes (speaker):
+file created slash workspace slash demo slash notes dot txt contains banana

@@ -1,0 +1,3 @@
+#!/bin/bash
+# lab shim: logger -> /tmp/lab-logs/logger.log (no journald/syslog).
+mkdir -p /tmp/lab-logs; echo "$(date '+%F %T') $*" >>/tmp/lab-logs/logger.log

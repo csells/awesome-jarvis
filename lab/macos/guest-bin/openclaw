@@ -1,0 +1,4 @@
+#!/bin/bash
+# openclaw wrapper: the CLI (npm openclaw@2026.9.6) needs Node >=24.16; the lab default node is 22.
+export PATH="/opt/homebrew/opt/node@24/bin:$HOME/.local/bin:$PATH"
+exec "$HOME/.npm-global/bin/openclaw" "$@"

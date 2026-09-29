@@ -1,0 +1,6 @@
+t0=1790501119219
+barge-in at +27s
+--- speaker (what the agent said):
+Pacio Voice Mode lets you manage a whole fleet of coding agents hands-free, just by talking. You can spin up new agents on demand, choosing the provider and model, like clauders.
+--- mic (what the user said):
+Please explain in detail about 200 words, everything that PCO voice mode can do for a developer. Stop, stop talking please, that is enough.

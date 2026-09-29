@@ -1,0 +1,43 @@
+#!/bin/bash
+# jarvis-vm-e2e <outdir> "<question>" [record-seconds]
+# Voice end-to-end for hey-jarvis on the real Omarchy/Hyprland guest:
+#   record-out (what Jarvis says) + record-mic (what Jarvis hears) -> say "hey jarvis" -> say <question>
+#   -> grim screenshots on each new conversation phase (listening, recording, transcribing, thinking, consent,
+#      speaking, followup...) -> transcripts + the voice-launcher journal for this run.
+# While a consent window is open the script only screenshots it and waits; approve/deny from outside
+# (host: `vmqmp key y`) and the run continues.
+set -u
+eval "$("$HOME/.local/share/jarvis-lab/bin/hyprenv")"
+export PATH="$HOME/.local/share/jarvis-lab/bin:$HOME/.local/bin:$PATH"
+OUT=${1:?outdir}; Q=${2:?question}; SECS=${3:-90}
+mkdir -p "$OUT"; rm -f "$OUT"/phase-*.png
+ST=$XDG_RUNTIME_DIR/jarvis-state.json
+since=$(date '+%Y-%m-%d %H:%M:%S')
+phase() { python3 -c "import json;print(json.load(open('$ST')).get('phase',''))" 2>/dev/null; }
+record-out "$SECS" "$OUT/jarvis-speech.wav" & r1=$!
+record-mic "$SECS" "$OUT/jarvis-heard.wav" & r2=$!
+sleep 0.5
+echo ">> say: hey jarvis"; say "hey jarvis"
+# the greeting is spoken first; speak once the recorder is armed ("[rec] aguardando fala")
+for _ in $(seq 60); do journalctl --user -u voice-launcher --since "$since" -o cat --no-pager | grep -q 'aguardando fala' && break; sleep 0.25; done
+sleep 0.3
+echo ">> say: $Q"; say "$Q"
+end=$(( $(date +%s) + SECS - 3 )); last=""; n=0
+while [ "$(date +%s)" -lt "$end" ]; do
+  p=$(phase)
+  if [ -n "$p" ] && [ "$p" != "$last" ]; then
+    n=$((n+1)); f=$(printf '%s/phase-%02d-%s.png' "$OUT" "$n" "$p")
+    [ "$p" = thinking ] || [ "$p" = consent ] || [ "$p" = speaking ] && sleep 1.5   # let the window paint
+    timeout 10 grim "$f" && echo "   [$(date +%T)] phase=$p -> $(basename "$f")"
+    last=$p
+  fi
+  [ "$p" = closed ] && break
+  sleep 0.4
+done
+wait $r1 $r2 2>/dev/null
+echo "== voice-launcher journal (this run)"
+journalctl --user -u voice-launcher --since "$since" --no-pager -o cat | grep -E '^\[(wake|rec|stt|ask|ans|consent|tts|act|err)|^\[|^>> ' | grep -v '^\[barge\]' | cut -c1-240 | head -40
+echo "== last exchange (jarvis-state.json)"
+python3 -c "import json;s=json.load(open('$ST'));e=s.get('exchanges',[])[-1:];[print('  q:',x.get('q'),'\n  a:',(x.get('a') or '')[:400].replace('\n',' ')) for x in e]" 2>/dev/null
+echo "== what Jarvis heard (record-mic -> transcribe)"; transcribe "$OUT/jarvis-heard.wav"
+echo "== what Jarvis said (record-out -> transcribe)"; transcribe "$OUT/jarvis-speech.wav"

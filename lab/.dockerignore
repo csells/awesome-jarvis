@@ -1,0 +1,12 @@
+# Build context for lab.sh is this directory; only the Docker tracks' sources are needed.
+out/
+evidence/
+macos/
+omarchy-vm/
+android/
+voice-server/
+patches/
+drivers/
+**/ssh/
+**/.DS_Store
+*.md

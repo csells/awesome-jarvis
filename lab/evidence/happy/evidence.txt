@@ -1,0 +1,39 @@
+Happy (slopus/happy) - Android emulator (jarvis-android, Chrome 1xx on Android 15) paired to happy@1.2.5 in container jl-happy
+Captured 2026-09-27 07:30-08:25 PDT. Screenshots are in this directory (NN-*.png).
+
+No official Android APK: README/Stores link only Google Play (com.ex3ndr.happy); no APK in any GitHub release
+(all releases are cli-*). The official web client https://app.happy.engineering was used in the emulator's Chrome.
+
+1. Pairing
+   phone: app.happy.engineering -> "Create account" (anonymous key pair, no email)            02-after-create.png
+   jl-happy: `happy auth login` -> 2 (Web Browser) -> https://app.happy.engineering/terminal/connect#key=<CLI public key>
+   phone: opened that URL -> "Connect Terminal" -> Accept Connection                           03-connect-terminal.png
+   jl-happy tmux "auth":  "✓ Authentication successful  Machine ID: <redacted>"
+
+2. Multi-session monitoring
+   jl-happy: `happy claude` in /workspace/demo-a (tmux sess-a) and /workspace/demo-b (tmux sess-b)
+   phone Sessions list shows both, live titles:  "Fix add bug in calc.py  demo-a" / "New chat  demo-b"   05-sessions.png, 21-sessions-multi.png
+
+3. Permission request approved from the phone (session A, prompt sent from the phone)
+   phone -> "Fix the bug in calc.py so that add returns a plus b."
+   terminal: "📱 Press space (or Ctrl-T) to switch to local mode" (session switched to remote mode)
+   phone shows Edit calc.py diff  - return a - b # bug / + return a + b   [Yes] [Yes, allow all edits during this session] [No, and provide feedback]   17-permission-request.png
+   tapped Yes on the phone -> container: calc.py == "def add(a, b):\n    return a + b"                                  18-approved.png
+   next request: Bash `python3 -c "from calc import add; print(add(2, 3))"` [Yes] [Yes, don't ask again for this tool] [No...] -> Yes
+   final (phone + terminal): "I fixed add so it returns a + b instead of a - b ... add(2, 3) now returns 5."           20-session-a-done.png
+
+4. Cancel from the phone (session B)
+   phone -> "Write a 3000-word short story about a lighthouse keeper. Do not use any tools."  (status "spinning...")   23-b-running.png
+   tapped the composer's stop (octicon "stop") -> transcript line "Aborted by user"                                     24-b-aborted.png
+   Note: an earlier session-B prompt "Run the shell command: sleep 300 && echo finished" ran WITHOUT a phone prompt:
+   Claude Code 2.1.283 now defaults to "auto mode" (classifier auto-approves low-risk calls); Happy passes that through.
+
+5. Realtime voice (free tier)
+   first tap: Chrome/Android mic permission, then RevenueCat paywall "Voice is a paid feature ... Get Plus for $20.00/month"  29-voice-after-perm.png
+   server gate captured over DevTools (voice/cdp-watch4.log):
+     POST https://api.cluster-fluster.com/v1/voice/conversations -> {"allowed": true, "reason": null, "usedSeconds": 0, "limitSeconds": 1200}
+   i.e. a free account gets 20 min / 30 days of ElevenLabs voice through Happy's server (no user key). The paywall is the
+   one-time soft paywall (feature-flag variant); on the next tap the call connected: header "1:07  tap to end".  31-voice-gate.png
+   Speaking into it could not be tested: the emulator's gRPC injectAudio segfaults (see ../qemu-system-aarch64-headless-*.ips:
+   EXC_BAD_ACCESS in audio_forwarder_enable <- QemuAudioInputEngine::start <- EmulatorControllerImpl::injectAudio) as soon as
+   Chrome/WebRTC holds the mic, and the host CoreAudio mic is not available to an agent-launched emulator.

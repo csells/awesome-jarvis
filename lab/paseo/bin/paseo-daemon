@@ -1,0 +1,7 @@
+#!/bin/bash
+# Foreground Paseo daemon (web UI on :6767). Local speech models download into
+# /root/.paseo/models on first start (volume jarvis-lab-paseo-models).
+eval "$(/lab/bin/lab-env)"
+mkdir -p /root/.paseo/models /workspace
+cd /workspace
+exec paseo daemon run 2>&1 | tee -a /tmp/lab-logs/paseo-daemon.log

@@ -1,0 +1,7 @@
+#!/bin/bash
+# Target of the sudo rule: run Claude Code as `claude` with its own login volume.
+dir=$1 cols=$2 lines=$3; shift 3
+cd "$dir" 2>/dev/null || cd /workspace
+export HOME=/home/claude CLAUDE_CONFIG_DIR=/lab-claude PATH=/usr/local/bin:/usr/bin:/bin TERM=${TERM:-xterm-256color}
+[ -n "$cols" ] && export COLUMNS=$cols; [ -n "$lines" ] && export LINES=$lines
+exec /usr/local/libexec/claude-real "$@"

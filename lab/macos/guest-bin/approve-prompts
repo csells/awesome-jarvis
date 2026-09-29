@@ -1,0 +1,25 @@
+#!/bin/bash
+# approve-prompts [button...] : click Allow/OK in any system consent dialog currently shown
+# (UserNotificationCenter = replayd screen-capture "bypass private window picker" prompt;
+#  CoreServicesUIAgent/SecurityAgent/UserNotificationCenter for others). Prints what it clicked.
+btns=${*:-Allow OK Open "Allow While Using App"}
+for p in UserNotificationCenter CoreServicesUIAgent universalAccessAuthWarn SecurityAgent; do
+  for b in $btns; do
+    osascript -e "tell application \"System Events\"
+      if exists process \"$p\" then
+        tell process \"$p\"
+          repeat with w in windows
+            if exists button \"$b\" of w then
+              set t to \"\"
+              try
+                set t to value of static text 1 of w
+              end try
+              click button \"$b\" of w
+              return \"$p clicked $b: \" & t
+            end if
+          end repeat
+        end tell
+      end if
+    end tell" 2>/dev/null | grep . || true
+  done
+done

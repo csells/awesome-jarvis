@@ -1,0 +1,12 @@
+[Unit]
+Description=jarvis-lab virtual speaker + microphone (null sinks + remap source)
+After=pipewire-pulse.service wireplumber.service
+Wants=pipewire-pulse.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/share/jarvis-lab/bin/lab-audio-setup
+
+[Install]
+WantedBy=default.target

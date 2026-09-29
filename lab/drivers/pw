@@ -1,0 +1,4 @@
+#!/bin/bash
+# pw <endpoint> [k=v ...]  — call the pw-driver HTTP API (inside the container)
+ep=$1; shift; qs=(); for kv in "$@"; do qs+=(--data-urlencode "$kv"); done
+curl -sS -G "http://127.0.0.1:${PW_PORT:-7788}/$ep" "${qs[@]}"; echo

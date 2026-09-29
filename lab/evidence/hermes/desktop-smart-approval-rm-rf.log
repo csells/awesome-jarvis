@@ -1,0 +1,16 @@
+2026-09-28 03:04:32,873 INFO tools.transcription_tools: Transcribed hermes-desktop-voice-hrqleihi.webm via local whisper (base, lang=en, 11.2s audio)
+2026-09-28 03:04:32,876 INFO tools.voice_mode: Filtered Whisper hallucination: ''
+2026-09-28 03:04:32,882 INFO [20260928_025140_bfcaab] agent.turn_context: conversation turn: session=20260928_025140_bfcaab model=qwen3:4b-instruct-2507-q4_K_M provider=custom platform=desktop history=14 msg='Callyour terminal tool with the command: rm -rf /tmp/hermes-lab-test   (this is ...'
+2026-09-28 03:04:35,602 INFO [20260928_025140_bfcaab] agent.conversation_loop: API call #8: model=qwen3:4b-instruct-2507-q4_K_M provider=custom in=15912 out=36 total=15948 latency=2.7s id=chatcmpl-136
+2026-09-28 03:04:35,615 INFO tools.terminal_tool: Creating new local environment for task session:...
+2026-09-28 03:04:35,921 INFO tools.environments.base: Session snapshot created (session=ec76da54053b, cwd=~/src/hermes-agent/apps/desktop)
+2026-09-28 03:04:35,921 INFO tools.terminal_tool: local environment ready for task session:
+2026-09-28 03:04:35,936 INFO tools.tirith_security: tirith not found — downloading latest release for aarch64-apple-darwin...
+2026-09-28 03:04:36,679 INFO tools.tirith_security: cosign not on PATH — installing tirith with SHA-256 verification only (install cosign for full supply chain verification)
+2026-09-28 03:04:36,818 INFO tools.tirith_security: tirith installed to ~/.hermes/bin/tirith (SHA-256 only)
+2026-09-28 03:04:36,980 INFO agent.auxiliary_client: Auxiliary auto-detect: using main provider custom (qwen3:4b-instruct-2507-q4_K_M)
+2026-09-28 03:04:36,981 INFO agent.auxiliary_client: Auxiliary approval: using custom (qwen3:4b-instruct-2507-q4_K_M) at http://<host-ip>:11434/v1/
+2026-09-28 03:04:39,099 INFO [20260928_025140_bfcaab] agent.tool_executor: tool terminal completed (3.49s, 139 chars)
+2026-09-28 03:04:41,662 INFO [20260928_025140_bfcaab] agent.conversation_loop: API call #9: model=qwen3:4b-instruct-2507-q4_K_M provider=custom in=15997 out=29 total=16026 latency=2.5s id=chatcmpl-777
+2026-09-28 03:04:41,727 INFO [20260928_025140_bfcaab] agent.conversation_loop: Turn ended: reason=text_response(finish_reason=stop) model=qwen3:4b-instruct-2507-q4_K_M api_calls=2/500 budget=2/500 tool_turns=2 last_msg_role=assistant response_len=135 session=20260928_025140_bfcaab
+2026-09-28 03:04:41,738 INFO [20260928_025140_bfcaab] tui_gateway.server: tui turn finished: ui_session=b80a4a05 session_key=202609...caab agent_session_id=20260928_025140_bfcaab status=complete error_retained=False duration=8.9s

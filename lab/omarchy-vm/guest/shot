@@ -1,0 +1,6 @@
+#!/bin/bash
+# shot <file.png> — screenshot the running Hyprland session with grim (works from SSH)
+set -euo pipefail
+export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
+[ -n "${WAYLAND_DISPLAY:-}" ] || export WAYLAND_DISPLAY=$(ls "$XDG_RUNTIME_DIR" | grep -E '^wayland-[0-9]+$' | head -1)
+grim "$1"; echo "$1"

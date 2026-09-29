@@ -1,0 +1,4 @@
+#!/bin/bash
+# record-mic <seconds> <file.wav>  — capture the virtual microphone (what agents hear)
+[ $# -eq 2 ] || { echo "usage: record-mic <seconds> <file.wav>" >&2; exit 2; }
+exec /lab/bin/record-src vmic "$1" "$2"

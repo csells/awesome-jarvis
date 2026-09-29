@@ -1,0 +1,15 @@
+#!/bin/bash
+# shot [--x11|--wayland] <file.png>  — screenshot the Wayland (grim) or X11 display.
+# Default: Wayland if a compositor socket exists, else X11 ($DISPLAY, via ffmpeg x11grab).
+set -euo pipefail
+mode=auto
+case "${1:-}" in --x11) mode=x11; shift;; --wayland) mode=wayland; shift;; esac
+[ $# -eq 1 ] || { echo "usage: shot [--x11|--wayland] <file.png>" >&2; exit 2; }
+eval "$(/lab/bin/lab-env)"
+if [ "$mode" = auto ]; then [ -n "${WAYLAND_DISPLAY:-}" ] && mode=wayland || mode=x11; fi
+if [ "$mode" = wayland ]; then
+  grim "$1"
+else
+  ffmpeg -loglevel error -y -f x11grab -i "${DISPLAY:-:99}" -frames:v 1 "$1"
+fi
+echo "$1"

@@ -1,0 +1,5 @@
+#!/command/with-contenv bash
+# jarvis-lab: the Claude login volume belongs to `claude` only (0700). Root in other lab containers can
+# still read it; omarchy-m's `lab` user is uid 1000 too.
+if [ -d /lab-claude ]; then chown -R claude:claude /lab-claude; chmod 700 /lab-claude; fi
+mkdir -p /workspace && chown hermes:work /workspace && chmod 2775 /workspace

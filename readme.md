@@ -206,7 +206,7 @@ Omarchy 4 turned the whole desktop into a plugin surface, and its [plugin market
 
 - [herdr-voice](https://github.com/brogrammerMW/herdr-voice) - macOS voice agent with an orb that starts, prompts and watches the coding agents in your Herdr panes and approves their prompts on your spoken yes.
 - [OpenLive](https://github.com/katipally/openlive) - On-device voice loop with barge-in in front of one ACP coding agent per call, speaking its permission requests for yes or no answers and showing its live plan.
-- [Bosun](https://github.com/virtengine/bosun) - Control plane with an orb-style realtime voice assistant that starts and polls coding-agent sessions (executors skip permission checks by default; activity paused for months).
+- [Bosun](https://github.com/virtengine/bosun) - Control plane with an orb-style realtime voice assistant that starts and polls coding-agent sessions (executors skip permission checks by default; development paused for months before resuming in late September 2026).
 - [OpenYabby](https://github.com/OpenYabby/OpenYabby) - macOS orchestrator with a "Yabby" wake word and realtime voice that plans work and spawns teams of Claude Code or Codex agents with plan approval and kill controls.
 - [Nerve](https://github.com/daggerhashimoto/openclaw-nerve) - Web cockpit for OpenClaw with wake-phrase voice, a sub-agent session tree and a kanban board for delegating and reviewing work.
 
@@ -438,7 +438,7 @@ Hands for the screen: agents that click, type and navigate while you watch.
 
 For the Iron Man look: orbs, avatars and screens that show what the assistant is doing.
 
-- [LiveKit Agents UI](https://livekit.io/ui) - Components built on shadcn/ui with five audio visualizers, including an aura orb, that react to connecting, listening, thinking and speaking states.
+- [LiveKit Agents UI](https://livekit.com/products/agents-ui) - Components built on shadcn/ui with five audio visualizers, including an aura orb, that react to connecting, listening, thinking and speaking states.
 - [ElevenLabs UI](https://github.com/elevenlabs/ui) - Components built on shadcn/ui for voice agents, including an animated orb, waveforms and a live transcript.
 - [Pipecat Voice UI Kit](https://github.com/pipecat-ai/voice-ui-kit) - React components, visualizers and a debug console for Pipecat voice bots.
 - [TalkingHead](https://github.com/met4citizen/TalkingHead) - JavaScript class for realtime lip-synced 3D avatars that an LLM can speak and gesture through.
@@ -562,7 +562,7 @@ Jarvis with hands.
 
 How to tell whether your Jarvis is getting better.
 
-- [OSWorld](https://os-world.github.io/) - Real desktop tasks across Ubuntu, Windows and macOS apps, with [OSWorld 2.0](https://osworld-v2.xlang.ai/) adding long professional workflows that take a person over an hour and a half each.
+- [OSWorld](https://osworld-v1.xlang.ai/) - Real desktop tasks across Ubuntu, Windows and macOS apps, with [OSWorld 2.0](https://osworld-v2.xlang.ai/) adding long professional workflows that take a person over an hour and a half each.
 - [AndroidWorld](https://github.com/google-research/android_world) - Live Android environment for testing phone-control agents.
 - [TheAgentCompany](https://arxiv.org/abs/2412.14161) - Agents doing consequential work inside a simulated company.
 - [MultiAgentBench](https://arxiv.org/abs/2503.01935) - Collaboration and competition among LLM agents.
@@ -586,7 +586,7 @@ How to tell whether your Jarvis is getting better.
 - [Building Jarvis](https://web.archive.org/web/20161220140631/https://www.facebook.com/notes/mark-zuckerberg/building-jarvis/10154361492931634) - Mark Zuckerberg's 2016 account of a year building a home AI with voice, face recognition and Messenger control.
 - [Voice AI and Voice Agents](https://voiceaiandvoiceagents.com/) - Illustrated primer on latency budgets, turn detection, pipelines and realtime voice architecture.
 - [How We Built Our Multi-Agent Research System](https://www.anthropic.com/engineering/multi-agent-research-system) - Anthropic on lead-agent and sub-agent orchestration, delegation prompts and evaluation.
-- [Don't Build Multi-Agents](https://cognition.ai/blog/dont-build-multi-agents) - Cognition's counterpoint on context sharing and why parallel sub-agents fail.
+- [Don't Build Multi-Agents](https://cognition.com/blog/dont-build-multi-agents) - Cognition's counterpoint on context sharing and why parallel sub-agents fail.
 - [Practices for Governing Agentic AI Systems](https://cdn.openai.com/papers/practices-for-governing-agentic-ai-systems.pdf) - OpenAI on approvals, legibility, monitoring and interruptibility for agents.
 - [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Anthropic's patterns for choosing between workflows and autonomous agents.
 - [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/) - Lilian Weng's classic breakdown of agents into planning, memory and tool use.
@@ -610,7 +610,7 @@ How to tell whether your Jarvis is getting better.
 The spec sheet, as written by science fiction and visionaries.
 
 - [J.A.R.V.I.S.](https://marvelcinematicuniverse.fandom.com/wiki/J.A.R.V.I.S.) - Everything JARVIS does across the films, which amounts to a feature list.
-- [Jayse Hansen](https://www.jayse.tv/) - Designer of the Iron Man and Avengers HUD and hologram screens, the visual reference for a Jarvis interface.
+- [Jayse Hansen](https://jayse.io/) - Designer of the Iron Man and Avengers HUD and hologram screens, the visual reference for a Jarvis interface.
 - [F.R.I.D.A.Y.](https://marvelcinematicuniverse.fandom.com/wiki/F.R.I.D.A.Y.) - Stark's successor AI.
 - [E.D.I.T.H.](https://marvelcinematicuniverse.fandom.com/wiki/E.D.I.T.H.) - An AI in smart glasses, the form factor now arriving.
 - [Her](https://en.wikipedia.org/wiki/Her_(2013_film)) - Samantha, the reference for an emotionally fluent voice AI that is always with you.
@@ -655,4 +655,5 @@ Contributions are welcome, especially hands-on test results. Read the [contribut
 - Retired and archived projects that shaped the field, such as Mycroft, Rhasspy, Snowboy and eDEX-UI, are in [history.md](history.md).
 - The test report covers the [lab environments](testing.md#environments), the hands-on results, and the free local voice stack used in place of paid keys.
 - The [testing methodology](methodology.md) explains how agents are scored and how to test a new one.
+- The [test lab](lab/README.md) has the scripts, container and VM recipes, and curated evidence used for the hands-on tests, ready to reuse for new entries.
 - Scores reflect code, docs and tests from September 2026. This space moves fast, so if a score, link or claim goes stale, please open an issue or a pull request.

@@ -1,0 +1,9 @@
+#!/bin/bash
+# hermes-dashboard-shot <out.png> [path]  — screenshot the Hermes web dashboard
+# (http://127.0.0.1:9119<path>, e.g. /, /sessions, /kanban, /chat) with the
+# image's pinned Chromium headless shell.
+out=${1:?usage: hermes-dashboard-shot <out.png> [path]}; path=${2:-/}
+bin=$(ls /opt/hermes/.playwright/chromium_headless_shell-*/*/chrome-headless-shell | head -1)
+"$bin" --no-sandbox --disable-gpu --hide-scrollbars --window-size=1280,800 \
+  --virtual-time-budget=${BUDGET_MS:-10000} --screenshot="$out" "http://127.0.0.1:${HERMES_DASHBOARD_PORT:-9119}$path" >/dev/null 2>&1
+echo "$out"

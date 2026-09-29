@@ -1,0 +1,135 @@
+#!/bin/bash
+# vmctl — host-side driver for the Omarchy VM: Omarchy M's generic ARM64 image
+# (riverscn/omarchy-aarch64-image v4.0.3-virt.1, checksum-verified) run headless with Homebrew QEMU + HVF.
+# Rendering is software (virtio-gpu 2D -> Mesa llvmpipe in the guest): real Hyprland, no GPU acceleration.
+#
+#   vmctl fetch         download the release parts, verify the pinned SHA-256s, extract the qcow2 disk
+#                       into qemu/ and create a writable UEFI vars file (~3.7 GB download, ~7 GB on disk)
+#   vmctl start         boot headless (-display none), QMP at run/qmp.sock, guest agent at run/qga.sock,
+#                       SSH forwarded to 127.0.0.1:$OMARCHY_VM_SSH_PORT, serial console log in run/serial.log
+#   vmctl provision     after the first-boot owner wizard: enable sshd, open port 22 in ufw, install the
+#                       lab SSH key for the owner, copy guest/ in and run guest/lab-tools-install
+#   vmctl login         type the owner password into SDDM via QMP and wait for the Hyprland session
+#   vmctl stop          clean shutdown (ssh poweroff, else ACPI power button via QMP), waits for QEMU to exit
+#   vmctl status        QMP query-status (or "not running")
+#   vmctl ssh [cmd]     ssh as the Omarchy owner (key ssh/id_ed25519, generated on first use)
+#   vmctl shot f.png    QMP screendump of the VM display (the guest's grim is better once Hyprland runs)
+#   vmctl type TEXT | key CHORD...   keyboard input over QMP (for the first-boot wizard)
+#   vmctl push SRC DST / vmctl pull SRC DST   scp in / out
+#   vmctl utm           build a UTM bundle (virtio-gpu-gl, GPU-accelerated) from the verified parts instead
+#
+# Env: OMARCHY_VM_USER (owner created in the wizard, default lab), OMARCHY_VM_PASSWORD_FILE (the owner's
+#      password on its first line; default ssh/lab-password, git-ignored, never passed in argv),
+#      OMARCHY_VM_SSH_PORT (default 2222), OMARCHY_VM_CPUS (4), OMARCHY_VM_MEM_MB (6144), QEMU, QEMU_SHARE.
+# Run it outside any agent sandbox (it needs Hypervisor.framework and launchctl).
+set -euo pipefail
+D=$(cd "$(dirname "$0")" && pwd)
+R=$D/run; Q=$D/qemu; DL=$D/dl
+USER_=${OMARCHY_VM_USER:-lab}
+PWFILE=${OMARCHY_VM_PASSWORD_FILE:-$D/ssh/lab-password}
+PORT=${OMARCHY_VM_SSH_PORT:-2222}
+QEMU=${QEMU:-$(command -v qemu-system-aarch64 || echo /opt/homebrew/bin/qemu-system-aarch64)}
+QEMU_SHARE=${QEMU_SHARE:-$(dirname "$(dirname "$QEMU")")/share/qemu}
+KEY=$D/ssh/id_ed25519
+SSHO=(-i "$KEY" -p "$PORT" -o StrictHostKeyChecking=no -o UserKnownHostsFile="$D/ssh/known_hosts" -o ConnectTimeout=5 -o LogLevel=ERROR)
+LABEL=org.jarvis-lab.omarchy-vm
+# Release pins (https://github.com/riverscn/omarchy-aarch64-image/releases/tag/v4.0.3-virt.1)
+TAG=v4.0.3-virt.1
+PART_SHA=(f66b2e84eefe77c42ec5a86591f22371e9573c7e251391ea160208adfa4fe59e d1f55a2cf41668af2105b654da132d57b1e67619ec55e12059e81503c4dd6728)
+ZIP_SHA=0db7dc92cc77e4868c62125b4219da680740f7ad7a0ededcaa565bb10f595ece
+QCOW_SHA=e3e1918a4f054c8b96d39742d058a47fdeaa15c518375c769a550e4f896b8611
+running() { [ -f "$R/qemu.pid" ] && kill -0 "$(cat "$R/qemu.pid")" 2>/dev/null; }
+ensure_key() { [ -f "$KEY" ] || { mkdir -p "$D/ssh"; chmod 700 "$D/ssh"; ssh-keygen -q -t ed25519 -N '' -C jarvis-lab -f "$KEY"; }; }
+parts_ok() {
+  cd "$DL"
+  for i in 0 1; do echo "${PART_SHA[$i]}  Omarchy-virt.utm.zip.part-0$i"; done | shasum -a 256 -c -
+  cat Omarchy-virt.utm.zip.part-00 Omarchy-virt.utm.zip.part-01 > Omarchy-virt.utm.zip
+  echo "$ZIP_SHA  Omarchy-virt.utm.zip" | shasum -a 256 -c -
+}
+
+case "${1:-}" in
+  fetch)
+    mkdir -p "$DL" "$Q"
+    for i in 0 1; do
+      curl -fL -C - -o "$DL/Omarchy-virt.utm.zip.part-0$i" \
+        "https://github.com/riverscn/omarchy-aarch64-image/releases/download/$TAG/Omarchy-virt.utm.zip.part-0$i"
+    done
+    parts_ok
+    rm -rf "$DL/x"; mkdir "$DL/x"; ditto -x -k "$DL/Omarchy-virt.utm.zip" "$DL/x"
+    mv "$DL/x/Omarchy-virt.utm/Data/omarchy-aarch64-virt.qcow2" "$Q/omarchy-aarch64-virt.qcow2"
+    rm -rf "$DL/x" "$DL/Omarchy-virt.utm.zip"
+    echo "$QCOW_SHA  $Q/omarchy-aarch64-virt.qcow2" | shasum -a 256 -c - || echo "warning: qcow2 differs from release-manifest.json" >&2
+    [ -f "$Q/efi-vars.fd" ] || cp "$QEMU_SHARE/edk2-arm-vars.fd" "$Q/efi-vars.fd"
+    echo "disk ready in $Q (the release parts in $DL can be deleted)" ;;
+  start)
+    running && { echo "already running (pid $(cat "$R/qemu.pid"))"; exit 0; }
+    [ -f "$Q/omarchy-aarch64-virt.qcow2" ] || { echo "no disk; run: $0 fetch" >&2; exit 1; }
+    mkdir -p "$R"; rm -f "$R/qmp.sock" "$R/qga.sock"
+    args=("$QEMU" -name jarvis-omarchy -M virt -accel hvf -cpu host -smp "${OMARCHY_VM_CPUS:-4}" -m "${OMARCHY_VM_MEM_MB:-6144}"
+      -drive if=pflash,format=raw,readonly=on,file="$QEMU_SHARE/edk2-aarch64-code.fd"
+      -drive if=pflash,format=raw,file="$Q/efi-vars.fd"
+      -drive if=none,id=disk0,format=qcow2,file="$Q/omarchy-aarch64-virt.qcow2",discard=unmap
+      -device virtio-blk-pci,drive=disk0,bootindex=0
+      -device virtio-gpu-pci,xres=1920,yres=1080 -display none
+      -device virtio-keyboard-pci -device virtio-tablet-pci
+      -netdev user,id=n0,hostfwd=tcp:127.0.0.1:$PORT-:22 -device virtio-net-pci,netdev=n0,mac=02:6a:61:72:76:31
+      -device virtio-rng-pci -device virtio-balloon-pci
+      -device virtio-serial-pci
+      -chardev socket,id=qga0,path="$R/qga.sock",server=on,wait=off
+      -device virtserialport,chardev=qga0,name=org.qemu.guest_agent.0
+      -qmp unix:"$R/qmp.sock",server=on,wait=off
+      -serial file:"$R/serial.log" -pidfile "$R/qemu.pid")
+    # Run QEMU as a transient launchd job in the user's GUI domain (not installed in ~/Library/LaunchAgents,
+    # gone after bootout/reboot). A process started from a background-QoS shell (an agent harness, a
+    # background launchd job) inherits background QoS: its vCPU threads land on throttled efficiency cores
+    # and the guest runs up to ~20x slower.
+    python3 - "$R/launchd.plist" "$LABEL" "$R/qemu.log" "${args[@]}" <<'PY'
+import plistlib, sys
+out, label, log, *argv = sys.argv[1:]
+plistlib.dump({"Label": label, "ProgramArguments": argv, "ProcessType": "Interactive", "RunAtLoad": True,
+               "KeepAlive": False, "StandardOutPath": log, "StandardErrorPath": log}, open(out, "wb"))
+PY
+    launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
+    launchctl bootstrap "gui/$(id -u)" "$R/launchd.plist"
+    for _ in $(seq 50); do running && break; sleep 0.2; done
+    echo "started pid $(cat "$R/qemu.pid")" ;;
+  provision)
+    ensure_key; pub=$(cat "$KEY.pub"); h=/home/$USER_
+    "$D/bin/vmqga" exec /bin/sh -c "systemctl enable --now sshd && ufw allow 22/tcp && install -d -m 700 -o $USER_ -g $USER_ $h/.ssh && grep -qxF '$pub' $h/.ssh/authorized_keys 2>/dev/null || echo '$pub' >> $h/.ssh/authorized_keys; chown $USER_:$USER_ $h/.ssh/authorized_keys; chmod 600 $h/.ssh/authorized_keys"
+    ssh "${SSHO[@]}" "$USER_@127.0.0.1" 'rm -rf ~/jarvis-lab-guest'
+    scp -i "$KEY" -P "$PORT" -o StrictHostKeyChecking=no -o UserKnownHostsFile="$D/ssh/known_hosts" -o LogLevel=ERROR -r "$D/guest" "$USER_@127.0.0.1:jarvis-lab-guest"
+    # lab-tools-install needs two packages; install them first with the password fed on stdin (never argv).
+    ssh "${SSHO[@]}" "$USER_@127.0.0.1" 'pacman -T sox mesa-utils >/dev/null || sudo -S -p "" pacman -S --needed --noconfirm sox mesa-utils' < "$PWFILE"
+    ssh "${SSHO[@]}" "$USER_@127.0.0.1" '~/jarvis-lab-guest/lab-tools-install' </dev/null
+    echo "provisioned. Inside the session, also run: omarchy toggle idle stay-awake" ;;
+  stop)
+    running || { echo "not running"; exit 0; }
+    if ssh "${SSHO[@]}" "$USER_@127.0.0.1" 'sudo -S -p "" systemctl poweroff' < "$PWFILE" 2>/dev/null; then echo "poweroff via ssh"
+    else "$D/bin/vmqmp" powerdown; fi
+    for _ in $(seq 90); do running || { launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null; echo "stopped"; exit 0; }; sleep 1; done
+    echo "still running after 90 s (use: $D/bin/vmqmp raw '{\"execute\":\"quit\"}')" >&2; exit 1 ;;
+  login)  # type the owner password into SDDM (as a user would) and wait for the Hyprland user session
+    for _ in $(seq 60); do ssh "${SSHO[@]}" "$USER_@127.0.0.1" 'pgrep -f "sddm/hyprland.lua" >/dev/null' 2>/dev/null && break; sleep 3; done
+    sleep 5; VMQMP_DELAY=0.15 "$D/bin/vmqmp" type-file "$PWFILE"; sleep 1; "$D/bin/vmqmp" key ret
+    for _ in $(seq 40); do
+      r=$(ssh "${SSHO[@]}" "$USER_@127.0.0.1" 'eval "$(~/.local/share/jarvis-lab/bin/hyprenv)"; pgrep -u "$(id -un)" -x Hyprland >/dev/null && omarchy-shell lock isLocked' 2>/dev/null) && [ -n "$r" ] && { echo "session up (locked=$r)"; exit 0; }
+      sleep 3
+    done; echo "no user session yet" >&2; exit 1 ;;
+  status) running && "$D/bin/vmqmp" status || echo "not running" ;;
+  ssh)    shift; ensure_key; exec ssh "${SSHO[@]}" "$USER_@127.0.0.1" "$@" ;;
+  shot)   "$D/bin/vmqmp" shot "$2" ;;
+  type)   shift; "$D/bin/vmqmp" type "$@" ;;
+  key)    shift; "$D/bin/vmqmp" key "$@" ;;
+  push)   scp -i "$KEY" -P "$PORT" -o StrictHostKeyChecking=no -o UserKnownHostsFile="$D/ssh/known_hosts" -o LogLevel=ERROR -r "$2" "$USER_@127.0.0.1:$3" ;;
+  pull)   scp -i "$KEY" -P "$PORT" -o StrictHostKeyChecking=no -o UserKnownHostsFile="$D/ssh/known_hosts" -o LogLevel=ERROR -r "$USER_@127.0.0.1:$2" "$3" ;;
+  utm)    # the release's own route: rebuild a UTM bundle (new UUIDs/MAC, no EFI vars) for GPU-accelerated testing
+    parts_ok
+    B=$D/jarvis-omarchy.utm; [ ! -e "$B" ] || { echo "$B already exists" >&2; exit 1; }
+    rm -rf x; mkdir x; ditto -x -k Omarchy-virt.utm.zip x; mv x/Omarchy-virt.utm "$B"; rmdir x; rm -f Omarchy-virt.utm.zip "$B/Data/efi_vars.fd"
+    P=/usr/libexec/PlistBuddy
+    $P -c "Set :Information:Name jarvis-omarchy" -c "Set :Information:UUID $(uuidgen)" -c "Set :Drive:0:Identifier $(uuidgen)" \
+       -c "Set :Network:0:MacAddress 02:6a:61:72:76:31" -c "Set :System:MemorySize 6144" -c "Set :System:CPUCount 4" \
+       -c "Delete :Sound" -c "Add :Sound array" "$B/config.plist"
+    echo "built $B (register it in UTM with File > Open)" ;;
+  *) sed -n '2,27p' "$0"; exit 2 ;;
+esac

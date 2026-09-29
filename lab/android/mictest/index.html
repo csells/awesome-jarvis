@@ -1,0 +1,8 @@
+<!doctype html><meta name=viewport content="width=device-width"><title>mictest</title>
+<button id=b style="font-size:40px">start mic</button><pre id=o style="font-size:28px"></pre>
+<script>
+window.peaks=[];
+b.onclick=async()=>{const s=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
+const c=new AudioContext();const a=c.createAnalyser();a.fftSize=2048;c.createMediaStreamSource(s).connect(a);const d=new Float32Array(2048);
+setInterval(()=>{a.getFloatTimeDomainData(d);let m=0;for(const v of d)m=Math.max(m,Math.abs(v));window.peaks.push(+m.toFixed(4));if(window.peaks.length>600)window.peaks.shift();o.textContent="peak "+m.toFixed(4)+"\nmax(last 10s) "+Math.max(...window.peaks.slice(-20)).toFixed(4)+"\nsr "+c.sampleRate},500)};
+</script>

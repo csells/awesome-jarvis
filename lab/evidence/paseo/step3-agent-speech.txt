@@ -1,0 +1,1 @@
+Done. I've killed the agent that wrote hello.txt.

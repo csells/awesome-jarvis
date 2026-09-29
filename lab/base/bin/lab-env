@@ -1,0 +1,3 @@
+#!/bin/bash
+# Usage: eval "$(lab-env)"  — exports DISPLAY/WAYLAND_DISPLAY/PULSE_SERVER/SWAYSOCK
+cat "${XDG_RUNTIME_DIR:-/run/user/0}/lab.env" 2>/dev/null

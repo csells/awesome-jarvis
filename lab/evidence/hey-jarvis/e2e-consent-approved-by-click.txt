@@ -1,0 +1,30 @@
+>> say: hey jarvis
+>> say: how much free disk space do I have on my root filesystem
+   [08:07:39] phase=recording -> phase-01-recording.png
+   [08:07:41] phase=transcribing -> phase-02-transcribing.png
+   [08:07:46] phase=thinking -> phase-03-thinking.png
+   [08:07:48] phase=consent -> phase-04-consent.png
+   [08:08:13] phase=thinking -> phase-05-thinking.png
+   [08:08:15] phase=speaking -> phase-06-speaking.png
+   [08:08:21] phase=followup -> phase-07-followup.png
+   [08:08:41] phase=closed -> phase-08-closed.png
+== voice-launcher journal (this run)
+[wake] hey_jarvis detectado (score=0.99)
+[narr] modo=templates (Ollama não responde e sem chave OpenAI)
+[rec]  aguardando fala (janela 6s, fim após 1.2s de silêncio)...
+[stt]  transcrevendo 4.4s de fala...
+[stt]  <58 chars> (3.7s)
+[cmd]  ask
+[ask]  provider=claude sonnet/low q=<58 chars>
+[ask]  autorização pendente: <7 chars>
+[narr] ▶ I'll check your root filesystem's disk usage.
+[ans]  28.8s [claude sonnet/low]  :: <64 chars>
+[rec]  aguardando fala (janela 20s, fim após 1.2s de silêncio)...
+[conv] janela de follow-up expirou — conversa encerrada
+== last exchange (jarvis-state.json)
+  q: How much free disk space do I have on my root file system? 
+  a: You have about 55 gigabytes free out of 63, sir — only 12% used.
+== what Jarvis heard (record-mic -> transcribe)
+Hey Jarvis. How much free disk space do I have on my root file system?
+== what Jarvis said (record-out -> transcribe)
+What shall we work on sir? I need your authorization sir. Please check the screen. I You have about 55 gigabytes free out of 63 sir only 12% used

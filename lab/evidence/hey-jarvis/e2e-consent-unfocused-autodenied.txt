@@ -1,0 +1,28 @@
+>> say: hey jarvis
+>> say: how much free disk space do I have on my root filesystem
+   [08:04:06] phase=recording -> phase-01-recording.png
+   [08:04:07] phase=transcribing -> phase-02-transcribing.png
+   [08:04:13] phase=thinking -> phase-03-thinking.png
+   [08:04:15] phase=consent -> phase-04-consent.png
+   [08:04:57] phase=handoff -> phase-05-handoff.png
+   [08:05:03] phase=followup -> phase-06-followup.png
+   [08:05:23] phase=closed -> phase-07-closed.png
+== voice-launcher journal (this run)
+[wake] hey_jarvis detectado (score=0.83)
+[narr] modo=templates (Ollama não responde e sem chave OpenAI)
+[rec]  aguardando fala (janela 6s, fim após 1.2s de silêncio)...
+[stt]  transcrevendo 4.7s de fala...
+[stt]  <58 chars> (3.8s)
+[cmd]  ask
+[ask]  provider=claude sonnet/low q=<58 chars>
+[ask]  autorização pendente: <7 chars>
+[ans]  handoff após 45s [claude sonnet/low] — terminal rascunho
+[rec]  aguardando fala (janela 20s, fim após 1.2s de silêncio)...
+[conv] janela de follow-up expirou — conversa encerrada
+== last exchange (jarvis-state.json)
+  q: How much free disk space do I have on my root file system? 
+  a: (long task — continuing in a separate terminal)
+== what Jarvis heard (record-mic -> transcribe)
+Hey Jarvis. How much free disk space do I have on my root file system?
+== what Jarvis said (record-out -> transcribe)
+What shall we work on sir? I need your authorization sir. Please check the screen This is taking longer than usual sir. I left it running in a separate terminal

@@ -1,0 +1,4 @@
+#!/bin/bash
+# Start the headless audio/display stack, then run the command.
+/lab/bin/lab-init
+exec "$@"

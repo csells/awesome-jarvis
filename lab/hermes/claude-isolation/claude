@@ -1,0 +1,7 @@
+#!/bin/bash
+# /usr/local/bin/claude in jarvis-lab-hermes: runs the real Claude Code CLI as the separate
+# `claude` user, whose home and CLAUDE_CONFIG_DIR (/lab-claude, the jarvis-lab-claude volume,
+# mode 0700) the Hermes processes (user `hermes`) cannot read. Hermes therefore can use Claude
+# only by executing the official CLI; it can never read, borrow or refresh the login itself.
+# sudo resets the environment; only the working directory and terminal size are passed on.
+exec sudo -n -u claude /usr/local/libexec/claude-as-claude "$PWD" "${COLUMNS:-}" "${LINES:-}" "$@"

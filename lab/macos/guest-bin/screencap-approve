@@ -1,0 +1,23 @@
+#!/bin/bash
+# screencap-approve <executable path>... : pre-approve the macOS 15+/26 replayd alert
+# ("<app> is requesting to bypass the system private window picker and directly access your screen")
+# for the given executables (replayd keys approvals by the responsible process's executable path).
+# Writes ~/Library/Group Containers/group.com.apple.replayd/ScreenCaptureApprovals.plist with the same
+# keys replayd writes after a click on Allow, with the 30-day privacy re-prompt pushed to 2099.
+# replayd is stopped first (it rewrites the file from memory when it exits) and restarts on demand.
+set -euo pipefail
+d="$HOME/Library/Group Containers/group.com.apple.replayd"; f="$d/ScreenCaptureApprovals.plist"
+killall replayd 2>/dev/null || true; sleep 1
+mkdir -p "$d"; [ -f "$f" ] || plutil -create xml1 "$f"
+now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+for id in "$@"; do
+  k=$(printf '%s' "$id" | sed 's/\./\\./g')
+  plutil -remove "$k" "$f" 2>/dev/null || true
+  plutil -insert "$k" -dictionary "$f"
+  plutil -insert "$k.kScreenCaptureAlertableUsageCount" -integer 1 "$f"
+  plutil -insert "$k.kScreenCaptureApprovalLastAlerted" -date "$now" "$f"
+  plutil -insert "$k.kScreenCaptureApprovalLastUsed" -date "$now" "$f"
+  plutil -insert "$k.kScreenCapturePrivacyHintDate" -date 2099-01-01T00:00:00Z "$f"
+  plutil -insert "$k.kScreenCapturePrivacyHintPolicy" -integer 2592000 "$f"
+done
+plutil -p "$f" | grep -E '^  "' 

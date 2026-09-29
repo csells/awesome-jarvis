@@ -1,0 +1,27 @@
+[ambient-ui] timings: llm=87981ms total_audio≈2736ms total_pre_first_audio=88949ms
+[ambient-ui] wake-segment matched (3029ms STT, 66 chars)
+[ambient-ui] wake → command: "delegate a task to a sub-agent, list three kinds of fruit."
+[BackgroundAgent] Loaded role 'Personal Assistant' from ~/.bun/install/global/node_modules/@usejarvis/brain/roles/personal-assistant.yaml
+[BackgroundAgent] Started with role: Personal Assistant, browser on port 9223
+[Daemon] Background agent started (separate browser for heartbeat/reactions)
+[Executor] Started (mode: aggressive, discovery=60s, fire=per-pending setTimeout)
+[WebSocketServer] Client connected. Total clients: 1
+[WSService] Client connected
+[ambient-ui] first audio dispatched at +103105ms (tts=869ms, sentence="On it.")
+[ambient-ui] narrating tool: delegate_task → "Delegating to content-writer"
+[DelegateTool] Delegating to Content Writer: List three kinds of fruit...
+[DelegateTool] Spawned Content Writer (26d35fe1-ad71-4b88-a6ef-7531f992b1d0) with 3 tools
+[Orchestrator] Tool delegate_task → [Content Writer completed]
+
+- Apple  
+- Banana  
+- Orange
+
+
+Tokens: 950...
+[ambient-ui] JARVIS (116874ms LLM, 101876ms to first token, 103076ms to first audio) → "On it. I'll delegate that task to a specialist sub-agent.
+
+The content writer has completed the task. Here are three kinds of fruit:
+
+- Apple  
+- Banana  

@@ -1,0 +1,2 @@
+⊘ t_eccb714d  blocked   default               Claude Code: write primes.py
+⊘ t_b248f9f4  blocked   default               Claude Code: long essay (interrupt test)

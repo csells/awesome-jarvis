@@ -1,0 +1,18 @@
+KEY                 VALUE                                                                                                                
+Id                  f5d59444-6e16-4916-b77b-2f53a16dd911                                                                                 
+Name                Write hello.txt                                                                                                      
+Provider            claude                                                                                                               
+Model               claude-sonnet-5                                                                                                      
+Thinking            auto                                                                                                                 
+Status              idle                                                                                                                 
+Archived            false                                                                                                                
+ArchivedAt          null                                                                                                                 
+Mode                default                                                                                                              
+Cwd                 /workspace/demo                                                                                                      
+CreatedAt           2026-09-27T09:02:18.550Z                                                                                             
+UpdatedAt           2026-09-27T09:02:41.285Z                                                                                             
+Capabilities        Streaming: true, Persistence: true, DynamicModes: true, McpServers: true                                             
+AvailableModes      plan (Plan Mode), default (Always Ask), acceptEdits (Accept File Edits), auto (Auto mode), bypassPermissions (Bypass)
+PendingPermissions  []                                                                                                                   
+Worktree            null                                                                                                                 
+ParentAgentId       b5f169a7-0c47-4214-99a8-beb7ac44e43b                                                                                 

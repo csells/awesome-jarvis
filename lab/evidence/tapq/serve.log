@@ -1,0 +1,12 @@
+==> $TMPDIR/tapq-runtime.vmlo2n/stdout.log <==
+
+==> $TMPDIR/tapq-runtime.vmlo2n/stderr.log <==
+
+==> $TMPDIR/tapq-runtime.vmlo2n/hook.log <==
+
+==> $TMPDIR/tapq-runtime.vmlo2n/stdout.log <==
+TapQ runtime is ready. Press Control-C to stop.
+Broker socket: ~/Library/Application Support/TapQ/runtime/broker.sock
+Discovery: ~/Library/Application Support/TapQ/runtime/broker.json
+Gesture profile: default
+Tap profile: default

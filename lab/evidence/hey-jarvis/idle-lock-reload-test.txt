@@ -1,0 +1,51 @@
+[08:11:27] baseline: qs_pid=961 ipc=ok locked=false dpms=true
+stay-awake: {"enabled":false,"class":"disabled","tooltip":"Stay Awake"}
+waiting for the idle lock (Omarchy: screensaver 150 s, lock 300 s)...
+[08:16:28] idle-locked after 288s: qs_pid=961 ipc=ok locked=true dpms=true
+[08:16:38] locked+10s: qs_pid=961 ipc=ok locked=true dpms=false
+== reload 1: file change in the plugin dir (PluginRegistry's inotifywait -> hot reload)
+[08:16:46] after reload 1: qs_pid=961 ipc=ok locked=true dpms=false
+== reload 2: omarchy-shell shell rescanPlugins
+[08:16:55] after reload 2: qs_pid=961 ipc=ok locked=true dpms=false
+== reload 3: omarchy plugin disable + enable atzingen.jarvis
+Disabled atzingen.jarvis
+Enabled and moved atzingen.jarvis
+[08:17:07] after reload 3: qs_pid=961 ipc=ok locked=true dpms=false
+== reload 4: git checkout of the plugin (what the Docker smoketest did while the session was locked)
+[08:17:17] after reload 4: qs_pid=961 ipc=ok locked=true dpms=false
+== verdict: omarchy-shell pid before=961 after=961 -> SURVIVED (same process)
+== omarchy-shell journal since start (errors / crash / lock / plugin)
+Sep 27 08:13:57.927086 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: omarchy idle 2026-09-27T15:13:57.925Z idle-cycle-start: screensaver=150 lock=300
+Sep 27 08:16:27.928512 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: omarchy idle 2026-09-27T15:16:27.928Z lock-system: lock-timeout
+Sep 27 08:16:27.983541 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: omarchy lock 2026-09-27T15:16:27.984Z lock-requested
+Sep 27 08:16:27.983710 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: omarchy lock 2026-09-27T15:16:27.984Z lock-pending: screen-stabilizing
+Sep 27 08:16:28.698942 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: omarchy lock 2026-09-27T15:16:28.699Z secure=true
+Sep 27 08:16:38.917353 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:16:38.917353 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:16:38.920503 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:16:38.921125 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:16:38.923438 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:16:55.268892 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/agents/Panel.qml[327:3]: Handler was registered but will not be used because another handler is regi
+Sep 27 08:16:55.270925 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/panels/bluetooth/Panel.qml[640:3]: Handler was registered but will not be used because another handl
+Sep 27 08:16:55.278373 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/panels/network/Panel.qml[210:3]: Handler was registered but will not be used because another handler
+Sep 27 08:16:55.287227 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at @Ui/Panel.qml[48:3]: Handler was registered but will not be used because another handler is registered for target omarchy.audio
+Sep 27 08:16:55.296639 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/panels/monitor/Panel.qml[220:3]: Handler was registered but will not be used because another handler
+Sep 27 08:16:55.301969 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/panels/power/Panel.qml[177:3]: Handler was registered but will not be used because another handler i
+Sep 27 08:16:59.426403 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/agents/Panel.qml[327:3]: Handler was registered but will not be used because another handler is regi
+Sep 27 08:16:59.428315 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/panels/bluetooth/Panel.qml[640:3]: Handler was registered but will not be used because another handl
+Sep 27 08:16:59.432675 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/panels/network/Panel.qml[210:3]: Handler was registered but will not be used because another handler
+Sep 27 08:16:59.439773 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at @Ui/Panel.qml[48:3]: Handler was registered but will not be used because another handler is registered for target omarchy.audio
+Sep 27 08:16:59.445136 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/panels/monitor/Panel.qml[220:3]: Handler was registered but will not be used because another handler
+Sep 27 08:16:59.449905 jarvis-omarchy omarchy-shell[961]:   WARN scene: QML IpcHandler at file:///usr/share/omarchy/shell/plugins/panels/power/Panel.qml[177:3]: Handler was registered but will not be used because another handler i
+Sep 27 08:17:07.563104 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:17:07.563312 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:17:07.563312 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:17:07.563312 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:17:07.563312 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:17:07.563312 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:17:07.563312 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:17:07.563312 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+Sep 27 08:17:07.563312 jarvis-omarchy omarchy-shell[961]:  DEBUG qml: Local plugin changed, reloading: atzingen.jarvis
+== coredumps
+No coredumps found.
+grim timed out (display blanked by the lock's DPMS-off)

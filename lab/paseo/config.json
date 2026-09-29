@@ -1,0 +1,46 @@
+{
+  "$schema": "https://paseo.sh/schemas/paseo.config.v1.json",
+  "version": 1,
+  "daemon": {
+    "listen": "0.0.0.0:6767",
+    "mcp": {
+      "enabled": true,
+      "injectIntoAgents": true
+    },
+    "relay": {
+      "enabled": false
+    }
+  },
+  "features": {
+    "webUi": {
+      "enabled": true
+    },
+    "dictation": {
+      "stt": {
+        "provider": "local",
+        "model": "parakeet-tdt-0.6b-v2-int8",
+        "language": "en"
+      }
+    },
+    "voiceMode": {
+      "llm": {
+        "provider": "codex"
+      },
+      "stt": {
+        "provider": "local",
+        "model": "parakeet-tdt-0.6b-v2-int8",
+        "language": "en"
+      },
+      "tts": {
+        "provider": "local",
+        "model": "kokoro-en-v0_19",
+        "speakerId": 0
+      }
+    }
+  },
+  "providers": {
+    "local": {
+      "modelsDir": "/root/.paseo/models/local-speech"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+#!/bin/bash
+# shot <file.png> : full-screen screenshot from an SSH shell. Prefer `vm.sh shot NAME` on the host
+# (tart exec, no alert). Over SSH, replayd shows a "com.apple.sshd-session ... bypass the system private
+# window picker" alert after every capture; it is dismissed here with approve-prompts.
+sudo launchctl asuser "$(id -u "${LAB_GUEST_USER:-$(id -un)}")" /usr/sbin/screencapture -x "$1"; rc=$?
+sleep 2; "$HOME/lab/bin/approve-prompts" >/dev/null; exit $rc

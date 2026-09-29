@@ -1,0 +1,19 @@
+#!/bin/bash
+# jarvis-lab shim for `systemd-run --user [--scope] [--unit=X] [--on-active=T] -- cmd...`
+# --scope: exec the command directly (same pid, as systemd-run --scope does).
+# --on-active=T: run the command after T (30s, 45m, 1h, 2h30m) in the background.
+delay=""
+while [ $# -gt 0 ]; do case "$1" in
+  --) shift; break;;
+  --on-active=*) delay=${1#--on-active=}; shift;;
+  --on-active) delay=$2; shift 2;;
+  --unit|-u|-p|--property|--slice|-E|--setenv|--description) shift 2;;
+  -*) shift;;
+  *) break;;
+esac; done
+if [ -n "$delay" ]; then
+  secs=$(echo "$delay" | sed -E 's/([0-9]+)h/\1*3600+/g; s/([0-9]+)min/\1*60+/g; s/([0-9]+)m/\1*60+/g; s/([0-9]+)s/\1+/g; s/\+$//')
+  ( sleep $(( secs )); "$@" ) >/dev/null 2>&1 &
+  exit 0
+fi
+exec "$@"

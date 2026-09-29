@@ -1,0 +1,49 @@
+#!/bin/bash
+# hey-jarvis on jl-omarchy-m (run as `lab`):
+#  1. install the plugin the Omarchy 4 way: `omarchy plugin add <url> --enable --yes`
+#     (omarchy-shell must be running), pin it, run its install.sh (what the bar
+#     panel's Install button runs; missing system packages go through `omarchy pkg add`)
+#  2. no-login smoke test: wake word -> greeting (TTS) -> VAD -> STT -> model call,
+#     screenshots of the conversation window and the bar panel.
+set -u
+PIN=${HEY_JARVIS_COMMIT:-d6ebaa6ca0097082480d9486d8219c7a98be041f}
+URL=https://github.com/Atzingen/hey-jarvis
+OUT=${1:-/lab/out/omarchy-m}; mkdir -p "$OUT"
+eval "$(lab-env)"
+P=$HOME/.config/omarchy/plugins/atzingen.jarvis
+LOG=/tmp/lab-logs/voice-launcher.service.log
+omarchy-shell shell ping >/dev/null 2>&1 || { echo "omarchy-shell is not running" >&2; exit 1; }
+if [ ! -d "$P" ]; then
+  echo "== omarchy plugin add $URL --enable --yes"
+  omarchy plugin add "$URL" --enable --yes 2>&1 | tail -5
+  echo "cloned HEAD: $(git -C "$P" rev-parse HEAD) ; pinning to $PIN"
+  git -C "$P" -c advice.detachedHead=false checkout -q "$PIN"
+  omarchy-shell shell rescanPlugins >/dev/null
+fi
+echo "== plugin state: $(omarchy-shell shell listPlugins | jq -c '.[] | select(.id=="atzingen.jarvis") | {id,enabled,active}')"
+if [ ! -x "$HOME/.local/share/jarvis/venv/bin/python" ]; then
+  echo "== bash install.sh (the bar panel's Install action)"
+  (cd "$P" && bash install.sh </dev/null 2>&1 | grep -E "==>|warning|Installing" )
+fi
+systemctl --user is-active --quiet voice-launcher || systemctl --user start voice-launcher
+for _ in $(seq 120); do grep -q "pronto" "$LOG" 2>/dev/null && break; sleep 1; done
+start=$(wc -l <"$LOG")
+record-out ${RECORD_SECONDS:-40} "$OUT/jarvis-speech.wav" & rec=$!
+sleep 0.5
+echo ">> say: hey jarvis"; say "hey jarvis"
+sleep 4
+echo ">> say: ${QUESTION:-what time is it}"; say "${QUESTION:-what time is it}"
+sleep 4; shot "$OUT/conversation-thinking.png" >/dev/null
+for _ in $(seq 90); do tail -n +$start "$LOG" | grep -q "^\[ans\]" && break; sleep 1; done
+sleep 6; shot "$OUT/conversation-answer.png" >/dev/null
+wait $rec
+echo "== voice-launcher log (this run)"; tail -n +$start "$LOG" | grep -v '^\[barge\]' | grep -E "^\[|^ " | head -20
+echo "== what Jarvis heard"
+python3 -c "import json;s=json.load(open('$XDG_RUNTIME_DIR/jarvis-state.json'));e=s.get('exchanges',[])[-1:];[print('  q:',x.get('q'),'\n  a:',(x.get('a') or '')[:200].replace('\n',' ')) for x in e]" 2>/dev/null
+echo "== what Jarvis said (record-out -> transcribe)"; transcribe "$OUT/jarvis-speech.wav"
+idx=$(omarchy-shell shell listShellConfig | jq -r '.bar.layout.center | map(.id) | index("atzingen.jarvis") + 1')
+omarchy-shell shell togglePanelAt center "$idx" >/dev/null 2>&1; sleep 2; shot "$OUT/omarchy-bar-panel.png" >/dev/null
+omarchy-shell shell togglePanelAt center "$idx" >/dev/null 2>&1
+for _ in $(seq 60); do pgrep -f conversation.qml >/dev/null || break; sleep 1; done   # follow-up window closes
+shot "$OUT/desktop.png" >/dev/null
+echo "== screenshots: $OUT/{conversation-thinking,conversation-answer,omarchy-bar-panel,desktop}.png"

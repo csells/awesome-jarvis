@@ -1,0 +1,67 @@
+#!/bin/bash
+# Try to start the real Hyprland (Omarchy's omarchy/hyprland build) headless with
+# software rendering, several ways, and report exactly why each attempt fails.
+# --keep: leave the first successful instance running.
+keep=0; [ "${1:-}" = --keep ] && keep=1
+RT=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}; mkdir -p "$RT"
+CONF=/tmp/lab-hypr-probe.conf
+cat >"$CONF" <<'CFG'
+monitor = , 1280x800@60, 0x0, 1
+debug {
+  disable_logs = false
+  enable_stdout_logs = true
+}
+misc {
+  disable_hyprland_logo = true
+}
+CFG
+echo "== environment"
+echo "hyprland: $(pacman -Q hyprland 2>/dev/null) (repo: $(pacman -Si omarchy/hyprland 2>/dev/null | awk -F': ' '/^Repository/{print $2; exit}'))"
+echo "aquamarine: $(pacman -Q aquamarine 2>/dev/null)   mesa: $(pacman -Q mesa 2>/dev/null)"
+echo "/dev/dri: $(ls /dev/dri 2>&1)"
+echo "/sys/class/drm: $(ls /sys/class/drm 2>&1 | tr '\n' ' ')"
+echo "kernel: $(uname -r); vkms/vgem built: $(zcat /proc/config.gz 2>/dev/null | grep -E 'CONFIG_DRM_(VKMS|VGEM)' | tr '\n' ' ')"
+echo "EGL software device: $(EGL_PLATFORM=surfaceless eglinfo -B 2>/dev/null | grep -m1 -i 'renderer' || echo 'eglinfo unavailable')"
+try() { # try <label> <env…>
+  local label=$1; shift
+  echo; echo "== attempt: $label"
+  echo "env: $*"
+  local log=/tmp/lab-logs/hyprland-$label.log
+  ( env -u WAYLAND_DISPLAY -u DISPLAY "$@" HYPRLAND_NO_SD_NOTIFY=1 HYPRLAND_NO_CRASHREPORTER=1 AQ_TRACE=1 \
+      LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe \
+      setsid Hyprland --i-am-really-stupid -c "$CONF" >"$log" 2>&1 & echo $! >/tmp/lab-hypr.pid )
+  local pid; pid=$(cat /tmp/lab-hypr.pid)
+  for _ in $(seq 20); do
+    kill -0 "$pid" 2>/dev/null || break
+    if HYPRLAND_INSTANCE_SIGNATURE=$(ls -t "$RT/hypr" 2>/dev/null | head -1) hyprctl monitors >/dev/null 2>&1; then
+      echo "RESULT: Hyprland is running (pid $pid)"; HYPRLAND_INSTANCE_SIGNATURE=$(ls -t "$RT/hypr" | head -1) hyprctl monitors | head -5
+      if (( keep )); then return 0; fi
+      kill "$pid"; return 0
+    fi
+    sleep 0.5
+  done
+  kill "$pid" 2>/dev/null; wait "$pid" 2>/dev/null
+  echo "RESULT: failed. Key log lines:"
+  sed 's/\x1b\[[0-9;]*m//g' "$log" | grep -aE "Seat opened|scanGPUs|no gpus|DRM Backend failed|Wayland backend cannot start|Cannot open backend|CRIT \]|what\(\)" | grep -av "received global" | head -12
+  return 1
+}
+# 0. with a seat: run seatd (root) so libseat can open a session, then headless+DRM
+if sudo -n true 2>/dev/null && command -v seatd >/dev/null; then
+  sudo sh -c "seatd -g $(id -gn) >/tmp/lab-logs/seatd.log 2>&1 &"; sleep 1
+  try seatd-headless AQ_NO_KMS_REQUIREMENT=1; rc=$?
+  sudo pkill -x seatd; (( rc == 0 )) && exit 0
+fi
+# 1. headless only (Hyprland always requests the headless backend; DRM if available)
+try headless AQ_NO_KMS_REQUIREMENT=1 && exit 0
+# 2. point aquamarine at a DRM node explicitly (none exists here)
+try aq-drm-devices AQ_DRM_DEVICES=/dev/dri/card0 AQ_NO_KMS_REQUIREMENT=1 && exit 0
+# 3. nested: Wayland backend inside a pixman sway (the only compositor that runs here)
+if command -v sway >/dev/null; then
+  ( WLR_BACKENDS=headless WLR_RENDERER=pixman WLR_LIBINPUT_NO_DEVICES=1 sway -c /lab/etc/sway.config >/tmp/lab-logs/sway-probe.log 2>&1 & echo $! >/tmp/lab-sway-probe.pid )
+  for _ in $(seq 30); do s=$(ls "$RT" | grep -E '^wayland-[0-9]+$' | head -1); [ -n "$s" ] && break; sleep 0.2; done
+  try nested-in-sway WAYLAND_DISPLAY="$s"; rc=$?
+  kill "$(cat /tmp/lab-sway-probe.pid)" 2>/dev/null; sleep 0.5; rm -f "$RT/$s" "$RT/$s.lock"
+  (( rc == 0 )) && exit 0
+fi
+echo; echo "CONCLUSION: Hyprland cannot start in this container; falling back to headless sway."
+exit 1

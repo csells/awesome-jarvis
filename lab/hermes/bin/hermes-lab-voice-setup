@@ -1,0 +1,15 @@
+#!/bin/bash
+# Configure Hermes' Linux voice stack for the lab: local faster-whisper STT,
+# Piper TTS (lab voice), openWakeWord "hey hermes" on the CLI surface.
+set -e
+H=/lab/bin/hermes-as-user
+$H hermes config set stt.enabled true
+$H hermes config set stt.provider local
+$H hermes config set stt.local.model base
+$H hermes config set tts.provider piper
+$H hermes config set tts.piper.voice /opt/lab/voices/en_US-lessac-medium.onnx
+$H hermes config set wake_word.enabled true
+$H hermes config set wake_word.surface cli
+$H hermes config set wake_word.provider openwakeword
+$H hermes config set wake_word.capture local
+echo "voice config applied"

@@ -1,0 +1,36 @@
+#!/bin/bash
+# Prove the audio loop with no model:
+#  1) say -> virtual mic, record the mic source, transcribe
+#  2) say --speaker -> output sink, record-out, transcribe
+#  3) screenshots of X11 and Wayland displays
+set -uo pipefail
+OUT=${1:-/lab/out}; mkdir -p "$OUT"
+PHRASE_IN=${PHRASE_IN:-"hey jarvis what time is it"}
+PHRASE_OUT=${PHRASE_OUT:-"It is half past three in the afternoon, sir."}
+lower() { tr 'A-Z' 'a-z' | sed 's/1/ one /g;s/2/ two /g;s/3/ three /g;s/4/ four /g;s/5/ five /g;s/6/ six /g;s/7/ seven /g;s/8/ eight /g;s/9/ nine /g' | tr -cd 'a-z ' | tr -s ' ' | sed 's/^ //;s/ $//'; }
+pass=0 fail=0
+check() { # name expected got
+  if [ "$(printf '%s' "$2" | lower)" = "$(printf '%s' "$3" | lower)" ]; then echo "PASS $1"; pass=$((pass+1)); else echo "FAIL $1 (expected '$2')"; fail=$((fail+1)); fi
+}
+echo "== 1. virtual microphone: say -> vmic -> record-mic -> transcribe"
+record-mic 9 "$OUT/mic.wav" & rec=$!
+sleep 1.5; say "$PHRASE_IN"; wait $rec
+t1=$(transcribe "$OUT/mic.wav"); echo "transcript: $t1"; check mic-loop "$PHRASE_IN" "$t1"
+echo "== 2. output sink: say --speaker -> speaker -> record-out -> transcribe"
+record-out 9 "$OUT/speaker.wav" & rec=$!
+sleep 1.5; say --speaker "$PHRASE_OUT"; wait $rec
+t2=$(transcribe "$OUT/speaker.wav"); echo "transcript: $t2"; check output-capture "$PHRASE_OUT" "$t2"
+echo "== 3. isolation: mic must not hear the speaker"
+record-mic 5 "$OUT/mic-isolation.wav" & rec=$!
+sleep 0.5; say --speaker "this should not reach the microphone"; wait $rec
+peak=$(sox "$OUT/mic-isolation.wav" -n stat 2>&1 | awk '/Maximum amplitude/{print $3}')
+echo "mic peak while speaker plays: $peak"; awk "BEGIN{exit !($peak < 0.01)}" && { echo "PASS isolation"; pass=$((pass+1)); } || { echo "FAIL isolation"; fail=$((fail+1)); }
+echo "== 4. screenshots"
+if [ "${LAB_X11:-1}" != 0 ]; then
+  ( eval "$(lab-env)"; DISPLAY=${DISPLAY:-:99} xmessage -geometry +400+300 "jarvis-lab X11 display OK" >/dev/null 2>&1 & sleep 1; shot --x11 "$OUT/x11.png"; kill %1 2>/dev/null; true ) || fail=$((fail+1))
+fi
+if [ -n "$(lab-env | grep WAYLAND_DISPLAY)" ]; then
+  ( eval "$(lab-env)"; foot -e sh -c 'echo jarvis-lab Wayland display OK; sleep 5' >/dev/null 2>&1 & sleep 1.5; shot --wayland "$OUT/wayland.png" ) || fail=$((fail+1))
+fi
+echo "== result: $pass passed, $fail failed"
+[ $fail -eq 0 ]

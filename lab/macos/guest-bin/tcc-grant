@@ -1,0 +1,46 @@
+#!/bin/bash
+# tcc-grant <client> <Service>...   (run in the guest as the guest user; uses sudo)
+#
+# Pre-approves macOS privacy (TCC) permissions by writing the TCC databases directly, the same way
+# Cirrus Labs' image build does (scripts/update-tcc-database.sh in cirruslabs/macos-image-templates).
+# This works with SIP ENABLED because the cirruslabs images turn on "Allow full disk access for remote
+# users" for Remote Login, so sshd-keygen-wrapper (and sudo under it) can write both TCC.db files.
+#
+# <client> is one of:
+#   /Applications/Foo.app     -> bundle id (client_type 0) + its code-signing requirement (csreq)
+#   com.example.bundle        -> bundle id, no csreq
+#   /abs/path/to/binary       -> path client (client_type 1) + csreq if signed
+# <Service> short names: Microphone SpeechRecognition Accessibility ScreenCapture ListenEvent PostEvent
+#   AppleEvents:<target bundle id>  SystemPolicyAllFiles  (or full kTCCService* names)
+# Grants go into BOTH the system and the user DB (tccd only reads the one it owns per service;
+# writing both is harmless). tccd is restarted so it rereads them.
+set -euo pipefail
+client=${1:?usage: tcc-grant <client> <Service>...}; shift
+USERDB="$HOME/Library/Application Support/com.apple.TCC/TCC.db"
+SYSDB="/Library/Application Support/com.apple.TCC/TCC.db"
+csreq=NULL; ctype=1; id=$client
+reqhex() { # designated requirement of a signed bundle/binary as X'..' blob, else NULL
+  local r; r=$(codesign -d -r- "$1" 2>/dev/null | sed -n 's/^designated => //p') || true
+  if [ -n "$r" ]; then local t; t=$(mktemp); echo "$r" | csreq -r- -b "$t" && echo "X'$(xxd -p "$t" | tr -d '\n')'"; rm -f "$t"; else echo NULL; fi
+}
+if [[ "$client" == *.app || "$client" == *.app/ ]]; then
+  id=$(defaults read "${client%/}/Contents/Info.plist" CFBundleIdentifier); ctype=0; csreq=$(reqhex "$client")
+elif [[ "$client" == /* ]]; then
+  ctype=1; csreq=$(reqhex "$client")
+else
+  ctype=0
+fi
+sql=""
+for s in "$@"; do
+  obj_type=NULL; obj="'UNUSED'"
+  case "$s" in
+    AppleEvents:*) svc=kTCCServiceAppleEvents; obj_type=0; obj="'${s#AppleEvents:}'" ;;
+    kTCCService*) svc=$s ;;
+    *) svc=kTCCService$s ;;
+  esac
+  sql+="INSERT OR REPLACE INTO access (service,client,client_type,auth_value,auth_reason,auth_version,csreq,indirect_object_identifier_type,indirect_object_identifier,flags,last_modified) VALUES ('$svc','$id',$ctype,2,3,1,$csreq,$obj_type,$obj,0,CAST(strftime('%s','now') AS INTEGER));"
+done
+sudo sqlite3 "$SYSDB" "$sql"
+sudo sqlite3 "$USERDB" "$sql"
+sudo killall tccd 2>/dev/null || true
+echo "granted $id (type $ctype, csreq $([ "$csreq" = NULL ] && echo none || echo yes)): $*"
