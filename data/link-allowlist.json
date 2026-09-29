@@ -1,0 +1,23 @@
+{
+  "$comment": "Hosts and URLs that block automated link checks or redirect on purpose. For these, bot-blocking statuses, timeouts, server errors and cross-domain redirects are reported as 'unverifiable, skipped' instead of findings. 404, 410 and DNS failures are still flagged. See data/README.md.",
+  "blockedStatuses": [403, 429, 999],
+  "hosts": [
+    { "host": "fandom.com", "reason": "Cloudflare bot challenge" },
+    { "host": "openai.com", "reason": "Cloudflare bot challenge" },
+    { "host": "chatgpt.com", "reason": "Cloudflare bot challenge" },
+    { "host": "perplexity.ai", "reason": "Cloudflare bot challenge" },
+    { "host": "raspberrypi.com", "reason": "Blocks non-browser clients" },
+    { "host": "meta.com", "reason": "Blocks non-browser clients" },
+    { "host": "gatesnotes.com", "reason": "Blocks non-browser clients" },
+    { "host": "tesla.com", "reason": "Akamai bot protection" },
+    { "host": "community.home-assistant.io", "reason": "Discourse blocks crawlers" },
+    { "host": "reddit.com", "reason": "Blocks unauthenticated crawlers" },
+    { "host": "discord.gg", "reason": "Invite links redirect to discord.com and rate-limit bots" },
+    { "host": "x.com", "reason": "Requires login" }
+  ],
+  "urls": [
+    { "url": "https://livekit.io/join-slack", "reason": "Redirects to a Slack invite on slack.com" },
+    { "url": "https://awesome.re", "reason": "The Awesome badge link redirects to sindresorhus/awesome on GitHub" },
+    { "url": "https://www.home-assistant.io/join-chat/", "reason": "Redirects to the Home Assistant Discord invite on discord.com" }
+  ]
+}

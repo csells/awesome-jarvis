@@ -1,0 +1,348 @@
+{
+  "$comment": "Scorecard agents and when and at which version each was last tested. Keep in sync with the Scorecard table in readme.md; see data/README.md.",
+  "agents": [
+    {
+      "name": "OpenClaw",
+      "platform": "macOS, iOS, Android, server",
+      "repo": "openclaw/openclaw",
+      "url": "https://github.com/openclaw/openclaw",
+      "section": "Jarvis Agents › Open Source",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "hands-on",
+      "testedAt": "2026-09-27",
+      "testedVersion": "2026.9.6",
+      "watchOut": "Runs commands without asking by default"
+    },
+    {
+      "name": "Hermes Agent",
+      "platform": "Linux, macOS, Windows",
+      "repo": "NousResearch/hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "section": "Jarvis Agents › Open Source",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "hands-on",
+      "testedAt": "2026-09-27",
+      "testedVersion": "v2026.9.24",
+      "watchOut": "Auto-approves some commands, can adopt your Claude Code login"
+    },
+    {
+      "name": "Qwen Audio Agent",
+      "platform": "macOS, Windows, Linux",
+      "repo": "QwenAudio/qwen-audio-agent",
+      "url": "https://github.com/QwenAudio/qwen-audio-agent",
+      "section": "Jarvis Agents › Open Source",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "code",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Cloud voice by default, Mandarin wake word"
+    },
+    {
+      "name": "usejarvis",
+      "platform": "Daemon plus desktop sidecar",
+      "repo": "vierisid/jarvis",
+      "url": "https://github.com/vierisid/jarvis",
+      "section": "Jarvis Agents › Open Source",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "hands-on",
+      "testedAt": "2026-09-27",
+      "testedVersion": "@usejarvis/brain 0.14.0",
+      "tagPattern": "^v\\d",
+      "watchOut": "Runs commands without asking by default, telemetry on"
+    },
+    {
+      "name": "JARVIS for Claude Code",
+      "platform": "macOS",
+      "repo": "ethanplusai/jarvis",
+      "url": "https://github.com/ethanplusai/jarvis",
+      "section": "Jarvis Agents › macOS",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "hands-on",
+      "testedAt": "2026-09-27",
+      "testedVersion": "16e37bd",
+      "watchOut": "Skips permissions, Fish Audio key, non-commercial"
+    },
+    {
+      "name": "Sutando",
+      "platform": "macOS",
+      "repo": "sonichi/sutando",
+      "url": "https://github.com/sonichi/sutando",
+      "section": "Jarvis Agents › macOS",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "code",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "tagPattern": "^v\\d",
+      "watchOut": "Skips permissions, Gemini key, telemetry on"
+    },
+    {
+      "name": "OpenClicky",
+      "platform": "macOS",
+      "repo": "jasonkneen/openclicky",
+      "url": "https://github.com/jasonkneen/openclicky",
+      "section": "Jarvis Agents › macOS",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "code",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Codex has full access, paid voice keys"
+    },
+    {
+      "name": "N.E.K.O",
+      "platform": "Windows, macOS, Linux",
+      "repo": "Project-N-E-K-O/N.E.K.O",
+      "url": "https://github.com/Project-N-E-K-O/N.E.K.O",
+      "section": "Jarvis Agents › Open Source",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "code",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Free tier uses the project's server"
+    },
+    {
+      "name": "AIRI",
+      "platform": "Web, Windows, macOS, Linux",
+      "repo": "moeru-ai/airi",
+      "url": "https://github.com/moeru-ai/airi",
+      "section": "Jarvis Agents › Open Source",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "partial"
+      },
+      "tested": "code",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Analytics on (opt-out)"
+    },
+    {
+      "name": "hey-jarvis",
+      "platform": "Omarchy",
+      "repo": "Atzingen/hey-jarvis",
+      "url": "https://github.com/Atzingen/hey-jarvis",
+      "section": "Jarvis Agents › Omarchy",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "partial"
+      },
+      "tested": "hands-on",
+      "testedAt": "2026-09-27",
+      "testedVersion": "d6ebaa6",
+      "watchOut": "Consent window needs a click"
+    },
+    {
+      "name": "Operit",
+      "platform": "Android",
+      "repo": "AAswordman/Operit",
+      "url": "https://github.com/AAswordman/Operit",
+      "section": "Jarvis Agents › Android",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "partial"
+      },
+      "tested": "partial",
+      "testedAt": "2026-09-27",
+      "testedVersion": "v1.12.2",
+      "watchOut": "Bundled APKs, root or Shizuku, \"O\" wake phrase"
+    },
+    {
+      "name": "Newelle",
+      "platform": "Linux",
+      "repo": "qwersyk/Newelle",
+      "url": "https://github.com/qwersyk/Newelle",
+      "section": "Jarvis Agents › Linux",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "partial"
+      },
+      "tested": "code",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Flatpak can run host commands"
+    },
+    {
+      "name": "Paseo",
+      "platform": "Desktop, mobile, web",
+      "repo": "getpaseo/paseo",
+      "url": "https://github.com/getpaseo/paseo",
+      "section": "Mission Control › Voice Oversight",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "hands-on",
+      "testedAt": "2026-09-27",
+      "testedVersion": "0.9.2",
+      "watchOut": "Voice agent can approve its own sub-agents"
+    },
+    {
+      "name": "Happy",
+      "platform": "iOS, Android, web, macOS",
+      "repo": "slopus/happy",
+      "url": "https://github.com/slopus/happy",
+      "section": "Mission Control › Voice Oversight",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "partial",
+      "testedAt": "2026-09-27",
+      "testedVersion": "Happy CLI 1.2.5",
+      "tagPattern": "^cli-",
+      "watchOut": "Paid voice after 20 minutes, analytics on"
+    },
+    {
+      "name": "TapQ",
+      "platform": "macOS, AirPods",
+      "repo": "spaceamoeba-t/tapq",
+      "url": "https://github.com/spaceamoeba-t/tapq",
+      "section": "Mission Control › Voice Oversight",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "none",
+        "oversight": "full"
+      },
+      "tested": "hands-on",
+      "testedAt": "2026-09-27",
+      "testedVersion": "0.5.0-beta.2",
+      "watchOut": "Its sessions skip permissions, OpenAI key to converse"
+    },
+    {
+      "name": "ChatGPT and Codex",
+      "platform": "Desktop, mobile, web",
+      "repo": null,
+      "url": "https://learn.chatgpt.com/docs/features/voice",
+      "section": "Jarvis Agents › Commercial",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "docs",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Approvals on screen only"
+    },
+    {
+      "name": "Claude",
+      "platform": "Desktop, mobile, web",
+      "repo": null,
+      "url": "https://claude.com/docs/cowork/guide/dispatch",
+      "section": "Jarvis Agents › Commercial",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "partial",
+        "oversight": "full"
+      },
+      "tested": "docs",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Voice mode is beta"
+    },
+    {
+      "name": "Gemini",
+      "platform": "Mobile, Mac, web",
+      "repo": null,
+      "url": "https://gemini.google/overview/agent/spark/",
+      "section": "Jarvis Agents › Commercial",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "partial",
+        "oversight": "full"
+      },
+      "tested": "docs",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Spark needs Pro or Ultra"
+    },
+    {
+      "name": "Perplexity Comet",
+      "platform": "Desktop, Android",
+      "repo": null,
+      "url": "https://www.perplexity.ai/comet",
+      "section": "Jarvis Agents › Commercial",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "partial",
+        "oversight": "full"
+      },
+      "tested": "docs",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Parallel tasks need Max"
+    },
+    {
+      "name": "Microsoft Copilot",
+      "platform": "Windows",
+      "repo": null,
+      "url": "https://support.microsoft.com/en-us/topic/getting-started-with-copilot-on-windows-1159c61f-86c3-4755-bf83-7fbff7e0982d",
+      "section": "Jarvis Agents › Commercial",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "partial"
+      },
+      "tested": "docs",
+      "testedAt": "2026-09-26",
+      "testedVersion": null,
+      "watchOut": "Actions are experimental"
+    }
+  ]
+}

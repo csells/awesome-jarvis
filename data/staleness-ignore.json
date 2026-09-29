@@ -1,0 +1,4 @@
+{
+  "$comment": "Findings from scripts/staleness.py to leave alone. Each entry needs the finding key (from the report's hidden fingerprint block) and a reason; 'until' (YYYY-MM-DD) is optional, and after that date the finding is reported again. See data/README.md.",
+  "ignore": []
+}
