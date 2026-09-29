@@ -1,6 +1,6 @@
 # Hands-On Testing
 
-The [scorecard](readme.md#scorecard) is built in three passes:
+The [scorecard](readme.md#scorecard) is built in three passes, described in full in the [testing methodology](methodology.md) so new entries can be tested the same way:
 
 1. **Code review.** Every agent was scored on each pillar from its source code and docs, not its README.
 2. **Blind review.** A second, independent review re-scored every agent without seeing the first review's scores. Where the two disagreed, the blind score won.

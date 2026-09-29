@@ -15,6 +15,6 @@ Thanks for helping make this list better. Please make sure your pull request mee
 - Keep the wording and style consistent with the rest of the list.
 - Check your spelling and grammar.
 
-Hands-on test results are especially welcome; say what you ran, on what, and attach transcripts or screenshots.
+Hands-on test results are especially welcome. Follow the [testing methodology](methodology.md), say what you ran and on what, and attach transcripts or screenshots. The "Suggest an agent" issue template asks for the same evidence.
 
 Found a broken link, a project that has been archived or renamed, or a claim that is out of date? Please open an issue or a pull request. Those fixes are just as valuable as new entries.

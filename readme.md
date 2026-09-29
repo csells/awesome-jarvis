@@ -650,4 +650,5 @@ Contributions are welcome. Read the [contribution guidelines](contributing.md) f
 
 - Retired and archived projects that shaped the field, such as Mycroft, Rhasspy, Snowboy and eDEX-UI, are in [history.md](history.md).
 - The test report covers the [lab environments](testing.md#environments), the hands-on results, and the free local voice stack used in place of paid keys.
+- The [testing methodology](methodology.md) explains how agents are scored and how to test a new one.
 - Pillar scores reflect code and documentation reviewed in September 2026. Projects in this space move fast, so please open an issue or pull request when a score, link or claim goes stale.
