@@ -6,14 +6,15 @@
 
 > Real-life J.A.R.V.I.S.: personal AI agents you talk to, that show you what they are doing, and that run a staff of other agents on your behalf.
 
-Tony Stark never typed a prompt. He talked to Jarvis, watched the work take shape on a heads-up display, and let Jarvis run everything else in the building. This list holds projects to four hallmarks:
+Tony Stark never typed a prompt. He talked to Jarvis, watched the work take shape on a heads-up display and let Jarvis run everything else in the building. You can build most of that yourself today. The trick is telling the projects that actually deliver from the ones that bolted a microphone button onto a chat window. So everything here is held to four hallmarks:
+<!-- CHRIS[C01] proposed-opinion: The "microphone button onto a chat window" jab is mine, based on the entries the reviews rejected. Keep it, soften it, or cut it? -->
 
-- **Voice.** Always listening or a wake word, low latency, interruptible, spoken replies.
+- **Voice.** It's always listening or has a wake word, it answers out loud, and you can interrupt it.
 - **Hands-free.** The whole job works without touching anything, including approving, denying and cancelling what the agent does.
-- **Visual presence.** An orb, HUD, avatar, overlay or dashboard that shows its state and the work in progress, not just a chat transcript.
-- **Oversight.** It dispatches, supervises and reports on other agents, such as sub-agents, coding agents and background workers, with approvals and a kill switch.
+- **Visual presence.** An orb, HUD, avatar, overlay or dashboard shows its state and the work in progress, not just a chat transcript.
+- **Oversight.** It dispatches, supervises and reports on other agents (sub-agents, coding agents, background workers), with approvals and a kill switch.
 
-Every agent in the scorecard was checked against its code or vendor documentation, not its marketing, by two independent reviews, and most were then run hands-on in a test lab ([results](testing.md)). Building blocks follow for each layer. New to this? Read the [blueprint](blueprint.md) for a reference architecture and three starter builds.
+Every agent in the scorecard was checked against its code or the vendor's docs, not its marketing, by two independent reviews. Most were then installed and run in a test lab where they had to hear, answer and take orders out loud ([results](testing.md)). The short version: nobody is fully hands-free yet, and several of the most popular agents ship with their approvals switched off or automated. After the agents come the building blocks, layer by layer. If you're building your own, start with the [blueprint](blueprint.md).
 
 ## Contents
 
@@ -74,11 +75,13 @@ Every agent in the scorecard was checked against its code or vendor documentatio
 
 ## Jarvis Agents
 
-Complete assistants that are strong on at least two of the three pillars, including voice or oversight.
+This is where the complete assistants live, not the parts. Each one is strong on at least two of voice, visual presence and oversight, and one of those two has to be voice or oversight.
 
 ### Scorecard
 
-● shipped and working, ◐ partial, limited or experimental, ○ absent. Rows were scored from code (open source) or vendor documentation (commercial) by two independent reviews in September 2026, the second blind to the first. "Tested" says how far each agent was also run hands-on: Hands-on, Partial (run, but a pillar couldn't be exercised), Code or Docs; see the [test results](testing.md#results). No agent is fully hands-free yet: every one needs a click or keypress to approve or cancel something. Several run coding agents with approvals turned off or automated by default, so read the last column before you install.
+● means shipped and working, ◐ means partial, limited or experimental, and ○ means absent. Two independent reviews scored every row in September 2026, the second one blind to the first, working from the code for open-source projects and the vendor's docs for commercial ones. "Tested" tells you how far we went beyond reading: Hands-on means we ran it, Partial means we ran it but couldn't exercise every hallmark, and Code or Docs means we didn't run it. The [test results](testing.md#results) have the details.
+
+Two things jumped out. First, nobody is fully hands-free: every agent needs a click or a keypress to approve or cancel something. Second, several of them run their coding agents with approvals turned off or automated by default, so read the last column before you install anything.
 
 | Agent                  | Platform                    | Voice | Hands-free | Visual | Oversight | Tested   | Watch out                                                     |
 | ---------------------- | --------------------------- | :---: | :--------: | :----: | :-------: | -------- | ------------------------------------------------------------- |
@@ -114,7 +117,7 @@ Complete assistants that are strong on at least two of the three pillars, includ
 
 ### Omarchy
 
-Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, through [Omarchy M](https://omarchy.org/news/2026/09/introducing-omarchy-m/), on Apple Silicon Macs.
+Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, thanks to [Omarchy M](https://omarchy.org/news/2026/09/introducing-omarchy-m/), on Apple Silicon Macs, too.
 
 - [hey-jarvis](https://github.com/Atzingen/hey-jarvis) - Omarchy plugin with a local "hey jarvis" wake word, Whisper, Piper and barge-in, a live conversation window, and requests handed to Claude Code or Codex behind per-command consent windows (the consent window currently needs a click).
 
@@ -144,7 +147,7 @@ Status as of September 2026, from vendor documentation.
 
 ## Mission Control
 
-Jarvis's staff. Tools for dispatching, watching and approving many agents at once.
+Every Jarvis needs a staff. These tools dispatch, watch and approve many agents at once, some of them by voice.
 
 ### Voice Oversight
 
@@ -186,11 +189,12 @@ Ambient ways to see what your agents are doing without reading logs.
 
 ## Watch List
 
-Real Jarvis ideas in working code that are too young, too thin or too risky to vouch for yet. Check activity and read the code before you depend on one. Entries graduate or drop out as they mature. No open-source Windows-native agent meets the bar yet; the cross-platform entries above cover Windows.
+I can't vouch for these yet. They're real Jarvis ideas in working code, but they're too young, too thin or too risky to recommend, so check the activity and read the code before you depend on one. Entries graduate or drop off as they mature. And if you're on Windows, nothing Windows-native makes the bar, so the cross-platform entries above are your best bet.
+<!-- CHRIS[C02] choice: "I can't vouch for these" puts you in the first person as the curator. Keep the "I", or go back to the impersonal voice here? -->
 
 ### Omarchy Contenders
 
-Omarchy 4 made the whole desktop a plugin surface, and its [plugin marketplace](https://plugins.omarchy.org) grew a Jarvis scene within weeks. omarchy-voice and omavoice use OpenAI's Realtime API at a hardcoded address; a one-line change points them at a free local server instead (see [local voice](testing.md#local-voice-instead-of-paid-keys)).
+Omarchy 4 turned the whole desktop into a plugin surface, and its [plugin marketplace](https://plugins.omarchy.org) grew a Jarvis scene in a matter of weeks. omarchy-voice and omavoice talk to OpenAI's Realtime API at a hardcoded address, but a one-line change points them at a free local server instead ([here's how](testing.md#local-voice-instead-of-paid-keys)).
 
 - [omarchy-voice](https://github.com/wombatoperator/omarchy-voice) - Experimental OpenAI Realtime voice control with a state orb and durable background workers, including Codex, that you can list, cancel and resume by voice.
 - [omavoice](https://github.com/baranskyi/omavoice) - OpenAI Realtime voice panel that delegates questions to Codex or Claude Code, with a live trace of the agent's work and cancel control.
@@ -219,7 +223,7 @@ Omarchy 4 made the whole desktop a plugin surface, and its [plugin marketplace](
 
 ## Voice Assistants
 
-Strong on voice, light on visuals and oversight. Good ears and a mouth for a Jarvis, or a Jarvis in its own right if you don't need a staff.
+You'll find great voice here, but little in the way of visuals or oversight. Think of these as good ears and a mouth for a Jarvis, or as a Jarvis in their own right if you don't need a staff.
 
 - [Home Assistant Assist](https://www.home-assistant.io/voice_control/) - Home Assistant's voice pipeline (wake word, speech-to-text, conversation agent, text-to-speech) with satellites in every room, fully local or LLM-backed, that can start conversations on its own.
 - [isair/jarvis](https://github.com/isair/jarvis) - Local always-listening assistant that hears "Jarvis" anywhere in a sentence, with an animated state face, memory and MCP tools (non-commercial license).
@@ -286,7 +290,7 @@ Voice activity detection hears that someone is talking. Turn detection decides w
 
 ### Text-to-Speech
 
-For a butler-style voice, prefer voice design from a text description, which VoxCPM, Qwen3-TTS and OmniVoice support. It avoids cloning a real person. Only clone voices you have the rights to.
+If you want a butler-style voice, design one from a text description (VoxCPM, Qwen3-TTS and OmniVoice all do this) instead of cloning a real person. And only clone voices you have the rights to.
 
 - [Piper](https://github.com/OHF-Voice/piper1-gpl) - Fast local neural voices that run in real time on a Raspberry Pi, in dozens of languages including British English, maintained by the Open Home Foundation.
 - [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M) - 82M-parameter Apache-2.0 model that is the most widely deployed small local voice, fast on CPU, with US and UK English voices.
@@ -349,7 +353,7 @@ For a private Jarvis that works when the internet doesn't.
 
 ### Open-Weight Models
 
-A few strong assistant brains as of September 2026. This changes monthly, so check the benchmarks below.
+A few strong assistant brains as of September 2026. The leaders change monthly, so check the benchmarks below.
 
 - [Qwen](https://huggingface.co/Qwen/Qwen3.8-27B) - Alibaba's model family, whose Apache-2.0 Qwen3.8-27B (image and video input, 262K context) is a strong single-GPU assistant.
 - [Gemma](https://huggingface.co/google/gemma-4-E4B-it) - Google's Apache-2.0 family, from on-device models that handle speech, images and text up to 31B, suited to phones and edge devices.
@@ -644,11 +648,11 @@ The spec sheet, as written by science fiction and visionaries.
 
 ## Contributing
 
-Contributions are welcome. Read the [contribution guidelines](contributing.md) first.
+Contributions are welcome, especially hands-on test results. Read the [contribution guidelines](contributing.md) first.
 
 ## Footnotes
 
 - Retired and archived projects that shaped the field, such as Mycroft, Rhasspy, Snowboy and eDEX-UI, are in [history.md](history.md).
 - The test report covers the [lab environments](testing.md#environments), the hands-on results, and the free local voice stack used in place of paid keys.
 - The [testing methodology](methodology.md) explains how agents are scored and how to test a new one.
-- Pillar scores reflect code and documentation reviewed in September 2026. Projects in this space move fast, so please open an issue or pull request when a score, link or claim goes stale.
+- Scores reflect code, docs and tests from September 2026. This space moves fast, so if a score, link or claim goes stale, please open an issue or a pull request.
