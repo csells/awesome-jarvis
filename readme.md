@@ -6,19 +6,21 @@
 
 > Real-life J.A.R.V.I.S.: personal AI agents you talk to, that show you what they are doing, and that run a staff of other agents on your behalf.
 
-Tony Stark never typed a prompt. He talked to Jarvis, watched the work take shape on a heads-up display, and let Jarvis run everything else in the building. This list holds projects to those three pillars:
+Tony Stark never typed a prompt. He talked to Jarvis, watched the work take shape on a heads-up display, and let Jarvis run everything else in the building. This list holds projects to four hallmarks:
 
-- **Voice.** Hands-free and interruptible: a wake word or always-on listening, low latency, spoken replies.
+- **Voice.** Always listening or a wake word, low latency, interruptible, spoken replies.
+- **Hands-free.** The whole job works without touching anything, including approving, denying and cancelling what the agent does.
 - **Visual presence.** An orb, HUD, avatar, overlay or dashboard that shows its state and the work in progress, not just a chat transcript.
 - **Oversight.** It dispatches, supervises and reports on other agents, such as sub-agents, coding agents and background workers, with approvals and a kill switch.
 
-Every agent in the scorecard was checked against its code or vendor documentation, not its marketing, by two independent reviews. Building blocks follow for each layer. New to this? Read the [blueprint](blueprint.md) for a reference architecture and three starter builds.
+Every agent in the scorecard was checked against its code or vendor documentation, not its marketing, by two independent reviews, and most were then run hands-on in a test lab ([results](testing.md)). Building blocks follow for each layer. New to this? Read the [blueprint](blueprint.md) for a reference architecture and three starter builds.
 
 ## Contents
 
 - [Jarvis Agents](#jarvis-agents)
 	- [Scorecard](#scorecard)
 	- [Open Source](#open-source)
+	- [Omarchy](#omarchy)
 	- [macOS](#macos)
 	- [Linux](#linux)
 	- [Android](#android)
@@ -29,7 +31,7 @@ Every agent in the scorecard was checked against its code or vendor documentatio
 	- [Agent Presence](#agent-presence)
 	- [Hosted Mission Control](#hosted-mission-control)
 - [Watch List](#watch-list)
-	- [Omarchy](#omarchy)
+	- [Omarchy Contenders](#omarchy-contenders)
 	- [Voice Oversight Contenders](#voice-oversight-contenders)
 	- [Desktop, Mobile and Glasses](#desktop-mobile-and-glasses)
 - [Voice Assistants](#voice-assistants)
@@ -76,29 +78,30 @@ Complete assistants that are strong on at least two of the three pillars, includ
 
 ### Scorecard
 
-● shipped and working, ◐ partial, limited or experimental, ○ absent. Open-source rows were scored from code by two independent reviews in September 2026, the second blind to the first. Commercial rows were scored from vendor documentation. Several agents run coding agents with permission checks turned off by default, so read the last column before you install.
+● shipped and working, ◐ partial, limited or experimental, ○ absent. Rows were scored from code (open source) or vendor documentation (commercial) by two independent reviews in September 2026, the second blind to the first. "Tested" says how far each agent was also run hands-on: Hands-on, Partial (run, but a pillar couldn't be exercised), Code or Docs; see the [test results](testing.md#results). No agent is fully hands-free yet: every one needs a click or keypress to approve or cancel something. Several run coding agents with approvals turned off or automated by default, so read the last column before you install.
 
-| Agent                  | Platform                    | Voice | Visual | Oversight | Watch out                                  |
-| ---------------------- | --------------------------- | :---: | :----: | :-------: | ------------------------------------------ |
-| OpenClaw               | macOS, iOS, Android, server |   ●   |   ●    |     ●     | Yolo mode is opt-in                        |
-| Hermes Agent           | Linux, macOS, Windows       |   ●   |   ●    |     ●     | None found                                 |
-| Qwen Audio Agent       | macOS, Windows, Linux       |   ●   |   ●    |     ●     | Cloud voice by default, Mandarin wake word |
-| usejarvis              | Daemon plus desktop sidecar |   ●   |   ●    |     ●     | Source-available, telemetry on (opt-out)   |
-| JARVIS for Claude Code | macOS                       |   ●   |   ●    |     ●     | Skips permissions, non-commercial          |
-| Sutando                | macOS                       |   ●   |   ●    |     ●     | Skips permissions, telemetry on (opt-out)  |
-| OpenClicky             | macOS                       |   ●   |   ●    |     ●     | Codex full access, prebuilt binaries       |
-| N.E.K.O                | Windows, macOS, Linux       |   ●   |   ●    |     ●     | Free tier uses the project's server        |
-| AIRI                   | Web, Windows, macOS, Linux  |   ●   |   ●    |     ◐     | Analytics on (opt-out)                     |
-| Operit                 | Android                     |   ●   |   ●    |     ◐     | Bundled APKs, root or Shizuku              |
-| Newelle                | Linux                       |   ●   |   ●    |     ◐     | Flatpak can run host commands              |
-| Paseo                  | Desktop, mobile, web        |   ●   |   ●    |     ●     | Voice control of agents is opt-in          |
-| Happy                  | iOS, Android, web, macOS    |   ●   |   ●    |     ●     | Paid voice, analytics on (opt-out)         |
-| TapQ                   | macOS, AirPods              |   ●   |   ○    |     ●     | Beta, its sessions skip permissions        |
-| ChatGPT and Codex      | Desktop, mobile, web        |   ●   |   ●    |     ●     | Approvals on screen only                   |
-| Claude                 | Desktop, mobile, web        |   ●   |   ◐    |     ●     | Voice mode is beta                         |
-| Gemini                 | Mobile, Mac, web            |   ●   |   ◐    |     ●     | Spark needs Pro or Ultra                   |
-| Perplexity Comet       | Desktop, Android            |   ●   |   ◐    |     ●     | Parallel tasks need Max                    |
-| Microsoft Copilot      | Windows                     |   ●   |   ●    |     ◐     | Actions are experimental                   |
+| Agent                  | Platform                    | Voice | Hands-free | Visual | Oversight | Tested   | Watch out                                                     |
+| ---------------------- | --------------------------- | :---: | :--------: | :----: | :-------: | -------- | ------------------------------------------------------------- |
+| OpenClaw               | macOS, iOS, Android, server |   ●   |     ◐      |   ●    |     ●     | Hands-on | Runs commands without asking by default                       |
+| Hermes Agent           | Linux, macOS, Windows       |   ●   |     ◐      |   ●    |     ●     | Hands-on | Auto-approves some commands, can adopt your Claude Code login |
+| Qwen Audio Agent       | macOS, Windows, Linux       |   ●   |     ◐      |   ●    |     ●     | Code     | Cloud voice by default, Mandarin wake word                    |
+| usejarvis              | Daemon plus desktop sidecar |   ●   |     ◐      |   ●    |     ●     | Hands-on | Runs commands without asking by default, telemetry on         |
+| JARVIS for Claude Code | macOS                       |   ●   |     ◐      |   ●    |     ●     | Hands-on | Skips permissions, Fish Audio key, non-commercial             |
+| Sutando                | macOS                       |   ●   |     ◐      |   ●    |     ●     | Code     | Skips permissions, Gemini key, telemetry on                   |
+| OpenClicky             | macOS                       |   ●   |     ◐      |   ●    |     ●     | Code     | Codex has full access, paid voice keys                        |
+| N.E.K.O                | Windows, macOS, Linux       |   ●   |     ◐      |   ●    |     ●     | Code     | Free tier uses the project's server                           |
+| AIRI                   | Web, Windows, macOS, Linux  |   ●   |     ◐      |   ●    |     ◐     | Code     | Analytics on (opt-out)                                        |
+| hey-jarvis             | Omarchy                     |   ●   |     ◐      |   ●    |     ◐     | Hands-on | Consent window needs a click                                  |
+| Operit                 | Android                     |   ●   |     ◐      |   ●    |     ◐     | Partial  | Bundled APKs, root or Shizuku, "O" wake phrase                |
+| Newelle                | Linux                       |   ●   |     ◐      |   ●    |     ◐     | Code     | Flatpak can run host commands                                 |
+| Paseo                  | Desktop, mobile, web        |   ●   |     ◐      |   ●    |     ●     | Hands-on | Voice agent can approve its own sub-agents                    |
+| Happy                  | iOS, Android, web, macOS    |   ●   |     ◐      |   ●    |     ●     | Partial  | Paid voice after 20 minutes, analytics on                     |
+| TapQ                   | macOS, AirPods              |   ●   |     ◐      |   ○    |     ●     | Hands-on | Its sessions skip permissions, OpenAI key to converse         |
+| ChatGPT and Codex      | Desktop, mobile, web        |   ●   |     ◐      |   ●    |     ●     | Docs     | Approvals on screen only                                      |
+| Claude                 | Desktop, mobile, web        |   ●   |     ◐      |   ◐    |     ●     | Docs     | Voice mode is beta                                            |
+| Gemini                 | Mobile, Mac, web            |   ●   |     ◐      |   ◐    |     ●     | Docs     | Spark needs Pro or Ultra                                      |
+| Perplexity Comet       | Desktop, Android            |   ●   |     ◐      |   ◐    |     ●     | Docs     | Parallel tasks need Max                                       |
+| Microsoft Copilot      | Windows                     |   ●   |     ◐      |   ●    |     ◐     | Docs     | Actions are experimental                                      |
 
 ### Open Source
 
@@ -108,6 +111,12 @@ Complete assistants that are strong on at least two of the three pillars, includ
 - [usejarvis](https://github.com/vierisid/jarvis) - Daemon with a "Hey Jarvis" wake word, interruptible speech, a cursor-following status orb with a sub-orb for each background agent, and delegated sub-agents with approvals and kill controls (source-available license).
 - [N.E.K.O](https://github.com/Project-N-E-K-O/N.E.K.O) - Desktop companion with full-duplex voice and barge-in, Live2D, VRM or MMD avatars, and an agent HUD that dispatches and cancels computer-use, browser and OpenClaw tasks.
 - [AIRI](https://github.com/moeru-ai/airi) - Self-hosted Live2D and VRM companion for web, desktop and mobile with always-on voice, sub-agents such as its Minecraft player, and an approval-gated computer-use service.
+
+### Omarchy
+
+Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, through [Omarchy M](https://omarchy.org/news/2026/09/introducing-omarchy-m/), on Apple Silicon Macs.
+
+- [hey-jarvis](https://github.com/Atzingen/hey-jarvis) - Omarchy plugin with a local "hey jarvis" wake word, Whisper, Piper and barge-in, a live conversation window, and requests handed to Claude Code or Codex behind per-command consent windows (the consent window currently needs a click).
 
 ### macOS
 
@@ -179,11 +188,10 @@ Ambient ways to see what your agents are doing without reading logs.
 
 Real Jarvis ideas in working code that are too young, too thin or too risky to vouch for yet. Check activity and read the code before you depend on one. Entries graduate or drop out as they mature. No open-source Windows-native agent meets the bar yet; the cross-platform entries above cover Windows.
 
-### Omarchy
+### Omarchy Contenders
 
-Omarchy 4 made the whole desktop a plugin surface, and its [plugin marketplace](https://plugins.omarchy.org) grew a Jarvis scene within weeks. Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, through [Omarchy M](https://omarchy.org/news/2026/09/introducing-omarchy-m/), on Apple Silicon Macs.
+Omarchy 4 made the whole desktop a plugin surface, and its [plugin marketplace](https://plugins.omarchy.org) grew a Jarvis scene within weeks. omarchy-voice and omavoice use OpenAI's Realtime API at a hardcoded address; a one-line change points them at a free local server instead (see [local voice](testing.md#local-voice-instead-of-paid-keys)).
 
-- [hey-jarvis](https://github.com/Atzingen/hey-jarvis) - Local "hey jarvis" wake word, Whisper, Piper and barge-in, with a live conversation window, handing requests to Codex or Claude Code behind per-command consent windows.
 - [omarchy-voice](https://github.com/wombatoperator/omarchy-voice) - Experimental OpenAI Realtime voice control with a state orb and durable background workers, including Codex, that you can list, cancel and resume by voice.
 - [omavoice](https://github.com/baranskyi/omavoice) - OpenAI Realtime voice panel that delegates questions to Codex or Claude Code, with a live trace of the agent's work and cancel control.
 - [Omarvis](https://github.com/eliasstravik/omarvis) - ElevenLabs voice sessions that run allowlisted desktop and browser commands and steer Herdr coding agents, with spoken confirmation for risky actions.
@@ -641,4 +649,5 @@ Contributions are welcome. Read the [contribution guidelines](contributing.md) f
 ## Footnotes
 
 - Retired and archived projects that shaped the field, such as Mycroft, Rhasspy, Snowboy and eDEX-UI, are in [history.md](history.md).
+- The test report covers the [lab environments](testing.md#environments), the hands-on results, and the free local voice stack used in place of paid keys.
 - Pillar scores reflect code and documentation reviewed in September 2026. Projects in this space move fast, so please open an issue or pull request when a score, link or claim goes stale.
