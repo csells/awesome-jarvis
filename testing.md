@@ -49,6 +49,15 @@ The follow-up used an explicitly authorized existing Jev key for the unchanged T
 
 The clean install needed two missing build dependencies, `setuptools` and `py2app`. The real wake loop also saved unrelated speech as a WAV even though the Privacy screen says it discards speech not addressed to it. The pinned repository has no declared license. Resolve that retention discrepancy and license uncertainty before recommending it for Voice Assistants. See the [initial report](lab/evidence/hey-jev/README.md) and [adapted test notes, patch and evidence](lab/evidence/hey-jev/adapted/README.md).
 
+
+### OpenDots — 2026-10-05
+
+**Added to the Watch List.** At commit `71efd82cd883df7b107d663bd36435a1d8a2d12a`, OpenDots implements continuous browser voice calls with configured interruption, a dashboard, and delegation to a specialist compute agent. A tap to begin a phone-browser call is useful even without a wake word. The existing hallmark rubric gives partial voice/hands-free/oversight and full visual credit from code; this is not a claim that live calling passed.
+
+The unchanged production build ran on Apple silicon macOS with Node 26.8.2 and Chrome for Testing 154.0.8037.92. Desktop page creation/save and a 390 × 844 touch-enabled browser's persisted document view and pause/resume controls **passed**. A separate direct-agent probe using real local Ollama answered a question and invoked the page tool to save exact content in SQLite. That probe bypasses the Intelligence transport and does not establish a working browser conversation. No physical phone, iOS background audio or cellular handoff was tested.
+
+Stock conversations and calls returned HTTP 503 for missing service configuration: **BLOCKED**, not failed. CopilotKit Intelligence is a separate dependency that local model access does not replace; stock speech additionally needs OpenAI Realtime. Spoken approval/cancel tools and automatic multi-Dot coordination are absent. Calls cap at 15 minutes and six compute requests. The upstream fixture suite passed all 182 tests with one worker after two timeouts in the initial parallel run. See the [report, source findings, screenshots and reproducible probes](lab/evidence/opendots/README.md) for exact coverage and service requirements.
+
 ## Findings
 
 - **No agent is fully hands-free yet.** Every agent tested can hear you and talk back, but approving, denying or cancelling the agents it launched still needs a click or keypress somewhere. TapQ comes closest, with spoken approve and deny.

@@ -208,6 +208,8 @@ Omarchy 4 turned the whole desktop into a plugin surface, and its [plugin market
 - [OpenYabby](https://github.com/OpenYabby/OpenYabby) - macOS orchestrator with a "Yabby" wake word and realtime voice that plans work and spawns teams of Claude Code or Codex agents with plan approval and kill controls.
 - [Nerve](https://github.com/daggerhashimoto/openclaw-nerve) - Web cockpit for OpenClaw with wake-phrase voice, a sub-agent session tree and a kanban board for delegating and reviewing work.
 
+- [OpenDots](https://github.com/CopilotKit/OpenDots) - Self-hosted workspace with continuous browser voice calls, a specialist-agent dashboard and speech-to-compute delegation. Phone-sized UI and local-model page creation were [tested](lab/evidence/opendots/README.md); live calls remain unverified. Requires CopilotKit Intelligence and configured model/speech services; calls cap at 15 minutes and lack spoken approval/cancel controls.
+
 ### Desktop, Mobile and Glasses
 
 - [Personal Jarvis](https://github.com/PersonalJarvis/PersonalJarvis) - Wake-word voice orchestrator with an orb and mission deck that runs Claude Code and Codex missions in worktrees (one developer's largely AI-generated code, failing CI, workers skip permission checks).

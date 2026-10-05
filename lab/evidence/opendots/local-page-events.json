@@ -1,0 +1,593 @@
+[
+  {
+    "type": "RUN_STARTED",
+    "threadId": "lab-component",
+    "runId": "local-page"
+  },
+  {
+    "type": "TOOL_CALL_START",
+    "parentMessageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "toolCallId": "call_pba9kwn6",
+    "toolCallName": "create_space_page"
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "call_pba9kwn6",
+    "delta": "{\"content\":\"The violet notebook has seven pages.\",\"title\":\"Jarvis lab proof\"}"
+  },
+  {
+    "type": "TOOL_CALL_END",
+    "toolCallId": "call_pba9kwn6"
+  },
+  {
+    "type": "TOOL_CALL_RESULT",
+    "role": "tool",
+    "messageId": "1cbb257c-8d6a-472f-9d88-b5566660d1cf",
+    "toolCallId": "call_pba9kwn6",
+    "content": "{\"id\":\"ad387946-da1e-4091-99f5-abfcee99bcec\",\"spaceId\":\"46e91e9f-65a8-4105-ba0b-003354db6aa8\",\"parentId\":null,\"title\":\"Jarvis lab proof\",\"content\":\"The violet notebook has seven pages.\",\"revision\":1,\"createdAt\":1791226362948,\"updatedAt\":1791226362948,\"sourceThreadId\":null,\"url\":\"/#/spaces/46e91e9f-65a8-4105-ba0b-003354db6aa8/pages/ad387946-da1e-4091-99f5-abfcee99bcec\"}"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "Here"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " is"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " the"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " link"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " to"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " your"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " new"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " page"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " titled"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " \""
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "Jar"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "vis"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " lab"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " proof"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "\""
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " in"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " the"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " default"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " Space"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": ":"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " ["
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "Jar"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "vis"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " lab"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": " proof"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "]("
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "/"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "#/"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "spaces"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "/"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "4"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "6"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "e"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "9"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "1"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "e"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "9"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "f"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "-"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "6"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "5"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "a"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "8"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "-"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "4"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "1"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "0"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "5"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "-b"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "a"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "0"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "b"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "-"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "0"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "0"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "3"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "3"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "5"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "4"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "db"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "6"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "aa"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "8"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "/pages"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "/ad"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "3"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "8"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "7"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "9"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "4"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "6"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "-da"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "1"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "e"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "-"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "4"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "0"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "9"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "1"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "-"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "9"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "9"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "f"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "5"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "-ab"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "f"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "cee"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "9"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "9"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "b"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": "cec"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "1119578a-c39a-4f78-af64-c0944ce774ad",
+    "delta": ")."
+  },
+  {
+    "type": "RUN_FINISHED",
+    "threadId": "lab-component",
+    "runId": "local-page",
+    "usage": [
+      {
+        "inputTokens": 2059,
+        "outputTokens": 129,
+        "totalTokens": 2188
+      }
+    ]
+  }
+]

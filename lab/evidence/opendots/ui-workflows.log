@@ -1,0 +1,56 @@
+PASS desktop page create/save {
+  id: '9074d81b-b639-45e9-acd3-d08663087ca2',
+  spaceId: 'b5697020-d0a7-40fb-b3e3-b3a74261c6c7',
+  parentId: null,
+  title: 'Phone workflow test',
+  content: 'The green notebook contains eleven pages.',
+  revision: 3,
+  createdAt: 1791226539872,
+  updatedAt: 1791226542123,
+  sourceThreadId: null
+}
+[
+  {
+    "test": "desktop manual create/save",
+    "result": "PASS",
+    "saved": {
+      "id": "9074d81b-b639-45e9-acd3-d08663087ca2",
+      "spaceId": "b5697020-d0a7-40fb-b3e3-b3a74261c6c7",
+      "parentId": null,
+      "title": "Phone workflow test",
+      "content": "The green notebook contains eleven pages.",
+      "revision": 3,
+      "createdAt": 1791226539872,
+      "updatedAt": 1791226542123,
+      "sourceThreadId": null
+    }
+  },
+  {
+    "test": "phone viewport persisted page and layout",
+    "result": "PASS",
+    "layout": {
+      "innerWidth": 390,
+      "scrollWidth": 390
+    }
+  },
+  {
+    "test": "phone pause control",
+    "result": "PASS"
+  },
+  {
+    "test": "stock conversation setup gate",
+    "status": 503,
+    "body": {
+      "error": "Setup required: INTELLIGENCE_API_KEY (or CPK_INTELLIGENCE_API_KEY), OPENAI_API_KEY, OPENAI_MODEL."
+    },
+    "result": "BLOCKED"
+  },
+  {
+    "test": "stock voice setup gate",
+    "status": 503,
+    "body": {
+      "error": "Setup required: INTELLIGENCE_API_KEY (or CPK_INTELLIGENCE_API_KEY), OPENAI_API_KEY, OPENAI_MODEL. Conversations require CopilotKit Intelligence."
+    },
+    "result": "BLOCKED"
+  }
+]

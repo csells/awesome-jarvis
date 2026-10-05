@@ -1,0 +1,55 @@
+[
+  {
+    "type": "RUN_STARTED",
+    "threadId": "lab-component",
+    "runId": "local-answer"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "d2d2ea00-0477-4560-b497-81a421b5fe80",
+    "delta": "Two"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "d2d2ea00-0477-4560-b497-81a421b5fe80",
+    "delta": " plus"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "d2d2ea00-0477-4560-b497-81a421b5fe80",
+    "delta": " two"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "d2d2ea00-0477-4560-b497-81a421b5fe80",
+    "delta": " is"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "d2d2ea00-0477-4560-b497-81a421b5fe80",
+    "delta": " four"
+  },
+  {
+    "type": "TEXT_MESSAGE_CHUNK",
+    "role": "assistant",
+    "messageId": "d2d2ea00-0477-4560-b497-81a421b5fe80",
+    "delta": "."
+  },
+  {
+    "type": "RUN_FINISHED",
+    "threadId": "lab-component",
+    "runId": "local-answer",
+    "usage": [
+      {
+        "inputTokens": 885,
+        "outputTokens": 7,
+        "totalTokens": 892
+      }
+    ]
+  }
+]

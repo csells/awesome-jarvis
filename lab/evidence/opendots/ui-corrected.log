@@ -1,0 +1,69 @@
+o
+·
+OpenDots
+New chat
+DOTS
+Dot
+SPACES
+Everyday
+Set up text chat to begin a persistent conversation.
+Scheduled & activity
+0
+Memories
+0
+Settings & setup
+Make it your own
+Dots
+/
+Dot
+Pause
+Dot
+
+Be thoughtful, practical, and concise. Help the user think clearly and follow through.
+
+Edit specialist
+Connect your Dot
+
+Connect your model and conversation service in Settings to start chatting. Your Spaces and Dot preferences are ready to use.
+
+Open the setup guide
+Help me think this through
+Research a public page
+Make a plan I can follow
+BUTTONS [
+  { text: 'o·', label: 'OpenDots home', disabled: false },
+  { text: '', label: 'Collapse sidebar', disabled: false },
+  { text: '', label: 'New chat', disabled: true },
+  { text: '', label: 'Open Spaces', disabled: false },
+  { text: '', label: 'Open activity', disabled: false },
+  { text: '', label: 'Open settings', disabled: false },
+  { text: 'OpenDots•', label: null, disabled: false },
+  { text: 'New chat', label: null, disabled: true },
+  { text: '', label: 'Create Dot', disabled: false },
+  { text: 'Dot', label: null, disabled: false },
+  { text: '', label: 'Edit Dot settings', disabled: false },
+  { text: '', label: 'Create Space', disabled: false },
+  { text: '', label: 'Expand Everyday', disabled: false },
+  { text: 'Everyday', label: null, disabled: false },
+  { text: 'Scheduled & activity0', label: null, disabled: false },
+  { text: 'Memories0', label: null, disabled: false },
+  { text: 'Settings & setup', label: null, disabled: false },
+  { text: '', label: 'Hide navigation', disabled: false },
+  { text: 'Pause', label: 'Pause all Dots', disabled: false },
+  { text: '', label: 'Show computer', disabled: false },
+  { text: 'Edit specialist ', label: null, disabled: false },
+  { text: '', label: 'Start conversation', disabled: true },
+  { text: 'Help me think this through', label: null, disabled: true },
+  { text: 'Research a public page', label: null, disabled: true },
+  { text: 'Make a plan I can follow', label: null, disabled: true }
+]
+MOBILE BUTTONS [
+  { text: '', label: 'Open navigation', disabled: false },
+  { text: 'Pause', label: 'Pause all Dots', disabled: false },
+  { text: '', label: 'Show computer', disabled: false },
+  { text: 'Edit specialist ', label: null, disabled: false },
+  { text: '', label: 'Start conversation', disabled: true },
+  { text: 'Help me think this through', label: null, disabled: true },
+  { text: 'Research a public page', label: null, disabled: true },
+  { text: 'Make a plan I can follow', label: null, disabled: true }
+]

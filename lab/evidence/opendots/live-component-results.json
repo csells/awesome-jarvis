@@ -1,0 +1,42 @@
+{
+  "scope": "Direct upstream DotAgent, real local Ollama model and real SQLite writes. No Intelligence transport, browser conversation, or voice tested.",
+  "model": "qwen2.5:7b-instruct-q4_K_M",
+  "results": [
+    {
+      "id": "local-answer",
+      "text": "Two plus two is four.",
+      "errors": []
+    },
+    {
+      "id": "local-page",
+      "text": "Here is the link to your new page titled \"Jarvis lab proof\" in the default Space: [Jarvis lab proof](/#/spaces/46e91e9f-65a8-4105-ba0b-003354db6aa8/pages/ad387946-da1e-4091-99f5-abfcee99bcec).",
+      "errors": []
+    }
+  ],
+  "saved": {
+    "id": "ad387946-da1e-4091-99f5-abfcee99bcec",
+    "spaceId": "46e91e9f-65a8-4105-ba0b-003354db6aa8",
+    "parentId": null,
+    "title": "Jarvis lab proof",
+    "content": "The violet notebook has seven pages.",
+    "revision": 1,
+    "createdAt": 1791226362948,
+    "updatedAt": 1791226362948,
+    "sourceThreadId": null
+  },
+  "requests": [
+    {
+      "url": "http://127.0.0.1:11434/v1/chat/completions",
+      "time": "2026-10-05T18:52:26.401Z"
+    },
+    {
+      "url": "http://127.0.0.1:11434/v1/chat/completions",
+      "time": "2026-10-05T18:52:38.345Z"
+    },
+    {
+      "url": "http://127.0.0.1:11434/v1/chat/completions",
+      "time": "2026-10-05T18:52:43.034Z"
+    }
+  ],
+  "reporting_note": "Initial probe console parser expected TEXT_MESSAGE_CONTENT; upstream emits TEXT_MESSAGE_CHUNK. Summary reconstructed from original retained raw events; no model rerun or synthetic response."
+}

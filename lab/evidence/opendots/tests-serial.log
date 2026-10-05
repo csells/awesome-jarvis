@@ -1,0 +1,197 @@
+
+> opendots@0.1.0 test
+> vitest run --reporter=verbose --maxWorkers=1
+
+
+ RUN  v4.1.11 /Users/csells/code/CopilotKit/OpenDots
+
+ ✓ tests/voice.test.ts > binds voice history and compute to the existing thread, deduplicates tools and hangs up remotely 64ms
+ ✓ tests/voice.test.ts > rejects unowned threads before provider contact and expires unactivated peers 12ms
+ ✓ tests/voice.test.ts > aborts a pending history lookup without starting a provider session 4ms
+ ✓ tests/voice.test.ts > fails visibly for provider errors and does not claim an active call 5ms
+ ✓ tests/voice.test.ts > hangs up a provisioned peer whose SDP is invalid 7ms
+ ✓ tests/voice.test.ts > saves a late transcript after expiry without changing the ended status or duration 9ms
+ ✓ tests/voice.test.ts > defers paused transcript synchronization and resumes it once without a duplicate turn 7ms
+ ✓ tests/voice.test.ts > reports rejected provider hangup status without exposing its response body 6ms
+ ✓ tests/voice.test.ts > reports transport hangup failures without exposing transport errors 6ms
+ ✓ tests/voice.test.ts > distinguishes provider hangup timeout from transport failure 6ms
+ ✓ tests/voice.test.ts > sanitizes custom provider transport error names 5ms
+ ✓ tests/computer.test.ts > defaults every permission off and persists policy and metadata-only audit across restart 35ms
+ ✓ tests/computer.test.ts > status never provisions and actions use per-Dot derived credentials with audit before dispatch 45ms
+ ✓ tests/computer.test.ts > rejects foreign targets, nonexistent Dots, traversal, unexpected inputs and agent human controls 13ms
+ ✓ tests/computer.test.ts > checks current permissions and global pause and records failure without sensitive inputs 6ms
+ ✓ tests/computer.test.ts > cancels in-flight actions on revocation and bounds upstream deadlines 264ms
+ ✓ tests/computer.test.ts > preserves recovery handback after permissions are revoked; upstream failures are sanitized 16ms
+ ✓ tests/computer.test.ts > binds tools to the current Dot without exposing human or policy controls 7ms
+ ✓ tests/computer.test.ts > bounds completed audit storage while preserving pending work 2104ms
+ ✓ tests/computer.test.ts > accepts an uppercase namespace while preserving exact container identity 7ms
+ ✓ tests/computer.test.ts > gives agents a safe recovery instruction for stale browser or control conflicts 8ms
+ ✓ tests/parallel.test.ts > Parallel research > defaults to Parallel and rejects invalid configuration 6ms
+ ✓ tests/parallel.test.ts > Parallel research > searches, extracts and grounds a topic-only brief without a browser 59ms
+ ✓ tests/parallel.test.ts > Parallel research > extracts supplied URLs directly and preserves session identity 6ms
+ ✓ tests/parallel.test.ts > Parallel research > filters malformed sources, duplicate URLs and unsafe citation schemes 2ms
+ ✓ tests/parallel.test.ts > Parallel research > surfaces provider errors and closes the client 3ms
+ ✓ tests/parallel.test.ts > Parallel research > stops before connecting when cancelled or disabled 1ms
+ ✓ tests/parallel.test.ts > Parallel research > propagates cancellation while reading a provider result 1ms
+ ✓ tests/parallel.test.ts > preserves long research intent and records partial source failures 3ms
+ ✓ tests/tanstack-agent.test.ts > executes a page tool, continues with its result, and emits AG-UI text and tool events 94ms
+ ✓ tests/tanstack-agent.test.ts > offers the canonical review tool and waits for the client without saving a page 23ms
+ ✓ tests/tanstack-agent.test.ts > validates tool arguments before making a page change 21ms
+ ✓ tests/tanstack-agent.test.ts > aborts the TanStack provider request when the owner pauses work 111ms
+ ✓ tests/tanstack-agent.test.ts > tells the model the current time so scheduled runs do not invent one 17ms
+ ✓ tests/tanstack-agent.test.ts > reports a turn that hits the time limit as a RUN_ERROR instead of ending silently 163ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 127.0.0.1 3ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 10.0.0.1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 172.16.0.1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 192.168.0.1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 169.254.169.254 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 0.0.0.0 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address ::1 15ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 2001::1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 2001:100::1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 2002:7f00:1:: 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address fc00::1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address fe80::1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address ::ffff:127.0.0.1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects private or special address 224.0.0.1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > accepts public address 8.8.8.8 0ms
+ ✓ tests/security.test.ts > browser network boundaries > accepts public address 1.1.1.1 0ms
+ ✓ tests/security.test.ts > browser network boundaries > accepts public address 2606:4700:4700::1111 0ms
+ ✓ tests/security.test.ts > browser network boundaries > rejects non-http URLs and embedded credentials 2ms
+ ✓ tests/autosave.test.ts > does not serialize or save on initial load or unchanged polling 9ms
+ ✓ tests/autosave.test.ts > debounces saves and serializes fresh typing behind the in-flight revision 6ms
+ ✓ tests/autosave.test.ts > preserves drafts after failure and requires explicit retry; conflicts freeze automatic saves 2ms
+ ✓ tests/autosave.test.ts > ignores stale completion after navigation and retains dirty work during remote polling 2ms
+ ✓ tests/autosave.test.ts > bounds a hung save, preserves the ambiguous draft, and does not retry automatically 2ms
+ ✓ tests/autosave.test.ts > keeps navigation guarded when typing reverts to the old content during a save, then flushes the revert 2ms
+ ✓ tests/autosave.test.ts > preserves a reverted draft when polling finds a save whose response was lost 2ms
+ ✓ tests/markdown.test.ts > round-trips supported writing structures without losing semantic content 129ms
+ ✓ tests/markdown.test.ts > requires exact source editing for unsupported Markdown: ![remote](https://example.com/photo.png) 1ms
+ ✓ tests/markdown.test.ts > requires exact source editing for unsupported Markdown: <script>alert(1)</script> 0ms
+ ✓ tests/markdown.test.ts > requires exact source editing for unsupported Markdown: <details><summary>Note</summary>Hidden</details> 0ms
+ ✓ tests/markdown.test.ts > requires exact source editing for unsupported Markdown: [^1]: A footnote 0ms
+ ✓ tests/markdown.test.ts > requires exact source editing for unsupported Markdown: ---
+title: Front matter
+---
+Body 0ms
+ ✓ tests/markdown.test.ts > does not mistake source code containing HTML for active HTML 0ms
+ ✓ tests/markdown.test.ts > detects unsupported content nested inside task items 1ms
+ ✓ tests/markdown.test.ts > preserves reference definitions through explicit source fallback, including unused definitions 1ms
+ ✓ tests/runner.test.ts > aborts research when permissions are revoked outside the runner instance 112ms
+ ✓ tests/runner.test.ts > checks abort again before sending source evidence or memories to the model 19ms
+ ✓ tests/runner.test.ts > omits stored memories from research when memory permission is disabled 4ms
+ ✓ tests/runner.test.ts > holds active work for review on graceful shutdown 59ms
+ ✓ tests/runner.test.ts > survives a claim failure and runs work on the next tick 4ms
+ ✓ tests/runner.test.ts > survives failure persistence errors and clears active work 4ms
+ ✓ tests/runner.test.ts > aborts work instead of throwing from an ownership timer 106ms
+ ✓ tests/headless-runtime.test.ts > executes server turns without browser-only Core discovery and tears down the SDK stream 56ms
+ ✓ tests/headless-runtime.test.ts > rejects failed runtime discovery instead of waiting for browser status indefinitely 4ms
+ ✓ tests/headless-runtime.test.ts > rejects a Dot missing from runtime metadata 1ms
+ ✓ tests/headless-runtime.test.ts > aborts the running SDK turn and releases the subscriber on cancellation 2ms
+ ✓ tests/headless-runtime.test.ts > cleans up rejected SDK turns while preserving the error 4ms
+ ✓ tests/slack-channel.test.ts > requires explicit Slack tenant and user allowlists for canonical owner identity 4ms
+ ✓ tests/slack-channel.test.ts > answers an allowed mention once, then only subscribed follow-ups 3ms
+ ✓ tests/slack-channel.test.ts > ignores nonhuman actors and changed/deleted messages without side effects 7ms
+ ✓ tests/slack-channel.test.ts > defaults an absent operation to created and reports pause without subscribing or running 5ms
+ ✓ tests/slack-channel.test.ts > isolates a failed run after a safe reply and surfaces both failures if posting also fails 2ms
+ ✓ tests/slack-channel.test.ts > still answers mentions when subscribing fails, but never runs on unreadable subscription state 2ms
+ ✓ tests/slack-channel.test.ts > surfaces a failed pause notice safely and never runs or subscribes 1ms
+ ✓ tests/store.test.ts > durable task lifecycle > persists tasks and settings across connections 22ms
+ ✓ tests/store.test.ts > durable task lifecycle > claims each due job once even through separate database connections 12ms
+ ✓ tests/store.test.ts > durable task lifecycle > never overwrites a cancellation with a late result 22ms
+ ✓ tests/store.test.ts > durable task lifecycle > keeps recurring history and schedules only after completion 17ms
+ ✓ tests/store.test.ts > durable task lifecycle > global pause invalidates running leases and blocks queued jobs 15ms
+ ✓ tests/store.test.ts > durable task lifecycle > holds expired work until the owner retries it 18ms
+ ✓ tests/store.test.ts > durable task lifecycle > claims other queued work while an expired run waits for review 13ms
+ ✓ tests/store.test.ts > durable task lifecycle > holds an expired run for review after a local page effect 30ms
+ ✓ tests/page-routes.test.ts > saves Learning settings through the owner API and rejects malformed container IDs 54ms
+ ✓ tests/page-routes.test.ts > supports manual pages without credentials and returns validation, scope and conflict statuses 20ms
+ ✓ tests/page-routes.test.ts > keeps page routes behind owner authentication and browser origin checks 8ms
+ ✓ tests/page-routes.test.ts > saves reviewed drafts once and rechecks the Dot’s Space access 25ms
+ ✓ tests/page-routes.test.ts > restores review receipts through the owner API with current thread and Space authorization 12ms
+ ✓ tests/dot-agent-channel.test.ts > uses the conversation container for delivery and preserves tools and override restrictions 35ms
+ ✓ tests/dot-agent-channel.test.ts > replaces channel RUN_ERROR payload entirely before the SDK renderer sees it 7ms
+ ✓ tests/dot-agent-channel.test.ts > sanitizes observable errors and startup exceptions without retaining causes 8ms
+ ✓ tests/dot-agent-channel.test.ts > preserves normal channel text and existing web error behavior 13ms
+ ✓ tests/dot-agent-channel.test.ts > exposes only the canonical review tool to web chat and none to Slack 13ms
+ ✓ tests/page-service.test.ts > reuses one actual Intelligence thread per page and Dot under concurrent requests 21ms
+ ✓ tests/page-service.test.ts > exports canonical user/assistant text and rejects failed or oversized history without creating a page 22ms
+ ✓ tests/page-service.test.ts > scopes agent tools to the Dot Space and re-reads current context with CAS and pause enforcement 10ms
+ ✓ tests/page-service.test.ts > recovers the same reserved thread after a restart lease and a remote-success retry 11ms
+ ✓ tests/page-service.test.ts > rejects a specialist in another Space before Intelligence is accessed 4ms
+ ✓ tests/page-service.test.ts > retries a failed provider creation with the same canonical reserved ID 6ms
+ ✓ tests/page-service.test.ts > grants multiple Spaces without changing thread identity and enforces revocation on existing tools 7ms
+ ✓ tests/learning-delivery.test.ts > TanStack AI streams with the verified skill catalog and authorized server tools 99ms
+ ✓ tests/learning-delivery.test.ts > native skill delivery fails the invocation before contacting the model when delivery is denied 15ms
+ ✓ tests/app.test.ts > API boundaries > requires owner token for state and mutations when configured 54ms
+ ✓ tests/app.test.ts > API boundaries > blocks browser cross-origin requests and form posts 7ms
+ ✓ tests/app.test.ts > API boundaries > validates inputs and enforces research permissions on the server 13ms
+ ✓ tests/app.test.ts > API boundaries > runs a sample job from the durable queue and retains its result 7ms
+ ✓ tests/app.test.ts > API boundaries > persists memory edits and deletes 9ms
+ ✓ tests/app.test.ts > rejects DNS-rebinding Host even with a matching hostile Origin 2ms
+ ✓ tests/page-chat-request.test.ts > ignores an old page-chat response after selecting page-b:dot-a 5ms
+ ✓ tests/page-chat-request.test.ts > ignores an old page-chat response after selecting page-a:dot-b 1ms
+ ✓ tests/page-chat-request.test.ts > ignores stale errors and completion without clearing a newer request busy state 3ms
+ ✓ tests/page-review.test.tsx > declines malformed drafts without validating or saving them 6ms
+ ✓ tests/page-review.test.tsx > recovers an already committed save instead of emitting a decline 1ms
+ ✓ tests/page-review.test.tsx > does not decide or save when receipt recovery fails 3ms
+ ✓ tests/page-review.test.tsx > checks for a receipt before retrying a save whose response was lost 6ms
+ ✓ tests/page-review.test.tsx > rejects a changed restored draft before sending a decision or another save 3ms
+ ✓ tests/page-review.test.tsx > hides decisions and unsaved claims until the persisted receipt is checked 33ms
+ ✓ tests/page-review.test.tsx > does not claim a canceled or declined review was unsaved before recovering its receipt 6ms
+ ✓ tests/page-review.test.tsx > renders a Markdown table in the draft as a table, not raw pipe text 10ms
+ ✓ tests/learning.test.ts > freezes container assignments, including disabled conversations, when a Dot changes 13ms
+ ✓ tests/learning.test.ts > migrates legacy threads without enrolling them and persists configuration across restart 24ms
+ ✓ tests/learning.test.ts > selects only owned web threads and binds the configured channel Dot before its first run 9ms
+ ✓ tests/learning.test.ts > rejects invalid container IDs and delivery without a container 12ms
+ ✓ tests/runtime-scope.test.ts > blocks unbound cross-Dot run and inspector routes before contacting Intelligence 47ms
+ ✓ tests/runtime-scope.test.ts > reports setup honestly without a standalone agent fallback 1ms
+ ✓ tests/runtime-scope.test.ts > rejects stop scope bypasses and misleading prefixes while allowing canonical owned routes 7ms
+ ✓ tests/research.test.ts > research adapters > does not contact providers in sample mode and labels every result 5ms
+ ✓ tests/research.test.ts > research adapters > fails visibly for missing live config and unsupported search 2ms
+ ✓ tests/research.test.ts > research adapters > grounds model input in browser evidence and returns provider output 44ms
+ ✓ tests/research.test.ts > research adapters > surfaces browser and model failures without presenting success 3ms
+ ✓ tests/slack-channel-wiring.test.ts > registers distinct mention and subscribed-message handlers on a serial SDK channel 9ms
+ ✓ tests/pages.test.ts > persists nested page content and revision across restart 34ms
+ ✓ tests/pages.test.ts > rejects cross-space parents, cycles and stale writes without losing content 15ms
+ ✓ tests/pages.test.ts > migrates review receipts and retains their original draft after restart 39ms
+ ✓ tests/transport.test.ts > DNS-pinned transport > supports Node 24 lookup all mode on an actual HTTP connection 47ms
+ ✓ tests/transport.test.ts > DNS-pinned transport > rejects redirects before returning them to a browser or contacting the destination 6ms
+ ✓ tests/transport.test.ts > DNS-pinned transport > aborts in-flight transport when the browser client disconnects 3ms
+ ✓ tests/shutdown.test.ts > waits for Channels and HTTP shutdown and handles repeated signals once 8ms
+ ✓ tests/shutdown.test.ts > bounds a stuck shutdown and reports operation failures without stopping other cleanup 7ms
+ ✓ tests/transcript.test.tsx > keeps call receipts between the anchored message and later conversation turns 35ms
+ ✓ tests/transcript.test.tsx > renders tool-only assistant messages inline between chat turns without printing tool JSON 5ms
+ ✓ tests/transcript.test.tsx > hides only marked receipt prompts while retaining summaries and prior unmarked messages 4ms
+ ✓ tests/controls.test.tsx > offers pause for a completed task waiting on its next scheduled run 22ms
+ ✓ tests/controls.test.tsx > offers resume for a paused task without claiming to be running 3ms
+ ✓ tests/controls.test.tsx > labels an interrupted task for owner review before retry 3ms
+ ✓ tests/workspace.test.ts > persists spaces, specialist permissions, and canonical thread ownership 12ms
+ ✓ tests/workspace.test.ts > rejects a dot in a nonexistent space and does not rebind an existing thread 4ms
+ ✓ tests/workspace.test.ts > migrates legacy Space ownership once and never restores revoked access on restart 27ms
+ ✓ tests/computer-card.test.tsx > shows real terminal output and does not treat a nonzero exit as success 18ms
+ ✓ tests/computer-card.test.tsx > marks unfinished calls interrupted after a run ends and labels live views as current 3ms
+ ✓ tests/computer-card.test.tsx > recognizes runtime-finalized tool result {"status":"stopped","reason":"stop_requested","message":"The run was stopped."} 3ms
+ ✓ tests/computer-card.test.tsx > recognizes runtime-finalized tool result {"status":"error","reason":"missing_terminal_event","message":"The tool never returned."} 2ms
+ ✓ tests/chat-composer.test.ts > does not submit Enter while IME composition is active 3ms
+ ✓ tests/chat-composer.test.ts > does not submit legacy IME composition Enter events 0ms
+ ✓ tests/chat-composer.test.ts > submits Enter after composition completes 0ms
+ ✓ tests/chat-composer.test.ts > keeps Shift+Enter available for multiline drafts 0ms
+ ✓ tests/computer-deployment.test.js > gives each child its own credential without forwarding the master 9ms
+ ✓ tests/computer-deployment.test.js > refuses missing or ambiguous upstream patch targets 1ms
+ ✓ tests/page-context.test.ts > cannot send a page message before the authoritative context request completes 5ms
+ ✓ tests/page-context.test.ts > allows ordinary chat only after the server explicitly returns no page context 0ms
+ ✓ tests/intelligence-key.test.ts > accepts the CLI project key and still accepts the template name 4ms
+ ✓ tests/intelligence-key.test.ts > reports either accepted name from the same label used by setup status and the copilotkit error 17ms
+ ✓ tests/setup.test.ts > never claims Slack online without a complete managed channel declaration 3ms
+ ✓ tests/setup.test.ts > requires Intelligence and model setup and disables voice when either is absent 2ms
+ ✓ tests/setup.test.ts > reports activation failure until the SDK recovers online 0ms
+ ✓ tests/page-snapshots.test.ts > retains a newly created document when an earlier list response arrives after creation 4ms
+ ✓ tests/page-snapshots.test.ts > retains locally saved revisions while accepting newer remote pages 1ms
+ ✓ tests/library.test.ts > shows readable library previews without changing source content 6ms
+ ✓ tests/headless.test.ts > rejects a swallowed SDK failure rather than reusing a previous answer 5ms
+
+ Test Files  37 passed (37)
+      Tests  182 passed (182)
+   Start at  11:53:25
+   Duration  33.28s (transform 978ms, setup 0ms, import 17.26s, tests 5.08s, environment 7ms)
