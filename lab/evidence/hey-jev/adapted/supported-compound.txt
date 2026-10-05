@@ -1,0 +1,31 @@
+
+  (wake: 'Hey Jeff, open Safari and set a timer for 5 minutes.')
+
+> heard: 'open Safari and set a timer for 5 minutes'  (stt 1139ms)
+LAB_STATE {"time": 1791208771.972765, "state": "Thinking", "detail": "open Safari and set a timer for 5 minutes"}
+  category        mac_command            1.00
+  compound        True                   0.98
+  target          timer                  0.78
+  app             safari                 1.00
+  app_action      open                   0.97
+  browser_action  none                   0.89
+  volume_action   none                   0.99
+  volume_scope    system                 0.99
+  volume_level    medium                 0.55  <- below gate
+  display_action  none                   0.99
+  media_action    none                   0.97
+  timer_action    set                    1.00
+  system_action   none                   0.98
+  jev 145ms  $0.000056
+  -- split call: jev 83ms  $0.000100
+  first           app_open safari
+  second          timer_set
+LAB_STATE {"time": 1791208772.20255, "state": "Doing it", "detail": "open Safari and set a timer for 5 minutes"}
+  action: app_open safari
+LAB_STATE {"time": 1791208772.292545, "state": "Doing it", "detail": "open Safari and set a timer for 5 minutes"}
+  timer: 300s
+  action: timer_set
+  say: [chuckling] Done, both of them.
+LAB_STATE {"time": 1791208772.293092, "state": "Speaking", "detail": "[chuckling] Done, both of them."}
+  fish cached
+LAB_STATE {"time": 1791208773.726677, "state": "Ready", "detail": "[chuckling] Done, both of them."}

@@ -1,0 +1,282 @@
+[
+  {
+    "test": "01-wake",
+    "phrase": "Hey Jeff.",
+    "injected_end": 1791208336.399214,
+    "events": [
+      {
+        "time": 1791208340.7556381,
+        "state": "Listening",
+        "detail": "Go ahead\u2026"
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "transcript": "[ Silence ]",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "02-question",
+    "phrase": "What is the capital of France?",
+    "injected_end": 1791208352.449815,
+    "events": [
+      {
+        "time": 1791208350.84313,
+        "state": "Ready",
+        "detail": "Say \u201cHey Jev\u201d and your command"
+      }
+    ],
+    "complete": false,
+    "error": "timeout",
+    "recorder_exit": 0,
+    "transcript": "you you you",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "03-timer-set",
+    "phrase": "Hey Jeff, set a timer for five minutes.",
+    "injected_end": 1791208433.7266061,
+    "events": [
+      {
+        "time": 1791208436.258452,
+        "state": "Thinking",
+        "detail": "set a timer for 5 minutes"
+      },
+      {
+        "time": 1791208436.37664,
+        "state": "Doing it",
+        "detail": "set a timer for 5 minutes"
+      },
+      {
+        "time": 1791208436.3769238,
+        "state": "Speaking",
+        "detail": "On it. I'll let you know."
+      },
+      {
+        "time": 1791208439.837138,
+        "state": "Ready",
+        "detail": "On it. I'll let you know."
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "transcript": "On it, I'll let you know.",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "04-timer-check",
+    "phrase": "Hey Jeff, how long is left on my timer?",
+    "injected_end": 1791208452.462682,
+    "events": [
+      {
+        "time": 1791208455.584647,
+        "state": "Thinking",
+        "detail": "how long is left on my timer"
+      },
+      {
+        "time": 1791208455.73985,
+        "state": "Doing it",
+        "detail": "how long is left on my timer"
+      },
+      {
+        "time": 1791208455.739948,
+        "state": "Speaking",
+        "detail": "4 minutes and 41 seconds left."
+      },
+      {
+        "time": 1791208460.390951,
+        "state": "Ready",
+        "detail": "4 minutes and 41 seconds left."
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "transcript": "4 minutes and 41 seconds left.",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "05-timer-cancel",
+    "phrase": "Hey Jeff, cancel the timer.",
+    "injected_end": 1791208466.663626,
+    "events": [
+      {
+        "time": 1791208468.445809,
+        "state": "Thinking",
+        "detail": "cancel the timer"
+      },
+      {
+        "time": 1791208468.5297139,
+        "state": "Doing it",
+        "detail": "cancel the timer"
+      },
+      {
+        "time": 1791208468.529943,
+        "state": "Speaking",
+        "detail": "Timer cancelled."
+      },
+      {
+        "time": 1791208469.63829,
+        "state": "Ready",
+        "detail": "Timer cancelled."
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "transcript": "Timer canceled.",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "06-compound",
+    "phrase": "Hey Jeff, open Calculator and set a timer for five minutes.",
+    "injected_end": 1791208477.962789,
+    "events": [
+      {
+        "time": 1791208479.651105,
+        "state": "Thinking",
+        "detail": "open calculator and set a timer for 5 minutes"
+      },
+      {
+        "time": 1791208479.9381351,
+        "state": "Doing it",
+        "detail": "open calculator and set a timer for 5 minutes"
+      },
+      {
+        "time": 1791208479.938358,
+        "state": "Speaking",
+        "detail": "Done, counting down."
+      },
+      {
+        "time": 1791208482.358624,
+        "state": "Ready",
+        "detail": "Done, counting down."
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "transcript": "Then, counting down.",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "07-cancel-all",
+    "phrase": "Hey Jeff, cancel all timers.",
+    "injected_end": 1791208488.7082508,
+    "events": [
+      {
+        "time": 1791208490.560647,
+        "state": "Thinking",
+        "detail": "cancel Alzheimer's"
+      },
+      {
+        "time": 1791208490.6550379,
+        "state": "Doing it",
+        "detail": "cancel Alzheimer's"
+      },
+      {
+        "time": 1791208490.655149,
+        "state": "Speaking",
+        "detail": "Timer cancelled."
+      },
+      {
+        "time": 1791208492.279959,
+        "state": "Ready",
+        "detail": "Timer cancelled."
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "transcript": "Timer canceled.",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "08-barge-in",
+    "phrase": "Hey Jeff, list the first twenty chemical elements in order in one sentence.",
+    "injected_end": 1791208500.6364238,
+    "interruption_end": 1791208538.022292,
+    "events": [
+      {
+        "time": 1791208502.6833532,
+        "state": "Thinking",
+        "detail": "list the first 20 chemical elements in order in one sentence"
+      },
+      {
+        "time": 1791208531.671181,
+        "state": "Speaking",
+        "detail": "The first twenty elements are hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen, fluorine, neon, sodium, magnesium, aluminum, silicon, phosphorus, sulfur, chlorine, argon, potassium, and calcium."
+      },
+      {
+        "time": 1791208551.8600729,
+        "state": "Ready",
+        "detail": "The first twenty elements are hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen, fluorine, neon, sodium, magnesium, aluminum, silicon, phosphorus, sulfur, chlorine, argon, potassium, and calcium."
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "post_interrupt_events": [
+      {
+        "time": 1791208502.6833532,
+        "state": "Thinking",
+        "detail": "list the first 20 chemical elements in order in one sentence"
+      },
+      {
+        "time": 1791208531.671181,
+        "state": "Speaking",
+        "detail": "The first twenty elements are hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen, fluorine, neon, sodium, magnesium, aluminum, silicon, phosphorus, sulfur, chlorine, argon, potassium, and calcium."
+      },
+      {
+        "time": 1791208551.8600729,
+        "state": "Ready",
+        "detail": "The first twenty elements are hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen, fluorine, neon, sodium, magnesium, aluminum, silicon, phosphorus, sulfur, chlorine, argon, potassium, and calcium."
+      }
+    ],
+    "transcript": "you The first 20 elements are hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen, fluorine, neon, sodium, magnesium, aluminum, silicon, phosphorus, sulfur, chlorine, argon, potassium, and calcium.",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "09-recovery",
+    "phrase": "Hey Jeff, what is two plus two?",
+    "injected_end": 1791208563.879791,
+    "events": [
+      {
+        "time": 1791208565.702317,
+        "state": "Thinking",
+        "detail": "what is 2 plus 2"
+      },
+      {
+        "time": 1791208569.443715,
+        "state": "Speaking",
+        "detail": "Two plus two is four."
+      },
+      {
+        "time": 1791208572.404947,
+        "state": "Ready",
+        "detail": "Two plus two is four."
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "transcript": "2 plus 2 is 4.",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "10-dictation-start",
+    "phrase": "Hey Jeff, transcribe.",
+    "injected_end": 1791208579.31879,
+    "events": [
+      {
+        "time": 1791208581.08146,
+        "state": "Speaking",
+        "detail": "Add an OpenRouter or OpenAI key first."
+      },
+      {
+        "time": 1791208585.783693,
+        "state": "Ready",
+        "detail": "Dictation needs an OpenRouter or OpenAI key"
+      }
+    ],
+    "complete": false,
+    "error": "timeout",
+    "recorder_exit": 0,
+    "transcript": "Add an open router or open AI key first. You You",
+    "transcriber_exit": 0
+  }
+]

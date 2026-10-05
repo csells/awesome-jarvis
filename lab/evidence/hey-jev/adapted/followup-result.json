@@ -1,0 +1,25 @@
+{
+  "events": [
+    {
+      "time": 1791208716.0972228,
+      "state": "Listening",
+      "detail": "Go ahead\u2026"
+    },
+    {
+      "time": 1791208721.236243,
+      "state": "Thinking",
+      "detail": "What is the capital of France?"
+    },
+    {
+      "time": 1791208738.633394,
+      "state": "Speaking",
+      "detail": "The capital of France is Paris."
+    },
+    {
+      "time": 1791208741.334414,
+      "state": "Ready",
+      "detail": "The capital of France is Paris."
+    }
+  ],
+  "completed": true
+}

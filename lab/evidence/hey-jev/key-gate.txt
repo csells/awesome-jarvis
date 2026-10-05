@@ -1,0 +1,2 @@
+granted org.python.python (type 0, csreq none): Microphone Accessibility
+need TYPESAFE_API_KEY and FISH_AUDIO_API_KEY in Keychain or .env

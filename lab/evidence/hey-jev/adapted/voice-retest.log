@@ -1,0 +1,33 @@
+TEST 12-supported-compound
+INJECT Hey Jeff, open Safari and set a timer for five minutes.
+STATE Thinking open Safari and set a timer for 5 minutes
+STATE Doing it open Safari and set a timer for 5 minutes
+STATE Speaking [chuckling] Done, both of them.
+STATE Ready [chuckling] Done, both of them.
+HEARD Done.
+TEST 13-cancel-timer
+INJECT Hey Jeff, cancel the timer.
+STATE Thinking cancel the timer
+STATE Doing it cancel the timer
+STATE Speaking [sighing] Fine, no timer then.
+STATE Ready [sighing] Fine, no timer then.
+HEARD Fine, no timer then.
+TEST 14-dictation-start
+INJECT Hey Jeff, transcribe.
+STATE Dictating Say “stop transcribing” when you’re done
+HEARD [silence]
+INJECT The blue notebook is on the wooden desk.
+TEST 15-dictation-stop
+INJECT Hey Jeff, stop transcribing.
+STATE Finishing Writing it up…
+HEARD [silence] [silence] [silence]
+36:68: execution error: System Events got an error: AppleEvent timed out. (-1712)
+FINISHED 4 voice steps
+Traceback (most recent call last):
+  File "/Users/admin/voice_retest.py", line 79, in <module>
+    subprocess.run(['osascript','-e','tell application "System Events" to keystroke "s" using command down'],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['osascript', '-e', 'tell application "System Events" to keystroke "s" using command down']' returned non-zero exit status 1.

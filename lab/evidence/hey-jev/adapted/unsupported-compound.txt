@@ -1,0 +1,29 @@
+
+  (wake: 'Hey Jeff, open calculator and set a timer for 5 minutes.')
+
+> heard: 'open calculator and set a timer for 5 minutes'  (stt 1091ms)
+LAB_STATE {"time": 1791208479.651105, "state": "Thinking", "detail": "open calculator and set a timer for 5 minutes"}
+  category        mac_command            1.00
+  compound        True                   0.98
+  target          timer                  0.86
+  app             none                   0.99
+  app_action      open                   0.90
+  browser_action  none                   0.68
+  volume_action   none                   0.98
+  volume_scope    system                 0.97
+  volume_level    quiet                  0.50  <- below gate
+  display_action  none                   0.98
+  media_action    none                   0.96
+  timer_action    set                    1.00
+  system_action   none                   0.99
+  jev 120ms  $0.000056
+  -- split call: jev 165ms  $0.000100
+  first           nothing confident
+  second          timer_set
+LAB_STATE {"time": 1791208479.9381351, "state": "Doing it", "detail": "open calculator and set a timer for 5 minutes"}
+  timer: 300s
+  action: timer_set
+  say: Done, counting down.
+LAB_STATE {"time": 1791208479.938358, "state": "Speaking", "detail": "Done, counting down."}
+  fish cached
+LAB_STATE {"time": 1791208482.358624, "state": "Ready", "detail": "Done, counting down."}

@@ -1,0 +1,27 @@
+diff --git a/secrets_store.py b/secrets_store.py
+index 9aa4b2f..aeb5496 100644
+--- a/secrets_store.py
++++ b/secrets_store.py
+@@ -44 +44 @@ def missing_secrets():
+-    return [name for name in KEY_NAMES if name not in OPTIONAL and not get_secret(name)]
++    return [name for name in ("TYPESAFE_API_KEY",) if not get_secret(name)]  # LAB: other services replaced
+diff --git a/siri.py b/siri.py
+index b7aaba1..37f08f5 100644
+--- a/siri.py
++++ b/siri.py
+@@ -821,4 +821 @@ def run_voice_assistant(notify=None, controls=None, mode="ptt", mic=""):
+-        if not (OA_KEY or OR_KEY):
+-            say("Add an OpenRouter or OpenAI key first.", notify)
+-            emit(notify, "Ready", "Dictation needs an OpenRouter or OpenAI key")
+-            return
++        # LAB: local Whisper dictation does not need cloud credentials.
+@@ -1002,2 +999,2 @@ def main():
+-    if not TS_KEY or not FISH_KEY:
+-        sys.exit("need TYPESAFE_API_KEY and FISH_AUDIO_API_KEY in Keychain or .env")
++    if not TS_KEY:
++        sys.exit("LAB: need TYPESAFE_API_KEY in Keychain or .env")
+@@ -1009,0 +1007,4 @@ def main():
++# LAB ONLY: service substitutions and timestamped state evidence.
++import lab_adapter
++lab_adapter.install(sys.modules[__name__])
++

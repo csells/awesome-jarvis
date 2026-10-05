@@ -1,0 +1,39 @@
+[
+  {
+    "test": "18-dictation-start",
+    "phrase": "Hey Jeff, transcribe.",
+    "injected_end": 1791209328.543666,
+    "events": [
+      {
+        "time": 1791209330.701107,
+        "state": "Dictating",
+        "detail": "Say \u201cstop transcribing\u201d when you\u2019re done"
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "transcript": "[silence]",
+    "transcriber_exit": 0
+  },
+  {
+    "test": "19-dictation-stop",
+    "phrase": "Hey Jeff, stop transcribing.",
+    "injected_end": 1791209343.50687,
+    "events": [
+      {
+        "time": 1791209345.3452082,
+        "state": "Finishing",
+        "detail": "Writing it up\u2026"
+      },
+      {
+        "time": 1791209348.179015,
+        "state": "Ready",
+        "detail": "Pasted 8 words"
+      }
+    ],
+    "complete": true,
+    "recorder_exit": 0,
+    "transcript": "[silence]",
+    "transcriber_exit": 0
+  }
+]

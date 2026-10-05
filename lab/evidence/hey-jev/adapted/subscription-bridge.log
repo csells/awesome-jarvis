@@ -1,0 +1,5 @@
+Bridge listening on 127.0.0.1:18765; tools disabled; credentials stay with official CLI
+{"event": "subscription_answer", "ms": 4368, "text": "The capital of France is Paris."}
+{"event": "subscription_answer", "ms": 28779, "text": "The first twenty elements are hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen, fluorine, neon, sodium, magnesium, aluminum, silicon, phosphorus, sulfur, chlorine, argon, potassium, and calcium."}
+{"event": "subscription_answer", "ms": 3573, "text": "Two plus two is four."}
+{"event": "subscription_answer", "ms": 17088, "text": "The capital of France is Paris."}

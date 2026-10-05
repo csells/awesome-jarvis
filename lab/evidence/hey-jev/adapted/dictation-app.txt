@@ -1,0 +1,5 @@
+  (dictating: 'Hey Jeff, stop transcribing.')
+LAB_STATE {"time": 1791209345.3452082, "state": "Finishing", "detail": "Writing it up\u2026"}
+LAB_DICTATION {"part": 1, "text": "The blue notebook is on the wooden desk. Hey Jeff, stop transcribing."}
+  dictation: 'The blue notebook is on the wooden desk'
+LAB_STATE {"time": 1791209348.179015, "state": "Ready", "detail": "Pasted 8 words"}

@@ -1,0 +1,24 @@
+Applied lab adapter; TypeSafe classification and action/recorder/UI logic unchanged.
+LAB ADAPTED: real TypeSafe; Claude subscription CLI; local macOS TTS; local Whisper dictation
+
+> heard: 'what is the capital of France'
+LAB_STATE {"time": 1791208200.518367, "state": "Thinking", "detail": "what is the capital of France"}
+  category        information_request    1.00
+  compound        False                  0.96
+  target          browser                0.34  <- below gate
+  app             none                   1.00
+  app_action      none                   0.97
+  browser_action  none                   0.97
+  volume_action   none                   0.98
+  volume_scope    system                 0.97
+  volume_level    quiet                  0.44  <- below gate
+  display_action  none                   0.90
+  media_action    none                   0.97
+  timer_action    none                   0.99
+  system_action   none                   0.99
+  jev 180ms  $0.000056
+  llm anthropic/claude-haiku-4.5 4368ms  $None
+  say: The capital of France is Paris.
+LAB_STATE {"time": 1791208205.090383, "state": "Speaking", "detail": "The capital of France is Paris."}
+  fish 1096ms
+LAB_STATE {"time": 1791208208.848723, "state": "Ready", "detail": "The capital of France is Paris."}

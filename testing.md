@@ -6,7 +6,7 @@ I build the [scorecard](readme.md#scorecard) in three passes. The [testing metho
 2. **Blind review.** A second, independent reviewer re-scored every agent without seeing the first review's scores. Where the two disagreed, the blind score won.
 3. **Hands-on lab.** The agents ran on a Mac mini (M4, 32 GB) in September 2026. A text-to-speech engine spoke each test phrase into a virtual microphone, a virtual speaker captured what the agent said out loud, and Whisper transcribed it. Screenshots captured each agent's visual state, and a reviewer looked at every one.
 
-The lab reached models through a Claude subscription on the official Claude Code CLI, plus free local models through Ollama, and used no other paid API keys. When a feature needed one, the result says **BLOCKED** rather than counting against the project.
+The September 2026 lab reached models through a Claude subscription on the official Claude Code CLI, plus free local models through Ollama, and used no other paid API keys. When a feature needed one, the result says **BLOCKED** rather than counting against the project. Later candidate follow-ups explicitly record any authorized credentials and service substitutions.
 
 ## Environments
 
@@ -38,6 +38,16 @@ PASS means it worked end to end, PARTIAL means some of the pillar worked, FAIL m
 | omarchy-voice | PARTIAL | ◐ | PARTIAL | FAIL | Tested with a one-line URL change. Answered a desktop question aloud. The local 7B model read tool calls aloud instead of making them, which is a limit of the model, not the app. |
 
 Not run hands-on (scored from code only): Qwen Audio Agent, Sutando and OpenClicky, which need paid voice keys; N.E.K.O, AIRI and Newelle. The commercial assistants were scored from vendor documentation.
+
+## Candidate Follow-ups
+
+### Hey Jev — 2026-10-04; adapted follow-up 2026-10-05
+
+**Deferred; not added to the curated list.** At commit `24e4b378350d999d2b45ff2549ea039c2bc7863d`, two code reviews found partial voice and hands-free support, a native visual dashboard, and no agent oversight. Initial tests in the disposable macOS 26.6.2 VM verified startup, local recognition, wake matching and timer functions; cloud conversation was blocked by missing keys.
+
+The follow-up used an explicitly authorized existing Jev key for the unchanged TypeSafe classifier, the official Claude CLI with subscription authentication for answers, macOS speech synthesis, and local Whisper dictation. In this **adapted build**, wake-and-question, spoken answers, timer creation/query/cancellation, a supported Safari-plus-timer command, and voice-started/stopped dictation with verified paste and saved text all passed. Interruption during a spoken reply failed. Unsupported Calculator was silently skipped in another compound command. Actual dashboard states and dictation UI were inspected. The original Fish Audio/OpenRouter services remain untested; substitutions do not establish that those integrations work.
+
+The clean install needed two missing build dependencies, `setuptools` and `py2app`. The real wake loop also saved unrelated speech as a WAV even though the Privacy screen says it discards speech not addressed to it. The pinned repository has no declared license. Resolve that retention discrepancy and license uncertainty before recommending it for Voice Assistants. See the [initial report](lab/evidence/hey-jev/README.md) and [adapted test notes, patch and evidence](lab/evidence/hey-jev/adapted/README.md).
 
 ## Findings
 

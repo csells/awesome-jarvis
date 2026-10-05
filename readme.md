@@ -651,7 +651,7 @@ I'd love your contributions, especially hands-on test results. Please read the [
 ## Footnotes
 
 - Retired and archived projects that shaped the field, such as Mycroft, Rhasspy, Snowboy and eDEX-UI, live in [history.md](history.md).
-- The test report covers the [lab environments](testing.md#environments), the hands-on results, and the free local voice stack that stood in for paid keys.
+- The test report covers the [lab environments](testing.md#environments), the hands-on results, and the free local voice stack that stood in for paid keys. It also records [candidate follow-ups](testing.md#candidate-follow-ups), including projects held out of the list after testing.
 - The [testing methodology](methodology.md) explains how I score agents and how you can test a new one.
 - The [test lab](lab/README.md) has the scripts, container and VM recipes, and curated evidence behind the hands-on tests, ready to reuse for new entries.
 - Scores reflect code, docs and tests from September 2026. This space moves fast, so a [weekly check](scripts/README.md) opens an issue when a link dies, a repo goes quiet or a score gets old. If you spot one first, please open an issue or a pull request.

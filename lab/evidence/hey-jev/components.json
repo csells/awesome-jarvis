@@ -1,0 +1,34 @@
+[
+  {
+    "spoken": "Hey Jeff, set a timer for five minutes.",
+    "transcribed": "Hey Jeff, set a timer for 5 minutes.",
+    "wake_match": true,
+    "samples": 52800
+  },
+  {
+    "spoken": "The quick brown fox jumps over the lazy dog.",
+    "transcribed": "The quick brown fox jumps over the lazy dog.",
+    "wake_match": false,
+    "samples": 56000
+  },
+  {
+    "paused_recorder_queue_empty": true
+  },
+  {
+    "timer_added": [
+      "timer_set",
+      {}
+    ],
+    "before": [
+      [
+        "5 min timer",
+        299.9999256134033
+      ]
+    ],
+    "cancelled": [
+      "timer_cancel",
+      {}
+    ],
+    "after": []
+  }
+]

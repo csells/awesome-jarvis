@@ -1,0 +1,12 @@
+TEST 18-dictation-start
+INJECT Hey Jeff, transcribe.
+STATE Dictating Say “stop transcribing” when you’re done
+HEARD [silence]
+INJECT The blue notebook is on the wooden desk.
+TEST 19-dictation-stop
+INJECT Hey Jeff, stop transcribing.
+STATE Finishing Writing it up…
+STATE Ready Pasted 8 words
+HEARD [silence]
+DICTATION CLIPBOARD 'The blue notebook is on the wooden desk'
+FINISHED 2 voice steps

@@ -1,0 +1,62 @@
+TEST 01-wake
+INJECT Hey Jeff.
+STATE Listening Go ahead…
+HEARD [ Silence ]
+TEST 02-question
+INJECT What is the capital of France?
+STATE Ready Say “Hey Jev” and your command
+HEARD you you you
+TEST 03-timer-set
+INJECT Hey Jeff, set a timer for five minutes.
+STATE Thinking set a timer for 5 minutes
+STATE Doing it set a timer for 5 minutes
+STATE Speaking On it. I'll let you know.
+STATE Ready On it. I'll let you know.
+HEARD On it, I'll let you know.
+TEST 04-timer-check
+INJECT Hey Jeff, how long is left on my timer?
+STATE Thinking how long is left on my timer
+STATE Doing it how long is left on my timer
+STATE Speaking 4 minutes and 41 seconds left.
+STATE Ready 4 minutes and 41 seconds left.
+HEARD 4 minutes and 41 seconds left.
+TEST 05-timer-cancel
+INJECT Hey Jeff, cancel the timer.
+STATE Thinking cancel the timer
+STATE Doing it cancel the timer
+STATE Speaking Timer cancelled.
+STATE Ready Timer cancelled.
+HEARD Timer canceled.
+TEST 06-compound
+INJECT Hey Jeff, open Calculator and set a timer for five minutes.
+STATE Thinking open calculator and set a timer for 5 minutes
+STATE Doing it open calculator and set a timer for 5 minutes
+STATE Speaking Done, counting down.
+STATE Ready Done, counting down.
+HEARD Then, counting down.
+TEST 07-cancel-all
+INJECT Hey Jeff, cancel all timers.
+STATE Thinking cancel Alzheimer's
+STATE Doing it cancel Alzheimer's
+STATE Speaking Timer cancelled.
+STATE Ready Timer cancelled.
+HEARD Timer canceled.
+TEST 08-barge-in
+INJECT Hey Jeff, list the first twenty chemical elements in order in one sentence.
+STATE Thinking list the first 20 chemical elements in order in one sentence
+STATE Speaking The first twenty elements are hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen, fluorine, neon, sodium, magnesium, aluminum, silicon, phosphorus, sulfur, chlorine, argon, potassium, and calcium.
+INJECT Hey Jeff, stop. What is two plus two?
+STATE Ready The first twenty elements are hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen, fluorine, neon, sodium, magnesium, aluminum, silicon, phosphorus, sulfur, chlorine, argon, potassium, and calcium.
+HEARD you The first 20 elements are hydrogen, helium, lithium, beryllium, boron, carbon, nitrogen, oxygen, fluorine, neon, sodium, magnesium, aluminum, silicon, phosphorus, sulfur, chlorine, argon, potassium, and calcium.
+TEST 09-recovery
+INJECT Hey Jeff, what is two plus two?
+STATE Thinking what is 2 plus 2
+STATE Speaking Two plus two is four.
+STATE Ready Two plus two is four.
+HEARD 2 plus 2 is 4.
+TEST 10-dictation-start
+INJECT Hey Jeff, transcribe.
+STATE Speaking Add an OpenRouter or OpenAI key first.
+STATE Ready Dictation needs an OpenRouter or OpenAI key
+HEARD Add an open router or open AI key first. You You
+INJECT The blue notebook is on the wooden desk.

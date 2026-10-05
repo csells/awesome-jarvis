@@ -1,0 +1,11 @@
+Loading app speech model small.en; component probe, not a full assistant turn
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Injecting: Hey Jeff, set a timer for five minutes.
+{"spoken": "Hey Jeff, set a timer for five minutes.", "transcribed": "Hey Jeff, set a timer for 5 minutes.", "wake_match": true, "samples": 52800}
+Injecting: The quick brown fox jumps over the lazy dog.
+{"spoken": "The quick brown fox jumps over the lazy dog.", "transcribed": "The quick brown fox jumps over the lazy dog.", "wake_match": false, "samples": 56000}
+Checking paused recorder ignores injected speech
+{"paused_recorder_queue_empty": true}
+Checking real timer add/read/cancel functions
+  timer: 300s
+{"timer_added": ["timer_set", {}], "before": [["5 min timer", 299.9999256134033]], "cancelled": ["timer_cancel", {}], "after": []}

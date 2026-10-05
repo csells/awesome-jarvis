@@ -1,0 +1,13 @@
+loading whisper...
+STATE Starting Loading Whisper…
+TEST CONFIG: cloud TTS cache warmup disabled
+
+[mode: always listening]
+STATE Ready Say “Hey Jev” and your command
+ready. ctrl+c to quit.
+
+  (not for me: 'The quick brown fox jumps over the lazy dog.')
+  clip: /Users/admin/Library/Logs/Hey Jev clips/06-20-21.wav
+{"ambient_clip_created": true, "bytes": 112044, "default_SAVE_CLIPS": "/Users/admin/Library/Logs/Hey Jev clips"}
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-psrmzqhw'}
+  warnings.warn(

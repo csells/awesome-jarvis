@@ -1,0 +1,13 @@
+input:  BlackHole 2ch
+output: BlackHole 16ch
+system: BlackHole 16ch
+MIC: The quick brown fox jumps over the lazy dog.
+sox WARN coreaudio: coreaudio: unhandled buffer overrun.  Data discarded.
+sox WARN coreaudio: coreaudio: unhandled buffer overrun.  Data discarded.
+sox WARN coreaudio: coreaudio: unhandled buffer overrun.  Data discarded.
+sox WARN coreaudio: coreaudio: unhandled buffer overrun.  Data discarded.
+sox WARN coreaudio: coreaudio: unhandled buffer overrun.  Data discarded.
+sox WARN coreaudio: coreaudio: unhandled buffer overrun.  Data discarded.
+OUT: Testing the speaker capture path, 123.
+MIC during speaker (expect silence): RMS=0.000015 vs mic RMS=0.055669
+SHOT: /Volumes/My Shared Files/out/selftest/screen.png
