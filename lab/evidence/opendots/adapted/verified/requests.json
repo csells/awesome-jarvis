@@ -1,0 +1,670 @@
+[
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/copilotkit/info",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/copilotkit/threads?agentId=31f3eef0-cc4b-4842-b57a-94fc4933b27b&limit=20",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/page-context",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/copilotkit/agent/31f3eef0-cc4b-4842-b57a-94fc4933b27b/connect",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls",
+    "status": 201
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255/active",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255/compute",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/copilotkit/threads/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/messages",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/voice/calls/1f39c0b8-6abe-48c3-aa92-a4047eafe255/end",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/copilotkit/threads/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/messages",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/copilotkit/agent/31f3eef0-cc4b-4842-b57a-94fc4933b27b/run",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/conversations/c5cb39b0-f5b3-4435-a072-d9be9bbb0383/capture",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/state",
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:14310/api/workspace",
+    "status": 200
+  }
+]

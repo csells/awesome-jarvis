@@ -1,0 +1,4 @@
+[0-20s] Seven plus five is twelve.
+[40-60s] It seems there might be an issue with accessing everyday space. Could you verify your permissions or provide the space ID so I can create the Voice Lab note for you?
+[80-100s] One, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen.
+[100-120s] eighteen nineteen twenty twenty-one twenty-two twenty-three twenty-faint-five twenty-six twenty-seven twenty-eight twenty-nine thirty. The capital of France is Paris.

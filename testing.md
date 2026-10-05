@@ -52,6 +52,10 @@ The clean install needed two missing build dependencies, `setuptools` and `py2ap
 
 ### OpenDots — 2026-10-05
 
+**Adapted follow-up:** tested real continuous calls using the existing hosted OSS speech stack, with OpenDots and Chromium running in a disposable Bumble VM. Recorded speech, audible interruption, voice-to-compute page creation, mute/hangup, and same-chat text follow-up passed with the disclosed local-runtime/voice patch. The original page request failed when the local model invented a space ID; a default-destination request succeeded. The adapter uses in-memory agent history, and the generated receipt inaccurately claimed an interrupted count completed. No physical phone or spoken approval/cancel pass is claimed. The final adapted suite passed 184 tests, build, typecheck and lint. **Remains on the Watch List.** See [setup, patch, audio, screenshots and limitations](lab/evidence/opendots/adapted/README.md).
+
+The original stock/partial test follows:
+
 **Added to the Watch List.** At commit `71efd82cd883df7b107d663bd36435a1d8a2d12a`, OpenDots implements continuous browser voice calls with configured interruption, a dashboard, and delegation to a specialist compute agent. A tap to begin a phone-browser call is useful even without a wake word. The existing hallmark rubric gives partial voice/hands-free/oversight and full visual credit from code; this is not a claim that live calling passed.
 
 The unchanged production build ran on Apple silicon macOS with Node 26.8.2 and Chrome for Testing 154.0.8037.92. Desktop page creation/save and a 390 × 844 touch-enabled browser's persisted document view and pause/resume controls **passed**. A separate direct-agent probe using real local Ollama answered a question and invoked the page tool to save exact content in SQLite. That probe bypasses the Intelligence transport and does not establish a working browser conversation. No physical phone, iOS background audio or cellular handoff was tested.

@@ -1,5 +1,7 @@
 # OpenDots candidate test — 2026-10-05
 
+**Later adapted test:** the [existing OSS voice stack and local CopilotKit runtime now have live call evidence](adapted/README.md), including recorded replies, interruption, page creation and same-chat text follow-up. The report below preserves the original stock/partial test and its blockers.
+
 **Decision: add to the Watch List.** A browser call is a useful Jarvis interface, including on a phone: the implementation starts continuous duplex audio with one tap rather than requiring a tap for each utterance. The absence of a wake word does not disqualify this project. It is a young MIT-licensed workspace with real compute and document tools, but live calling remains blocked in this test environment, and spoken approvals/cancellation and automatic coordination between Dots are missing.
 
 Tested [CopilotKit/OpenDots](https://github.com/CopilotKit/OpenDots/tree/71efd82cd883df7b107d663bd36435a1d8a2d12a) at `71efd82cd883df7b107d663bd36435a1d8a2d12a`, on Apple silicon macOS, Node 26.8.2 and Chrome for Testing 154.0.8037.92. The upstream checkout stayed clean. Desktop viewport: 1440 × 1000; touch-enabled phone viewport: 390 × 844. **This was mobile browser emulation, not a physical phone, cellular-network test or iOS Safari test.**
