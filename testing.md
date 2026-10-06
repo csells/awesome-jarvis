@@ -1,6 +1,6 @@
 # Hands-On Testing
 
-I build the [scorecard](readme.md#scorecard) in three passes. The [testing methodology](methodology.md) describes them in full so you can test new entries the same way. AI agents (Claude, through Claude Code) did the reviews and ran the lab tests under my direction.
+I build the [scorecard](README.md#scorecard) in three passes. The [testing methodology](methodology.md) describes them in full so you can test new entries the same way. AI agents (Claude, through Claude Code) did the reviews and ran the lab tests under my direction.
 
 1. **Code review.** A reviewer scored every agent on each pillar from its source code and docs, not its README.
 2. **Blind review.** A second, independent reviewer re-scored every agent without seeing the first review's scores. Where the two disagreed, the blind score won.

@@ -4,7 +4,7 @@ Machine-readable data behind the list. The weekly [staleness check](../scripts/R
 
 ## scorecard.json
 
-One record per agent in the [scorecard](../readme.md#scorecard), with when and at which version it was last tested. Keep it in step with the scorecard table: the staleness check flags any agent whose scores, platform, "Tested" level or "Watch out" text differ between the two.
+One record per agent in the [scorecard](../README.md#scorecard), with when and at which version it was last tested. Keep it in step with the scorecard table: the staleness check flags any agent whose scores, platform, "Tested" level or "Watch out" text differ between the two.
 
 | Field | Meaning |
 |---|---|

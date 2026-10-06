@@ -3,8 +3,8 @@
 
 Runs four checks and prints a Markdown report:
 
-1. Dead links in readme.md, blueprint.md, history.md, testing.md and methodology.md.
-2. Health of every GitHub repository linked from readme.md (archived, moved, stale).
+1. Dead links in README.md, blueprint.md, history.md, testing.md and methodology.md.
+2. Health of every GitHub repository linked from README.md (archived, moved, stale).
 3. The re-test queue for scorecard agents (data/scorecard.json).
 4. Watch List review (promote and drop candidates).
 
@@ -40,8 +40,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-LINK_FILES = ["readme.md", "blueprint.md", "history.md", "testing.md", "methodology.md"]
-MAIN_FILE = "readme.md"
+LINK_FILES = ["README.md", "blueprint.md", "history.md", "testing.md", "methodology.md"]
+MAIN_FILE = "README.md"
 
 # The list's rules (contributing.md and methodology.md).
 STRICT_SECTIONS = {"Jarvis Agents", "Mission Control", "Watch List"}
@@ -254,7 +254,7 @@ def link_text(line: str, url: str) -> str | None:
 
 
 def parse_scorecard_table(text: str) -> list[dict]:
-    """Parse the Scorecard table in readme.md into the data/scorecard.json shape."""
+    """Parse the Scorecard table in README.md into the data/scorecard.json shape."""
     rows: list[dict] = []
     header: list[str] | None = None
     in_scorecard = False
@@ -614,14 +614,14 @@ def repo_findings(entries: list[Entry], repos: dict[str, dict | None], today: dt
 
             if repo is None:
                 add("missing", "Repository not found (deleted, renamed away or made private) "
-                               f"(readme.md:{entry.line}).",
+                               f"(README.md:{entry.line}).",
                     "Find the project's new home or remove the entry (retired projects go in history.md).")
                 continue
             if repo["nameWithOwner"].lower() != key.lower():
-                add("moved", f"Repository moved to {repo['nameWithOwner']} (readme.md:{entry.line}).",
+                add("moved", f"Repository moved to {repo['nameWithOwner']} (README.md:{entry.line}).",
                     f"Update the link to {repo['url']}.")
             if repo.get("isArchived"):
-                add("archived", f"Repository is archived (readme.md:{entry.line}).",
+                add("archived", f"Repository is archived (README.md:{entry.line}).",
                     "Remove the entry or move it to history.md.")
                 continue
             if entry.section == WATCH_SECTION:
@@ -631,13 +631,13 @@ def repo_findings(entries: list[Entry], repos: dict[str, dict | None], today: dt
             if last and (today - last).days > limit:
                 months = "6 months" if limit == STRICT_STALE_DAYS else "12 months"
                 add("stale", f"Last commit on the default branch was {last} ({(today - last).days} days ago); "
-                             f"the limit for {entry.section} is {months} (readme.md:{entry.line}).",
+                             f"the limit for {entry.section} is {months} (README.md:{entry.line}).",
                     "Check whether it is still maintained; if not, move it to history.md or drop it.")
 
 
 def other_file_repo_findings(locations: dict[str, list[Location]], repos: dict[str, dict | None],
                              readme_repos: set[str], report: Report) -> None:
-    """Existence and rename checks for GitHub repos linked only outside readme.md."""
+    """Existence and rename checks for GitHub repos linked only outside README.md."""
     for url, locs in sorted(locations.items()):
         ref = github_repo(url)
         if not ref:

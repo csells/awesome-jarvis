@@ -1,5 +1,5 @@
 {
-  "$comment": "Scorecard agents and when and at which version each was last tested. Keep in sync with the Scorecard table in readme.md; see data/README.md.",
+  "$comment": "Scorecard agents and when and at which version each was last tested. Keep in sync with the Scorecard table in README.md; see data/README.md.",
   "agents": [
     {
       "name": "OpenClaw",

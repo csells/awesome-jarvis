@@ -1,6 +1,6 @@
 # Jarvis Blueprint
 
-A reference architecture for a real-life J.A.R.V.I.S. and three ways to build one. Every component named here is linked from the [main list](readme.md).
+A reference architecture for a real-life J.A.R.V.I.S. and three ways to build one. Every component named here is linked from the [main list](README.md).
 
 ## The Loop
 
@@ -83,7 +83,7 @@ The best quality right now, if you're willing to trust a provider with your data
 | Screen | The harness's dashboard or HUD on the desktop, Meta Ray-Ban Display or Even G2 glasses on the go |
 | Capture | Screenpipe on the desktop, Omi on your lapel |
 
-Don't want to build? Install a finished one from the [Jarvis Agents](readme.md#jarvis-agents) section. On Omarchy, `omarchy plugin add` hey-jarvis or omavoice and you'll be talking to Claude Code within minutes.
+Don't want to build? Install a finished one from the [Jarvis Agents](README.md#jarvis-agents) section. On Omarchy, `omarchy plugin add` hey-jarvis or omavoice and you'll be talking to Claude Code within minutes.
 
 ## Design Notes
 

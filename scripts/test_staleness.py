@@ -67,7 +67,7 @@ class ParsingTests(unittest.TestCase):
 
     def test_link_locations_name_non_entry_links_by_link_text(self):
         text = '# A [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)\n## S\nSee [the market](https://m.dev).'
-        locs = s.collect_link_locations({"readme.md": text})
+        locs = s.collect_link_locations({"README.md": text})
         self.assertEqual(locs["https://awesome.re"][0].name, "Awesome")
         self.assertEqual(locs["https://m.dev"][0].name, "the market")
         self.assertEqual(locs["https://m.dev"][0].line, 3)
@@ -86,7 +86,7 @@ class ParsingTests(unittest.TestCase):
         self.assertEqual(s.registrable_domain("os-world.github.io"), "os-world.github.io")
 
     def test_scorecard_table_matches_data_file_shape(self):
-        text = (s.ROOT / "readme.md").read_text(encoding="utf-8")
+        text = (s.ROOT / "README.md").read_text(encoding="utf-8")
         rows = s.parse_scorecard_table(text)
         self.assertGreater(len(rows), 0)
         for row in rows:

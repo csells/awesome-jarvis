@@ -314,4 +314,4 @@ tart delete jarvis-macos
 rm -rf omarchy-vm/qemu omarchy-vm/dl omarchy-vm/run voice-server/local out
 ```
 
-The lab is released under the repository's [CC0 license](../license).
+The lab is released under the repository's [CC0 license](../LICENSE).

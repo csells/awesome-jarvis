@@ -1,6 +1,6 @@
 # Testing Methodology
 
-How agents are scored for this list, and how to test a new one. The goal is a score anyone can reproduce from evidence, not from a project's README. Results live in [testing.md](testing.md); the scorecard is in [readme.md](readme.md#scorecard). For this list's September 2026 run, AI agents (Claude, through Claude Code) did the reviews and ran the lab tests under my direction.
+How agents are scored for this list, and how to test a new one. The goal is a score anyone can reproduce from evidence, not from a project's README. Results live in [testing.md](testing.md); the scorecard is in [README.md](README.md#scorecard). For this list's September 2026 run, AI agents (Claude, through Claude Code) did the reviews and ran the lab tests under my direction.
 
 ## Principles
 
