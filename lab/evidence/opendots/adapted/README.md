@@ -1,10 +1,12 @@
 # OpenDots with the existing OSS voice stack — 2026-10-05
 
-**Keep on the Watch List.** Reusing the lab's hosted open-source speech stack works: OpenDots can receive microphone speech, speak replies, and delegate a spoken request to its real compute agent. This is an adapted build, not evidence that stock OpenDots works without CopilotKit Intelligence or OpenAI voice configuration.
+**Keep on the Watch List.** Later [native mobile-browser and failure-mode tests](../mobile-browser/README.md) found reload/hangup defects and confirmed adapter history loss on restart; physical-phone/cellular qualification is still incomplete.
+
+Reusing the lab's hosted open-source speech stack works: OpenDots can receive microphone speech, speak replies, and delegate a spoken request to its real compute agent. This is an adapted build, not evidence that stock OpenDots works without CopilotKit Intelligence or OpenAI voice configuration.
 
 ## What ran where
 
-- **Bumble:** disposable Proxmox VM 105, `opendots-voice-thr-dchzek8ieb`, Ubuntu 24.04, 4 vCPUs, 6 GiB RAM, 24 GiB disk. The app, build/tests, and Playwright Chromium ran here. Node 26.8.2; Chromium headless 153.0.8010.12 (Playwright revision 1243).
+- **Bumble:** disposable Proxmox VM 105, `opendots-voice-thr-dchzek8ieb`, Debian 13, 4 vCPUs, 6 GiB RAM, 24 GiB disk. The app, build/tests, and Playwright Chromium ran here. Node 26.8.2; Chromium headless 153.0.8010.12 (Playwright revision 1243).
 - **Orca / Mac mini:** the existing lab speech-to-speech installation, using Parakeet TDT v3 STT, Kokoro 82M MLX TTS (`af_heart`), Silero/SmartTurn, and Ollama `qwen2.5:7b-instruct-q4_K_M`. The same Ollama model also powered OpenDots' compute agent, reached through a private SSH tunnel. Apple MLX requires this Mac host.
 - Speech-to-speech pin: `87725778a0eb736306e8b8ccdfd3ac4ab82c1503`, with the lab's existing seven-patch [wrapper](../../../voice-server/bin/s2s_serve.py). No new speech-server code changes were made.
 - OpenDots pin: `71efd82cd883df7b107d663bd36435a1d8a2d12a`, plus the complete [adaptation patch](local-runtime-voice.patch). No paid model/voice key, subscription-token extraction, Intelligence account, or Intelligence license was used. `sk-local-dummy` is a placeholder accepted by the local services.

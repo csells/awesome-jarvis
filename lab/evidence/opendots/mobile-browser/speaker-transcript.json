@@ -1,0 +1,22 @@
+[
+  {
+    "start": 0.0,
+    "end": 20.0,
+    "text": "Seven plus five is twelve."
+  },
+  {
+    "start": 40.0,
+    "end": 60.0,
+    "text": "I've created a page titled Voice Follow Up."
+  },
+  {
+    "start": 60.0,
+    "end": 80.0,
+    "text": "One, two, three, five."
+  },
+  {
+    "start": 80.0,
+    "end": 100.0,
+    "text": "Five six The capital of France is Paris."
+  }
+]

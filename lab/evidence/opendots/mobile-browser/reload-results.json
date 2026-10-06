@@ -1,0 +1,9 @@
+[
+  {
+    "name": "page-reload-during-call",
+    "result": "FAIL",
+    "oldCallStatus": "active",
+    "oldCallEndedAt": null,
+    "newCallRejected": true
+  }
+]

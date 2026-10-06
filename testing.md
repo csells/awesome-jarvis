@@ -52,6 +52,8 @@ The clean install needed two missing build dependencies, `setuptools` and `py2ap
 
 ### OpenDots — 2026-10-05
 
+**Native mobile-browser reliability follow-up:** full Chromium at phone dimensions used real microphone capture and recorded speaker playback through the permanent voice service. The normal call/action/follow-up flow passed, but refreshing an active call blocks the next call, stalled hangup retains an acquired (muted) microphone, and a dropped control request ends the call without reconnecting. Restart preserved pages but lost the OSS adapter’s in-memory conversation history. Media used LAN candidates; physical-phone, Safari and cellular/NAT checks remain blocked on device access. **Not fully phone-tested; remains on the Watch List.** See [recordings, fault cases and exact coverage](lab/evidence/opendots/mobile-browser/README.md).
+
 **Adapted follow-up:** tested real continuous calls using the existing hosted OSS speech stack, with OpenDots and Chromium running in a disposable Bumble VM. Recorded speech, audible interruption, voice-to-compute page creation, mute/hangup, and same-chat text follow-up passed with the disclosed local-runtime/voice patch. The original page request failed when the local model invented a space ID; a default-destination request succeeded. The adapter uses in-memory agent history, and the generated receipt inaccurately claimed an interrupted count completed. No physical phone or spoken approval/cancel pass is claimed. The final adapted suite passed 184 tests, build, typecheck and lint. **Remains on the Watch List.** See [setup, patch, audio, screenshots and limitations](lab/evidence/opendots/adapted/README.md).
 
 The original stock/partial test follows:

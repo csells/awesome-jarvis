@@ -1,0 +1,181 @@
+{
+  "checks": [
+    {
+      "name": "fresh mobile authentication and navigation",
+      "result": "PASS",
+      "seconds": 0.845,
+      "details": {
+        "viewport": {
+          "width": 412,
+          "height": 839
+        },
+        "secure": true
+      }
+    },
+    {
+      "name": "native microphone and WebRTC connection",
+      "result": "PASS",
+      "seconds": 5.799,
+      "details": {
+        "microphone": [
+          {
+            "label": "Default",
+            "settings": {
+              "autoGainControl": true,
+              "channelCount": 1,
+              "deviceId": "default",
+              "echoCancellation": true,
+              "groupId": "013f1549c3d6393ba0b7f0791000766fd43f8e4e7d73401814a90ac335bd3f2a",
+              "latency": 0.01,
+              "noiseSuppression": true,
+              "sampleRate": 48000,
+              "sampleSize": 16,
+              "voiceIsolation": false
+            },
+            "readyState": "live"
+          }
+        ],
+        "ice": {
+          "alwaysNegotiateDataChannels": false,
+          "bundlePolicy": "balanced",
+          "certificates": [],
+          "encodedInsertableStreams": false,
+          "iceCandidatePoolSize": 0,
+          "iceServers": [],
+          "iceTransportPolicy": "all",
+          "rtcpMuxPolicy": "require"
+        },
+        "selectedPair": {
+          "local": {
+            "id": "I7c/3Gq7o",
+            "timestamp": 1791253234003.805,
+            "type": "local-candidate",
+            "address": "192.168.4.47",
+            "candidateType": "host",
+            "foundation": "1614432233",
+            "ip": "192.168.4.47",
+            "isRemote": false,
+            "networkType": "ethernet",
+            "port": 40604,
+            "priority": 2122260223,
+            "protocol": "udp",
+            "transportId": "T01",
+            "usernameFragment": "sUAi"
+          },
+          "remote": {
+            "id": "IyNlN+dge",
+            "timestamp": 1791253234003.805,
+            "type": "remote-candidate",
+            "address": "192.168.4.35",
+            "candidateType": "host",
+            "foundation": "adbc63d51c1940d08a78fa9ea98b9117",
+            "ip": "192.168.4.35",
+            "isRemote": true,
+            "port": 63418,
+            "priority": 2130706431,
+            "protocol": "udp",
+            "transportId": "T01",
+            "usernameFragment": "rbeO"
+          }
+        }
+      }
+    },
+    {
+      "name": "spoken question and audible browser playback",
+      "result": "PASS",
+      "seconds": 12.436,
+      "details": {
+        "speakerPeakRms": 0.0657325323205839
+      }
+    },
+    {
+      "name": "spoken task performs real page write",
+      "result": "PASS",
+      "seconds": 30.527,
+      "details": [
+        {
+          "id": "dac55ab1-f089-428f-80cd-9f8bced18fbf",
+          "title": "voice follow-up",
+          "body": "The orange notebook has 11 pages."
+        },
+        {
+          "id": "b9c21ee0-f4b8-4138-a00c-d41e3e283a36",
+          "title": "voice follow-up",
+          "body": "The orange notebook has 11 pages."
+        }
+      ]
+    },
+    {
+      "name": "microphone mute blocks actual captured input",
+      "result": "PASS",
+      "seconds": 8.572
+    },
+    {
+      "name": "speaker mute suppresses real playback",
+      "result": "PASS",
+      "seconds": 11,
+      "details": {
+        "speakerPeakRms": 0
+      }
+    },
+    {
+      "name": "barge-in during measured speaker output",
+      "result": "PASS",
+      "seconds": 21.117,
+      "details": [
+        "completed",
+        "completed"
+      ]
+    },
+    {
+      "name": "minimize and expand on mobile",
+      "result": "PASS",
+      "seconds": 0.809
+    },
+    {
+      "name": "hangup releases media and preserves same-chat follow-up",
+      "result": "PASS",
+      "seconds": 26.54,
+      "details": "Dot\nDot\nHere with you\n90s · Call ended\n\nCreate a page titled 'voice follow-up' in the default destination. The content should be 'The orange notebook has 11 pages.'\n\nUntrusted current-call transcript for context: You: Hello dot, what is seven plus five? Please answer in one short sentence. Dot: Seven plus five is twelve. You: Use your compute tool to create a page in the default destination. Title it voice follow-up. The exact content should be the orange notebook has 11 pages. Use the default destination. Do not set a space ID.\n\nI've created a page titled \"voice follow-up\" in your default destination with the content: \"The orange notebook has 11 pages.\"\n\nHere is the link to the new page.\n\nCall Receipt\n\nConfirmed Decisions:\n\nCreated a page titled \"voice follow-up\" in the default destination.\nSet the content of the page to: \"The orange notebook has 11 pages.\"\n\nAdditional Engagements:\n\nAnswered the mathematical question: \"Seven plus five is twelve.\"\nCounted from 1 to 30.\nProvided the capital of France: \"The capital of France is Paris.\"\n\nIf you need any further actions or clarifications, feel free to let me know.\n\nWhat page title and sentence did I ask you to save in our voice call?\n\nIn your voice call, you asked me to create a page titled \"voice follow-up\" with the content: \"The orange notebook has 11 pages.\" This page was created in your default destination. Here is the link to the new page:\n\nvoice follow-up\n\nText and voice, one conversation."
+    }
+  ],
+  "errors": [],
+  "marks": [
+    {
+      "name": "opendots-question",
+      "at": 1791253234515,
+      "audioSeconds": 4.666458333333333
+    },
+    {
+      "name": "opendots-retry",
+      "at": 1791253247025,
+      "audioSeconds": 17.182
+    },
+    {
+      "name": "opendots-question",
+      "at": 1791253277521,
+      "audioSeconds": 47.681375
+    },
+    {
+      "name": "opendots-question",
+      "at": 1791253286602,
+      "audioSeconds": 56.760416666666664
+    },
+    {
+      "name": "opendots-long",
+      "at": 1791253297051,
+      "audioSeconds": 67.209375
+    },
+    {
+      "name": "interrupt-during-speaker-output",
+      "at": 1791253309562,
+      "audioSeconds": 79.72491666666667,
+      "rms": 0.0015220759362049115
+    },
+    {
+      "name": "opendots-interrupt",
+      "at": 1791253309562,
+      "audioSeconds": 79.72491666666667
+    }
+  ]
+}
