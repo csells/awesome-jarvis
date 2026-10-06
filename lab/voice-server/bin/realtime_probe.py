@@ -41,8 +41,9 @@ async def main():
     marks, responses, cur = {}, [], None
     state = {"first_audio": asyncio.Event(), "done": 0, "want_done": 1 if SCEN != "bargein" else 2}
     all_done = asyncio.Event()
-    # sk-local-dummy is a placeholder, not a real key; the local server ignores it.
-    async with websockets.connect(URL, additional_headers={"Authorization": "Bearer sk-local-dummy"},
+    session_file = os.environ.get("VOICE_SESSION_FILE")
+    key = json.load(open(session_file))["api_key"] if session_file else "sk-local-dummy"
+    async with websockets.connect(URL, additional_headers={"Authorization": "Bearer " + key},
                                   max_size=None) as ws:
         await ws.send(json.dumps({"type": "session.update", "session": {
             "type": "realtime", "model": "gpt-realtime", "output_modalities": ["audio"],

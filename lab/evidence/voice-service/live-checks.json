@@ -1,0 +1,22 @@
+{
+  "expiry_closed_live_websocket_seconds": 30.56,
+  "unauthorized": 401,
+  "second_reservation": 409,
+  "rest_during_realtime": 409,
+  "expired_key": 401,
+  "expiry_releases_worker": true,
+  "gateway_crash_recovery_seconds": 6.84,
+  "realtime_crash_recovery_seconds": 18.84,
+  "supervisor_crash_recovery_seconds": 20.79,
+  "supervisor_replaced_all_children": true,
+  "final_status": {
+    "ready": true,
+    "components": {
+      "realtime": true,
+      "audio": true,
+      "model": true
+    },
+    "lease": null,
+    "max_realtime_sessions": 1
+  }
+}

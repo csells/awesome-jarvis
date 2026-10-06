@@ -12,7 +12,9 @@ from openai import OpenAI
 base = os.environ.get("VOICE_AUDIO_BASE", "http://127.0.0.1:8766/v1")
 out, wavs = sys.argv[1], sys.argv[2:]
 os.makedirs(out, exist_ok=True)
-c = OpenAI(base_url=base, api_key="sk-local-dummy")  # dummy key: not a real secret; the local server ignores it
+session_file = os.environ.get("VOICE_SESSION_FILE")
+key = json.load(open(session_file))["api_key"] if session_file else "sk-local-dummy"
+c = OpenAI(base_url=base, api_key=key)
 res = {"base_url": base, "stt": [], "tts": []}
 
 

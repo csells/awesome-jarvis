@@ -1,0 +1,11 @@
+{
+  "release": "20261006T015027Z",
+  "sha256": {
+    "managed/gateway.py": "987c4d37f226c526703615322ccc994c9b71714b2948d0a1c7f56b39d3605d98",
+    "managed/client.py": "c0438331d7f0321579942d3801dc555db533efa33978ea356fe626221a52c14f",
+    "managed/supervisor.py": "1f0bc3d1f7090f037a98970223fc6625ea506df49037d0e1bcd8c5f6e4d36a73",
+    "managed/install.py": "f9ddc38bcdcf55ef292125664eabad0dac8b2d21d785d573fff280c321d75262",
+    "bin/rest_probe.py": "19a3635c92d8503ff436d0e37091ffbf731bbdbfa7260dc7c8ca29a46032975a",
+    "bin/realtime_probe.py": "3dd2bf9195c4c2c52b1e603e50c76fae27dd11160f4487537597600bd7807e5f"
+  }
+}

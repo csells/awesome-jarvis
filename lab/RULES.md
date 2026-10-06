@@ -15,7 +15,7 @@ A test verifies the four hallmarks: **voice** (wake word or always-on listening,
 
 - Use your own subscription through the vendor's **official CLI** (for example `claude`, the Claude Code CLI), or free local models (Ollama and similar). Don't use or request any other paid API keys (OpenAI, ElevenLabs, Fish Audio, Gemini, DashScope, Deepgram and so on).
 - If a hallmark needs a key you don't have, test everything else and record **BLOCKED: needs X key**. BLOCKED is not FAIL.
-- An OpenAI-compatible local voice server (see [voice-server](README.md#local-openai-compatible-voice-stack)) may stand in for OpenAI's Realtime and audio APIs. Use a clearly fake key such as `sk-local-dummy`. If the address is hardcoded, a disclosed one-line patch is acceptable; label the result "tested with a one-line URL change".
+- An OpenAI-compatible local voice server (see [voice-server](README.md#local-openai-compatible-voice-stack)) may stand in for OpenAI's Realtime and audio APIs. For the [managed shared service](voice-server/managed/README.md), reserve a short-lived service key; never pass its administrative key to a test application. For a separately owned transient server, use a clearly fake key such as `sk-local-dummy`. If the address is hardcoded, a disclosed one-line patch is acceptable; label the result "tested with a one-line URL change".
 
 ## Credentials
 
@@ -32,6 +32,7 @@ A test verifies the four hallmarks: **voice** (wake word or always-on listening,
 - Never `rm -rf` outside directories you created. Don't touch other tracks' VMs, containers or volumes.
 - Memory budget on a 32 GB host: Docker VM 8 GB, macOS VM up to 8 GB, Omarchy VM up to 6 GB, Android emulator up to 4 GB. Stop what you aren't using; running several at once caused swapping and watchdog kills in the reference lab.
 - Do disruptive things (writing TCC databases, disabling SIP, auto-approving dialogs) only inside disposable VMs.
+- The managed voice service is persistent infrastructure: release your reservation; never stop its launchd job, backend processes, or Tailscale endpoint as test cleanup.
 - When a track is done: **stop** (don't delete) every VM, emulator and container you started, keep images and volumes for re-testing, and write down the start and stop commands.
 
 ## Reporting

@@ -1,0 +1,59 @@
+{
+  "processes": [
+    {
+      "pid": 48324,
+      "parent": 1,
+      "rss_kib": 8720
+    },
+    {
+      "pid": 48385,
+      "parent": 48324,
+      "rss_kib": 23824
+    },
+    {
+      "pid": 48386,
+      "parent": 48324,
+      "rss_kib": 272448
+    },
+    {
+      "pid": 48387,
+      "parent": 48324,
+      "rss_kib": 89664
+    },
+    {
+      "pid": 48388,
+      "parent": 48324,
+      "rss_kib": 22176
+    },
+    {
+      "pid": 48407,
+      "parent": 48385,
+      "rss_kib": 5287824
+    }
+  ],
+  "total_rss_gib": 5.44,
+  "ollama": {
+    "models": [
+      {
+        "name": "qwen2.5:7b-instruct-q4_K_M",
+        "model": "qwen2.5:7b-instruct-q4_K_M",
+        "size": 6578881166,
+        "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "7.6B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-10-05T19:09:01.303006-07:00",
+        "size_vram": 6578881166,
+        "context_length": 32768
+      }
+    ]
+  },
+  "note": "RSS excludes some unified GPU allocations; model memory and RSS overlap, so do not sum them."
+}

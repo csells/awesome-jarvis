@@ -1,0 +1,14 @@
+[
+  {
+    "file": "webrtc-answer.wav",
+    "transcript": "Harrison."
+  },
+  {
+    "file": "turn-resp0.wav",
+    "transcript": "Paris."
+  },
+  {
+    "file": "webrtc-sentence.wav",
+    "transcript": "The capital of France is Paris."
+  }
+]

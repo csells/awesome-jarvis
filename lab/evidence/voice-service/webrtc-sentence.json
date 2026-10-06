@@ -1,0 +1,88 @@
+{
+  "connection": "connected",
+  "captured_audio_seconds": 8.1,
+  "events": [
+    {
+      "content_index": 0,
+      "event_id": "event_283b3f95d6244e7cb5ea234007e30e38",
+      "item_id": "item_fc043afdc1fd415fadaac24e56e67399",
+      "transcript": "What is the capital of France?",
+      "type": "conversation.item.input_audio_transcription.completed",
+      "usage": {
+        "seconds": 2.228,
+        "type": "duration"
+      },
+      "logprobs": null
+    },
+    {
+      "content_index": 0,
+      "event_id": "event_cfa2fabc08e14a66ab75df2f1e65568f",
+      "item_id": "item_d3f0306c22444d3fa42dba3e638c75ee",
+      "output_index": 0,
+      "response_id": "resp_0112cc64395746a8a83189ccee164a6c",
+      "transcript": "The capital of France is Paris.",
+      "type": "response.output_audio_transcript.done"
+    },
+    {
+      "event_id": "event_1b1b91ada48c4e12b5c6e7ca9717a466",
+      "response": {
+        "id": "resp_0112cc64395746a8a83189ccee164a6c",
+        "audio": {
+          "output": {
+            "format": null,
+            "voice": "cedar"
+          }
+        },
+        "conversation_id": "conv_0dd70372cfe84eb8b7c8e9ea184f854e",
+        "max_output_tokens": null,
+        "metadata": {
+          "speech_to_speech.turn_latency": "{\"e2e_s\":null,\"llm_s\":1.8899000422097743,\"llm_ttft_s\":1.544811375439167,\"mlx_lock_wait_s\":9.592622518539429e-07,\"response_key\":\"2f62f348156b47e3b93da5b9e43c617f\",\"smart_analysis_s\":0.081339542,\"smart_delay_s\":0.0,\"smart_grace_s\":0.8,\"smart_status\":\"complete\",\"smart_wait_s\":0.0,\"status\":\"completed\",\"stt_s\":0.11818737490102649,\"tts_ttfa_s\":null,\"turn_id\":\"turn_1\",\"turn_revision\":0,\"vad_decision_s\":0.096325625,\"version\":1}"
+        },
+        "object": "realtime.response",
+        "output": [
+          {
+            "content": [
+              {
+                "audio": null,
+                "text": null,
+                "transcript": "The capital of France is Paris.",
+                "type": "output_audio"
+              }
+            ],
+            "role": "assistant",
+            "type": "message",
+            "id": "item_d3f0306c22444d3fa42dba3e638c75ee",
+            "object": "realtime.item",
+            "status": "completed"
+          }
+        ],
+        "output_modalities": [
+          "audio"
+        ],
+        "status": "completed",
+        "status_details": {
+          "error": null,
+          "reason": null,
+          "type": "completed"
+        },
+        "usage": {
+          "input_token_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cached_tokens_details": null,
+            "image_tokens": 0,
+            "text_tokens": 373
+          },
+          "input_tokens": 373,
+          "output_token_details": {
+            "audio_tokens": 0,
+            "text_tokens": 8
+          },
+          "output_tokens": 8,
+          "total_tokens": 381
+        }
+      },
+      "type": "response.done"
+    }
+  ]
+}

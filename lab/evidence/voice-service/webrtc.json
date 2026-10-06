@@ -1,0 +1,88 @@
+{
+  "connection": "connected",
+  "captured_audio_seconds": 7.22,
+  "events": [
+    {
+      "content_index": 0,
+      "event_id": "event_c46d7a0a72c44778a972ec802e6d48c5",
+      "item_id": "item_f804a050a4534ae985ace38d2352b5cb",
+      "transcript": "What is the capital of France?",
+      "type": "conversation.item.input_audio_transcription.completed",
+      "usage": {
+        "seconds": 2.228,
+        "type": "duration"
+      },
+      "logprobs": null
+    },
+    {
+      "content_index": 0,
+      "event_id": "event_8c0ae02748e54afa93164f698e7e7332",
+      "item_id": "item_7cc71fbb7db14a02bcb07ce9232bcd5b",
+      "output_index": 0,
+      "response_id": "resp_9475878280804903b7eeaa782cf2456a",
+      "transcript": "Paris.",
+      "type": "response.output_audio_transcript.done"
+    },
+    {
+      "event_id": "event_65aeb55e19954025a4d1fd5e164b1193",
+      "response": {
+        "id": "resp_9475878280804903b7eeaa782cf2456a",
+        "audio": {
+          "output": {
+            "format": null,
+            "voice": "cedar"
+          }
+        },
+        "conversation_id": "conv_bc656491b0f8404783a95106317d912b",
+        "max_output_tokens": null,
+        "metadata": {
+          "speech_to_speech.turn_latency": "{\"e2e_s\":null,\"llm_s\":1.8527446249499917,\"llm_ttft_s\":1.7374016246758401,\"mlx_lock_wait_s\":1.2079253792762756e-06,\"response_key\":\"612c4c2984dd4d44b3f67cdc5ff6f087\",\"smart_analysis_s\":0.071933958,\"smart_delay_s\":0.0,\"smart_grace_s\":0.8,\"smart_status\":\"complete\",\"smart_wait_s\":0.0,\"status\":\"completed\",\"stt_s\":0.16771916579455137,\"tts_ttfa_s\":null,\"turn_id\":\"turn_1\",\"turn_revision\":0,\"vad_decision_s\":0.09719475,\"version\":1}"
+        },
+        "object": "realtime.response",
+        "output": [
+          {
+            "content": [
+              {
+                "audio": null,
+                "text": null,
+                "transcript": "Paris.",
+                "type": "output_audio"
+              }
+            ],
+            "role": "assistant",
+            "type": "message",
+            "id": "item_7cc71fbb7db14a02bcb07ce9232bcd5b",
+            "object": "realtime.item",
+            "status": "completed"
+          }
+        ],
+        "output_modalities": [
+          "audio"
+        ],
+        "status": "completed",
+        "status_details": {
+          "error": null,
+          "reason": null,
+          "type": "completed"
+        },
+        "usage": {
+          "input_token_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0,
+            "cached_tokens_details": null,
+            "image_tokens": 0,
+            "text_tokens": 365
+          },
+          "input_tokens": 365,
+          "output_token_details": {
+            "audio_tokens": 0,
+            "text_tokens": 3
+          },
+          "output_tokens": 3,
+          "total_tokens": 368
+        }
+      },
+      "type": "response.done"
+    }
+  ]
+}

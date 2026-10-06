@@ -1,0 +1,61 @@
+{
+  "base_url": "https://chriss-mac-mini.tail3127c0.ts.net:8443/v1",
+  "stt": [
+    {
+      "file": "opendots-question.wav",
+      "run": 0,
+      "text": "Hello dot, what is seven plus five? Please answer in one short sentence.",
+      "seconds": 6.555
+    },
+    {
+      "file": "opendots-question.wav",
+      "run": 1,
+      "text": "Hello dot, what is seven plus five? Please answer in one short sentence.",
+      "seconds": 0.266
+    },
+    {
+      "file": "turn-resp0.wav",
+      "run": 0,
+      "text": "Paris.",
+      "seconds": 0.101
+    },
+    {
+      "file": "turn-resp0.wav",
+      "run": 1,
+      "text": "Paris.",
+      "seconds": 0.063
+    }
+  ],
+  "tts": [
+    {
+      "voice": "fable",
+      "format": "mp3",
+      "bytes": 60236,
+      "seconds": 3.197,
+      "input": "Good evening, sir. All systems are online and the lab is ready for testing.",
+      "roundtrip_transcript": "Good evening sir. All systems are online, and the lab is ready for testing.",
+      "stt_seconds": 0.445,
+      "file": "tts-fable.mp3"
+    },
+    {
+      "voice": "alloy",
+      "format": "wav",
+      "bytes": 180044,
+      "seconds": 1.232,
+      "input": "The quick brown fox jumps over the lazy dog.",
+      "roundtrip_transcript": "The quick brown fox jumps over the lazy dog.",
+      "stt_seconds": 0.113,
+      "file": "tts-alloy.wav"
+    },
+    {
+      "voice": "marin",
+      "format": "pcm",
+      "bytes": 157200,
+      "seconds": 0.305,
+      "input": "Barge in whenever you like; I will stop talking.",
+      "roundtrip_transcript": "Barge in whenever you like, I will stop talking.",
+      "stt_seconds": 0.088,
+      "file": "tts-marin.pcm.wav"
+    }
+  ]
+}

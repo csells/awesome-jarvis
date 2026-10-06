@@ -200,6 +200,8 @@ The reference AVD used 4 GB, 4 cores, 720x1600 at 320 dpi and swiftshader. `anr-
 
 ## Local OpenAI-Compatible Voice Stack
 
+For recurring tests, use the [managed shared service](voice-server/managed/README.md): reserve a short-lived key, use its private HTTPS endpoint, then release the reservation. Orca now runs this service persistently at user login. Do not stop it during test cleanup. The commands below describe a separately owned transient installation.
+
 Many voice agents speak OpenAI's Realtime API. `voice-server/` runs a free replacement natively on the Mac with MLX:
 
 | Server | Endpoints | Behind it |
