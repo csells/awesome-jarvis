@@ -1,6 +1,6 @@
 # OpenDots with the existing OSS voice stack — 2026-10-05
 
-**Keep on the Watch List.** Later [native mobile-browser and failure-mode tests](../mobile-browser/README.md) found reload/hangup defects and confirmed adapter history loss on restart; physical-phone/cellular qualification is still incomplete.
+**Historical run; superseded by the [2026-10-06 service/integration audit](../integration-audit/README.md).** That audit fixes our shared-service and adapter defects and verifies continuous voice, failure recovery and durable conversation history. Physical-phone qualification is outside the requested scope. The project remains on the Watch List as a custom adaptation.
 
 Reusing the lab's hosted open-source speech stack works: OpenDots can receive microphone speech, speak replies, and delegate a spoken request to its real compute agent. This is an adapted build, not evidence that stock OpenDots works without CopilotKit Intelligence or OpenAI voice configuration.
 

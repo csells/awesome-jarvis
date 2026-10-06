@@ -1,6 +1,6 @@
 # OpenDots mobile-browser and failure-mode testing — 2026-10-05
 
-**Partial qualification; not fully tested on a phone. Keep on the Watch List.** The real browser-call workflow works with the disclosed OSS adapter, but reload and hangup failures prevent treating it as a dependable phone assistant. Physical-device, cellular/NAT and iOS Safari testing remain blocked on access to a remotely controllable phone or device lab. A mobile browser profile is not a physical phone.
+**Historical failures, superseded by the [2026-10-06 service/integration audit](../integration-audit/README.md).** These results exposed defects in our shared service and adaptation; they do not establish that upstream OpenDots caused them. The follow-up fixes and retests reload, hangup, capacity recovery and conversation persistence. The requested scope is continuous, phone-like voice communication; physical-phone access is not a blocker.
 
 ## Artifact and environment
 
@@ -32,13 +32,13 @@ OpenDots `71efd82cd883df7b107d663bd36435a1d8a2d12a` plus the existing [runtime/v
 | Browser refresh during call | **FAIL:** old call remains active with no endedAt; a new call is rejected | [Isolated result](reload-results.json), [screenshot](reload-stale-call.png) |
 | App restart | Pages/call records PASS; **conversation-history durability FAIL in this adapter**: 7 messages → 0, all 4 saved pages unchanged | [Persistence summary](persistence-summary.json) |
 | Spoken approve/deny/compute cancellation | NOT IMPLEMENTED by this voice adapter: exposed speech tool is ask_compute; barge-in is not compute cancellation | [Adapter source](../adapted/local-runtime-voice.patch) |
-| Physical phone, iOS Safari, cellular/NAT, Wi-Fi/cellular handoff, lock screen/background, Bluetooth routing | **BLOCKED / NOT TESTED:** no attached Android device; iPhone device service unavailable; remote physical-device access requested but not provided during this run | No emulation result is substituted for these checks |
+| Physical phone, iOS Safari, cellular/NAT, Wi-Fi/cellular handoff, lock screen/background, Bluetooth routing | **OUT OF SCOPE / NOT TESTED:** these device and network scenarios were not part of the requested continuous-voice evaluation | No emulation result is substituted for these checks |
 
 The generated call receipt again says the count completed through 30, contrary to recorded playback. The mobile minimized view also continued to show “speaking” after audio finished. Captions and receipts are not playback evidence.
 
 ## Failure attribution
 
-The stalled-hangup behavior comes from `useVoice.end()` awaiting an end request and history refresh before stopping media, without a bounded client request timeout. The reload behavior was reproduced through real navigation, independently of the earlier abrupt-browser-close finding. Cleanup required explicitly ending the abandoned test call through the authenticated API; this was test cleanup, not a user-facing recovery pass. These are app lifecycle findings on the tested upstream pin plus adaptation.
+The stalled-hangup behavior comes from `useVoice.end()` awaiting an end request and history refresh before stopping media, without a bounded client request timeout. The reload behavior was reproduced through real navigation, independently of the earlier abrupt-browser-close finding. Cleanup required explicitly ending the abandoned test call through the authenticated API; this was test cleanup, not a user-facing recovery pass. These are findings on the combined upstream pin, our adaptation and our service. The follow-up audit establishes fixes on our side; this run did not isolate upstream responsibility.
 
 History loss is specifically a limitation of our `InMemoryAgentRunner` adapter; do not attribute it to stock Intelligence persistence. SQLite documents and call records survived the restart exactly. A source review also found that a failed history refresh after successful compute can be reported as “Compute failed”; this was not independently fault-injected in the live run and is not counted as a tested failure here.
 
@@ -57,8 +57,4 @@ History loss is specifically a limitation of our `InMemoryAgentRunner` adapter; 
 
 Prepare the prior adapted build and the existing synthetic WAVs listed in the harness. Configure the app with a private owner token, a separate shared-voice reservation key, `OPENDOTS_LOCAL_RUNTIME=1`, and its exact HTTPS `APP_ORIGIN`. The guest uses SSH forwards for Ollama and the voice gateway; do not expose their raw ports. Create PulseAudio `voice_input` and `voice_output` null sinks, remap `voice_input.monitor` as `jarvis_mic`, and set it as the default source. Run full Chromium with Xvfb and `PULSE_SOURCE=jarvis_mic PULSE_SINK=voice_output`; do not restore Playwright's default mute-audio flag. The harness uses a private owner JSON file that must never be committed.
 
-Remaining qualification requires a controllable physical phone and an actual external network. Run the same start/conversation/action/interruption/hangup flow there, then background/lock-screen, permission, audio-route and Wi-Fi/cellular transition checks. This report deliberately does not claim “fully tested.”
-
-## Cleanup
-
-The test reservation was released, VM 105 was shut down with its data retained, and the temporary HTTPS/BB Connect shares were removed. The permanent shared voice service remains healthy with no active reservation. The awesome-jarvis repository checks passed: 47 tests and awesome-lint.
+The next step was to isolate and harden our service and integration. That work is now documented in the [service/integration audit](../integration-audit/README.md). Physical-device and external-network qualification would be a separate scope.

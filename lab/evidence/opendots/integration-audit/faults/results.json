@@ -1,0 +1,76 @@
+[
+  {
+    "name": "microphone-permission-denied",
+    "result": "PASS",
+    "calls": 0,
+    "state": {
+      "peers": [],
+      "tracks": []
+    },
+    "body": "Dot\nDot\nHere with you\nWhat’s on your mind?\n\nBe thoughtful, practical, and concise. Help the user think clearly and follow through.\n\nYour conversation stays with this Dot, across text and calls.\n\nPermission denied\nText and voice, one conversation."
+  },
+  {
+    "name": "call-control-network-error",
+    "result": "ENDS_CALL_NO_AUTOMATIC_RECONNECT",
+    "state": {
+      "peers": [
+        "closed"
+      ],
+      "tracks": [
+        {
+          "enabled": true,
+          "readyState": "ended"
+        }
+      ]
+    },
+    "body": "Dot\nDot\nHere with you\n7s · Call ended\n\nCall ended. Transcript saved for this conversation; generated speech may have been interrupted.\n\nCall control connection was lost.\nText and voice, one conversation."
+  },
+  {
+    "name": "blocked-hangup-request",
+    "result": "PASS",
+    "observedAfterSeconds": 10,
+    "state": {
+      "peers": [
+        "closed"
+      ],
+      "tracks": [
+        {
+          "enabled": true,
+          "readyState": "ended"
+        }
+      ]
+    },
+    "body": "Dot\nDot\nHere with you\nWhat’s on your mind?\n\nBe thoughtful, practical, and concise. Help the user think clearly and follow through.\n\nYour conversation stays with this Dot, across text and calls.\n\nCall in progress\nVoice call\nDot\n0:00\n\nSaving call…\n\nDot\nSpeak naturally. Your Dot is here with you.\n\nSpeaker\nEnd\nMute\n\nText and voice share this conversation\n\nText and voice, one conversation."
+  },
+  {
+    "name": "page-reload-during-call",
+    "result": "PASS",
+    "oldCallStatus": "ended",
+    "oldCallEndedAt": 1791314214220,
+    "newCallConnected": true
+  },
+  {
+    "name": "lost-unload-notification-recovery",
+    "result": "PASS",
+    "droppedUnload": true,
+    "oldCallStatus": "failed",
+    "oldCallError": "Voice peer disconnected; local session reconciled with provider.",
+    "newCallConnected": true
+  },
+  {
+    "name": "stalled-history-refresh-after-hangup",
+    "result": "PASS",
+    "state": {
+      "peers": [
+        "closed"
+      ],
+      "tracks": [
+        {
+          "enabled": true,
+          "readyState": "ended"
+        }
+      ]
+    },
+    "body": "Dot\nDot\nHere with you\nWhat’s on your mind?\n\nBe thoughtful, practical, and concise. Help the user think clearly and follow through.\n\nYour conversation stays with this Dot, across text and calls.\n\n5s · Call ended\nsignal timed out\nText and voice, one conversation."
+  }
+]

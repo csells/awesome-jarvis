@@ -1,0 +1,252 @@
+{
+  "spaces": [
+    {
+      "id": "cc384001-0a55-4e20-9aec-cf34f12d06cc",
+      "name": "Everyday",
+      "description": "A little space for your day.",
+      "createdAt": 1791312207056
+    }
+  ],
+  "dots": [
+    {
+      "id": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "spaceId": "cc384001-0a55-4e20-9aec-cf34f12d06cc",
+      "name": "Dot",
+      "instructions": "Be thoughtful, practical, and concise. Help the user think clearly and follow through.",
+      "researchAllowed": true,
+      "memoryAllowed": true,
+      "createdAt": 1791312207058,
+      "learningContainerId": null,
+      "skillDeliveryEnabled": false,
+      "spaceIds": [
+        "cc384001-0a55-4e20-9aec-cf34f12d06cc"
+      ]
+    }
+  ],
+  "conversations": [
+    {
+      "id": "8cf498f5-1b4d-47dd-a365-1f253d30e707",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791314082763,
+      "learningContainerId": null
+    },
+    {
+      "id": "93138b4c-d572-41c9-b14b-c4a580292f2e",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313869934,
+      "learningContainerId": null
+    },
+    {
+      "id": "b4374f57-5082-4aa1-9755-99eda4e91e9e",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313850768,
+      "learningContainerId": null
+    },
+    {
+      "id": "a5af9049-2a98-4cd3-bc0a-c5f85e4851c4",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313841701,
+      "learningContainerId": null
+    },
+    {
+      "id": "a4585e3e-6bc1-49f8-8528-8cf52c4dd6fa",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313825871,
+      "learningContainerId": null
+    },
+    {
+      "id": "47c9ccad-cad3-4d34-95bc-beb13ac20d99",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313817408,
+      "learningContainerId": null
+    },
+    {
+      "id": "d5859ebd-a1b6-4b12-9c36-ab1d41981834",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313782076,
+      "learningContainerId": null
+    },
+    {
+      "id": "60629951-70dc-4220-a9b9-865cc9a0e8a1",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313765541,
+      "learningContainerId": null
+    },
+    {
+      "id": "112baa5b-2b1a-4c5f-81b1-a0a68a3f3e68",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313764252,
+      "learningContainerId": null
+    },
+    {
+      "id": "019bc18a-55c6-4e12-804f-097a9a8752de",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313530264,
+      "learningContainerId": null
+    },
+    {
+      "id": "fd9c7f9f-c262-475a-a53d-ec4db001d7ba",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313464088,
+      "learningContainerId": null
+    },
+    {
+      "id": "963ccafd-90c9-4556-8bb6-94414ce1609e",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313178764,
+      "learningContainerId": null
+    },
+    {
+      "id": "b82a6f01-c3ca-425c-b192-a549f3dfa832",
+      "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+      "ownerId": "opendots-owner",
+      "title": "A new thought",
+      "createdAt": 1791313105218,
+      "learningContainerId": null
+    }
+  ],
+  "setup": {
+    "intelligence": true,
+    "model": true,
+    "browser": false,
+    "voice": true,
+    "slack": "not_configured",
+    "missing": []
+  },
+  "calls": [
+    {
+      "id": "d51b8bb7-a40e-4b3f-b117-6077aec314be",
+      "threadId": "8cf498f5-1b4d-47dd-a365-1f253d30e707",
+      "startedAt": 1791314083016,
+      "endedAt": 1791314170428,
+      "status": "ended",
+      "transcript": "You: Hello dot, what is seven plus five? Please answer in one short sentence.\nDot: Seven plus five is twelve.\nYou: Use your compute tool to create a page in the default destination. Title it voice follow-up. The exact content should be the orange notebook has 11 pages. Use the default destination. Do not set a space ID.\nDot: The page titled 'voice follow-up' has been created successfully. It says, \"The orange notebook has 11 pages.\"\nYou: Hello dot, what is 7 plus 5? Please answer in one short sentence.\nDot: Seven plus five is twelve.\nYou: Please count slowly from 1 to 30.\nDot: Sure, here's my best count: one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty-one, twenty-two, twenty-three, twenty-four, twenty-five, twenty-six, twenty-seven, twenty-eight, twenty-nine, thirty.\nYou: Stop counting, tell me the capital of France instead.\nDot: The capital of France is Paris.",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "baa9e9ad-a161-40c6-a7c3-ae77bd417ba4",
+      "threadId": "93138b4c-d572-41c9-b14b-c4a580292f2e",
+      "startedAt": 1791313870159,
+      "endedAt": 1791313875397,
+      "status": "ended",
+      "transcript": "",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "27c50de6-f93e-4ac6-b015-9328f9693f35",
+      "threadId": "b4374f57-5082-4aa1-9755-99eda4e91e9e",
+      "startedAt": 1791313850875,
+      "endedAt": 1791313856649,
+      "status": "ended",
+      "transcript": "Fault-injection test cleanup.",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "34fa1a9c-8d79-4c8b-b64a-b254522f03e8",
+      "threadId": "a5af9049-2a98-4cd3-bc0a-c5f85e4851c4",
+      "startedAt": 1791313841933,
+      "endedAt": 1791313847217,
+      "status": "ended",
+      "transcript": "",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "550e0ecb-140e-4126-9f08-0c5a2a982273",
+      "threadId": "a4585e3e-6bc1-49f8-8528-8cf52c4dd6fa",
+      "startedAt": 1791313826016,
+      "endedAt": 1791313831877,
+      "status": "ended",
+      "transcript": "Fault-injection test cleanup.",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "affcf65d-7c93-4133-a849-39f485809a20",
+      "threadId": "47c9ccad-cad3-4d34-95bc-beb13ac20d99",
+      "startedAt": 1791313817561,
+      "endedAt": 1791313822751,
+      "status": "ended",
+      "transcript": "",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "213f2831-e9a1-4e5a-ab67-f3d8edabddb5",
+      "threadId": "d5859ebd-a1b6-4b12-9c36-ab1d41981834",
+      "startedAt": 1791313782248,
+      "endedAt": 1791313798004,
+      "status": "ended",
+      "transcript": "Fault-injection test cleanup.",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "3d46103d-6fec-43bd-a2f0-b9648dcc6bc7",
+      "threadId": "60629951-70dc-4220-a9b9-865cc9a0e8a1",
+      "startedAt": 1791313765698,
+      "endedAt": 1791313772851,
+      "status": "ended",
+      "transcript": "",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "997ff3d6-7ef5-4b5d-93e5-c7bf4998cdeb",
+      "threadId": "019bc18a-55c6-4e12-804f-097a9a8752de",
+      "startedAt": 1791313530509,
+      "endedAt": 1791313615649,
+      "status": "ended",
+      "transcript": "You: Hello dot, what is seven plus five? Please answer in one short sentence.\nDot: Seven plus five is twelve.\nYou: Use your compute tool to create a page in the default destination. Title it voice follow-up. The exact content should be the orange notebook has 11 pages. Use the default destination. Do not set a space ID.\nDot: I've created the page titled \"voice follow-up\" with the content: \"The orange notebook has 11 pages.\" You can view it at this link: [view page](#/spaces/cc384001-0a55-4e20-9aec-cf34f12d06cc/pages/910ac281-1174-4167-9364-746d3213511d).\nYou: Hello dot, what is 7 plus 5? Please answer in one short sentence.\nDot: Seven plus five is twelve.\nYou: Please count slowly from 1 to 30.\nDot: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30.\nYou: Stop counting. Tell me the capital of France instead.\nDot: The capital of France is Paris.",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "25a9d014-f51b-4932-b0ca-b737c955c9ca",
+      "threadId": "fd9c7f9f-c262-475a-a53d-ec4db001d7ba",
+      "startedAt": 1791313464356,
+      "endedAt": 1791313481723,
+      "status": "ended",
+      "transcript": "Harness cleanup after unfinished test.",
+      "error": null,
+      "anchorMessageId": null
+    },
+    {
+      "id": "d3ce56e6-7b37-4703-9417-9665cda3bc12",
+      "threadId": "b82a6f01-c3ca-425c-b192-a549f3dfa832",
+      "startedAt": 1791313105478,
+      "endedAt": 1791313219176,
+      "status": "ended",
+      "transcript": "Harness cleanup after unfinished test.",
+      "error": null,
+      "anchorMessageId": null
+    }
+  ]
+}

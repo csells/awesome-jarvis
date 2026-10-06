@@ -1,0 +1,22 @@
+[
+  {
+    "name": "final-build-call-and-receipt",
+    "result": "PASS",
+    "threadId": "7c16f018-359d-475d-87f2-d05ca1638de3",
+    "state": {
+      "peers": [
+        "closed"
+      ],
+      "tracks": [
+        {
+          "enabled": true,
+          "readyState": "ended"
+        }
+      ]
+    },
+    "receipt": "Call ended. Transcript saved for this conversation; generated speech may have been interrupted.",
+    "persistedAgentId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+    "dotId": "6aa52284-09a6-418b-aaf7-8d235ae8dfe8",
+    "agentIdentityPreserved": true
+  }
+]

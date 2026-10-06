@@ -50,7 +50,8 @@ class Reservation:
 
     def summary(self):
         return {'owner': self.owner, 'remaining_seconds': max(0, round(self.expires-time.monotonic())),
-                'realtime_active': bool(self.calls or self.websocket)}
+                'realtime_active': bool(self.calls or self.websocket or self.uncertain),
+                'cleanup_pending': self.uncertain}
 
 
 def digest(value):
@@ -103,6 +104,21 @@ def create_app(config, transport=None):
             if time.monotonic() >= deadline:
                 raise HTTPException(503, 'Backend has not released its worker; reservation remains held.')
             await asyncio.sleep(.2)
+
+    async def refresh_capacity(lease):
+        # No client got a usable call ID after ambiguous setup. Reconcile that
+        # orphan before retrying, but never terminate a known live call here.
+        if lease.uncertain:
+            await reconcile_pool()
+            lease.uncertain = False
+            lease.calls.clear()
+        elif lease.calls:
+            response = await app.state.http.get(rt+'/v1/pool', timeout=5)
+            response.raise_for_status()
+            pool = response.json()
+            if pool.get('in_use') == 0 and isinstance(pool.get('units'), list) and all(
+                    u.get('state') == 'idle' for u in pool['units']):
+                lease.calls.clear()
 
     async def clear_lease():
         lease = app.state.reservation
@@ -262,6 +278,7 @@ def create_app(config, transport=None):
                         raise HTTPException(422, 'Use a supported transcription model.')
         async with gate:
             lease = require_lease(request.headers)
+            await refresh_capacity(lease)
             if lease.calls or lease.websocket or lease.uncertain:
                 raise HTTPException(409, 'End or clean up the realtime session before REST speech work.')
             response = await app.state.http.post(audio+'/v1/audio/'+operation, content=data,
@@ -279,6 +296,7 @@ def create_app(config, transport=None):
             raise HTTPException(422, 'An audio SDP offer is required.')
         async with gate:
             lease = require_lease(request.headers)
+            await refresh_capacity(lease)
             if lease.calls or lease.websocket or lease.uncertain:
                 raise HTTPException(409, 'A realtime session is active or requires cleanup.')
             lease.uncertain = True
@@ -294,6 +312,17 @@ def create_app(config, transport=None):
             headers = {'location': '/v1/realtime/calls/'+call_id} if response.is_success else {}
             return Response(response.content, status_code=response.status_code, headers=headers,
                             media_type=response.headers.get('content-type'))
+
+    @app.get('/v1/realtime/calls/{call_id}')
+    async def call_status(call_id: str, request: Request):
+        async with gate:
+            lease = require_lease(request.headers)
+            if call_id not in lease.calls:
+                raise HTTPException(404, 'Call is not active in this reservation.')
+            await refresh_capacity(lease)
+            if call_id not in lease.calls:
+                raise HTTPException(404, 'Call has ended.')
+            return {'id': call_id, 'status': 'active'}
 
     @app.delete('/v1/realtime/calls/{call_id}')
     @app.post('/v1/realtime/calls/{call_id}/hangup')
@@ -319,6 +348,7 @@ def create_app(config, transport=None):
         try:
             async with gate:
                 lease = require_lease(headers)
+                await refresh_capacity(lease)
                 if lease.calls or lease.websocket or lease.uncertain:
                     await socket.close(code=1008, reason='Realtime session already active')
                     return

@@ -1,0 +1,52 @@
+[
+  {
+    "name": "rejected SDP releases capacity for retry",
+    "result": "PASS",
+    "seconds": 0.072,
+    "details": {
+      "status": 400
+    }
+  },
+  {
+    "name": "direct native microphone and audible answer",
+    "result": "PASS",
+    "seconds": 19.93,
+    "details": {
+      "speakerPeakRms": 0.06404960552931141,
+      "sessionAcknowledged": true
+    }
+  },
+  {
+    "name": "peer disconnect then fresh call on same reservation",
+    "result": "PASS",
+    "seconds": 7.691,
+    "details": {
+      "reconnected": true
+    }
+  },
+  {
+    "name": "repeat reconnect and actual spoken interruption",
+    "result": "PASS",
+    "seconds": 29.76,
+    "details": {
+      "interruptAt": 1791314021739,
+      "audioSeconds": 44.82566666666666,
+      "statuses": [
+        "completed",
+        "completed"
+      ],
+      "outputBufferEvents": [
+        "output_audio_buffer.started",
+        "output_audio_buffer.cleared",
+        "output_audio_buffer.stopped",
+        "output_audio_buffer.started",
+        "output_audio_buffer.stopped"
+      ]
+    }
+  },
+  {
+    "name": "explicit hangup then new call without releasing lease",
+    "result": "PASS",
+    "seconds": 6.209
+  }
+]

@@ -1,0 +1,1190 @@
+[
+  {
+    "at": 1791313980312,
+    "event_id": "event_aaa31dcddfc64f37b70312ccfffc704a",
+    "session": {
+      "type": "realtime",
+      "audio": {
+        "input": {
+          "format": null,
+          "noise_reduction": null,
+          "transcription": null,
+          "turn_detection": null
+        },
+        "output": {
+          "format": null,
+          "speed": null,
+          "voice": null
+        }
+      },
+      "include": null,
+      "instructions": "You are a concise voice assistant. Answer briefly.",
+      "max_output_tokens": null,
+      "model": null,
+      "output_modalities": null,
+      "prompt": null,
+      "tool_choice": null,
+      "tools": null,
+      "tracing": null,
+      "truncation": null,
+      "id": "session_c36dbc5472b74752be555c1497113be5"
+    },
+    "type": "session.created"
+  },
+  {
+    "at": 1791313980314,
+    "event_id": "event_03083ae4cacb421dacd3b4addb22e553",
+    "session": {
+      "type": "realtime",
+      "audio": {
+        "input": {
+          "format": null,
+          "noise_reduction": null,
+          "transcription": {
+            "language": null,
+            "model": "gpt-4o-mini-transcribe",
+            "prompt": null
+          },
+          "turn_detection": {
+            "type": "semantic_vad",
+            "create_response": true,
+            "eagerness": null,
+            "interrupt_response": true
+          }
+        },
+        "output": {
+          "format": null,
+          "speed": null,
+          "voice": "af_heart"
+        }
+      },
+      "include": null,
+      "instructions": "You are a concise voice assistant. Answer briefly.",
+      "max_output_tokens": null,
+      "model": "qwen2.5:7b-instruct-q4_K_M",
+      "output_modalities": [
+        "audio"
+      ],
+      "prompt": null,
+      "tool_choice": null,
+      "tools": null,
+      "tracing": null,
+      "truncation": null,
+      "id": "session_c36dbc5472b74752be555c1497113be5"
+    },
+    "type": "session.updated"
+  },
+  {
+    "at": 1791313980948,
+    "audio_start_ms": 0,
+    "event_id": "event_df46ffd95af8472f98af71881dc81414",
+    "item_id": "item_ad1409cdf04647bfa130ae218424eb50",
+    "type": "input_audio_buffer.speech_started"
+  },
+  {
+    "at": 1791313982365,
+    "event_id": "event_e2a5cb24ab0041e7ad5ea0ba2a7c8528",
+    "item_id": "item_ad1409cdf04647bfa130ae218424eb50",
+    "type": "conversation.item.input_audio_transcription.delta",
+    "content_index": 0,
+    "delta": "Hello dot",
+    "logprobs": null
+  },
+  {
+    "at": 1791313983220,
+    "event_id": "event_17936b627b364aeda47acc8689f6e40b",
+    "item_id": "item_ad1409cdf04647bfa130ae218424eb50",
+    "type": "conversation.item.input_audio_transcription.delta",
+    "content_index": 0,
+    "delta": " what is",
+    "logprobs": null
+  },
+  {
+    "at": 1791313984767,
+    "event_id": "event_5d3fbcb09ada42fe8eba558d0bbacf33",
+    "item_id": "item_ad1409cdf04647bfa130ae218424eb50",
+    "type": "conversation.item.input_audio_transcription.delta",
+    "content_index": 0,
+    "delta": " seven plus",
+    "logprobs": null
+  },
+  {
+    "at": 1791313985492,
+    "event_id": "event_273a07a7c5244073b7856712b2844fe3",
+    "item_id": "item_ad1409cdf04647bfa130ae218424eb50",
+    "type": "conversation.item.input_audio_transcription.delta",
+    "content_index": 0,
+    "delta": " five",
+    "logprobs": null
+  },
+  {
+    "at": 1791313985632,
+    "event_id": "event_7d55d8bbdac44a56ba96d4d9383a0f2d",
+    "item_id": "item_ad1409cdf04647bfa130ae218424eb50",
+    "type": "conversation.item.input_audio_transcription.delta",
+    "content_index": 0,
+    "delta": " Please answer in one",
+    "logprobs": null
+  },
+  {
+    "at": 1791313988389,
+    "audio_end_ms": 5184,
+    "event_id": "event_2d8b74c0e0fc49bbb770a8a31be6138d",
+    "item_id": "item_ad1409cdf04647bfa130ae218424eb50",
+    "type": "input_audio_buffer.speech_stopped"
+  },
+  {
+    "at": 1791313988392,
+    "event_id": "event_e1d57dd8658a4a8bb5bdda3ceff363de",
+    "item_id": "item_ad1409cdf04647bfa130ae218424eb50",
+    "type": "input_audio_buffer.committed",
+    "previous_item_id": null
+  },
+  {
+    "at": 1791313988392,
+    "event_id": "event_84f5c597a45f4b4d97a8b95c96902d7c",
+    "item": {
+      "content": [
+        {
+          "audio": null,
+          "detail": null,
+          "image_url": null,
+          "text": null,
+          "transcript": null,
+          "type": "input_audio"
+        }
+      ],
+      "role": "user",
+      "type": "message",
+      "id": "item_ad1409cdf04647bfa130ae218424eb50",
+      "object": "realtime.item",
+      "status": "completed"
+    },
+    "type": "conversation.item.created",
+    "previous_item_id": null
+  },
+  {
+    "at": 1791313988392,
+    "content_index": 0,
+    "event_id": "event_f96d6dfb91854b0ba98e62f52d85b8e2",
+    "item_id": "item_ad1409cdf04647bfa130ae218424eb50",
+    "transcript": "Hello dot. What is seven plus five? Please answer in one short sentence.",
+    "type": "conversation.item.input_audio_transcription.completed",
+    "usage": {
+      "seconds": 5.184,
+      "type": "duration"
+    },
+    "logprobs": null
+  },
+  {
+    "at": 1791313988393,
+    "event_id": "event_b1cff0c7ccf44ae996d55ccc8977ff7e",
+    "response": {
+      "id": "resp_6cacb73d330a457dac4eddc8a7999bd6",
+      "audio": {
+        "output": {
+          "format": null,
+          "voice": "af_heart"
+        }
+      },
+      "conversation_id": "conv_64110bac380342ebbf6c88fc4e164949",
+      "max_output_tokens": null,
+      "metadata": null,
+      "object": "realtime.response",
+      "output": [],
+      "output_modalities": [
+        "audio"
+      ],
+      "status": "in_progress",
+      "status_details": null,
+      "usage": {
+        "input_token_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cached_tokens_details": null,
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_token_details": {
+          "audio_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    "type": "response.created"
+  },
+  {
+    "at": 1791313988393,
+    "event_id": "event_3f0189106f3f4cfcb64b86b30b8b5292",
+    "item": {
+      "content": [],
+      "role": "assistant",
+      "type": "message",
+      "id": "item_d9f1b56cc4234dd4b3cac4a1e13cd627",
+      "object": "realtime.item",
+      "status": "in_progress"
+    },
+    "output_index": 0,
+    "response_id": "resp_6cacb73d330a457dac4eddc8a7999bd6",
+    "type": "response.output_item.added"
+  },
+  {
+    "at": 1791313988394,
+    "content_index": 0,
+    "event_id": "event_c557c1dd45f548a49d70263477a042b7",
+    "item_id": "item_d9f1b56cc4234dd4b3cac4a1e13cd627",
+    "output_index": 0,
+    "part": {
+      "audio": "",
+      "text": null,
+      "transcript": "",
+      "type": "audio"
+    },
+    "response_id": "resp_6cacb73d330a457dac4eddc8a7999bd6",
+    "type": "response.content_part.added"
+  },
+  {
+    "at": 1791313988394,
+    "content_index": 0,
+    "delta": "Seven plus five is twelve.",
+    "event_id": "event_8d0c6c2efb99467192377ff4e2858a77",
+    "item_id": "item_d9f1b56cc4234dd4b3cac4a1e13cd627",
+    "output_index": 0,
+    "response_id": "resp_6cacb73d330a457dac4eddc8a7999bd6",
+    "type": "response.output_audio_transcript.delta"
+  },
+  {
+    "at": 1791313991784,
+    "type": "output_audio_buffer.started",
+    "event_id": "evt_9abf299cb7bd4be388d99395e9efc70a",
+    "response_id": "resp_6cacb73d330a457dac4eddc8a7999bd6"
+  },
+  {
+    "at": 1791313991828,
+    "content_index": 0,
+    "event_id": "event_32a8083fe4044ff1bf20266a3d0e2b10",
+    "item_id": "item_d9f1b56cc4234dd4b3cac4a1e13cd627",
+    "output_index": 0,
+    "response_id": "resp_6cacb73d330a457dac4eddc8a7999bd6",
+    "type": "response.output_audio.done"
+  },
+  {
+    "at": 1791313991829,
+    "content_index": 0,
+    "event_id": "event_0ae2ec09f1414025940a332c9a839d64",
+    "item_id": "item_d9f1b56cc4234dd4b3cac4a1e13cd627",
+    "output_index": 0,
+    "response_id": "resp_6cacb73d330a457dac4eddc8a7999bd6",
+    "transcript": "Seven plus five is twelve.",
+    "type": "response.output_audio_transcript.done"
+  },
+  {
+    "at": 1791313991829,
+    "content_index": 0,
+    "event_id": "event_eac77e2fe8284c80ada38ef92c269b40",
+    "item_id": "item_d9f1b56cc4234dd4b3cac4a1e13cd627",
+    "output_index": 0,
+    "part": {
+      "audio": "",
+      "text": null,
+      "transcript": "Seven plus five is twelve.",
+      "type": "audio"
+    },
+    "response_id": "resp_6cacb73d330a457dac4eddc8a7999bd6",
+    "type": "response.content_part.done"
+  },
+  {
+    "at": 1791313991831,
+    "event_id": "event_19a8bf1b1f5244e398d6bd3ac06aee92",
+    "item": {
+      "content": [
+        {
+          "audio": null,
+          "text": null,
+          "transcript": "Seven plus five is twelve.",
+          "type": "output_audio"
+        }
+      ],
+      "role": "assistant",
+      "type": "message",
+      "id": "item_d9f1b56cc4234dd4b3cac4a1e13cd627",
+      "object": "realtime.item",
+      "status": "completed"
+    },
+    "output_index": 0,
+    "response_id": "resp_6cacb73d330a457dac4eddc8a7999bd6",
+    "type": "response.output_item.done"
+  },
+  {
+    "at": 1791313991831,
+    "event_id": "event_5f7c242e07964c699112040c1612968f",
+    "response": {
+      "id": "resp_6cacb73d330a457dac4eddc8a7999bd6",
+      "audio": {
+        "output": {
+          "format": null,
+          "voice": "af_heart"
+        }
+      },
+      "conversation_id": "conv_64110bac380342ebbf6c88fc4e164949",
+      "max_output_tokens": null,
+      "metadata": {
+        "speech_to_speech.turn_latency": "{\"e2e_s\":null,\"llm_s\":2.2864798749797046,\"llm_ttft_s\":1.9589887079782784,\"mlx_lock_wait_s\":5.830079317092896e-07,\"response_key\":\"e71acfbb01e4426a8e5f7e2a225cba66\",\"smart_analysis_s\":0.039238708,\"smart_delay_s\":0.0,\"smart_grace_s\":0.8,\"smart_status\":\"complete\",\"smart_wait_s\":0.0,\"status\":\"completed\",\"stt_s\":0.4610872082412243,\"tts_ttfa_s\":null,\"turn_id\":\"turn_1\",\"turn_revision\":2,\"vad_decision_s\":0.096323417,\"version\":1}"
+      },
+      "object": "realtime.response",
+      "output": [
+        {
+          "content": [
+            {
+              "audio": null,
+              "text": null,
+              "transcript": "Seven plus five is twelve.",
+              "type": "output_audio"
+            }
+          ],
+          "role": "assistant",
+          "type": "message",
+          "id": "item_d9f1b56cc4234dd4b3cac4a1e13cd627",
+          "object": "realtime.item",
+          "status": "completed"
+        }
+      ],
+      "output_modalities": [
+        "audio"
+      ],
+      "status": "completed",
+      "status_details": {
+        "error": null,
+        "reason": null,
+        "type": "completed"
+      },
+      "usage": {
+        "input_token_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cached_tokens_details": null,
+          "image_tokens": 0,
+          "text_tokens": 380
+        },
+        "input_tokens": 380,
+        "output_token_details": {
+          "audio_tokens": 0,
+          "text_tokens": 7
+        },
+        "output_tokens": 7,
+        "total_tokens": 387
+      }
+    },
+    "type": "response.done"
+  },
+  {
+    "at": 1791313993357,
+    "type": "output_audio_buffer.stopped",
+    "event_id": "evt_49761ee7cc1140ef8f227d530aac6475",
+    "response_id": "resp_6cacb73d330a457dac4eddc8a7999bd6"
+  },
+  {
+    "at": 1791314002649,
+    "event_id": "event_1fdb6f5f6896489ca791b459c531d2f0",
+    "session": {
+      "type": "realtime",
+      "audio": {
+        "input": {
+          "format": null,
+          "noise_reduction": null,
+          "transcription": null,
+          "turn_detection": null
+        },
+        "output": {
+          "format": null,
+          "speed": null,
+          "voice": null
+        }
+      },
+      "include": null,
+      "instructions": "You are a concise voice assistant. Answer briefly.",
+      "max_output_tokens": null,
+      "model": null,
+      "output_modalities": null,
+      "prompt": null,
+      "tool_choice": null,
+      "tools": null,
+      "tracing": null,
+      "truncation": null,
+      "id": "session_1a85bd19f7094469b8e0b7e1aaf42a65"
+    },
+    "type": "session.created"
+  },
+  {
+    "at": 1791314002651,
+    "event_id": "event_4ffe737317b646feb4f4ffae40463646",
+    "session": {
+      "type": "realtime",
+      "audio": {
+        "input": {
+          "format": null,
+          "noise_reduction": null,
+          "transcription": {
+            "language": null,
+            "model": "gpt-4o-mini-transcribe",
+            "prompt": null
+          },
+          "turn_detection": {
+            "type": "semantic_vad",
+            "create_response": true,
+            "eagerness": null,
+            "interrupt_response": true
+          }
+        },
+        "output": {
+          "format": null,
+          "speed": null,
+          "voice": "af_heart"
+        }
+      },
+      "include": null,
+      "instructions": "You are a concise voice assistant. Answer briefly.",
+      "max_output_tokens": null,
+      "model": "qwen2.5:7b-instruct-q4_K_M",
+      "output_modalities": [
+        "audio"
+      ],
+      "prompt": null,
+      "tool_choice": null,
+      "tools": null,
+      "tracing": null,
+      "truncation": null,
+      "id": "session_1a85bd19f7094469b8e0b7e1aaf42a65"
+    },
+    "type": "session.updated"
+  },
+  {
+    "at": 1791314010326,
+    "event_id": "event_295b292227ef481893d99350d545fb40",
+    "session": {
+      "type": "realtime",
+      "audio": {
+        "input": {
+          "format": null,
+          "noise_reduction": null,
+          "transcription": null,
+          "turn_detection": null
+        },
+        "output": {
+          "format": null,
+          "speed": null,
+          "voice": null
+        }
+      },
+      "include": null,
+      "instructions": "You are a concise voice assistant. Answer briefly.",
+      "max_output_tokens": null,
+      "model": null,
+      "output_modalities": null,
+      "prompt": null,
+      "tool_choice": null,
+      "tools": null,
+      "tracing": null,
+      "truncation": null,
+      "id": "session_18fdb6d0adfe49968619e1c4cf68aaf0"
+    },
+    "type": "session.created"
+  },
+  {
+    "at": 1791314010327,
+    "event_id": "event_7c3391fb0223495cac45810debb0c642",
+    "session": {
+      "type": "realtime",
+      "audio": {
+        "input": {
+          "format": null,
+          "noise_reduction": null,
+          "transcription": {
+            "language": null,
+            "model": "gpt-4o-mini-transcribe",
+            "prompt": null
+          },
+          "turn_detection": {
+            "type": "semantic_vad",
+            "create_response": true,
+            "eagerness": null,
+            "interrupt_response": true
+          }
+        },
+        "output": {
+          "format": null,
+          "speed": null,
+          "voice": "af_heart"
+        }
+      },
+      "include": null,
+      "instructions": "You are a concise voice assistant. Answer briefly.",
+      "max_output_tokens": null,
+      "model": "qwen2.5:7b-instruct-q4_K_M",
+      "output_modalities": [
+        "audio"
+      ],
+      "prompt": null,
+      "tool_choice": null,
+      "tools": null,
+      "tracing": null,
+      "truncation": null,
+      "id": "session_18fdb6d0adfe49968619e1c4cf68aaf0"
+    },
+    "type": "session.updated"
+  },
+  {
+    "at": 1791314010922,
+    "audio_start_ms": 0,
+    "event_id": "event_5ec1306deb474eada993e98fae41457f",
+    "item_id": "item_346c57db963843d792938ddd4dd6353d",
+    "type": "input_audio_buffer.speech_started"
+  },
+  {
+    "at": 1791314012233,
+    "event_id": "event_92c3f6d1853f47aaa7896ee4c200ea4d",
+    "item_id": "item_346c57db963843d792938ddd4dd6353d",
+    "type": "conversation.item.input_audio_transcription.delta",
+    "content_index": 0,
+    "delta": "Please count",
+    "logprobs": null
+  },
+  {
+    "at": 1791314012755,
+    "event_id": "event_5ae0ff34cce34aa8aa2a69521914de00",
+    "item_id": "item_346c57db963843d792938ddd4dd6353d",
+    "type": "conversation.item.input_audio_transcription.delta",
+    "content_index": 0,
+    "delta": " slowly from one",
+    "logprobs": null
+  },
+  {
+    "at": 1791314016470,
+    "audio_end_ms": 2208,
+    "event_id": "event_95f07c88ccbc4b7a874f899f07f83f85",
+    "item_id": "item_346c57db963843d792938ddd4dd6353d",
+    "type": "input_audio_buffer.speech_stopped"
+  },
+  {
+    "at": 1791314016471,
+    "event_id": "event_4870d27475234073a663e91565a508be",
+    "item_id": "item_346c57db963843d792938ddd4dd6353d",
+    "type": "input_audio_buffer.committed",
+    "previous_item_id": null
+  },
+  {
+    "at": 1791314016472,
+    "event_id": "event_4c81ae760819451c9f6fbefed56bac00",
+    "item": {
+      "content": [
+        {
+          "audio": null,
+          "detail": null,
+          "image_url": null,
+          "text": null,
+          "transcript": null,
+          "type": "input_audio"
+        }
+      ],
+      "role": "user",
+      "type": "message",
+      "id": "item_346c57db963843d792938ddd4dd6353d",
+      "object": "realtime.item",
+      "status": "completed"
+    },
+    "type": "conversation.item.created",
+    "previous_item_id": null
+  },
+  {
+    "at": 1791314016473,
+    "content_index": 0,
+    "event_id": "event_8677f3cba206445f92bd1f4238e24ba0",
+    "item_id": "item_346c57db963843d792938ddd4dd6353d",
+    "transcript": "Please count slowly from one to thirty.",
+    "type": "conversation.item.input_audio_transcription.completed",
+    "usage": {
+      "seconds": 2.208,
+      "type": "duration"
+    },
+    "logprobs": null
+  },
+  {
+    "at": 1791314016473,
+    "event_id": "event_82d07066727a4f958d25f9f7cbee17b4",
+    "response": {
+      "id": "resp_e4e5384572e74aecb52a9e792900c40b",
+      "audio": {
+        "output": {
+          "format": null,
+          "voice": "af_heart"
+        }
+      },
+      "conversation_id": "conv_05a0768be94e4566b543794ddada6c57",
+      "max_output_tokens": null,
+      "metadata": null,
+      "object": "realtime.response",
+      "output": [],
+      "output_modalities": [
+        "audio"
+      ],
+      "status": "in_progress",
+      "status_details": null,
+      "usage": {
+        "input_token_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cached_tokens_details": null,
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_token_details": {
+          "audio_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    "type": "response.created"
+  },
+  {
+    "at": 1791314016473,
+    "event_id": "event_584f0e42f5234d2bbb79338d0a639889",
+    "item": {
+      "content": [],
+      "role": "assistant",
+      "type": "message",
+      "id": "item_84a553bc76c148618d0dfbaf8736f44d",
+      "object": "realtime.item",
+      "status": "in_progress"
+    },
+    "output_index": 0,
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b",
+    "type": "response.output_item.added"
+  },
+  {
+    "at": 1791314016473,
+    "content_index": 0,
+    "event_id": "event_18249463a1f2499aac0963bb9e7f7987",
+    "item_id": "item_84a553bc76c148618d0dfbaf8736f44d",
+    "output_index": 0,
+    "part": {
+      "audio": "",
+      "text": null,
+      "transcript": "",
+      "type": "audio"
+    },
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b",
+    "type": "response.content_part.added"
+  },
+  {
+    "at": 1791314016473,
+    "content_index": 0,
+    "delta": "One, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty-one, twenty-two, twenty-three, twenty-four, twenty-five, twenty-six, twenty-seven, twenty-eight, twenty-nine, thirty.",
+    "event_id": "event_9057062271bd44068824900c4b71b1ba",
+    "item_id": "item_84a553bc76c148618d0dfbaf8736f44d",
+    "output_index": 0,
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b",
+    "type": "response.output_audio_transcript.delta"
+  },
+  {
+    "at": 1791314019808,
+    "type": "output_audio_buffer.started",
+    "event_id": "evt_6efbcec67e6a43298bb687f998c9b21f",
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b"
+  },
+  {
+    "at": 1791314020767,
+    "content_index": 0,
+    "event_id": "event_b5fe2ec29a9f48efb2b13dd0ac9ee083",
+    "item_id": "item_84a553bc76c148618d0dfbaf8736f44d",
+    "output_index": 0,
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b",
+    "type": "response.output_audio.done"
+  },
+  {
+    "at": 1791314020768,
+    "content_index": 0,
+    "event_id": "event_47948cf6f6784029917c8aae7a99913b",
+    "item_id": "item_84a553bc76c148618d0dfbaf8736f44d",
+    "output_index": 0,
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b",
+    "transcript": "One, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty-one, twenty-two, twenty-three, twenty-four, twenty-five, twenty-six, twenty-seven, twenty-eight, twenty-nine, thirty.",
+    "type": "response.output_audio_transcript.done"
+  },
+  {
+    "at": 1791314020768,
+    "content_index": 0,
+    "event_id": "event_716ed42b99464dccb74937728b84f18b",
+    "item_id": "item_84a553bc76c148618d0dfbaf8736f44d",
+    "output_index": 0,
+    "part": {
+      "audio": "",
+      "text": null,
+      "transcript": "One, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty-one, twenty-two, twenty-three, twenty-four, twenty-five, twenty-six, twenty-seven, twenty-eight, twenty-nine, thirty.",
+      "type": "audio"
+    },
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b",
+    "type": "response.content_part.done"
+  },
+  {
+    "at": 1791314020768,
+    "event_id": "event_2db99affa04d429e860e4ec3cede8cf5",
+    "item": {
+      "content": [
+        {
+          "audio": null,
+          "text": null,
+          "transcript": "One, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty-one, twenty-two, twenty-three, twenty-four, twenty-five, twenty-six, twenty-seven, twenty-eight, twenty-nine, thirty.",
+          "type": "output_audio"
+        }
+      ],
+      "role": "assistant",
+      "type": "message",
+      "id": "item_84a553bc76c148618d0dfbaf8736f44d",
+      "object": "realtime.item",
+      "status": "completed"
+    },
+    "output_index": 0,
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b",
+    "type": "response.output_item.done"
+  },
+  {
+    "at": 1791314020769,
+    "event_id": "event_23d7b86fe8754dd3a277a43c8c52c629",
+    "response": {
+      "id": "resp_e4e5384572e74aecb52a9e792900c40b",
+      "audio": {
+        "output": {
+          "format": null,
+          "voice": "af_heart"
+        }
+      },
+      "conversation_id": "conv_05a0768be94e4566b543794ddada6c57",
+      "max_output_tokens": null,
+      "metadata": {
+        "speech_to_speech.turn_latency": "{\"e2e_s\":null,\"llm_s\":3.6274325409904122,\"llm_ttft_s\":0.18167433282360435,\"mlx_lock_wait_s\":7.920898497104645e-07,\"response_key\":\"3bf7b0fa11cf4f7fbb5cfaafa2da4d13\",\"smart_analysis_s\":0.039117041,\"smart_delay_s\":0.0,\"smart_grace_s\":0.8,\"smart_status\":\"complete\",\"smart_wait_s\":0.0,\"status\":\"completed\",\"stt_s\":0.07332379231229424,\"tts_ttfa_s\":null,\"turn_id\":\"turn_1\",\"turn_revision\":0,\"vad_decision_s\":0.096158625,\"version\":1}"
+      },
+      "object": "realtime.response",
+      "output": [
+        {
+          "content": [
+            {
+              "audio": null,
+              "text": null,
+              "transcript": "One, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twenty-one, twenty-two, twenty-three, twenty-four, twenty-five, twenty-six, twenty-seven, twenty-eight, twenty-nine, thirty.",
+              "type": "output_audio"
+            }
+          ],
+          "role": "assistant",
+          "type": "message",
+          "id": "item_84a553bc76c148618d0dfbaf8736f44d",
+          "object": "realtime.item",
+          "status": "completed"
+        }
+      ],
+      "output_modalities": [
+        "audio"
+      ],
+      "status": "completed",
+      "status_details": {
+        "error": null,
+        "reason": null,
+        "type": "completed"
+      },
+      "usage": {
+        "input_token_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cached_tokens_details": null,
+          "image_tokens": 0,
+          "text_tokens": 372
+        },
+        "input_tokens": 372,
+        "output_token_details": {
+          "audio_tokens": 0,
+          "text_tokens": 70
+        },
+        "output_tokens": 70,
+        "total_tokens": 442
+      }
+    },
+    "type": "response.done"
+  },
+  {
+    "at": 1791314022506,
+    "audio_start_ms": 11180,
+    "event_id": "event_50fa0038443c406a97ec4db96e0b3b28",
+    "item_id": "item_62dd60d8cc054b24b635c0a0a77883e2",
+    "type": "input_audio_buffer.speech_started"
+  },
+  {
+    "at": 1791314022506,
+    "type": "output_audio_buffer.cleared",
+    "event_id": "evt_8e6563506e984fe89990344f5e0c1da6",
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b"
+  },
+  {
+    "at": 1791314022506,
+    "type": "output_audio_buffer.stopped",
+    "event_id": "evt_f2be875630494e2685b57db44a2d22cb",
+    "response_id": "resp_e4e5384572e74aecb52a9e792900c40b"
+  },
+  {
+    "at": 1791314024419,
+    "event_id": "event_318fa1b5a23349bebe1d2df30f4579d3",
+    "item_id": "item_62dd60d8cc054b24b635c0a0a77883e2",
+    "type": "conversation.item.input_audio_transcription.delta",
+    "content_index": 0,
+    "delta": "Stop",
+    "logprobs": null
+  },
+  {
+    "at": 1791314025194,
+    "event_id": "event_5e77c563591b4938a35a7416594176c5",
+    "item_id": "item_62dd60d8cc054b24b635c0a0a77883e2",
+    "type": "conversation.item.input_audio_transcription.delta",
+    "content_index": 0,
+    "delta": " counting Tell me the capital",
+    "logprobs": null
+  },
+  {
+    "at": 1791314026277,
+    "audio_end_ms": 14848,
+    "event_id": "event_ee054b7217e94723bb6f0f34487fbb44",
+    "item_id": "item_62dd60d8cc054b24b635c0a0a77883e2",
+    "type": "input_audio_buffer.speech_stopped"
+  },
+  {
+    "at": 1791314026279,
+    "event_id": "event_aabe6ecd9070498baea268a5312f231a",
+    "item_id": "item_62dd60d8cc054b24b635c0a0a77883e2",
+    "type": "input_audio_buffer.committed",
+    "previous_item_id": "item_84a553bc76c148618d0dfbaf8736f44d"
+  },
+  {
+    "at": 1791314026279,
+    "event_id": "event_4cd53e6d05124153869ac0102b4ae331",
+    "item": {
+      "content": [
+        {
+          "audio": null,
+          "detail": null,
+          "image_url": null,
+          "text": null,
+          "transcript": null,
+          "type": "input_audio"
+        }
+      ],
+      "role": "user",
+      "type": "message",
+      "id": "item_62dd60d8cc054b24b635c0a0a77883e2",
+      "object": "realtime.item",
+      "status": "completed"
+    },
+    "type": "conversation.item.created",
+    "previous_item_id": "item_84a553bc76c148618d0dfbaf8736f44d"
+  },
+  {
+    "at": 1791314026279,
+    "content_index": 0,
+    "event_id": "event_35c0463133be44b3bf907db782726eb2",
+    "item_id": "item_62dd60d8cc054b24b635c0a0a77883e2",
+    "transcript": "Stop counting. Tell me the capital of France instead.",
+    "type": "conversation.item.input_audio_transcription.completed",
+    "usage": {
+      "seconds": 3.668,
+      "type": "duration"
+    },
+    "logprobs": null
+  },
+  {
+    "at": 1791314026279,
+    "event_id": "event_4ffcfa70b0ba4d61a5aca8188d59dc62",
+    "response": {
+      "id": "resp_0af61fe5073d459b822b0526031b3a08",
+      "audio": {
+        "output": {
+          "format": null,
+          "voice": "af_heart"
+        }
+      },
+      "conversation_id": "conv_05a0768be94e4566b543794ddada6c57",
+      "max_output_tokens": null,
+      "metadata": null,
+      "object": "realtime.response",
+      "output": [],
+      "output_modalities": [
+        "audio"
+      ],
+      "status": "in_progress",
+      "status_details": null,
+      "usage": {
+        "input_token_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cached_tokens_details": null,
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_token_details": {
+          "audio_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    "type": "response.created"
+  },
+  {
+    "at": 1791314026280,
+    "event_id": "event_d5c9b05a161b482b9b4a7b1a43b8ebc9",
+    "item": {
+      "content": [],
+      "role": "assistant",
+      "type": "message",
+      "id": "item_886d49c1dbdb45e4b609923e09a3c8c8",
+      "object": "realtime.item",
+      "status": "in_progress"
+    },
+    "output_index": 0,
+    "response_id": "resp_0af61fe5073d459b822b0526031b3a08",
+    "type": "response.output_item.added"
+  },
+  {
+    "at": 1791314026280,
+    "content_index": 0,
+    "event_id": "event_f24ae8fa8fc842939db9167696150c82",
+    "item_id": "item_886d49c1dbdb45e4b609923e09a3c8c8",
+    "output_index": 0,
+    "part": {
+      "audio": "",
+      "text": null,
+      "transcript": "",
+      "type": "audio"
+    },
+    "response_id": "resp_0af61fe5073d459b822b0526031b3a08",
+    "type": "response.content_part.added"
+  },
+  {
+    "at": 1791314026280,
+    "content_index": 0,
+    "delta": "The capital of France is Paris.",
+    "event_id": "event_0ada27d62a5447dc90ff3987d6386e40",
+    "item_id": "item_886d49c1dbdb45e4b609923e09a3c8c8",
+    "output_index": 0,
+    "response_id": "resp_0af61fe5073d459b822b0526031b3a08",
+    "type": "response.output_audio_transcript.delta"
+  },
+  {
+    "at": 1791314029019,
+    "type": "output_audio_buffer.started",
+    "event_id": "evt_06b37a1b02094641a56905c8876756fc",
+    "response_id": "resp_0af61fe5073d459b822b0526031b3a08"
+  },
+  {
+    "at": 1791314029120,
+    "content_index": 0,
+    "event_id": "event_31b1ed62792e4ab8a4d6d4b83642061c",
+    "item_id": "item_886d49c1dbdb45e4b609923e09a3c8c8",
+    "output_index": 0,
+    "response_id": "resp_0af61fe5073d459b822b0526031b3a08",
+    "type": "response.output_audio.done"
+  },
+  {
+    "at": 1791314029120,
+    "content_index": 0,
+    "event_id": "event_e7d204b38d9145338cbdefdabb42fef9",
+    "item_id": "item_886d49c1dbdb45e4b609923e09a3c8c8",
+    "output_index": 0,
+    "response_id": "resp_0af61fe5073d459b822b0526031b3a08",
+    "transcript": "The capital of France is Paris.",
+    "type": "response.output_audio_transcript.done"
+  },
+  {
+    "at": 1791314029120,
+    "content_index": 0,
+    "event_id": "event_0e1a66967f904591861d8d8df0687d94",
+    "item_id": "item_886d49c1dbdb45e4b609923e09a3c8c8",
+    "output_index": 0,
+    "part": {
+      "audio": "",
+      "text": null,
+      "transcript": "The capital of France is Paris.",
+      "type": "audio"
+    },
+    "response_id": "resp_0af61fe5073d459b822b0526031b3a08",
+    "type": "response.content_part.done"
+  },
+  {
+    "at": 1791314029121,
+    "event_id": "event_95ab178dceec4ce1b3c946a76a614f6d",
+    "item": {
+      "content": [
+        {
+          "audio": null,
+          "text": null,
+          "transcript": "The capital of France is Paris.",
+          "type": "output_audio"
+        }
+      ],
+      "role": "assistant",
+      "type": "message",
+      "id": "item_886d49c1dbdb45e4b609923e09a3c8c8",
+      "object": "realtime.item",
+      "status": "completed"
+    },
+    "output_index": 0,
+    "response_id": "resp_0af61fe5073d459b822b0526031b3a08",
+    "type": "response.output_item.done"
+  },
+  {
+    "at": 1791314029121,
+    "event_id": "event_6ec81287b54741ed9e1479083a8cf96d",
+    "response": {
+      "id": "resp_0af61fe5073d459b822b0526031b3a08",
+      "audio": {
+        "output": {
+          "format": null,
+          "voice": "af_heart"
+        }
+      },
+      "conversation_id": "conv_05a0768be94e4566b543794ddada6c57",
+      "max_output_tokens": null,
+      "metadata": {
+        "speech_to_speech.turn_latency": "{\"e2e_s\":null,\"llm_s\":0.5307891247794032,\"llm_ttft_s\":0.17503975005820394,\"mlx_lock_wait_s\":7.906928658485413e-07,\"response_key\":\"45cfc700b469424b8b00936d4b2430a1\",\"smart_analysis_s\":0.062589792,\"smart_delay_s\":0.0,\"smart_grace_s\":0.8,\"smart_status\":\"complete\",\"smart_wait_s\":0.0,\"status\":\"completed\",\"stt_s\":0.3274177499115467,\"tts_ttfa_s\":null,\"turn_id\":\"turn_2\",\"turn_revision\":1,\"vad_decision_s\":0.096876666,\"version\":1}"
+      },
+      "object": "realtime.response",
+      "output": [
+        {
+          "content": [
+            {
+              "audio": null,
+              "text": null,
+              "transcript": "The capital of France is Paris.",
+              "type": "output_audio"
+            }
+          ],
+          "role": "assistant",
+          "type": "message",
+          "id": "item_886d49c1dbdb45e4b609923e09a3c8c8",
+          "object": "realtime.item",
+          "status": "completed"
+        }
+      ],
+      "output_modalities": [
+        "audio"
+      ],
+      "status": "completed",
+      "status_details": {
+        "error": null,
+        "reason": null,
+        "type": "completed"
+      },
+      "usage": {
+        "input_token_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cached_tokens_details": null,
+          "image_tokens": 0,
+          "text_tokens": 462
+        },
+        "input_tokens": 462,
+        "output_token_details": {
+          "audio_tokens": 0,
+          "text_tokens": 8
+        },
+        "output_tokens": 8,
+        "total_tokens": 470
+      }
+    },
+    "type": "response.done"
+  },
+  {
+    "at": 1791314030616,
+    "type": "output_audio_buffer.stopped",
+    "event_id": "evt_9d3a69fb39cf47839040c746a125f02f",
+    "response_id": "resp_0af61fe5073d459b822b0526031b3a08"
+  },
+  {
+    "at": 1791314038618,
+    "event_id": "event_218ff60ed23d49a9993934e657bef22a",
+    "session": {
+      "type": "realtime",
+      "audio": {
+        "input": {
+          "format": null,
+          "noise_reduction": null,
+          "transcription": null,
+          "turn_detection": null
+        },
+        "output": {
+          "format": null,
+          "speed": null,
+          "voice": null
+        }
+      },
+      "include": null,
+      "instructions": "You are a concise voice assistant. Answer briefly.",
+      "max_output_tokens": null,
+      "model": null,
+      "output_modalities": null,
+      "prompt": null,
+      "tool_choice": null,
+      "tools": null,
+      "tracing": null,
+      "truncation": null,
+      "id": "session_cf56da591c774ae585ef70ff3c9497eb"
+    },
+    "type": "session.created"
+  },
+  {
+    "at": 1791314038619,
+    "event_id": "event_76953d52333649a3beb03e3f360157bb",
+    "session": {
+      "type": "realtime",
+      "audio": {
+        "input": {
+          "format": null,
+          "noise_reduction": null,
+          "transcription": {
+            "language": null,
+            "model": "gpt-4o-mini-transcribe",
+            "prompt": null
+          },
+          "turn_detection": {
+            "type": "semantic_vad",
+            "create_response": true,
+            "eagerness": null,
+            "interrupt_response": true
+          }
+        },
+        "output": {
+          "format": null,
+          "speed": null,
+          "voice": "af_heart"
+        }
+      },
+      "include": null,
+      "instructions": "You are a concise voice assistant. Answer briefly.",
+      "max_output_tokens": null,
+      "model": "qwen2.5:7b-instruct-q4_K_M",
+      "output_modalities": [
+        "audio"
+      ],
+      "prompt": null,
+      "tool_choice": null,
+      "tools": null,
+      "tracing": null,
+      "truncation": null,
+      "id": "session_cf56da591c774ae585ef70ff3c9497eb"
+    },
+    "type": "session.updated"
+  }
+]

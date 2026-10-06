@@ -1,0 +1,4 @@
+{
+  "interruptToClearSeconds": 0.667,
+  "meaning": "Time from injected interruption microphone audio beginning to provider output clear event; not a latency benchmark."
+}

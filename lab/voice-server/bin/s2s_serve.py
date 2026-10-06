@@ -1,4 +1,4 @@
-"""Start Hugging Face speech-to-speech (OpenAI Realtime API) with seven small lab patches.
+"""Start Hugging Face speech-to-speech (OpenAI Realtime API) with eight small lab patches.
 
 1. OpenAI clients send OpenAI voice names ("alloy", "marin", ...) in session.update; the Kokoro backend would
    try to download a voice pack with that name and fail. Map them to Kokoro voices (voicemap.py).
@@ -8,6 +8,7 @@
 5. input_audio_buffer.clear and conversation.item.delete are accepted (ignored) instead of rejected.
 6. Client-chosen conversation item ids are accepted (no sys_/msg_ prefix requirement).
 7. LLM request timeout 90 s instead of 20 s (VOICE_LLM_TIMEOUT).
+8. WebRTC output-buffer lifecycle events follow actual RTP track drain.
 Everything else is the stock `speech-to-speech` CLI (args are passed through unchanged).
 """
 import os
@@ -144,6 +145,12 @@ def _setup(self, *args, **kwargs):
 
 
 _bocl.BaseOpenAICompatibleHandler.setup = _setup
+
+# 8. OpenAI-compatible playback lifecycle: generation completion is not audio drain.
+from playback_events import install as _install_playback_events  # noqa: E402
+from speech_to_speech.api.openai_realtime.webrtc_session import WebRTCSession  # noqa: E402
+
+_install_playback_events(WebRTCSession)
 
 from speech_to_speech.cli import main  # noqa: E402
 

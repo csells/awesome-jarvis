@@ -18,13 +18,20 @@ class GatewayTests(unittest.TestCase):
         self.secret.write_text('test-admin-secret')
         self.secret.chmod(0o600)
         self.calls = []
+        self.active_calls = set()
+        self.fail_setup = False
         async def backend(request):
             self.calls.append((request.method, request.url.path))
             if request.url.path == '/v1/pool':
-                return httpx.Response(200, json={'size': 1, 'in_use': 0, 'units': []})
+                return httpx.Response(200, json={'size': 1, 'in_use': len(self.active_calls), 'units': [{'state': 'active', 'session_id': c} for c in self.active_calls]})
             if request.url.path == '/api/tags':
                 return httpx.Response(200, json={'models': [{'name': 'test-model'}]})
+            if request.method == 'DELETE':
+                self.active_calls.discard(request.url.path.rsplit('/', 1)[-1])
             if request.url.path == '/v1/realtime/calls':
+                if self.fail_setup:
+                    return httpx.Response(500, text='setup failed')
+                self.active_calls.add('session_test')
                 return httpx.Response(201, text='v=0\r\nm=audio 9 RTP/AVP 0', headers={'location': '/v1/realtime/calls/session_test'})
             return httpx.Response(200, json={'ok': True})
         self.app = create_app({'admin_key_file': str(self.secret), 'model': 'test-model'}, transport=httpx.MockTransport(backend))
@@ -93,14 +100,39 @@ class GatewayTests(unittest.TestCase):
         r = self.client.post('/v1/audio/transcriptions', headers=lease, data={'model': 'other/unbounded-model'}, files={'file': ('input.wav', b'fake wav', 'audio/wav')})
         self.assertEqual(r.status_code, 422)
 
-    def test_uncertain_call_retains_capacity_until_release(self):
+    def test_uncertain_orphan_is_cleaned_before_retry(self):
         lease = self.lease()
         self.app.state.reservation.uncertain = True
-        self.assertEqual(self.client.post('/v1/audio/speech', headers=lease, json={'input': 'hello'}).status_code, 409)
-        r = self.client.post('/v1/realtime/calls', headers={**lease, 'Content-Type': 'application/sdp'}, content='v=0\r\nm=audio 9 RTP/AVP 0')
-        self.assertEqual(r.status_code, 409)
-        self.assertEqual(self.client.delete('/leases/current', headers=lease).status_code, 200)
-        self.lease('after-cleanup')
+        self.active_calls.add('orphan')
+        self.assertEqual(self.client.post('/v1/audio/speech', headers=lease, json={'input': 'hello'}).status_code, 200)
+        self.assertIn(('DELETE', '/v1/realtime/calls/orphan'), self.calls)
+        self.assertFalse(self.app.state.reservation.uncertain)
+
+    def test_failed_setup_can_retry_without_releasing_reservation(self):
+        lease = self.lease()
+        headers = {**lease, 'Content-Type': 'application/sdp'}
+        self.fail_setup = True
+        self.assertEqual(self.client.post('/v1/realtime/calls', headers=headers, content='v=0\r\nm=audio 9 RTP/AVP 0').status_code, 500)
+        self.fail_setup = False
+        self.assertEqual(self.client.post('/v1/realtime/calls', headers=headers, content='v=0\r\nm=audio 9 RTP/AVP 0').status_code, 201)
+
+    def test_disconnected_peer_releases_slot_for_same_reservation(self):
+        lease = self.lease()
+        headers = {**lease, 'Content-Type': 'application/sdp'}
+        self.assertEqual(self.client.post('/v1/realtime/calls', headers=headers, content='v=0\r\nm=audio 9 RTP/AVP 0').status_code, 201)
+        self.active_calls.clear()  # backend observed WebRTC disconnect
+        self.assertEqual(self.client.post('/v1/audio/speech', headers=lease, json={'input': 'hello'}).status_code, 200)
+        self.assertEqual(self.client.post('/v1/realtime/calls', headers=headers, content='v=0\r\nm=audio 9 RTP/AVP 0').status_code, 201)
+
+    def test_call_status_distinguishes_owned_live_and_disconnected_peers(self):
+        lease = self.lease()
+        headers = {**lease, 'Content-Type': 'application/sdp'}
+        response = self.client.post('/v1/realtime/calls', headers=headers, content='v=0\r\nm=audio 9 RTP/AVP 0')
+        location = response.headers['location']
+        self.assertEqual(self.client.get(location, headers=lease).status_code, 200)
+        self.assertEqual(self.client.get(location, headers={'Authorization': 'Bearer wrong'}).status_code, 401)
+        self.active_calls.clear()
+        self.assertEqual(self.client.get(location, headers=lease).status_code, 404)
 
     def test_disconnected_socket_still_releases_realtime_slot(self):
         headers = self.lease()

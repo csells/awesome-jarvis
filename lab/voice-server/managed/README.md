@@ -35,11 +35,12 @@ Supported endpoints, authenticated with `Authorization: Bearer <reservation key>
 - `POST /v1/audio/transcriptions`: multipart OpenAI audio request.
 - `POST /v1/audio/speech`: OpenAI speech request.
 - `wss://…/v1/realtime`: Realtime WebSocket, including browser `realtime` / `openai-insecure-api-key.<key>` subprotocols.
+- `GET /v1/realtime/calls/{id}`: authenticated status for an owned call; 200 while active, 404 after the backend releases it. Applications can reconcile an abandoned local call before retrying.
 - `POST /v1/realtime/calls`: raw `application/sdp`; configure the session over its data channel. Hang up with `DELETE` on the returned relative Location, or `POST <Location>/hangup`.
 
 Cross-origin browser fetches are not enabled. An application should proxy SDP requests through its own authenticated backend and keep the master credential off the browser. WebRTC media needs peer network reachability; HTTPS signaling alone does not provide a TURN relay.
 
-Capacity is one reservation and one realtime session. REST audio runs serially and is rejected while realtime is active or its cleanup is uncertain. Lease lifetime is 30–900 seconds and can be renewed. Expiry closes the call and reclaims the worker. Another reservation gets HTTP 409; missing, revoked, or expired keys get 401. A gateway restart invalidates leases and reconciles orphaned calls before admitting work. Reacquire a reservation after restart.
+Capacity is one reservation and one realtime session. REST audio runs serially and is rejected while realtime is active or its cleanup is uncertain. Lease lifetime is 30–900 seconds and can be renewed. Expiry closes the call and reclaims the worker. Before admitting another call or REST audio operation, the gateway reconciles an uncertain setup and clears stale call bookkeeping only after the backend reports idle. A failed cleanup retains capacity and returns an error; it never silently assigns a busy worker. Another reservation gets HTTP 409; missing, revoked, or expired keys get 401. A gateway restart invalidates leases and reconciles orphaned calls before admitting work. Reacquire a reservation after restart.
 
 Requests are bounded to 8 MiB; speech input to 4,000 characters; model IDs to the installed speech models and documented aliases. Reserve roughly 12 GiB of host memory for warmed voice/model workloads; this is an operational budget, not a macOS hard memory limit. The service admits only one caller and one loaded LLM. Other host model processes can independently consume memory. Do not co-schedule memory-heavy VMs without checking host pressure.
 
@@ -66,3 +67,5 @@ launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/com.jarvislab.voi
 For tests, set `VOICE_SESSION_FILE` to the private session JSON when running `../bin/rest_probe.py` or `../bin/realtime_probe.py`. Set `VOICE_AUDIO_BASE` for REST and pass the WebSocket URL explicitly. These probes retain dummy-key support for a separately owned transient server.
 
 Deployment validation and limitations: [2026-10-05 evidence](../../evidence/voice-service/README.md).
+
+The WebRTC wrapper emits `output_audio_buffer.started`, `cleared`, and `stopped` from response-owned PCM buffers and track drain. Generation completion alone does not mean playback finished. Reliability fixes and live integration evidence: [2026-10-06 audit](../../evidence/opendots/integration-audit/README.md).

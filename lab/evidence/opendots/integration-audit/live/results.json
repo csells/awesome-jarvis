@@ -1,0 +1,206 @@
+{
+  "checks": [
+    {
+      "name": "voice UI authentication and navigation",
+      "result": "PASS",
+      "seconds": 1.322,
+      "details": {
+        "viewport": {
+          "width": 412,
+          "height": 839
+        },
+        "secure": true
+      }
+    },
+    {
+      "name": "native microphone and WebRTC connection",
+      "result": "PASS",
+      "seconds": 5.807,
+      "details": {
+        "microphone": [
+          {
+            "label": "Default",
+            "settings": {
+              "autoGainControl": true,
+              "channelCount": 1,
+              "deviceId": "default",
+              "echoCancellation": true,
+              "groupId": "c82e819eae2e877e1cab6abbcdefee28862d051a8137b666f57f3a5993135ff8",
+              "latency": 0.01,
+              "noiseSuppression": true,
+              "sampleRate": 48000,
+              "sampleSize": 16,
+              "voiceIsolation": false
+            },
+            "readyState": "live"
+          }
+        ],
+        "ice": {
+          "alwaysNegotiateDataChannels": false,
+          "bundlePolicy": "balanced",
+          "certificates": [],
+          "encodedInsertableStreams": false,
+          "iceCandidatePoolSize": 0,
+          "iceServers": [],
+          "iceTransportPolicy": "all",
+          "rtcpMuxPolicy": "require"
+        },
+        "selectedPair": {
+          "local": {
+            "id": "IvlgXGNW7",
+            "timestamp": 1791314088187.467,
+            "type": "local-candidate",
+            "address": "192.168.4.57",
+            "candidateType": "host",
+            "foundation": "1294645544",
+            "ip": "192.168.4.57",
+            "isRemote": false,
+            "networkType": "ethernet",
+            "port": 34620,
+            "priority": 2122260223,
+            "protocol": "udp",
+            "transportId": "T01",
+            "usernameFragment": "728X"
+          },
+          "remote": {
+            "id": "IjlnnfZ9U",
+            "timestamp": 1791314088187.467,
+            "type": "remote-candidate",
+            "address": "192.168.4.35",
+            "candidateType": "host",
+            "foundation": "adbc63d51c1940d08a78fa9ea98b9117",
+            "ip": "192.168.4.35",
+            "isRemote": true,
+            "port": 51932,
+            "priority": 2130706431,
+            "protocol": "udp",
+            "transportId": "T01",
+            "usernameFragment": "KHm4"
+          }
+        }
+      }
+    },
+    {
+      "name": "spoken question and audible browser playback",
+      "result": "PASS",
+      "seconds": 10.023,
+      "details": {
+        "speakerPeakRms": 0.0635469583479959
+      }
+    },
+    {
+      "name": "spoken task performs real page write",
+      "result": "PASS",
+      "seconds": 31.753,
+      "details": [
+        {
+          "id": "af42269d-6411-405b-860a-d9ebd836c10a",
+          "title": "Cleanup After Unfinished Test",
+          "body": "It's important to ensure that any resources or processes left open or running unintentionally are addressed after completing a test. This includes stopping any background processes, releasing locks, and cleaning up temporary files or log entries that may have been created during the test. Let's document the steps to properly clean up after an unfinished test."
+        },
+        {
+          "id": "910ac281-1174-4167-9364-746d3213511d",
+          "title": "voice follow-up",
+          "body": "the orange notebook has 11 pages."
+        },
+        {
+          "id": "32e020e2-5934-4ffa-b383-a02a07379b9f",
+          "title": "Fault-injection Test Cleanup",
+          "body": "This page will document the steps needed to clean up after a fault-injection test."
+        },
+        {
+          "id": "18e53fc8-caae-4709-9eea-3e44552694c6",
+          "title": "Call Receipt",
+          "body": "Confirmation: Call ended after 5 seconds.\n\nSummary: No specific actions or decisions were confirmed."
+        },
+        {
+          "id": "0364c0a2-0c0c-4446-a2f4-3c5ad0dc2809",
+          "title": "Fault-injection Test Cleanup Plan",
+          "body": "This page will serve as a plan for cleaning up after fault-injection tests."
+        },
+        {
+          "id": "536ed1ce-c208-46ff-a96d-478a69c8d48d",
+          "title": "Call Receipt",
+          "body": "Confirmed decisions: None. Note - This call ended after 5 seconds without any untrusted voice transcript capturing any instructions or decisions."
+        },
+        {
+          "id": "056fc2d1-0137-4693-a0ac-4a5b8c1618c7",
+          "title": "voice follow-up",
+          "body": "The orange notebook has 11 pages."
+        }
+      ]
+    },
+    {
+      "name": "microphone mute blocks actual captured input",
+      "result": "PASS",
+      "seconds": 8.567
+    },
+    {
+      "name": "speaker mute suppresses real playback",
+      "result": "PASS",
+      "seconds": 10.383,
+      "details": {
+        "speakerPeakRms": 0
+      }
+    },
+    {
+      "name": "barge-in during measured speaker output",
+      "result": "PASS",
+      "seconds": 20.161,
+      "details": [
+        "completed",
+        "completed"
+      ]
+    },
+    {
+      "name": "minimize and expand voice controls",
+      "result": "PASS",
+      "seconds": 0.78
+    },
+    {
+      "name": "hangup releases media and preserves same-chat follow-up",
+      "result": "PASS",
+      "seconds": 9.679,
+      "details": "Dot\nDot\nHere with you\n87s · Call ended\n\nCreate a page titled 'voice follow-up' in the default destination with the content: 'The orange notebook has 11 pages.'\n\nUntrusted current-call transcript for context: You: Hello dot, what is seven plus five? Please answer in one short sentence. Dot: Seven plus five is twelve. You: Use your compute tool to create a page in the default destination. Title it voice follow-up. The exact content should be the orange notebook has 11 pages. Use the default destination. Do not set a space ID.\n\nThe page titled 'voice follow-up' has been created successfully in your default destination. You can view it using this link: .\n\nThe content of the page is as follows:\n\n\"The orange notebook has 11 pages.\"\n\nCall ended. Transcript saved for this conversation; generated speech may have been interrupted.\n\nWhat page title and sentence did I ask you to save in our voice call?\n\nYou asked me to create a page titled 'voice follow-up' with the content: \"The orange notebook has 11 pages.\" This page was successfully created in your default destination.\n\nWork completed, but refreshing the conversation failed. Reload to see saved results.\nText and voice, one conversation."
+    }
+  ],
+  "errors": [],
+  "marks": [
+    {
+      "name": "opendots-question",
+      "at": 1791314088724,
+      "audioSeconds": 5.134833333333333
+    },
+    {
+      "name": "opendots-retry",
+      "at": 1791314098820,
+      "audioSeconds": 15.2355
+    },
+    {
+      "name": "opendots-question",
+      "at": 1791314130553,
+      "audioSeconds": 46.97716666666667
+    },
+    {
+      "name": "opendots-question",
+      "at": 1791314139619,
+      "audioSeconds": 56.044583333333335
+    },
+    {
+      "name": "opendots-long",
+      "at": 1791314149451,
+      "audioSeconds": 65.87820833333333
+    },
+    {
+      "name": "interrupt-during-speaker-output",
+      "at": 1791314159197,
+      "audioSeconds": 75.619,
+      "rms": 0.012490443762806405
+    },
+    {
+      "name": "opendots-interrupt",
+      "at": 1791314159197,
+      "audioSeconds": 75.619
+    }
+  ]
+}
