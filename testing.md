@@ -27,11 +27,11 @@ PASS means it worked end to end, PARTIAL means some of the pillar worked, FAIL m
 | OpenClaw (Mac app) | PARTIAL | ◐ | PASS | PASS | The "computer" wake word and spoken commands work on-device. Spoken replies couldn't be captured inside the VM. Launched two sub-agents by voice, approved one and cancelled one. A spoken "allow" or "stop" is treated as chat text. |
 | OpenClaw (browser Talk) | PASS | ◐ | PASS | PARTIAL | Pointed at the local voice server by config. Answers aloud and barge-in works. Approvals are buttons only. A spoken cancel was followed by OpenClaw re-sending the request. |
 | Hermes Agent | PASS | ◐ | PASS | PASS | Local wake word, speech-to-text and text-to-speech. Barge-in worked in the desktop app but failed in the command-line voice mode. Delegated to Claude Code by voice and showed it live on its kanban board; interrupt worked. Its default "smart" approvals let a local model approve an `rm -rf` of a test folder with no human prompt. |
-| usejarvis | PASS | ◐ | PASS | PASS | Wake word, local transcription and spoken replies (slow on a small local model). Delegated a task by voice. The pebble overlay showed a sub-pebble per agent. Its default role runs commands without approval. |
+| usejarvis 0.15.0 | PARTIAL | ◐ | PARTIAL | PARTIAL | October re-test: native wake/transcription/reply and Research Analyst delegation worked, but wake-word interruption failed. Local 7B responses took 71–90 seconds and later turns reused stale tasks. Spoken approval/denial/child cancellation and all visual states are not certified in this run. [Exact coverage](lab/evidence/2026-10-06-retest/README.md). |
 | JARVIS for Claude Code | PARTIAL | ◐ | PASS | PASS | Understands speech (no wake word). Speaking back needs a paid Fish Audio key (BLOCKED). Watched a live Claude Code session and cancelled a run by voice. |
 | TapQ | PARTIAL | ◐ | FAIL | PARTIAL | The "hey tapq" wake word and spoken approval prompts work on-device, and a Claude Code action was approved and denied by voice. Conversation needs an OpenAI key (BLOCKED). No UI by design. |
 | hey-jarvis | PASS | ◐ | PASS | PASS | On real Omarchy and Hyprland, answered through Claude and spoke the reply, with every conversation phase shown. The consent window opens without keyboard focus and is covered by the conversation window, so approving a command needs a click, and an unattended request turns into a denial after 45 seconds. |
-| Paseo | PASS | ◐ | PASS | PASS | By voice, created a Claude Code agent, listed it and killed it; barge-in worked. Its voice agent approved its own child agent's file-write permission, and it always launches Claude with a skip-permissions flag. A second voice turn sometimes returned an empty transcript. |
+| Paseo 0.10.3 | PASS | ◐ | PASS | PARTIAL | October re-test: real browser speech round trip, barge-in and a Codex child writing verified content passed. Default Codex permissions repeatedly asked for a click to allow speech; spoken approval failed. A separate stop test interrupted the Codex agent but left its subprocess running. [Exact coverage](lab/evidence/2026-10-06-retest/README.md). |
 | Happy | BLOCKED | ◐ | PASS | PASS | From a phone, monitored two Claude Code sessions, approved an edit and a command, and cancelled a run. Free voice (20 minutes a month) was confirmed but couldn't be exercised without an emulator microphone. |
 | Operit | BLOCKED | ◐ | PASS | FAIL | Ran on a local model as Android's default assistant with its floating avatar. The small local model never made the sub-agent tool call. Its default wake phrase is "O", matched anywhere in a transcript. |
 | omavoice | PASS | ◐ | PASS | BLOCKED | Tested with a one-line URL change against the local voice server. Answered aloud with barge-in and a live trace of each step. Delegation wasn't completed because the lab's Claude login had expired in that VM. |
@@ -40,6 +40,14 @@ PASS means it worked end to end, PARTIAL means some of the pillar worked, FAIL m
 Not run hands-on (scored from code only): Qwen Audio Agent, Sutando and OpenClicky, which need paid voice keys; N.E.K.O, AIRI and Newelle. The commercial assistants were scored from vendor documentation.
 
 ## Candidate Follow-ups
+
+### Release re-tests and OpenVision review — 2026-10-06
+
+Paseo 0.10.3 and usejarvis brain 0.15.0 were tested in disposable home-lab VMs using the existing shared model/voice services. No new paid API keys were needed. **These are scoped results, not a blanket full-test pass.** Paseo retains full voice but drops to partial oversight after its Codex stop test left a subprocess running; it moves from Mission Control to Jarvis Agents on its voice/visual scores. usejarvis drops to partial voice because the normal wake-word path did not interrupt playback. Full visual/oversight scores retained in the scorecard still include the earlier source and September lab evidence; untested current-release paths are identified in the [release report](lab/evidence/2026-10-06-retest/README.md).
+
+**OpenVision stays on the Watch List.** Two independent reviews found full voice and conditional Hermes Dashboard hands-free controls, but partial visual/agent oversight. The pinned source built successfully after correcting the VM toolchain setup, then crashed on startup with example Meta configuration. Runtime voice, glasses and remote approvals remain blocked; a working phone-only startup was not established. See the same report for the exact commit, startup error and caveats.
+
+The September usejarvis 0.14.0 results covered delegation and sub-agent orbs. The September Paseo 0.9.2 run used Claude Code, including its then-observed skip-permissions behavior and voice-agent approval of child requests. Those observations do not establish how the current Codex configuration handles permissions.
 
 ### Hey Jev — 2026-10-04; adapted follow-up 2026-10-05
 
@@ -85,7 +93,7 @@ Whether an agent can use it depends on whether its OpenAI address is configurabl
 | OpenClaw | Yes, by config (server-side relay with a custom endpoint) |
 | omavoice, omarchy-voice | Not by config: the address is hardcoded. Changing one line works, and both then ran against the local server. |
 | TapQ, OpenClicky | Not by config: the address is hardcoded in source |
-| usejarvis | Only through its hosted-service setting; its local speech-to-text option works on its own |
+| usejarvis | Local STT supports an OpenAI-compatible endpoint; an authenticated service needs a proxy because the client omits its Authorization header. Generic compatible TTS is not a stock option; this re-test used Edge TTS. |
 | JARVIS for Claude Code, Sutando | No. They use Fish Audio and Gemini Live, not OpenAI's protocol. |
 
 A hardcoded address is a small porting job, not a mark against an agent's voice design.

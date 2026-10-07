@@ -59,16 +59,16 @@
       "url": "https://github.com/vierisid/jarvis",
       "section": "Jarvis Agents › Open Source",
       "scores": {
-        "voice": "full",
+        "voice": "partial",
         "handsFree": "partial",
         "visual": "full",
         "oversight": "full"
       },
-      "tested": "hands-on",
-      "testedAt": "2026-09-27",
-      "testedVersion": "@usejarvis/brain 0.14.0",
+      "tested": "partial",
+      "testedAt": "2026-10-06",
+      "testedVersion": "@usejarvis/brain 0.15.0",
       "tagPattern": "^v\\d",
-      "watchOut": "Runs commands without asking by default, telemetry on"
+      "watchOut": "No spoken interruption; commands run without asking"
     },
     {
       "name": "JARVIS for Claude Code",
@@ -212,17 +212,17 @@
       "platform": "Desktop, mobile, web",
       "repo": "getpaseo/paseo",
       "url": "https://github.com/getpaseo/paseo",
-      "section": "Mission Control › Voice Oversight",
+      "section": "Jarvis Agents › Open Source",
       "scores": {
         "voice": "full",
         "handsFree": "partial",
         "visual": "full",
-        "oversight": "full"
+        "oversight": "partial"
       },
       "tested": "hands-on",
-      "testedAt": "2026-09-27",
-      "testedVersion": "0.9.2",
-      "watchOut": "Voice agent can approve its own sub-agents"
+      "testedAt": "2026-10-06",
+      "testedVersion": "0.10.3",
+      "watchOut": "Codex stop left work running; speech approval needs clicks"
     },
     {
       "name": "Happy",

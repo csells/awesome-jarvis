@@ -1,4 +1,10 @@
 {
   "$comment": "Findings from scripts/staleness.py to leave alone. Each entry needs the finding key (from the report's hidden fingerprint block) and a reason; 'until' (YYYY-MM-DD) is optional, and after that date the finding is reported again. See data/README.md.",
-  "ignore": []
+  "ignore": [
+    {
+      "key": "watch:promote:rayl15/openvision",
+      "reason": "Reviewed 2026-10-06: two source reviews plus successful simulator build; example-config launch crashes in Meta SDK. Visual and oversight remain partial. See lab/evidence/2026-10-06-retest/README.md. Revisit next month.",
+      "until": "2026-11-06"
+    }
+  ]
 }
