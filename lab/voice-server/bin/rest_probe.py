@@ -33,9 +33,9 @@ for w in wavs:
         res["stt"].append({"file": w, "run": i, "text": text, "seconds": dt})
         print(f"STT {os.path.basename(w)} run{i}: {dt:.3f}s  {text!r}")
 
-phrases = [("fable", "mp3", "Good evening, sir. All systems are online and the lab is ready for testing."),
-           ("alloy", "wav", "The quick brown fox jumps over the lazy dog."),
-           ("marin", "pcm", "Barge in whenever you like; I will stop talking.")]
+phrases = [("alfred", "pcm", "Good evening, sir. All systems are online and the lab is ready for testing."),
+           ("alfred", "wav", "The quick brown fox jumps over the lazy dog."),
+           ("alfred", "pcm", "Barge in whenever you like; I will stop talking.")]
 for voice, fmt, text in phrases:
     t = time.perf_counter()
     r = c.audio.speech.create(model="tts-1", voice=voice, input=text, response_format=fmt)

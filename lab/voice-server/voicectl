@@ -1,7 +1,7 @@
 #!/bin/bash
 # voicectl — local OpenAI-compatible voice stack for the lab (runs natively on an Apple silicon Mac, MLX/Metal).
 #   realtime  HF speech-to-speech (pinned commit): OpenAI Realtime API ws://HOST:8765/v1/realtime + POST /v1/realtime/calls (WebRTC)
-#             VAD Silero -> STT Parakeet TDT 0.6B v3 (MLX) -> LLM Ollama /v1 chat-completions -> TTS Kokoro-82M (MLX)
+#             VAD Silero -> STT Parakeet TDT 0.6B v3 (MLX) -> LLM Ollama /v1 chat-completions -> TTS Pocket
 #   audio     mlx-audio 0.5.6 + OpenAI compat layer: POST /v1/audio/transcriptions, POST /v1/audio/speech  http://HOST:8766/v1
 # Usage: ./voicectl setup | start [realtime|audio|all] | stop [realtime|audio|all] | status | logs [realtime|audio] [N] | warm
 #   setup  creates the two Python 3.12 venvs from requirements-*.lock.txt with uv (a few GB); models download on first start
@@ -10,7 +10,7 @@
 #        10.0.2.2; a Tart VM needs the host's address on Tart's network, e.g. VOICE_HOST=192.168.64.1, see macos/vm.sh host-ip),
 #        VOICE_RT_PORT 8765, VOICE_AUDIO_PORT 8766,
 #        VOICE_LLM_MODEL (Ollama tag, default qwen2.5:7b-instruct-q4_K_M), VOICE_LLM_BASE (http://127.0.0.1:11434/v1),
-#        VOICE_DEFAULT_VOICE (Kokoro voice, default bm_fable), VOICE_RT_ARGS (extra speech-to-speech flags,
+#        VOICE_DEFAULT_VOICE (Pocket voice, default alfred), VOICE_RT_ARGS (extra speech-to-speech flags,
 #        e.g. "--no_smart_turn"), VOICE_OFFLINE=1 (HF_HUB_OFFLINE=1 once models are cached), VOICE_LLM_TIMEOUT (90 s)
 # Servers run as *transient* launchd jobs in gui/<uid> with ProcessType Interactive (nothing is installed in
 # ~/Library/LaunchAgents; `stop` boots them out). The servers have no authentication: keep VOICE_HOST on a
@@ -21,7 +21,7 @@ V=${VOICE_HOME:-$D/local}
 R=$V/run; mkdir -p "$R" "$V/logs" "$V/bin"
 HOST=${VOICE_HOST:-127.0.0.1}; RT_PORT=${VOICE_RT_PORT:-8765}; AU_PORT=${VOICE_AUDIO_PORT:-8766}
 LLM_MODEL=${VOICE_LLM_MODEL:-qwen2.5:7b-instruct-q4_K_M}; LLM_BASE=${VOICE_LLM_BASE:-http://127.0.0.1:11434/v1}
-VOICE=${VOICE_DEFAULT_VOICE:-bm_fable}
+VOICE=${VOICE_DEFAULT_VOICE:-alfred}
 PROMPT=${VOICE_PROMPT:-"You are JARVIS, a concise, witty voice assistant. Answer in one or two short spoken sentences. No markdown, no lists, no emojis."}
 ENVV=(HF_HOME="$V/hf" PATH="$V/bin:$D/bin:/usr/bin:/bin:/usr/sbin:/sbin" VOICE_DEFAULT_VOICE="$VOICE" MLX_AUDIO_ALLOWED_ORIGINS="http://localhost" TOKENIZERS_PARALLELISM=false ${VOICE_OFFLINE:+HF_HUB_OFFLINE=1})
 label() { echo "com.jarvislab.voice-$1"; }
@@ -32,7 +32,7 @@ start_one() {
   local -a argv
   if [ "$s" = realtime ]; then
     argv=("$V/s2s-venv/bin/python" "$D/bin/s2s_serve.py" serve --host "$HOST" --port "$RT_PORT"
-      --stt parakeet-tdt --tts kokoro --kokoro_voice "$VOICE"
+      --stt openai --openai_stt_base_url "${VOICE_ROUTER_URL:-http://127.0.0.1:18770}/v1" --tts openai --openai_tts_base_url "${VOICE_ROUTER_URL:-http://127.0.0.1:18770}/v1" --openai_tts_model speech --openai_tts_voice "$VOICE"
       --llm_backend chat-completions --model_name "$LLM_MODEL"
       --responses_api_base_url "$LLM_BASE" --responses_api_api_key ollama --responses_api_stream
       --init_chat_prompt "$PROMPT" ${VOICE_RT_ARGS:-})

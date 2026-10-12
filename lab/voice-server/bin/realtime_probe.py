@@ -53,7 +53,7 @@ async def main():
                           "transcription": {"model": "gpt-4o-mini-transcribe"},
                           "turn_detection": {"type": "server_vad", "create_response": True,
                                              "interrupt_response": True}},
-                "output": {"format": {"type": "audio/pcm", "rate": RATE}, "voice": "cedar"}}}}))
+                "output": {"format": {"type": "audio/pcm", "rate": RATE}, "voice": os.environ.get("VOICE_TEST_VOICE", "alfred")}}}}))
 
         async def reader():
             nonlocal cur

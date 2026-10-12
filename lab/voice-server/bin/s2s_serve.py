@@ -1,60 +1,7 @@
-"""Start Hugging Face speech-to-speech (OpenAI Realtime API) with eight small lab patches.
-
-1. OpenAI clients send OpenAI voice names ("alloy", "marin", ...) in session.update; the Kokoro backend would
-   try to download a voice pack with that name and fail. Map them to Kokoro voices (voicemap.py).
-2. Long TTS inputs are split into sentences so the first audio frame is not delayed by the whole paragraph.
-3. turn_detection.create_response=false is honoured (client-driven responses).
-4. One extra voice rule so small local LLMs emit the tool call after an acknowledgement.
-5. input_audio_buffer.clear and conversation.item.delete are accepted (ignored) instead of rejected.
-6. Client-chosen conversation item ids are accepted (no sys_/msg_ prefix requirement).
-7. LLM request timeout 90 s instead of 20 s (VOICE_LLM_TIMEOUT).
-8. WebRTC output-buffer lifecycle events follow actual RTP track drain.
-Everything else is the stock `speech-to-speech` CLI (args are passed through unchanged).
-"""
+"""Pocket realtime adapter with client lifecycle and playback compatibility."""
 import os
-import re
 import sys
-
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from voicemap import kokoro_voice  # noqa: E402
-
-from speech_to_speech.TTS import kokoro_handler  # noqa: E402
-
-_orig = kokoro_handler.KokoroTTSHandler._process_mlx
-
-
-_SENT = re.compile(r"(?<=[.!?;:])\s+")
-
-
-def _pieces(text, min_len=30):
-    """Split a long TTS input into sentences so the first audio does not wait for the whole paragraph.
-
-    When a speculative turn commits, the LLM text produced so far reaches TTS as ONE input; Kokoro would
-    synthesize all of it (seconds) before yielding the first frame.
-    """
-    out, cur = [], ""
-    for s in _SENT.split(text.strip()):
-        cur = f"{cur} {s}".strip()
-        if len(cur) >= min_len:
-            out.append(cur)
-            cur = ""
-    if cur:
-        out.append(cur)
-    return out or [text]
-
-
-def _process_mlx(self, llm_sentence, language_code=None):
-    mapped = kokoro_voice(self.voice)
-    if mapped != self.voice:
-        self.voice = mapped
-    gen = self.cancel_scope.generation if getattr(self, "cancel_scope", None) else None
-    for piece in _pieces(llm_sentence):
-        if gen is not None and self.cancel_scope.is_stale(gen):
-            return
-        yield from _orig(self, piece, language_code)
-
-
-kokoro_handler.KokoroTTSHandler._process_mlx = _process_mlx
 
 # 3. Honour turn_detection.create_response == false (OpenAI GA semantics): the server still commits the
 #    turn and emits the transcription, but it does not start a response until the client sends

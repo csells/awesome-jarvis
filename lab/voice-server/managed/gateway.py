@@ -17,7 +17,8 @@ from dataclasses import dataclass, field
 
 import httpx
 from fastapi import FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
-from fastapi.responses import Response
+from fastapi.responses import Response, StreamingResponse
+from starlette.background import BackgroundTask
 from pydantic import BaseModel, Field, ConfigDict
 import uvicorn
 import websockets
@@ -72,6 +73,7 @@ def create_app(config, transport=None):
         raise RuntimeError('Admin key is empty.')
     rt = config.get('realtime_url', 'http://127.0.0.1:18765')
     audio = config.get('audio_url', 'http://127.0.0.1:18766')
+    pocket = config.get('pocket_url')
     llm = config.get('ollama_url', 'http://127.0.0.1:11434')
     gate = asyncio.Lock()
 
@@ -150,7 +152,10 @@ def create_app(config, transport=None):
             except (httpx.HTTPError, ValueError):
                 return False
         values = await asyncio.gather(check(rt+'/v1/pool', 'realtime'), check(audio+'/health', 'audio'), check(llm+'/api/tags', 'model'))
-        return dict(zip(('realtime', 'audio', 'model'), values))
+        result = dict(zip(('realtime', 'audio', 'model'), values))
+        if pocket:
+            result['pocket'] = await check(pocket+'/healthz', 'pocket')
+        return result
 
     async def maintenance():
         # On gateway restart, orphaned WebRTC calls cannot retain a worker indefinitely.
@@ -250,23 +255,34 @@ def create_app(config, transport=None):
             chunks.append(chunk)
         return b''.join(chunks)
 
+    @app.get('/v1/voices')
+    async def voices(request: Request):
+        require_lease(request.headers)
+        if config.get('voice_catalog_url'):
+            r = await app.state.http.get(config['voice_catalog_url'], timeout=5)
+            r.raise_for_status()
+            return r.json()
+        from speech_router import voice_catalog
+        r=await app.state.http.get(pocket+'/api/voices',timeout=5)
+        r.raise_for_status()
+        return voice_catalog(r.json())
+
     @app.post('/v1/audio/{operation}')
     async def audio_request(operation: str, request: Request):
         require_lease(request.headers)
         if operation not in ('speech', 'transcriptions'):
             raise HTTPException(404)
         data = await bounded_body(request)
+        is_pocket = False
         if operation == 'speech':
             try:
-                body = json.loads(data)
-                if body.get('model') not in (None, 'tts-1', 'tts-1-hd', 'gpt-4o-mini-tts', 'mlx-community/Kokoro-82M-bf16'):
-                    raise ValueError()
-                if body.get('voice') and not re.fullmatch(r'[a-z_]{1,40}', body['voice']):
-                    raise ValueError()
-                if not isinstance(body.get('input'), str) or not 0 < len(body['input']) <= 4000:
-                    raise ValueError()
-            except (ValueError, AttributeError):
-                raise HTTPException(422, 'Use a supported speech model/voice and 1–4000 input characters.')
+                from speech_router import speech_request
+                _, body = speech_request(json.loads(data))
+                data = json.dumps(body).encode()
+                is_pocket = bool(pocket)
+            except (ValueError, TypeError, AttributeError) as e:
+                raise HTTPException(422, str(e))
+
         else:
             content_type = request.headers.get('content-type', '')
             if not content_type.startswith('multipart/form-data;'):
@@ -276,6 +292,49 @@ def create_app(config, transport=None):
                 if part.get_param('name', header='content-disposition') == 'model':
                     if part.get_content().strip() not in ('whisper-1', 'gpt-4o-mini-transcribe', 'gpt-4o-transcribe', 'mlx-community/parakeet-tdt-0.6b-v3'):
                         raise HTTPException(422, 'Use a supported transcription model.')
+        if is_pocket:
+            # Keep the exclusive worker lease until the streamed body drains or disconnects.
+            await gate.acquire()
+            response = None
+            released = False
+            async def cleanup():
+                nonlocal released
+                if not released:
+                    released = True
+                    try:
+                        if response is not None:
+                            await response.aclose()
+                    finally:
+                        gate.release()
+            try:
+                lease = require_lease(request.headers)
+                await refresh_capacity(lease)
+                if lease.calls or lease.websocket or lease.uncertain:
+                    raise HTTPException(409, 'End or clean up the realtime session before REST speech work.')
+                upstream = app.state.http.build_request('POST', pocket+'/v1/audio/speech', content=data,
+                    headers={'content-type': 'application/json'})
+                response = await app.state.http.send(upstream, stream=True)
+                if not response.is_success:
+                    content = await response.aread()
+                    await cleanup()
+                    return Response(content, status_code=response.status_code,
+                                    media_type=response.headers.get('content-type'))
+                async def chunks():
+                    try:
+                        async for block in response.aiter_raw():
+                            if lease.expires <= time.monotonic():
+                                raise RuntimeError('Voice reservation expired during streaming')
+                            yield block
+                    finally:
+                        await cleanup()
+                headers = {k:v for k,v in response.headers.items()
+                           if k.lower() in ('x-sample-rate', 'x-audio-channels', 'x-audio-format', 'x-job-id')}
+                headers['X-Accel-Buffering'] = 'no'
+                return StreamingResponse(chunks(), media_type=response.headers.get('content-type'),
+                                         headers=headers, background=BackgroundTask(cleanup))
+            except BaseException:
+                await cleanup()
+                raise
         async with gate:
             lease = require_lease(request.headers)
             await refresh_capacity(lease)
