@@ -30,11 +30,10 @@ Send the session key as `Authorization: Bearer SESSION_KEY` to `POST /v1/audio/s
 
 Release the reservation with `DELETE /leases/current`, or the helper's `release --session FILE` command. Delete the session file afterward. Missing/expired credentials return401, busy backends409, invalid input422. A running realtime conversation occupies the same shared reservation; stop it before requesting standalone speech.
 
-In the unified candidate, Alfred is selected by voice name in REST requests and
+In Pocket, Alfred is selected by voice name in REST requests and
 realtime sessions. New requests default to Alfred; other Pocket profiles are selectable by voice ID. The realtime process uses the shared speech workers instead of
 loading duplicate transcription and synthesis models. See [UNIFICATION.md](UNIFICATION.md)
-for the architecture, validation and promotion checklist. The candidate has not
-replaced production yet.
+for the architecture, validation and promotion checklist. The service was promoted on 2026-10-12.
 
 ## Profile and operation
 
@@ -43,7 +42,7 @@ Do not publish reference recordings or profiles. Production currently runs nativ
 on the service host; Discover current
 addresses, installation, versions and backup evidence from the registry.
 
-The unified candidate places Pocket under the shared voice supervisor. It disables
+The service places Pocket under the shared voice supervisor. It disables
 the separate Alfred LaunchAgent only during explicitly approved promotion. Pocket is the only synthesis engine. Parakeet transcription is loaded
 once by the audio worker and shared with realtime.
 

@@ -1,6 +1,6 @@
 # Pocket voice service
 
-Staged candidate: source publication does not mean production promotion. See [the preview app](../preview/README.md) and [deployment checklist](UNIFICATION.md).
+Promoted on 2026-10-12 after native speech, transcription, realtime, interruption, TLS and supervisor-recovery validation. See [the preview app](../preview/README.md) and [deployment checklist](UNIFICATION.md).
 
 Persistent, authenticated access to the lab's existing Apple MLX speech stack. Application tests reserve the service, use their short-lived key, and release it. They must not stop its processes. This is shared infrastructure, not a Jarvis application or a phone UI.
 
@@ -74,4 +74,4 @@ The WebRTC wrapper emits `output_audio_buffer.started`, `cleared`, and `stopped`
 
 ## Alfred / Pocket TTS
 
-Alfred is available through the existing authenticated speech API as `model: pocket-tts`, `voice: alfred`, default speed1.25. See [ALFRED.md](ALFRED.md) for usage and deployment details. The current unified candidate also supplies Alfred to realtime. See [UNIFICATION.md](UNIFICATION.md); it requires staged approval before installation.
+Alfred is available through the existing authenticated speech API as `model: pocket-tts`, `voice: alfred`, default speed1.25. See [ALFRED.md](ALFRED.md) for usage and deployment details. Pocket also supplies Alfred to realtime. See [UNIFICATION.md](UNIFICATION.md); it requires staged approval before installation.

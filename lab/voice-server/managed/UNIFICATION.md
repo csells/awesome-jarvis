@@ -1,7 +1,7 @@
-# Pocket service candidate
+# Pocket service architecture
 
 The service is Pocket. Alfred is one voice among its available profiles, for both REST
-speech and realtime conversations. It is not promoted.
+speech and realtime conversations. Promoted on 2026-10-12.
 
 ## Architecture
 
@@ -32,7 +32,7 @@ caller's reservation. Unit tests do not establish audio quality or realtime
 correctness. Record real PCM, transcription, realtime turn and cancellation
 results before requesting promotion.
 
-## Promotion (only after explicit candidate approval)
+## Deployment and future promotion
 
 1. Preserve source, test evidence, old configuration/releases and the Alfred
    profile through the central Google Drive backup. Verify the profile hashes.
@@ -57,3 +57,7 @@ remove Pocket models or profiles during either direction of the transition.
 
 Mac launchd cutover must be verified on the Mac after approval. Linux staging
 cannot establish macOS launchd or Apple MLX startup correctness.
+
+## Promotion validation
+
+The native deployment passed both custom voices, PCM/WAV, transcription, realtime replies, cancellation, interruption transport, authenticated HTTPS, worker restart recovery and unchanged profile hashes. The known limitations remain: overly verbose LLM replies after interruption, five gated reference samples, and no full-host reboot or pre-login startup verification. Source publication excludes private profiles, recordings and credentials.
