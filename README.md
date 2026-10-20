@@ -422,6 +422,7 @@ Hands for the screen: agents that click, type and navigate while you watch.
 - [UFO](https://github.com/microsoft/UFO) - Microsoft's Windows desktop automation agents that coordinate across devices.
 - [Fara](https://github.com/microsoft/fara) - Open-weight computer-use models in 4B, 9B and 27B sizes; the 4B is small enough to run on device.
 - [OpenAdapt](https://github.com/OpenAdaptAI/OpenAdapt) - Compiles a GUI task you demonstrate into a replayable program that a person approves and that reports success only when an independent check passes.
+- [ibara](https://github.com/MayberryDT/ibara) - Omarchy-only MCP server for browser and desktop tasks on computers you own over Tailscale, with a live console for watching and taking control.
 
 ### Proactivity
 
