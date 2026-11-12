@@ -84,7 +84,7 @@ Stock conversations and calls returned HTTP 503 for missing service configuratio
 Many voice agents expect OpenAI's Realtime API. A free stack running locally on Apple silicon can stand in for it:
 
 - [Hugging Face speech-to-speech](https://github.com/huggingface/speech-to-speech) as an OpenAI-compatible Realtime server, with Parakeet for speech recognition, a local model through Ollama, and Kokoro for speech. About 1.1 to 1.5 seconds from the end of your speech to the first spoken word, with barge-in and cancel.
-- [mlx-audio](https://github.com/Blaizzy/mlx-audio) for OpenAI-compatible transcription and speech endpoints.
+- [mlx-audio](https://github.com/Neywa-Labs/mlx-audio) for OpenAI-compatible transcription and speech endpoints.
 
 Whether an agent can use it depends on whether its OpenAI address is configurable:
 

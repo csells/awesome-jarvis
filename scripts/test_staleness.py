@@ -242,6 +242,19 @@ class WatchListTests(unittest.TestCase):
         drive_by = [user("a")] * 50 + [user("b")] * 2 + [user("c")]
         self.assertEqual(s.watch_findings(self.entry, repo("o/w", authors=drive_by), TODAY), [])
 
+    def test_changed_git_name_is_not_a_second_contributor(self):
+        old = {"email": "person@example.com", "name": "unknown", "user": None}
+        new = {"email": "PERSON@example.com", "name": "Named Person", "user": None}
+        authors = [old] * 4 + [new] * 3
+        self.assertEqual(s.watch_findings(self.entry, repo("o/w", authors=authors), TODAY), [])
+        self.assertEqual(s.recent_authors([{"author": a} for a in authors]), {"Named Person": 7})
+
+    def test_partially_linked_account_is_one_contributor(self):
+        linked = user("person")
+        unlinked = {**linked, "user": None, "name": "Different display name"}
+        nodes = [{"author": a} for a in [linked] * 3 + [unlinked] * 4]
+        self.assertEqual(s.recent_authors(nodes), {"person": 7})
+
     def test_bots_do_not_count(self):
         bot = {"email": "x", "name": "dependabot[bot]", "user": {"login": "dependabot[bot]"}}
         self.assertEqual(s.watch_findings(self.entry, repo("o/w", authors=[user("a")] * 3 + [bot] * 5), TODAY), [])
@@ -257,6 +270,41 @@ class WatchListTests(unittest.TestCase):
 
 def finding(key, name="N", check="links"):
     return s.Finding(check, key, name, "Section", "https://x.dev", "Broken.", "Fix it.")
+
+
+class PullRequestTests(unittest.TestCase):
+    def test_pagination(self):
+        with mock.patch.object(s, "gh", return_value=(0, '[[{"number":1}],[{"number":2}]]', "")) as gh:
+            self.assertEqual(s.paginated_api("repos/o/r/pulls"), [{"number": 1}, {"number": 2}])
+            self.assertIn("--paginate", gh.call_args.args[0])
+
+    def test_review_leads_and_related_findings(self):
+        report = s.Report(TODAY, [s.Finding("repos", "repo:stale:o/old", "Old", "Agents",
+                                          "https://github.com/o/old", "Stale", "Review.")], ran=["repos", "prs"])
+        pr = {"number": 42, "title": "Update and add", "html_url": "https://github.com/o/list/pull/42",
+              "body": "", "created_at": "2026-01-01T00:00:00Z", "updated_at": "2026-02-01T00:00:00Z",
+              "draft": True}
+        files = [{"patch": "-https://github.com/o/old\n+https://github.com/o/new\n https://github.com/o/context"},
+                 {"filename": "binary.png"}]
+        entries = s.parse_entries("## Agents\n- [Old](https://github.com/o/old) - Agent.")
+        with mock.patch.object(s, "paginated_api", side_effect=[[pr], files]):
+            s.pull_request_findings("o/list", entries, report)
+        self.assertIn(pr["html_url"], report.findings[0].action)
+        item = report.findings[1]
+        self.assertEqual(item.key, "prs:open:o/list:42")
+        self.assertIn("o/old", item.problem)
+        self.assertIn("o/new", item.problem)
+        self.assertNotIn("o/context", item.problem)
+        self.assertIn("Draft", item.problem)
+        self.assertIn("unavailable", item.problem)
+        self.assertIn("Outstanding pull requests (1)", s.render_report(report))
+
+    def test_empty_queue(self):
+        report = s.Report(TODAY, ran=["prs"])
+        with mock.patch.object(s, "paginated_api", return_value=[]):
+            s.pull_request_findings("o/list", [], report)
+        self.assertEqual(report.findings, [])
+        self.assertIn("Checked 0", report.notes["prs"][0])
 
 
 class FingerprintTests(unittest.TestCase):

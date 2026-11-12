@@ -6,7 +6,7 @@ Checks the list for rot, following the Re-Verification rules in [methodology.md]
 
 ```sh
 python3 scripts/staleness.py                    # dry run: print the report, change nothing
-python3 scripts/staleness.py --only retest,watch  # run some of the checks (links, repos, retest, watch)
+python3 scripts/staleness.py --only retest,watch  # run some of the checks (links, repos, retest, watch, prs)
 python3 scripts/staleness.py --publish          # also update the tracking issue (what CI does)
 python3 -m unittest discover -s scripts         # offline tests
 ```
@@ -18,11 +18,13 @@ A full run takes about a minute. The exit status is non-zero only when the scrip
 - **Dead links.** Every http(s) URL in README.md, blueprint.md, history.md, testing.md and methodology.md, fetched with HEAD and then GET, a browser user agent and a 20-second timeout. It flags 404, 410, domains that no longer resolve, other refusals such as 403, and redirects to a different domain. Sites in [data/link-allowlist.json](../data/link-allowlist.json) that block bots are skipped. Timeouts and server errors are listed as notes and tried again the next week. GitHub repository links are checked through the API instead, which also catches renames.
 - **Repository health.** Every GitHub repository linked from README.md is checked for being missing, archived, moved (with the new URL) or stale. Stale means no commit on the default branch in 6 months for Jarvis Agents and Mission Control, or in 12 months for everything else. Watch List entries use the 6-month rule too, but they are reported under Watch List review.
 - **Re-test queue.** Agents in [data/scorecard.json](../data/scorecard.json) whose last test is more than 90 days old, or whose newest stable release is a major or minor bump over the version tested. Pre-releases are ignored. It also flags any difference between that file and the readme's scorecard table.
-- **Watch List review.** A Watch List entry is a *promote candidate* when at least two people (not bots) have each made three or more commits in the last 90 days, and the repository is at least three months old. The report lists commit counts per author. An entry is a *drop candidate* when it has had no commit in six months.
+- **Watch List review.** A Watch List entry is a *promote candidate* when at least two people (not bots) have each made three or more commits in the last 90 days, and the repository is at least three months old. The report lists commit counts per author, grouping changing Git display names by email and linking those commits to a GitHub account when available. An entry is a *drop candidate* when it has had no commit in six months.
+
+- **Outstanding pull requests.** Every open PR (including drafts) is a review item, with opened/updated dates, existing repository references and possible project submissions found in the description and added/removed diff lines. PRs are evaluation requests: independent reviews, hands-on tests and the safety audit precede accepting entries. Related findings link to matching PRs but stay open until fixed. Supporting links can appear as possible submissions; review the full PR before deciding. Missing or truncated diffs are flagged. Use `--only prs` to review this queue alone; `--repo` selects both the PR source and tracking-issue repository.
 
 ### The Tracking Issue
 
-`.github/workflows/staleness.yml` runs the script with `--publish` every Monday at 15:00 UTC, and on demand from the Actions tab (untick "publish" for a dry run that only writes the job summary). It uses the workflow's own `GITHUB_TOKEN` with `issues: write`. No other secrets are needed.
+`.github/workflows/staleness.yml` runs the script with `--publish` every Monday at 15:00 UTC, and on demand from the Actions tab (untick "publish" for a dry run that only writes the job summary). It uses the workflow's own `GITHUB_TOKEN` with `issues: write` and `pull-requests: read`. No other secrets are needed.
 
 With `--publish`, the script keeps a single open issue labelled `staleness`:
 

@@ -18,6 +18,7 @@
   "urls": [
     { "url": "https://livekit.io/join-slack", "reason": "Redirects to a Slack invite on slack.com" },
     { "url": "https://awesome.re", "reason": "The Awesome badge link redirects to sindresorhus/awesome on GitHub" },
-    { "url": "https://www.home-assistant.io/join-chat/", "reason": "Redirects to the Home Assistant Discord invite on discord.com" }
+    { "url": "https://www.home-assistant.io/join-chat/", "reason": "Redirects to the Home Assistant Discord invite on discord.com" },
+    { "url": "https://brilliant.xyz/products/halo", "reason": "HTTP 429 for automated clients; product page verified in a rendered browser on 2026-11-12" }
   ]
 }

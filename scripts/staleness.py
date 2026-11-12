@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Weekly staleness report for awesome-jarvis.
 
-Runs four checks and prints a Markdown report:
+Runs five checks and prints a Markdown report:
 
 1. Dead links in README.md, blueprint.md, history.md, testing.md and methodology.md.
 2. Health of every GitHub repository linked from README.md (archived, moved, stale).
 3. The re-test queue for scorecard agents (data/scorecard.json).
 4. Watch List review (promote and drop candidates).
+5. Outstanding pull requests, including reference updates and submitted projects.
 
 With --publish it also keeps one GitHub issue labelled "staleness" in sync with the
 report. Without it, nothing is written anywhere. GitHub is reached only through the
@@ -66,12 +67,13 @@ GRAPHQL_BATCH = 25
 ISSUE_LABEL = "staleness"
 ISSUE_TITLE = "Staleness report"
 ISSUE_BODY_LIMIT = 60000
-CHECKS = ("links", "repos", "retest", "watch")
+CHECKS = ("links", "repos", "retest", "watch", "prs")
 CHECK_TITLES = {
     "links": "Dead links",
     "repos": "Repository health",
     "retest": "Re-test queue",
     "watch": "Watch List review",
+    "prs": "Outstanding pull requests",
 }
 SCORE_SYMBOLS = {"●": "full", "◐": "partial", "○": "none"}
 HALLMARK_COLUMNS = {"Voice": "voice", "Hands-free": "handsFree", "Visual": "visual", "Oversight": "oversight"}
@@ -566,18 +568,39 @@ def fetch_repos(repos: dict[str, dict], today: dt.date) -> dict[str, dict | None
 
 
 def recent_authors(nodes: list[dict]) -> dict[str, int]:
-    """Commit counts by author (GitHub login, else name, else email), ignoring bots."""
-    authors: dict[str, int] = {}
+    """Count identities, not changing Git display names, ignoring bots."""
+    # GitHub may link only some commits to an account. Resolve the other commits
+    # with the same email to that account before counting contributors.
+    email_logins: dict[str, set[str]] = {}
     for node in nodes:
         a = node.get("author") or {}
-        login = ((a.get("user") or {}).get("login") or "").lower()
-        email = (a.get("email") or "").lower()
-        name = (a.get("name") or "").lower()
-        if login.endswith("[bot]") or name.endswith("[bot]") or "[bot]@" in email:
+        login = ((a.get("user") or {}).get("login") or "").strip().lower()
+        email = (a.get("email") or "").strip().lower()
+        if login and email:
+            email_logins.setdefault(email, set()).add(login)
+    counts: dict[str, int] = {}
+    labels: dict[str, str] = {}
+    for node in nodes:
+        a = node.get("author") or {}
+        login = ((a.get("user") or {}).get("login") or "").strip().lower()
+        email = (a.get("email") or "").strip().lower()
+        name = (a.get("name") or "").strip()
+        linked = email_logins.get(email, set())
+        login = login or (next(iter(linked)) if len(linked) == 1 else "")
+        if login.endswith("[bot]") or name.lower().endswith("[bot]") or "[bot]@" in email:
             continue
-        ident = login or (a.get("name") or "").strip() or email
+        ident = login or email or name.lower()
         if ident:
-            authors[ident] = authors.get(ident, 0) + 1
+            counts[ident] = counts.get(ident, 0) + 1
+            if ident not in labels or labels[ident].lower() == "unknown":
+                labels[ident] = login or name or email
+    authors: dict[str, int] = {}
+    for ident, count in counts.items():
+        label = labels[ident]
+        # Distinct identities can share a display name.
+        if label in authors:
+            label = ident
+        authors[label] = count
     return authors
 
 
@@ -818,6 +841,60 @@ def watch_findings(entry: Entry, repo: dict | None, today: dt.date) -> list[Find
     return out
 
 
+# --------------------------------------------------------------------------- outstanding PRs
+
+
+def paginated_api(path: str) -> list[dict]:
+    _, out, _ = gh(["api", path, "--paginate", "--slurp"])
+    return [item for page in json.loads(out) for item in page]
+
+
+def pull_request_findings(repo: str, entries: list[Entry], report: Report) -> None:
+    """Surface every open PR; use changed lines and body as review leads, not verdicts."""
+    listed: dict[str, str] = {}
+    for entry in entries:
+        for url in entry.urls:
+            if r := github_repo(url):
+                listed["/".join(r).lower()] = entry.name
+    pulls = paginated_api(f"repos/{repo}/pulls?state=open&per_page=100")
+    for pr in pulls:
+        number = pr["number"]
+        files = paginated_api(f"repos/{repo}/pulls/{number}/files?per_page=100")
+        # Ignore unchanged context: a nearby entry is not necessarily touched by a PR.
+        changed = "\n".join(line[1:] for f in files for line in f.get("patch", "").splitlines()
+                            if line.startswith(("+", "-")) and not line.startswith(("+++", "---")))
+        references = {"/".join(r).lower() for url in extract_urls((pr.get("body") or "") + "\n" + changed)
+                      if (r := github_repo(url)) and "/".join(r).lower() != repo.lower()}
+        existing = sorted(references & listed.keys())
+        submitted = sorted(references - listed.keys())
+        details = [f"Open since {parse_date(pr['created_at'])}; "
+                   f"updated {parse_date(pr['updated_at'])}." + (" Draft." if pr.get("draft") else "")]
+        if existing:
+            details.append("Existing repository references: " + ", ".join(existing) + ".")
+        if submitted:
+            details.append("Possible project submissions or supporting links: " + ", ".join(submitted) + ".")
+        if any("patch" not in f for f in files) or len(files) >= 3000:
+            details.append("Some diffs are unavailable or truncated; inspect the full PR.")
+        report.findings.append(Finding(
+            "prs", f"prs:open:{repo.lower()}:{number}", f"#{number}: {pr['title']}",
+            "Open pull requests", pr["html_url"], " ".join(details),
+            "Review changed references against current upstream behavior and evaluate submitted projects "
+            "with methodology.md. Treat this PR as an evaluation request; complete independent reviews, "
+            "hands-on tests and the safety audit before accepting its proposed entry."))
+        for i, finding in enumerate(report.findings):
+            if finding.check == "prs":
+                continue
+            target = github_repo(finding.url)
+            if target and "/".join(target).lower() in references:
+                report.findings[i] = Finding(
+                    finding.check, finding.key, finding.name, finding.section, finding.url,
+                    finding.problem, finding.action + f" Related open PR: {pr['html_url']} "
+                    "(review whether it addresses this finding).")
+    report.note("prs", f"Checked {len(pulls)} open pull requests in {repo}, including drafts. "
+                "Repository matches come from PR descriptions and added/removed diff lines; "
+                "they are review leads, not confirmation that a finding is fixed.")
+
+
 # --------------------------------------------------------------------------- report
 
 
@@ -1016,7 +1093,8 @@ def _check_of(key: str) -> str:
 # --------------------------------------------------------------------------- driver
 
 
-def run_checks(root: Path, today: dt.date, only: list[str]) -> Report:
+def run_checks(root: Path, today: dt.date, only: list[str],
+               repo: str = "csells/awesome-jarvis") -> Report:
     report = Report(today, ran=list(only))
     files = {name: (root / name).read_text(encoding="utf-8") for name in LINK_FILES if (root / name).exists()}
     readme = files.get(MAIN_FILE)
@@ -1072,6 +1150,8 @@ def run_checks(root: Path, today: dt.date, only: list[str]) -> Report:
                 report.note("watch", f"{e.name} is not on GitHub ({e.url}); review it by hand.")
                 continue
             report.findings.extend(watch_findings(e, repos.get(f"{r[0]}/{r[1]}"), today))
+    if "prs" in only:
+        pull_request_findings(repo, entries, report)
     return report
 
 
@@ -1095,7 +1175,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.publish and set(only) != set(CHECKS):
         parser.error("--publish needs every check, or the issue would lose findings")
     try:
-        report = run_checks(args.root, args.today, only)
+        report = run_checks(args.root, args.today, only, args.repo)
         apply_ignores(report, load_ignores(args.root / "data" / "staleness-ignore.json"))
         body = render_report(report)
         print(body)

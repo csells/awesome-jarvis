@@ -9,9 +9,13 @@ Retired, archived and discontinued projects that shaped real-life Jarvis. They'r
 - [01](https://github.com/openinterpreter/01) - Open Interpreter's voice interface for controlling computers from desktop, phone or ESP32, now dormant.
 - [Microsoft JARVIS](https://github.com/microsoft/JARVIS) - Code for HuggingGPT, the 2023 research system in which an LLM dispatches tasks to Hugging Face models.
 - [Humane AI Pin](https://fortune.com/2025/02/19/hp-humane-deal-ai-pin-shutting-down/) - Screenless AI wearable, bricked in February 2025 after HP bought Humane's assets.
-- [Limitless Pendant and Rewind](https://rewind.ai/what-happened-to-rewind/) - Lifelogging memory products, discontinued after Meta acquired Limitless in December 2025.
+- [Limitless Pendant and Rewind](https://www.limitless.ai/) - Lifelogging memory products acquired by Meta in December 2025; new Pendant sales ended, Rewind capture shut down, and existing Pendant customers remain supported through 2026.
 
 ## Components
+
+- [Stretch AI](https://github.com/hello-robot/stretch_ai) - Open-vocabulary "find and pick up X" stack for the Stretch home robot (repository archived in 2026).
+
+- [UI-TARS Desktop](https://github.com/bytedance/UI-TARS-desktop) - Multimodal agent stack and desktop app for native GUI control that runs on the UI-TARS models (repository archived in 2026).
 
 - [Snowboy](https://github.com/Kitt-AI/snowboy) - Early customizable hotword detector whose service shut down in 2020.
 - [Mycroft Precise](https://github.com/MycroftAI/mycroft-precise) - Lightweight RNN wake word listener behind "Hey Mycroft".
@@ -27,6 +31,8 @@ Retired, archived and discontinued projects that shaped real-life Jarvis. They'r
 - [Open Interpreter (Python)](https://github.com/endolith/open-interpreter) - Community fork of the original Open Interpreter with OS mode, after the main project became a Rust coding agent.
 
 ## Interfaces
+
+- [Vibe Notch](https://github.com/farouqaldori/vibe-notch) - macOS notch overlay that tracks several Claude Code sessions and lets you approve or deny their tool calls (inactive since April 2026).
 
 - [eDEX-UI](https://github.com/GitSquared/edex-ui) - The canonical sci-fi fullscreen terminal and system monitor, inspired by TRON Legacy.
 - [Arwes](https://github.com/arwes/arwes) - Futuristic sci-fi web UI framework with animated frames, glows and sounds, no longer maintained as of 2026.
