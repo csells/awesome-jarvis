@@ -97,3 +97,8 @@ Whether an agent can use it depends on whether its OpenAI address is configurabl
 | JARVIS for Claude Code, Sutando | No. They use Fish Audio and Gemini Live, not OpenAI's protocol. |
 
 A hardcoded address is a small porting job, not a mark against an agent's voice design.
+
+
+## November13 lab continuation — partial
+
+Continued the November re-verification in disposable Linux/macOS guests using the authorized permanent Pocket and Mac Ollama services plus the authorized Codex login copy. New results include packaged OpenJarvis desktop client chat, native AIRI chat and analytics preference persistence, OpenClaw authenticated Codex chat, and Sutando native menu-bar build/launch. Foreground worker cancellation failed in Paseo with subscription Codex and in Dodaios; the recorded workers were terminated after verification. Newelle's corrected computer wake phrase produced two independently transcribed spoken replies; its spoken-stop behavior remained delayed. Paseo transcribed microphone input but reported its speak tool unavailable, so non-silent interface audio is not counted as a spoken reply or barge-in pass. Dodaios's tested speech adapters were incompatible with Pocket. These are scoped observations, not updated full-release scores. See [versions, evidence, adaptations and limits](lab/evidence/reverification-2026-11-12/README.md) and the [remaining test matrix](specs/plans/0001-november-reverification.md). Phone tests and DotDial ChatGPT browser sign-in are deferred at Chris's request.
