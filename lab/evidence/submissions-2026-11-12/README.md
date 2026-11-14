@@ -128,3 +128,24 @@ Audio follow-up: guest reboot verified via kern.boottime; repeating the loopback
 Chris authorized one further call and was available to answer. A fresh session and `/aiphone/calls` request followed the published client request format, with a 55-second server timeout and an 85-second HTTP budget. The service returned `timeout` after 56.7 seconds with an empty transcript; Chris confirmed the phone **did not ring**. A read-only check of this test session returned one `missed_call` event with status `timeout`, without a delivery error or explanation. This is a failed call-delivery observation; its cause remains unresolved. It is not a refusal, a successful no-answer notification, or a spoken-approval pass.
 
 The prompt requested yes/no permission to create one harmless scratch file in the isolated Linux guest. The test harness required a completed call and an explicit affirmative transcript before execution. No approval was received, and an independent guest check confirmed that the file was absent. This verifies only that the harness withheld this action when the call failed; it does not establish product-level permission enforcement. Spoken yes/no/unclear, actual cancellation, repeatability and session/reconnect tests remain incomplete. No retry was placed. The one-call helper is guarded against accidental rerun. Recipient, session token and call/session identifiers remain private; session termination/revocation is unverified.
+
+## Call delivery diagnosis — November 14
+
+Chris confirmed the configured recipient still matches the number displayed in his app. Session registration succeeded, the missed-call event targets that same number, and the initial request received a terminal server response rather than a local HTTP timeout. Hosted MCP `poll_result` also returned `timeout` for that call, without a delivery error. The published client format remains unchanged at the reviewed source commit. No call was attached to a task action during the following diagnostic comparisons.
+
+After Chris opened the phone app, the following controlled calls completed:
+
+| Transport | Session | Phone state | Observed result |
+|---|---|---|---|
+| Hosted MCP | Original | App open as requested |16.9s, transcript “Okay.” Chris confirmed ringing and hearing the requested prompt. Harness requested hang-up; subsequent read-only MCP polling verified `ended` with `open:false` |
+| Published HTTP | Original | App open as requested |16.7s, “blue seven” transcript |
+| Published HTTP | Original | Chris explicitly confirmed Home screen, app in background without force-quitting, phone unlocked |14.6s, “blue seven” transcript |
+| Published HTTP | Freshly registered | Same background/unlocked condition |17.0s, “blue seven” transcript |
+
+These are total request durations, not speech latency. The HTTP comparisons retained the same recipient, prompt, 55-second server timeout and 85-second HTTP budget; the background and fresh-session comparisons changed one condition at a time. Each helper is guarded against accidental rerun; no automatic retries are scheduled.
+
+Those four comparisons did not reproduce the original failure. They show that the HTTP route, background/unlocked operation and fresh-session creation can all deliver the call. Chris then identified an Android Pixel 11 Pro Fold, with the app unused for days. DND was off at report time but had been enabled a few minutes earlier; the exact setting at the original failed-call time remains unverified.
+
+Pixel notification settings provide separate People and Apps filters for DND, including a repeat-caller exception. See [Google’s Pixel Modes/DND documentation](https://support.google.com/pixelphone/answer/6111295?hl=en). To test suppression, Chris explicitly enabled DND with the app in the background and phone unlocked. A fresh-caller HTTP comparison, with caller identity verified different from the original session, returned `timeout` after 57.0s with an empty transcript. This reproduces the original API failure pattern and makes DND suppression the leading explanation. Phone-side observation and a same-session DND-off confirmation are pending; the confirmation call will wait for Chris to report readiness.
+
+Provider push/device-registration diagnostics are unavailable through the public interfaces. The DND-on result does not establish that DND was active at the exact original failure time or rule out another transient cause for that historical call. None of these comparisons completes spoken approval/denial, action enforcement, cancellation or locked-phone qualification.
