@@ -17,7 +17,7 @@ Scope: the November staleness report, DotDial issue #1, ibara PR #3, /call-me PR
 |---|---|---|
 | DotDial (#1) | Real dot call; recorded reply, wake, barge-in, mute/unmute/hangup, recording/privacy and error recovery | Human ChatGPT sign-in inside the prepared guest |
 | ibara (#3) | Supported two-desktop installation/pairing; real browser/editor MCP tasks; approve/deny/takeover, expiry/revocation and cleanup | Supported x86 Omarchy pair and authorized Tailscale pairing |
-| /call-me (#4) | Repeatable spoken yes/no/unclear/no-answer; enforce a real harmless action; actual task cancellation; session isolation, locked-phone and reconnect tests | User available to answer the subscribed phone |
+| /call-me (#4) | Repeatable spoken yes/no/unclear/no-answer; enforce a real harmless action; actual task cancellation; session isolation, locked-phone and reconnect tests | November 14 authorized attempt timed out after 56.7s; user confirmed no ring. Diagnose delivery before retry; further calls require fresh go-ahead |
 | OpenJarvis | Wake/other frontend voice paths, actual cancellation beyond Pause, installer consent variants and observed privacy traffic. Managed CLI shell deny/approve and file effects verified; Pause left the bounded worker running. CLI microphone/reply verified with Pocket using a disclosed one-line URL change; spoken stop did not interrupt that CLI reply | Packaged desktop1.0.5 client/API reply now verified after guest prerequisites; fresh backend installer remains untested. Stock CLI TTS endpoint is hardcoded |
 | Newelle | Repeated classic secondary-STT wake and recorded spoken replies now verified with the phrase computer. One-shot barge-in failed; classic wake stop was recognized but delayed while counting continued. Spoken approvals/denial and genuine delegated-task cancellation remain unverified | None for configured local paths |
 | AIRI | Diagnose source-web loading and model-switch latency; complete real voice loop, barge-in and supported task/control tests. Native Qwen2.5 chat answer and analytics-off persistence across restart now verified | None for supported local paths; distinguish virtual graphics limits |
@@ -29,7 +29,7 @@ Scope: the November staleness report, DotDial issue #1, ibara PR #3, /call-me PR
 | OpenVision | Resolve/retest recorded build gate as applicable; actual iPhone/glasses voice, camera and Hermes oversight paths | Compatible physical devices, signing/Meta configuration and gateway |
 | Jarvis Vocal | Supported Windows runtime and real delegation/cancellation if evaluating further; no contributor-based promotion justified | Windows test environment; newest100 commits establish one author identity |
 
-The user explicitly deferred phone calls and DotDial browser sign-in on November13; continue independent lab work without prompting or calling in the meantime. Known failed worker-stop and acoustic tests are completed observations, not pending passes. Untested recovery, privacy and permission permutations remain visible below.
+The user deferred phone calls and DotDial browser sign-in on November 13. On November 14 he authorized one phone attempt: it timed out with no ring, no transcript and no scratch-file action. No retry was placed; further calls require fresh go-ahead. DotDial browser sign-in remains deferred. Continue independent lab work. Known failed worker-stop and acoustic tests are completed observations, not pending passes. Untested recovery, privacy and permission permutations remain visible below.
 
 ## Completion criteria
 
