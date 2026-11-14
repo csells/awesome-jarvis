@@ -9,6 +9,7 @@ Scope: the November staleness report, DotDial issue #1, ibara PR #3, /call-me PR
 - Fixed contributor counting: renamed Git authors sharing an email do not establish independent maintainers.
 - Verified permanent Pocket speech/transcription and Mac Ollama access from the disposable Linux worker. Chris explicitly authorized both Mac services; Dragon is no longer a prerequisite.
 - Captured scoped runtime results for Newelle, OpenJarvis, Paseo, AIRI, usejarvis, OpenClaw, Sutando and Dodaios. See [re-verification evidence](../../lab/evidence/reverification-2026-11-12/README.md) and [submission evidence](../../lab/evidence/submissions-2026-11-12/README.md).
+- Rechecked the DotDial guest on November 14: 48kHz microphone/speaker loopbacks and isolation passed 3/3; console ready at the OpenAI sign-in form. Actual dot call remains pending human authentication.
 - Last validation:52 offline tests, Awesome lint and whitespace checks passed. No new scorecard test dates or submission acceptance claims.
 
 ## Remaining end-to-end tests
