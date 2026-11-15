@@ -12,7 +12,7 @@ This pass inspected submission text, current upstream metadata and selected sour
 
 ## Current progress beyond initial triage
 
-Second independent source reviews are now complete for all four requested projects; they are retained separately and do not certify live behavior. DotDial is installed in its disposable macOS guest and audio isolation/capture has been repaired and independently verified; account sign-in remains pending. /call-me has one genuine blue-seven spoken-response success, plus earlier empty/timeout results; permission enforcement and cancellation remain unverified. No further phone calls were made during the subsequent testing. OpenJarvis's pinned source/native extension and frontend installed in the Linux guest; the model-dependent API remains gated by the requested Dragon endpoint. ibara still requires its supported paired desktop/tailnet setup. See the dated runtime observations and service discovery in [re-verification evidence](../reverification-2026-11-12/README.md). Earlier unchecked lists below preserve the original acceptance scope, not a claim that completed installation/review steps have never occurred.
+Second independent source reviews are complete for all four requested projects; they do not certify live behavior. DotDial is installed in its disposable macOS guest, audio route controls pass, and guest ChatGPT sign-in completed November15. The native call path fails at profile lookup with HTTP404; see the dated observations below. /call-me has genuine spoken-response successes, plus empty/timeout results and an intermittent background reply failure; action enforcement and cancellation remain unverified. OpenJarvis source/API and packaged desktop chat were subsequently exercised with the authorized Mac Ollama service; Dragon is no longer a gate. ibara still requires its supported paired desktop/tailnet setup. See the dated runtime observations in [re-verification evidence](../reverification-2026-11-12/README.md). Earlier unchecked lists below preserve the original acceptance scope, not a claim that completed installation/review steps have never occurred.
 
 ## DotDial
 
@@ -26,7 +26,7 @@ Test gates:
 
 - [ ] Complete a second independent review and reconcile before publishing scores.
 - [ ] Install a pinned artifact/source in a disposable supported environment; record artifact/source identity.
-- [ ] Human signs in inside the guest with an account entitled to an existing dot. Never copy host browser sessions.
+- [x] Human signs in inside the guest; native identity verification confirmed November15. Existing dot page loads; callable entitlement remains unverified. No host browser session was imported.
 - [ ] Prove isolated virtual audio; wake, ask a factual question, record/transcribe reply, interrupt a long answer and measure latency.
 - [ ] Exercise mute, unmute, hangup during dialing/call, replay interruption, wake while muted and accidental speaker activation.
 - [ ] Inspect actual idle/listening/call/error UI; verify archive retention/deletion and network behavior.
@@ -176,3 +176,16 @@ All three route controls passed. This supersedes the earlier dated silent-loopba
 
 
 Authentication follow-up: Chris explicitly approved a scoped transfer of ChatGPT/OpenAI web-session cookies to the disposable VM. Direct host profile access failed; a subsequent alternate-account sign-in reached email verification but was cancelled after Chris reiterated that the existing session should be copied. No email code is needed for that cancelled flow. The registered SSH route can read the existing ChatGPT session in Chrome Profile 1 and export only scoped authentication cookies while retaining their encryption. Decryption requires normal macOS Keychain consent for Chrome Safe Storage on the host. The bounded copy attempts stopped at that Keychain step before any cookies reached the guest; the final request did not complete within its two-minute window. Temporary import listeners were closed and transient data removed. No credential values are included in evidence, the host session is preserved, and the installed DotDial source is unchanged. The configured ChatGPT dot URL was rechecked as present. The guest remains retained for completion; any imported browser session must be removed with this task’s VM teardown. Guest authentication, actual dot call and hallmark tests remain unverified.
+
+
+## DotDial authenticated call tests — November 15
+
+Chris completed ChatGPT sign-in inside the existing disposable guest. The configured dot page rendered, and the unmodified native app reported `identity_verified: true` and `demo: false`. Initial socket activation correctly returned `microphone_permission_required`; the normal guest macOS Allow dialog was then accepted and native status confirmed `microphone_permission: granted`. No host browser cookies were imported, and no alternate-account sign-in was completed.
+
+Two actual native WAKE attempts using the original configured UUID returned to `ready` with `api_request_rejected`, `last_http_status: 404`, and `start_error.stage: profile`. The installed adapter performs `GET /backend-api/tbo/by-thread/{threadId}` before call creation. No active media transport was reported. These are failed authenticated call-start observations, not a microphone/audio-routing failure or a remaining human sign-in gate.
+
+The supplied shared link contains a profile-shaped UUID and a second thread-shaped component, while this build validates only a dot URL ending in a single UUID. A diagnostic configuration using the thread component also failed at the same profile lookup with HTTP404. The original guest configuration was backed up and restored; candidate source was unchanged. This does not establish whether the endpoint has changed, either identifier is unsupported, or account/profile access is restricted: the response supplied no classified API reason.
+
+A comparison through the embedded ChatGPT page's visible call button displayed “Microphone permission denied.” Installed `main.cjs` explicitly denies media permission in `persist:dotdial`, while native capture uses a separate media path. This comparison cannot establish a native browser call failure, account entitlement, or a defect in guest system microphone consent; that consent was independently confirmed granted. The permission policy was preserved.
+
+Sent native STOP after the diagnostic attempts. Sanitized status JSON was exported outside the VM; screenshots containing account content remain private and are excluded from the report. No real connected call, recorded reply, wake/barge-in, active-call mute/hangup, privacy permutation or recovery pass is claimed. Those tests remain blocked by profile resolution. No phone calls were placed.
