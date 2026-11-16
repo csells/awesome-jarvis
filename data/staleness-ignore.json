@@ -12,11 +12,6 @@
       "until": "2026-12-16"
     },
     {
-      "key": "watch:promote:getpaseo/paseo",
-      "reason": "Reviewed November16: moved to Watch List after current native voice interruption remained partial and actual Codex Stop left work running. Manual approvals/Auto-review speech successes retained. See lab/evidence/reverification-2026-11-12/assessment.md.",
-      "until": "2026-12-16"
-    },
-    {
       "key": "watch:promote:vierisid/jarvis",
       "reason": "Reviewed November16: moved to Watch List; native onboarding failed authentication, current speech setup gated and oversight conditional. Earlier wake/interruption limits retained. See lab/evidence/reverification-2026-11-12/assessment.md.",
       "until": "2026-12-16"

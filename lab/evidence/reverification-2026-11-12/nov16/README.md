@@ -63,7 +63,7 @@ A separate native test created a configured subagent through Newelle's supported
 
 ## Paseo 0.15.4 native voice correction
 
-Official npm Paseo0.15.4 and official Codex0.167.2 ran in the disposable Linux guest with subscription authentication explicitly authorized by Chris. The actual Chromium UI used GPT-5.6-Sol and real PulseAudio microphone/speaker routes, with permanent Pocket/Alfred through the stock compatible providers. A typed reply and chat persistence after restart passed.
+Official npm Paseo0.15.4 and official Codex 0.167.2 ran in the disposable Linux guest with subscription authentication explicitly authorized by Chris. The actual Chromium UI used GPT-5.6-Sol and real PulseAudio microphone/speaker routes, with permanent Pocket/Alfred through the stock compatible providers. A typed reply and chat persistence after restart passed.
 
 The earlier missing-speak-tool observation was configuration-specific: enabling supported MCP injection exposed the real speak tool. Local turn detection with remote speech also required the supported local models-directory setting. Browser microphone permission grants proved connection-scoped; corrected tests kept one continuous debugger connection and confirmed an actual Chromium capture stream before injecting speech. Attempts with no active stream are inconclusive observer failures.
 
@@ -100,3 +100,36 @@ Simulator launch with the example placeholders, Meta ID 0/empty token, and an en
 The SDK privacy defaults also differ from the app's own metrics toggle: Meta 0.9 [analytics and crash reporting default on](https://github.com/facebook/meta-wearables-dat-ios/blob/9b1b83d791dfebff7afd452e924a256819094b64/README.md). The reviewed app Info.plist lacks both SDK opt-out keys. No vendor delivery or payload was measured.
 
 See the [builds, launch observations, signing limits and retained artifact](openvision-ipad-preflight.json). Chris's offered iPad remains the physical device-only track; its model/iPadOS, public Apple Team ID and signing setup are pending. Glasses registration/camera/audio still need the actual devices and Meta setup. No voice, hands-free or physical-device pass is inferred from compilation.
+
+
+## Release follow-up
+
+New releases were checked at their exact pins: [Qwen 2.1.0 review A](../../../../specs/research/nov16-qwen-210-review-a.md), [blind review B](../../../../specs/research/nov16-qwen-210-review-b.md), [Linux setup](../../../../specs/research/nov16-qwen-210-lab-setup.md), [Paseo 0.16 delta](../../../../specs/research/nov16-paseo-016-delta.md) and [OpenClaw 2026.11.4 delta](../../../../specs/research/nov16-openclaw-114-delta.md). Source-only scores/proposed tests in those reports are not runtime passes.
+
+Qwen's actual Linux build and gateway/WebUI ran with the unmodified stock GPT-Live adapter configured to the existing permanent local Realtime service, Alfred voice and a short-lived lease. The adapter's model label does not identify the actual local inference backend. Independent microphone/speaker transcriptions prove France/Paris and a count interrupted at nine followed by the new answer, four. An initial silent trial was invalid because Playwright injected `--mute-audio`; it was repeated after removing that flag. Original recordings were retained; mono16k ASR copies avoided the service's request-size limit. No candidate source or stable service was changed.
+
+Qwen's real native backend file deny/approve tests enforced exact disk effects, and another task required new permission. Native cancellation still left the exact worker running while the API said cancelled; heartbeat10→20 bytes at0/1/3/5seconds. The harness then terminated only that worker. A frontend request for permission did not establish actual backend dispatch or spoken approval. See [cases and limits](qwen-210-native-cases.json); full hands-free/oversight is not inferred from successful speech.
+
+Paseo 0.16's real native Stop killed current-turn work. A same-condition0.15.4 control left its worker alive. Separate controls proved that older intentional background work survived stopping a later turn, remained in the native inventory, and stopped through the shipped dedicated background-work API. Matching used guest procfs argv/cwd/NSpid; namespace PID2 was never treated as the guest process. See [process controls](paseo-016-process-controls.json). These tested controls and current source support full oversight for this path, so Paseo moves to Mission Control with Partial coverage. Current 0.16 acoustic results follow below; older 0.15.4 voice observations remain historical.
+
+Native raw evidence was exported outside the guest before credential cleanup. Paseo comparison archive SHA256 `3225a0e74cabac6a6dc53c005b439303c5d1ff07b32fd4a7eba77f12264b1c19`; Qwen native/audio archive SHA256 `37aaee2336091df03c52bcb404812b476c528de8cbe63af99f292d742232b6af`. Public cases exclude account screens, speech keys and background-work stop tokens.
+
+
+OpenClaw 2026.11.4's official Linux package installed with its published checksum. The native Tauri window stayed black under the tested Xvfb display, including a software-rendering retry; its actual browser Control UI worked. The supported native Codex extension was installed at the same release, credentials were imported with the documented auth-only migration, and the subscription used the proper ChatGPT Responses adapter with an isolated agent home. Qualified tests used Guardian/read-only/on-request/human review rather than the upstream permissive default. Earlier missing-extension, wrong wire adapter and auth-home trials were corrected setup errors.
+
+Real native write cards enforced denial and Allow once file effects. A fresh request after Stop still needed permission, replaying an already-denied native approval was rejected, and newly approved recovery work succeeded. Actual Control UI Stop removed the independently matched worker; heartbeat stayed92bytes at0/.25/1/3/5seconds after UI acknowledgment, without natural completion or a harness kill. Those observations support full oversight for this configured native path; other backends, cloud placement and child/yield custody remain unqualified. See [exact native cases](openclaw-114-native-cases.json).
+
+Automatic learning created a session-derived workshop skill after interruption and subsequent turns used it. Native command sandboxing is not a promise that host-managed persistence makes no writes. Missing optional skills, vector recall, plugin SDK deprecations and other recorded warnings are separate from successful native command controls. Mac speech evidence remains11.3; the11.4 speech permission fix is iOS-only. No new Mac/iOS voice pass is claimed.
+
+Raw OpenClaw evidence was exported with SHA256 `ab5c28878f3f7422ade038c40eaa2b70b4da19afab447f632906ba68c0c8440e`. The browser and gateway stopped, the entire owned imported-auth profile and browser/GUI stores were removed, and no owned processes remained. A temporary lab gateway token printed by a browser navigation error was replaced while stopped and redacted before export; no copied CLI credential was printed.
+
+
+## Paseo 0.16 current acoustic qualification
+
+The exact 0.16 candidate and official Codex 0.167.2/GPT-5.6-Sol ran with supported MCP injection and local turn detection, using permanent Pocket/Alfred through the stock compatible speech adapters. Independent route controls recorded the intended input/output channel and silence on the other channel. The first Auto-review trial heard the France question but called an unrelated connector tool and produced no transcribed spoken reply. Successful connector data access was not established.
+
+The official Codex `apps` feature defaulted on. A fresh-workspace repeat after disabling that feature answered France/Paris aloud without a click. During actual sustained counting, the microphone remained active; the injected interruption stopped counting at eight and the independently recorded speaker then answered four. This qualifies configured current-release speech/barge-in, not spoken shell-worker cancellation. See [exact transcripts, cases and limits](paseo-016-voice-cases.json).
+
+Switching to Default permissions produced a native speech approval card. Recognized spoken yes/no became new chat turns, and acknowledgements waited at further speech cards. The yes microphone transcript was independently verified; the no recording's independent ASR was empty despite the recognized native chat turn. A deliberate manual Accept click produced a transcribed spoken acknowledgement. Interface sounds in this strict-mode trial are not another barge-in pass. Current scores are 2/1/2/2 with Partial coverage; other providers and remaining permission/recovery permutations stay open.
+
+The voice archive was exported outside the guest and its SHA256 verified: `96a4e7dc2f57dd9143b4b5d1a0c7e6af580aaa29f12db587914c6a8b2e7d6cf3`. The native daemon/browser and owned audio modules stopped; copied CLI auth, the newly created guest feature config and task browser/Paseo/lease profiles were removed. Pocket remained ready with no lease after release. Stable services were unchanged.

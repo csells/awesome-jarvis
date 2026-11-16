@@ -11,12 +11,12 @@
         "voice": "full",
         "handsFree": "partial",
         "visual": "full",
-        "oversight": "partial"
+        "oversight": "full"
       },
       "tested": "partial",
       "testedAt": "2026-11-16",
-      "testedVersion": "v2026.11.3",
-      "watchOut": "Commands auto-run by default; native voice remains partial"
+      "testedVersion": "v2026.11.4",
+      "watchOut": "Auto-runs by default; saves learned skills; voice partial"
     },
     {
       "name": "Hermes Agent",
@@ -45,12 +45,12 @@
         "voice": "full",
         "handsFree": "partial",
         "visual": "full",
-        "oversight": "full"
+        "oversight": "partial"
       },
-      "tested": "code",
-      "testedAt": "2026-09-26",
-      "testedVersion": null,
-      "watchOut": "Cloud voice by default, Mandarin wake word"
+      "tested": "partial",
+      "testedAt": "2026-11-16",
+      "testedVersion": "v2.1.0",
+      "watchOut": "Codex cancel leaves work running; approvals cover whole tasks"
     },
     {
       "name": "JARVIS for Claude Code",
@@ -189,6 +189,23 @@
       "testedVersion": "Happy CLI 1.2.5",
       "tagPattern": "^cli-",
       "watchOut": "Paid voice after 20 minutes, analytics on"
+    },
+    {
+      "name": "Paseo",
+      "platform": "Desktop, mobile, web",
+      "repo": "getpaseo/paseo",
+      "url": "https://github.com/getpaseo/paseo",
+      "section": "Mission Control › Voice Oversight",
+      "scores": {
+        "voice": "full",
+        "handsFree": "partial",
+        "visual": "full",
+        "oversight": "full"
+      },
+      "tested": "partial",
+      "testedAt": "2026-11-16",
+      "testedVersion": "0.16.0",
+      "watchOut": "Voice needs setup; speech approvals vary by mode"
     },
     {
       "name": "TapQ",

@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-16",
+  "project": "QwenAudio/qwen-audio-agent",
+  "version": "2.1.0",
+  "commit": "a9f4478da8df400d04facbb099ac2933ce8b11bc",
+  "environment": "Source-built Linux gateway/WebUI in disposable Debian VM; Node 24.16.0; official Codex 0.167.2 and observed Codex ACP 2.6.0 for native tasks",
+  "source_build": {
+    "npm_ci": "PASS",
+    "web_build": "PASS",
+    "lockfile_changed": false
+  },
+  "cases": [
+    {
+      "id": "native-denial-file-effect",
+      "result": "PASS",
+      "interaction": "Manual native permission API; not spoken",
+      "file_before": false,
+      "file_after": false,
+      "task_final_state": "failed after denial"
+    },
+    {
+      "id": "native-approval-file-effect",
+      "result": "PASS",
+      "interaction": "Manual native permission API; not spoken",
+      "file_before": false,
+      "file_after": true,
+      "exact_content": "APPROVED_TEST",
+      "task_final_state": "completed"
+    },
+    {
+      "id": "separate-task-permission",
+      "result": "PASS",
+      "description": "A new task required a new permission after the previous task grant."
+    },
+    {
+      "id": "native-worker-cancel",
+      "result": "FAIL",
+      "interface": "DELETE /api/tasks/<actual task>",
+      "ui_response": "HTTP 200, cancelled",
+      "after_seconds": [
+        0,
+        1,
+        3,
+        5
+      ],
+      "matching_worker_alive": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "heartbeat_bytes": [
+        10,
+        12,
+        16,
+        20
+      ],
+      "natural_completion": false,
+      "cleanup": "Harness terminated only the exact matched worker after observation."
+    },
+    {
+      "id": "voice-question-roundtrip",
+      "result": "PASS",
+      "interface": "Unmodified stock gpt-live adapter with supported custom URL, 24kHz PCM, Alfred voice and short-lived permanent-service lease",
+      "microphone_transcript": "What is the capital of France?",
+      "speaker_transcript": "The capital of France is Paris.",
+      "speaker_peak": 12862,
+      "speaker_rms": 226.62898272376916
+    },
+    {
+      "id": "voice-barge-in-new-answer",
+      "result": "PASS",
+      "input": "Count from one to thirty slowly. Say all the numbers in one spoken reply. Stop. What is two plus two?",
+      "description": "Interruption injected 1.5s after detected speaker energy. Actual UI marked Interrupted; independent speaker recording stopped count at nine and then answered new question.",
+      "speaker_transcript": "One, two, three, four, five, six, seven, eight, nine. Two plus two is four."
+    },
+    {
+      "id": "speaker-route-control",
+      "result": "PASS",
+      "transcript": "What is the capital of France?",
+      "peak": 23193
+    },
+    {
+      "id": "spoken-task-dispatch-and-permission",
+      "result": "PARTIAL",
+      "description": "Typed frontend file request elicited a spoken request for permission, but did not demonstrate backend dispatch or an actual pending backend card. No spoken approve/deny or real worker cancellation pass."
+    }
+  ],
+  "qualifications": [
+    "GPT-Live is the stock adapter label; the actual backend was the existing permanent local speech service, not the OpenAI paid Realtime model. No candidate source patch or duplicate speech runtime was used.",
+    "An earlier silent speaker trial was INVALID: Playwright had added --mute-audio. It was rerun with that flag removed. An early fixed-time interruption preceded output and is not barge-in evidence.",
+    "Continuous browser microphone permission and separate PulseAudio input/output were used. Original recordings retained; ASR copies converted to mono 16kHz after an HTTP 413 size refusal.",
+    "Wake-word, native packaged macOS/Windows apps, concurrent/stale permission races and other backend/provider combinations remain unqualified.",
+    "Source-only 2/2/2/2 findings are overridden for tested oversight by the actual worker-cancellation failure. Hands-free remains partial.",
+    "Native task phase used a read-only human-permission adapter configuration; voice-only restart observed adapter 2.6.0 through upstream default launcher. Do not claim every restart was pinned."
+  ],
+  "scores": {
+    "voice": 2,
+    "hands_free": 1,
+    "visual": 2,
+    "oversight": 1
+  },
+  "safety": [
+    "Native permission mode delegates to backend defaults; it is not a sandbox.",
+    "Ordinary affirmative approval grants future operations in the task; always grants across voice session.",
+    "Automatic cloud memory extraction explicitly disabled for these tests.",
+    "Official CLI login copied only under existing authorization, then removed. Voice service administrative key never copied."
+  ],
+  "evidence_archive_sha256": "37aaee2336091df03c52bcb404812b476c528de8cbe63af99f292d742232b6af",
+  "cleanup": "Browser, audio modules and gateway stopped; official CLI login and speech-lease copies removed; reservation released. Stable service code/config/data unchanged."
+}

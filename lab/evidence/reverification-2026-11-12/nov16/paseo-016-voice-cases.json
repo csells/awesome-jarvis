@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-16",
+  "project": "getpaseo/paseo",
+  "version": "0.16.0",
+  "commit": "c54bc39e7997c03a07402c09df2e825889432557",
+  "environment": "Disposable Debian 13 VM on Otter; official Codex 0.167.2/gpt-5.6-sol; actual Chromium/PulseAudio; supported MCP injection, local turn detection, permanent Pocket/Alfred STT/TTS with short-lived lease; candidate source unchanged",
+  "cases": [
+    {
+      "id": "default-apps-auto-review",
+      "result": "FAIL for spoken reply in this trial",
+      "microphone_transcript": "What is the capital of France?",
+      "speaker_transcript": "",
+      "observation_seconds": 42.12,
+      "observed": "Agent invoked an unrelated connector tool instead of speak. Successful connector data access was not established; contents and identifiers excluded."
+    },
+    {
+      "id": "apps-disabled-route-controls",
+      "result": "PASS",
+      "observed": "Independent mic and speaker controls had nonzero intended-channel speech and zero opposite-channel signal. Speaker control transcript was partial; microphone control transcribed the France question."
+    },
+    {
+      "id": "apps-disabled-auto-review-question",
+      "result": "PASS",
+      "microphone_transcript": "What is the capital of France?",
+      "speaker_transcript": "The capital of France is Paris.",
+      "manual_approval": false
+    },
+    {
+      "id": "apps-disabled-auto-review-barge",
+      "result": "PASS for spoken exchange",
+      "observed": "Actual active mic before and during sustained output. Input injected 1.5s after sustained speaker energy; independent speaker transcript stopped counting at eight and then answered four. Native UI heard Stop, what is two plus two? and showed the answer.",
+      "microphone_transcript": "Count from one to thirty slowly. Say all the numbers in one spoken reply. What is two plus two?",
+      "speaker_transcript": "One, two, three, four, five, six, seven, eight. Plus two is four.",
+      "limits": "This did not run or cancel a shell worker; native process controls are separate."
+    },
+    {
+      "id": "default-permissions-repeat",
+      "result": "PARTIAL",
+      "observed": "Native speak approval card appeared. Independent speaker transcript empty; interface audio triggered the energy gate, so this is not another valid barge-in pass. Microphone independently transcribed count and interruption."
+    },
+    {
+      "id": "spoken-denial-at-speech-card",
+      "result": "No complete hands-free pass",
+      "observed": "Active browser mic; application recognized No. Do not run that command. as a new chat turn. Acknowledgement waited at another speak approval card. Independent microphone ASR returned empty; no full acoustic denial assertion."
+    },
+    {
+      "id": "spoken-approval-at-speech-card",
+      "result": "FAIL for hands-free speech approval",
+      "microphone_transcript": "Yes, approve the command.",
+      "speaker_transcript": "",
+      "observed": "Recognized as a new chat turn; speech still waited at a native Accept/Deny card."
+    },
+    {
+      "id": "manual-speech-approval",
+      "result": "PASS with explicit click",
+      "speaker_transcript": "Understood. Two plus two is four.",
+      "manual_approval": true
+    }
+  ],
+  "limits": [
+    "Current qualified speech uses Codex apps disabled through its supported CLI feature command. This is a configuration-dependent result, not all-provider certification.",
+    "No spoken task write approval, running-worker cancellation, concurrent/stale speech-card or restart recovery pass is inferred.",
+    "Earlier 0.15.4 evidence remains historical. The strict-repeat harness selected the count fixture, and its interface-audio gate is not treated as verified spoken counting.",
+    "An initial ASR read while the barge recording was still open returned empty and was discarded; final transcripts use closed recordings."
+  ],
+  "cleanup": "Native daemon/browser/processes absent; copied default CLI auth and created feature config removed; three owned audio modules and all owned Paseo/browser/lease profiles removed. Pocket lease released and status read back ready with lease null; task SSH forwards closed. Raw archive exported outside VM and hash verified.",
+  "evidence_archive_sha256": "96a4e7dc2f57dd9143b4b5d1a0c7e6af580aaa29f12db587914c6a8b2e7d6cf3"
+}

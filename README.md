@@ -83,9 +83,9 @@ Two things jumped out at me. First, nobody is fully hands-free: every agent need
 
 | Agent                  | Platform                    | Voice | Hands-free | Visual | Oversight | Tested   | Watch out                                                     |
 | ---------------------- | --------------------------- | :---: | :--------: | :----: | :-------: | -------- | ------------------------------------------------------------- |
-| OpenClaw               | macOS, iOS, Android, server |   ●   |     ◐      |   ●    |     ◐     | Partial  | Commands auto-run by default; native voice remains partial    |
+| OpenClaw               | macOS, iOS, Android, server |   ●   |     ◐      |   ●    |     ●     | Partial  | Auto-runs by default; saves learned skills; voice partial     |
 | Hermes Agent           | Linux, macOS, Windows       |   ●   |     ◐      |   ●    |     ●     | Hands-on | Auto-approves some commands, can adopt your Claude Code login |
-| Qwen Audio Agent       | macOS, Windows, Linux       |   ●   |     ◐      |   ●    |     ●     | Code     | Cloud voice by default, Mandarin wake word                    |
+| Qwen Audio Agent       | macOS, Windows, Linux       |   ●   |     ◐      |   ●    |     ◐     | Partial  | Codex cancel leaves work running; approvals cover whole tasks |
 | JARVIS for Claude Code | macOS                       |   ●   |     ◐      |   ●    |     ●     | Hands-on | Skips permissions, Fish Audio key, non-commercial             |
 | Sutando                | macOS                       |   ●   |     ◐      |   ●    |     ◐     | Partial  | Skips permissions; Stop Core left worker running; Gemini key  |
 | OpenClicky             | macOS                       |   ●   |     ◐      |   ●    |     ●     | Code     | Codex has full access, paid voice keys                        |
@@ -94,6 +94,7 @@ Two things jumped out at me. First, nobody is fully hands-free: every agent need
 | hey-jarvis             | Omarchy                     |   ●   |     ◐      |   ●    |     ◐     | Hands-on | Consent window needs a click                                  |
 | Operit                 | Android                     |   ●   |     ◐      |   ●    |     ◐     | Partial  | Bundled APKs, root or Shizuku, "O" wake phrase                |
 | Happy                  | iOS, Android, web, macOS    |   ●   |     ◐      |   ●    |     ●     | Partial  | Paid voice after 20 minutes, analytics on                     |
+| Paseo                  | Desktop, mobile, web        |   ●   |     ◐      |   ●    |     ●     | Partial  | Voice needs setup; speech approvals vary by mode              |
 | TapQ                   | macOS, AirPods              |   ●   |     ◐      |   ○    |     ●     | Hands-on | Its sessions skip permissions, OpenAI key to converse         |
 | ChatGPT and Codex      | Desktop, mobile, web        |   ●   |     ◐      |   ●    |     ●     | Docs     | Approvals on screen only                                      |
 | Claude                 | Desktop, mobile, web        |   ●   |     ◐      |   ◐    |     ●     | Docs     | Voice mode is beta                                            |
@@ -105,7 +106,7 @@ Two things jumped out at me. First, nobody is fully hands-free: every agent need
 
 - [OpenClaw](https://github.com/openclaw/openclaw) - Self-hosted agent gateway with native macOS, iOS and Android apps that add a wake word, an interruptible talk mode with an orb overlay, a Canvas window and a web control UI, plus sub-agents and ACP coding agents behind exec approvals.
 - [Hermes Agent](https://github.com/NousResearch/hermes-agent) - Nous Research's assistant with a local "Hey Hermes" wake word, full-duplex voice with barge-in, a desktop app with an always-on-top pet overlay and live sub-agent panel, and parallel delegation with interrupt and command approvals.
-- [Qwen Audio Agent](https://github.com/QwenAudio/qwen-audio-agent) - Full-duplex voice front end with a desktop orb and task cards that hands work to Claude Code, Codex, OpenCode and other ACP agents, tracks and cancels them while you talk, and relays their permission prompts (cloud voice by default, local option).
+- [Qwen Audio Agent](https://github.com/QwenAudio/qwen-audio-agent) - Full-duplex voice front end with a desktop orb and task cards that hands work to Claude Code, Codex, OpenCode and other ACP agents, shows their progress and relays permission prompts. Local-service voice and barge-in passed; tested Codex cancellation left work running, and approvals cover whole tasks (cloud voice by default, local option).
 - [N.E.K.O](https://github.com/Project-N-E-K-O/N.E.K.O) - Desktop companion with full-duplex voice and barge-in, Live2D, VRM or MMD avatars, and an agent HUD that dispatches and cancels computer-use, browser and OpenClaw tasks.
 - [AIRI](https://github.com/moeru-ai/airi) - Self-hosted Live2D and VRM companion for web, desktop and mobile with always-on voice, sub-agents such as its Minecraft player, and an approval-gated computer-use service.
 
@@ -141,6 +142,7 @@ Every Jarvis needs a staff. These tools dispatch, watch and approve many agents 
 
 ### Voice Oversight
 
+- [Paseo](https://github.com/getpaseo/paseo) - Coding-agent daemon and workspace dashboard with native approvals, current-turn Stop and separate background-work controls, verified with Codex in 0.16.0. Voice and barge-in passed with Codex apps disabled and local speech; speech approvals vary by mode.
 - [Happy](https://github.com/slopus/happy) - Mobile, web and macOS client for supervising many Claude Code and Codex sessions, whose realtime voice assistant messages any session and approves or denies permissions (hosted voice costs money after 20 free minutes a month).
 - [TapQ](https://github.com/spaceamoeba-t/tapq) - Screenless macOS supervisor that speaks Claude Code, Codex, Cursor and OpenCode prompts into your AirPods and takes answers by voice or head gesture, with a "hey tapq" wake word (beta).
 
@@ -199,7 +201,6 @@ Omarchy 4 turned the whole desktop into a plugin surface, and its [plugin market
 
 ### Desktop, Mobile and Glasses
 
-- [Paseo](https://github.com/getpaseo/paseo) - Coding-agent daemon and workspace dashboard with continuous voice mode. Current Codex tests answered aloud in Auto-review, required speech clicks in Default permissions, and left a worker running after Stop; full interruption remains unqualified.
 - [usejarvis](https://github.com/vierisid/jarvis) - Wake-word assistant with an orb and delegated agents. Current native onboarding failed authentication; supported speech needs additional setup, agent stop needs a click, and telemetry/capture controls are separate (source-available license).
 - [Dodaios (formerly Personal Jarvis)](https://github.com/Dodaios/Dodaios) - Wake-word voice orchestrator with an orb and mission deck that runs Claude Code and Codex missions in worktrees (one developer's largely AI-generated code, failing CI, workers skip permission checks).
 - [Jarvis × Codex](https://github.com/Big-Guan/jarvis-codex) - macOS "Hey Jarvis" voice front end for Codex with an animated character that reflects task state and a stop-all button.

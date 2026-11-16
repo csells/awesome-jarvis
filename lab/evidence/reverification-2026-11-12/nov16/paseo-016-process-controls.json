@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-16",
+  "project": "getpaseo/paseo",
+  "version": "0.16.0",
+  "commit": "c54bc39e7997c03a07402c09df2e825889432557",
+  "environment": "Disposable Debian 13 x86_64 VM on home-lab worker; official Codex 0.167.2; gpt-5.6-sol; native auto mode",
+  "cases": [
+    {
+      "id": "running-root-turn-stop",
+      "result": "PASS",
+      "interface": "native Paseo CLI stop",
+      "before": "Exact argv/cwd matched foreground worker; current agent turn remained running",
+      "after_seconds": [
+        0,
+        0.25,
+        1,
+        3,
+        5
+      ],
+      "matching_processes_after": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "heartbeat_bytes_after": [
+        152,
+        152,
+        152,
+        152,
+        152
+      ],
+      "natural_completion": false
+    },
+    {
+      "id": "same-condition-old-release-control",
+      "version": "0.15.4",
+      "commit": "1c00b365c9e0b74c1580eba33d905d693125ae21",
+      "result": "FAIL",
+      "description": "Same official CLI/model/mode with root turn still running; worker survived native Stop, heartbeat 4 to 14 bytes in five seconds. Harness terminated only the matched worker afterward."
+    },
+    {
+      "id": "preserve-completed-turn-background",
+      "result": "PASS",
+      "description": "Native Stop killed a later current-turn worker while preserving older intentional background work; older heartbeat 366 to 386 bytes, later heartbeat stayed at 4."
+    },
+    {
+      "id": "background-inventory-and-dedicated-stop",
+      "result": "PASS",
+      "interface": "Shipped @getpaseo/client listAgentBackgroundWork and stopAgentBackgroundWork",
+      "description": "Inventory exposed one stoppable worker. Dedicated stop resolved, inventory became empty; actual PID absent at 0/1/3/5s, heartbeat stayed 498 bytes. Private stop token excluded."
+    }
+  ],
+  "limits": [
+    "These are native CLI/client controls, not spoken cancellation.",
+    "Current 0.16 acoustic cases are recorded separately in paseo-016-voice-cases.json; these process controls do not establish spoken task cancellation.",
+    "Source review confirms turn-scoped cancellation; this does not authorize killing all older background work or claim all providers behave identically."
+  ],
+  "production_dependency_audit": {
+    "advisories": 10,
+    "severity": {
+      "low": 3,
+      "moderate": 2,
+      "high": 5,
+      "critical": 0
+    },
+    "exploitability": "Not established by dependency audit"
+  },
+  "evidence_archive_sha256": "3225a0e74cabac6a6dc53c005b439303c5d1ff07b32fd4a7eba77f12264b1c19",
+  "cleanup": "Native daemons and measured workers stopped; copied official CLI auth removed. No stable service modified."
+}
