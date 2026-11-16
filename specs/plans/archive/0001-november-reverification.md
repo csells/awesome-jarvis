@@ -1,6 +1,8 @@
-# November re-verification — partial assessments reconciled; E2E incomplete
+# November re-verification — curation finalized, November 16
 
-Scope: the November staleness report, DotDial issue #1, ibara PR #3, /call-me PR #4, and OpenJarvis. PRs are evaluation requests; no acceptance or merge is implied. Independent source reviews and conservative placement/safety reconciliation are complete for the assessed configurations. The full hands-on pipeline still has the explicit gaps below; see [assessment](../../lab/evidence/reverification-2026-11-12/assessment.md).
+Final disposition: the maintainer requested fixed-or-declined decisions on November 16. The curation is finalized by the [decision record](../../research/november-final-dispositions.md). DotDial, ibara and /call-me are declined for this update. Existing projects retain the bounded placements and Partial labels supported by their tests. Unexecuted cases below remain unqualified; they are not passed or prerequisites to keep this curation campaign open. No further device access or paid-provider work is being requested for these declined paths.
+
+Historical evaluation scope: the November staleness report, DotDial issue #1, ibara PR #3, /call-me PR #4, and OpenJarvis. PRs are evaluation requests; no acceptance or merge is implied. Independent source reviews and conservative placement/safety reconciliation are complete for the assessed configurations. The historical full hands-on pipeline has the explicit gaps below; see [assessment](../../../lab/evidence/reverification-2026-11-12/assessment.md).
 
 ## Completed
 
@@ -8,13 +10,13 @@ Scope: the November staleness report, DotDial issue #1, ibara PR #3, /call-me PR
 - Corrected repository moves, stale links and archived/inactive entries.
 - Fixed contributor counting: renamed Git authors sharing an email do not establish independent maintainers.
 - Verified permanent Pocket speech/transcription and Mac Ollama access from the disposable Linux worker. Chris explicitly authorized both Mac services; Dragon is no longer a prerequisite.
-- Captured scoped runtime results for Newelle, OpenJarvis, Paseo, AIRI, usejarvis, OpenClaw, Sutando and Dodaios. See [re-verification evidence](../../lab/evidence/reverification-2026-11-12/README.md) and [submission evidence](../../lab/evidence/submissions-2026-11-12/README.md).
+- Captured scoped runtime results for Newelle, OpenJarvis, Paseo, AIRI, usejarvis, OpenClaw, Sutando and Dodaios. See [re-verification evidence](../../../lab/evidence/reverification-2026-11-12/README.md) and [submission evidence](../../../lab/evidence/submissions-2026-11-12/README.md).
 - Rechecked the DotDial guest: November 14 audio route controls passed 3/3. On November 15 Chris completed guest ChatGPT sign-in; the native app verified identity and normal guest microphone consent was granted. Actual call attempts failed with HTTP404 during profile lookup, before call creation. See the dated submission evidence; authentication is no longer pending.
-- Executed explicitly approved Sutando native Codex file/process tests: exact file and restart/new file task passed; GUI Stop Core left the actual worker alive. Core/app stopped and copied guest credentials removed. OpenJarvis Bash installer/backend consent and official desktop opt-out/restart tests now have observed results; see [November15 cases](../../lab/evidence/reverification-2026-11-12/nov15/README.md).
+- Executed explicitly approved Sutando native Codex file/process tests: exact file and restart/new file task passed; GUI Stop Core left the actual worker alive. Core/app stopped and copied guest credentials removed. OpenJarvis Bash installer/backend consent and official desktop opt-out/restart tests now have observed results; see [November15 cases](../../../lab/evidence/reverification-2026-11-12/nov15/README.md).
 - Fresh November16 UTC report found OpenYabby inactive185days; verified default-branch commit and moved it to history. AIRI0.15.4 was subsequently tested separately; its November16 results supersede the earlier0.15.2 gap.
 - Reconciled the assessed releases: Newelle moves to Voice Assistants, usejarvis stays on the Watch List, Paseo returns to Mission Control after the 0.16 follow-up, and OpenJarvis moves to Agent Frameworks. OpenClaw/AIRI/Sutando retain Jarvis placement with Partial test coverage, assessed dates/versions and narrower oversight where justified. No submission accepted or merged. Final validation:52 offline tests, Awesome lint and whitespace passed; full dry report now has2 unresolved PR items,0 release re-tests/dead-link/repository-health findings and3 explicitly deferred Watch List promotion triggers. This report is not published externally and does not certify the remaining E2E coverage.
 
-## Remaining end-to-end tests
+## Unexecuted or limited coverage preserved at closure
 
 | Project | Remaining work | External prerequisite |
 |---|---|---|
@@ -38,7 +40,7 @@ The user deferred phone calls and DotDial browser sign-in on November 13. On Nov
 
 For each supported path, exercise the actual application, capture/transcribe audio and inspect screenshots. Check independent file/process effects after approve, deny and cancel; a stopped badge or hung-up call is insufficient. Test silence/timeout, stale or concurrent approvals, reconnect/restart and privacy defaults. Mark externally gated paths BLOCKED with a specific prerequisite; do not count source reviews, installation or fixtures as hallmark passes.
 
-The independent reviews/runtime reconciliation and bounded safety/license assessment are now captured in assessment.md; testing.md and scorecard placements/dates reflect those Partial outcomes. Complete the enumerated outstanding coverage before claiming full E2E. Rerun report/lint/tests and export evidence before task-owned environment cleanup. Preserve the authenticated DotDial guest while needed for the profile-lookup investigation. No merges or publication of accepted entries are included in this branch push.
+The independent reviews/runtime reconciliation and bounded safety/license assessment are now captured in assessment.md; testing.md and scorecard placements/dates reflect those Partial outcomes. Complete the enumerated outstanding coverage before claiming full E2E. Rerun report/lint/tests and export evidence before task-owned environment cleanup. Preserve the authenticated DotDial guest while needed for the profile-lookup investigation. The November 16 finalization authorizes publication of the reconciled list and reasoned closure of the evaluation requests; no submitted entry is accepted.
 
 ## Suggested execution order
 
@@ -48,7 +50,7 @@ The independent reviews/runtime reconciliation and bounded safety/license assess
 
 ## November16 prerequisite clarification
 
-Tailscale is not a general home-lab requirement. ibara's shipped pairing listener, peer identity (`tailscale whois`) and cross-computer routes depend on it. No stock plain-LAN alternative was established from the reviewed source. Local daemon/admin sockets and MCP initialize/ping/tools-list can be checked without network pairing; upstream component tests use fixtures and cannot establish real remote desktop behavior. Those independent checks are now recorded in the [November16 component case](../../lab/evidence/reverification-2026-11-12/nov16/ibara-no-tailscale.json); the paired-desktop checks remain outside the no-Tailscale qualification.
+Tailscale is not a general home-lab requirement. ibara's shipped pairing listener, peer identity (`tailscale whois`) and cross-computer routes depend on it. No stock plain-LAN alternative was established from the reviewed source. Local daemon/admin sockets and MCP initialize/ping/tools-list can be checked without network pairing; upstream component tests use fixtures and cannot establish real remote desktop behavior. Those independent checks are now recorded in the [November16 component case](../../../lab/evidence/reverification-2026-11-12/nov16/ibara-no-tailscale.json); the paired-desktop checks remain outside the no-Tailscale qualification.
 
 OpenVision's checked project explicitly targets device families1,2 with minimum OS18. Chris's offered iPad and Apple developer account enable preparing a device-only test track; model/OS and signing-distribution details remain pending, not another request for an iPhone. Test actual startup (including the known Meta SDK configuration gate), permissions, wake/replies/interruption, UI/restart and selected backend controls. On-device model/Apple Intelligence coverage depends on the actual iPad hardware. Meta glasses registration, camera and glasses audio remain unqualified without those devices.
 
@@ -57,4 +59,4 @@ OpenVision's checked project explicitly targets device families1,2 with minimum 
 The earlier full dry run found 3 attention items: PRs #3/#4 and Qwen Audio Agent's new [v2.1.0 release](https://github.com/QwenAudio/qwen-audio-agent/releases/tag/v2.1.0), published November 16 at 08:05 UTC. The release follow-up has now completed two independent source reviews and bounded native file/voice/process checks. Voice/barge-in and manual file effects passed; real executing-worker cancellation failed. Partial score/date/version and oversight have been reconciled from those results; no release ignore was added. Paseo 0.16 and OpenClaw 2026.11.4 source deltas are also reviewed, with version-specific runtime evidence. No full-list completion is claimed. Dead-link and repository-health checks each found 0 items; three assessed Watch List triggers remain deferred after Paseo moves to Mission Control with reasons.
 
 
-Qwen 2.1.0 remaining coverage: spoken backend dispatch/approve/deny/cancel, stale/concurrent approval permutations, wake and other clients/platforms/providers. Successful frontend speech does not close those cases. Current native results and harness corrections are in the [release evidence](../../lab/evidence/reverification-2026-11-12/nov16/README.md#release-follow-up).
+Qwen 2.1.0 remaining coverage: spoken backend dispatch/approve/deny/cancel, stale/concurrent approval permutations, wake and other clients/platforms/providers. Successful frontend speech does not close those cases. Current native results and harness corrections are in the [release evidence](../../../lab/evidence/reverification-2026-11-12/nov16/README.md#release-follow-up).

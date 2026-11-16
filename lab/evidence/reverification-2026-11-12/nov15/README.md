@@ -1,6 +1,6 @@
 # November 15 continuation — scoped native and privacy tests
 
-These tests ran in disposable lab guests on November 15 Pacific time (November 16 UTC). They do not complete the [remaining campaign](../../../../specs/plans/0001-november-reverification.md), accept a submission, or refresh a full-release score. Source, private logs and recordings were preserved outside the guests; account sessions, phone details and credentials are excluded here.
+These tests ran in disposable lab guests on November 15 Pacific time (November 16 UTC). They do not complete the [remaining campaign](../../../../specs/plans/archive/0001-november-reverification.md), accept a submission, or refresh a full-release score. Source, private logs and recordings were preserved outside the guests; account sessions, phone details and credentials are excluded here.
 
 ## Sutando 0.13.0 native macOS core
 
