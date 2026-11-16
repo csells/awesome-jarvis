@@ -206,7 +206,7 @@ Omarchy 4 turned the whole desktop into a plugin surface, and its [plugin market
 - [Jarvis Vocal](https://github.com/sosoj92/jarvis-assistant-vocal) - French-language Windows assistant with a "Hey Jarvis" wake word, an arc-reactor HUD and research delegated to a local Hermes agent (launcher auto-updates from Git).
 - [WakeHermesClaw](https://github.com/yuga-hashimoto/openclaw-assistant) - Android and Wear OS voice client for OpenClaw and Hermes Agent with a wake word and default-assistant integration.
 - [VisionClaw](https://github.com/Intent-Lab/VisionClaw) - Meta Ray-Ban glasses app with interruptible Gemini Live or OpenAI Realtime voice and vision that delegates tasks to OpenClaw or a hosted agent (no open-source license; uploads transcripts to its gateway).
-- [OpenVision](https://github.com/rayl15/OpenVision) - iOS voice client for Meta Ray-Ban glasses with an "Ok Vision" wake word, on-device or cloud models, and a Hermes approval bridge. Remains under review after a simulator startup failure with its example configuration.
+- [OpenVision](https://github.com/rayl15/OpenVision) - iOS voice client for Meta Ray-Ban glasses with an "Ok Vision" wake word, on-device or cloud models, and a Hermes approval bridge. Remains under review after iPad simulator startup failures; physical device testing is pending.
 - [cc-g2](https://github.com/wmoto-ai/cc-g2) - Even Realities G2 companion that shows coding-agent completions on the HUD and lets you approve their permission prompts.
 - [Meta Muse](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/) - Meta's personal agent in a cloud VM you can watch and take over, with a separate agent that gates its actions; Meta has announced voice mode and glasses support but hasn't shipped them.
 

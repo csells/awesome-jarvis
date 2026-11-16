@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-16",
+  "project": "rayl15/OpenVision",
+  "source": "1d5d9203a36f76040947425a603eba57757eac75",
+  "version": "2.14.0 build15",
+  "environment": "Dedicated disposable macOS Xcode guest; Xcode27.0(27A266a), iPad Pro13-inch M5/iOS27 simulator",
+  "tailscale_used": false,
+  "credentials_copied": false,
+  "source_integrity": {
+    "checked_app_project_files": 99,
+    "changed": [],
+    "runtime_config_template_copied_exactly": true,
+    "Config_xcconfig": "Task bundle ID, blank signing team and developer Meta values; not source-code changes"
+  },
+  "setup": [
+    "Copied both documented Config.xcconfig and Config.swift examples; task bundle ID and blank signing team",
+    "Inspected build plug-in and Swift macros, then used per-command package/macro validation flags",
+    "Used concrete iPad simulator destination without global -sdk iphonesimulator, which incorrectly affected host macros",
+    "Installed the official matching MetalToolchain component in the disposable guest"
+  ],
+  "builds": [
+    {
+      "target": "iPad simulator, unsigned",
+      "result": {
+        "exit": 0,
+        "seconds": 30,
+        "unsigned": true,
+        "credentials_copied": false
+      }
+    },
+    {
+      "target": "generic iOS device, unsigned",
+      "result": {
+        "exit": 0,
+        "seconds": 105,
+        "unsigned": true,
+        "credentials_copied": false
+      },
+      "resolved_versions_only": true,
+      "minimum_os": "18.0",
+      "device_families": [
+        1,
+        2
+      ]
+    }
+  ],
+  "resolved_packages": [
+    {
+      "identity": "fluidaudio",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/FluidInference/FluidAudio.git",
+      "state": {
+        "revision": "c8b41f98eae668794dd0083bbe028fe7e6585051",
+        "version": "0.18.3"
+      }
+    },
+    {
+      "identity": "meta-wearables-dat-ios",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/facebook/meta-wearables-dat-ios",
+      "state": {
+        "revision": "9b1b83d791dfebff7afd452e924a256819094b64",
+        "version": "0.9.0"
+      }
+    },
+    {
+      "identity": "mlx-swift",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/PrismML-Eng/mlx-swift.git",
+      "state": {
+        "branch": "v0.31.6_prism",
+        "revision": "9c3a80a4ce8be105540e378c2a703bfc9de57f25"
+      }
+    },
+    {
+      "identity": "mlx-swift-lm",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/ml-explore/mlx-swift-lm.git",
+      "state": {
+        "revision": "14414441fa44f45eee35a61e9fa0bab577cf9734"
+      }
+    }
+  ],
+  "simulator_launches": {
+    "configurations": [
+      "Repository example Meta placeholders",
+      "MetaAppID0 with empty client token/team",
+      "Empty MetaAppID, client token and team"
+    ],
+    "observed": [
+      "Wearables.configure() reports WearablesError(rawValue:0)",
+      "App logs initialization and unsigned-simulator Keychain error-34018",
+      "GlassesManager initialization accesses Wearables.shared and traps: Call configure() before attempting to access Wearables"
+    ],
+    "sdk_error_meaning": "SDK0.9 header defines raw0 as internalError and raw2 as configurationError. Invalid credentials alone were not established as the cause.",
+    "limitation": "Unsigned simulator results do not establish behavior on a legitimately signed physical iPad."
+  },
+  "signing_diagnostics": {
+    "xcode_ad_hoc_attempts": "Failed codesigning the vendored MisakiSwift/KokoroSwift resource bundles before a working signed app was produced",
+    "manual_simulator_packaging": "Task application/keychain entitlements applied ad-hoc, but simctl launch failed before app startup; no SDK fix established",
+    "physical_signing": "Not attempted; no Apple account, certificate or provisioning profile supplied"
+  },
+  "upstream_test_run": {
+    "result": {
+      "exit": -15,
+      "seconds": 184,
+      "time_bound_reached": true,
+      "signing": "unsigned simulator, no account",
+      "source_modified": false
+    },
+    "compiled_test_bundle": true,
+    "native_test_host_startup": "Same SDK internal-init then unconfigured-access fatal error",
+    "test_case_start_events": 0,
+    "qualification": "BLOCKED by test-host startup; bounded run interrupted after184seconds. No passing unit assertions or acoustic/UI qualification claimed."
+  },
+  "privacy": {
+    "app_metrics": "default off in reviewed settings",
+    "meta_sdk_analytics": "default on unless MWDAT.Analytics.OptOut=true",
+    "meta_sdk_crash_reporting": "default on unless MWDAT.CrashReporting.OptOut=true",
+    "reviewed_app_plist": "Neither SDK opt-out key present",
+    "vendor_delivery_measured": false,
+    "sdk_source": "https://github.com/facebook/meta-wearables-dat-ios/blob/9b1b83d791dfebff7afd452e924a256819094b64/README.md"
+  },
+  "retained_unsigned_device_artifact": {
+    "sha256": "6591f69855b274e0ba0b6bd05954f79e9795c7154bf5e0cb92e2e1296f025791",
+    "bytes": 65854735,
+    "installation": "Not installable until legitimately signed/provisioned",
+    "physical_runtime_tested": false
+  },
+  "pending_physical_track": [
+    "iPad model and iPadOS version",
+    "Public Apple Developer Team ID and legitimate signing/distribution setup",
+    "Actual device-only startup, permissions, voice/replies/interruption and selected backend controls",
+    "Glasses registration/camera/audio separately require actual glasses and Meta setup"
+  ],
+  "cleanup": {
+    "simulators_booted": [],
+    "xcodebuild_processes": "",
+    "OpenVision_processes": "",
+    "credentials_copied": false,
+    "public_exposures": false,
+    "vm_state": "stopped, verified via Tart",
+    "template_unchanged": true
+  },
+  "private_evidence_sha256": "80436e75df5eec66bb64ce80c3771bcd98b5cfea00d5fd7e7418593ffa2b973f"
+}

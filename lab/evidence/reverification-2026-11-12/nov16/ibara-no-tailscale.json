@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-16",
+  "project": "MayberryDT/ibara",
+  "source": "8fe5a674cbcfa68244d603e148ff1760e1786369",
+  "version": "0.3.7-dev.local",
+  "environment": "Owned disposable Debian13 x86_64 VM on home-lab Linux worker; Rust1.89.0",
+  "scope": "No-Tailscale component qualification; no real paired desktop or remote agent task",
+  "build": {
+    "command": "cargo build --locked -p ibara --bins",
+    "exit": 0,
+    "lockfile_changed": false,
+    "lock_sha256": "6b1b42e6e4d5c7f5c0c24fa9adb1273c554c64b178b954c182fe4dc5f8c0ebe4"
+  },
+  "upstream_tests": {
+    "first_run": {
+      "command": "cargo test --locked -p ibara --no-fail-fast",
+      "passed": 544,
+      "failed": 31,
+      "exit": 101
+    },
+    "setup_corrections": [
+      "Installed documented acl prerequisite in disposable guest",
+      "Set task-private TMPDIR and umask0077 so fixtures do not create unsafe writable parent directories",
+      "Set IBARA_E2E_EVIDENCE for the upstream surface-incarnation test",
+      "Shortened private TMPDIR for Unix socket SUN_LEN limit"
+    ],
+    "latest_results_by_target_and_test": {
+      "passed": 573,
+      "failed": 2
+    },
+    "remaining_failures": [
+      {
+        "test": "lib::install::update::tests::only_the_release_key_signing_this_exact_manifest_is_trusted",
+        "observed": "Package lifecycle supports Arch x86_64 and Ubuntu26.04 amd64 only."
+      },
+      {
+        "test": "lib::operator::directory::tests::database_owned_by_another_user_is_refused",
+        "observed": "fixture assumption: /etc/shadow group permission bits32 (0640) instead of0 (0600)"
+      }
+    ],
+    "interpretation": "Latest per-test outcomes aggregated across corrective reruns; no single fully green suite is claimed. No source changes or system permission changes were used. Upstream desktop/SSH/Tailscale stand-ins are component fixtures, not real lab E2E."
+  },
+  "independent_native_checks": {
+    "command_stubs": false,
+    "tailscale": false,
+    "paired_computers": 0,
+    "mcp": [
+      "initialize",
+      "ping",
+      "11-tool catalog",
+      "parse error -32700",
+      "unknown method -32601",
+      "unknown tool -32602",
+      "empty fleet status without invented peer rows",
+      "clean EOF"
+    ],
+    "directory": {
+      "unsafe_writable_ancestor": "REFUSED",
+      "fresh_private_directory": "PASS",
+      "database_mode": "0600",
+      "parent_mode": "0700",
+      "observer_correction": "Empty-fleet MCP status need not create a database; native client --list-computers created the real empty directory."
+    },
+    "daemon": [
+      "Real ibarad startup/controller_ready with empty access inventory",
+      "State/data/runtime directories0700; controller lock0600",
+      "Admin/chrome/pairing sockets0600; controller socket0660",
+      "Duplicate daemon refused existing ownership",
+      "Admin endpoint/status passed; desktop capabilities honestly unavailable",
+      "Wrong bearer denied PERMISSION_DENIED",
+      "Admin pause changed pause origin to person",
+      "SIGTERM exit0 and all sockets/lock removed"
+    ],
+    "limitations": [
+      "No supported graphical desktop present",
+      "Root access helper absent; real transport-projection failure logged",
+      "No cross-computer approve/deny/takeover, revocation or worker-effect pass"
+    ]
+  },
+  "cleanup": {
+    "credentials_copied": false,
+    "task_admin_gateway_keys_removed": true,
+    "fixture_trees_removed": true,
+    "ibarad_processes_remaining": 0,
+    "vm_state": "stopped, verified at hypervisor"
+  },
+  "private_evidence_sha256": "24dbede2cd2259c93c4311212b0f04dae2215afddb4ebe5e1d1c8f6866d7d31c"
+}
