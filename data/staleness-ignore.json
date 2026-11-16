@@ -3,7 +3,7 @@
   "ignore": [
     {
       "key": "watch:promote:rayl15/openvision",
-      "reason": "Reviewed November16: conditional Hermes voice approval code, partial visual/oversight, simulator startup failure and physical iPhone/glasses/signing gates. Retain Watch List; no promotion. See lab/evidence/reverification-2026-11-12/assessment.md.",
+      "reason": "Reviewed November16: iPad simulator and unsigned device builds pass; SDK startup blocks simulator runtime. Conditional Hermes approval code and partial visual/oversight remain. Physical iPad/signing and separate glasses paths are unqualified. Retain Watch List; no promotion. See lab/evidence/reverification-2026-11-12/assessment.md.",
       "until": "2026-12-16"
     },
     {
