@@ -1,0 +1,62 @@
+{
+  "microphone_native_message": "Microphone access denied",
+  "speech_enabled_in_native_settings": true,
+  "tts_and_autoplay_enabled_in_native_settings": true,
+  "speech_health": {
+    "available": true,
+    "backend": "openai"
+  },
+  "tts_health": {
+    "available": true,
+    "backend": "openai_tts",
+    "voice_id": "alfred"
+  },
+  "adaptation": "Only hardcoded OpenAI TTS URL redirected to permanent Pocket; stock STT OPENAI_BASE_URL supported",
+  "speaker-typed": {
+    "duration_s": 64.14897916666666,
+    "peak": 18677,
+    "rms": 354.76490445049035
+  },
+  "microphone-typed": {
+    "duration_s": 62.059645833333335,
+    "peak": 0,
+    "rms": 0.0
+  },
+  "independent_transcripts": [
+    {
+      "name": "speaker-typed",
+      "transcription": "The capital of France is Paris."
+    },
+    {
+      "name": "microphone-typed",
+      "transcription": ""
+    }
+  ],
+  "input_route_control": {
+    "seconds": 5.966708333333333,
+    "peak": 15686,
+    "rms": 1154.8880499192612
+  },
+  "input_route_transcript": [
+    {
+      "name": "input-route-control",
+      "transcription": "Computer, what is the capital of France?"
+    }
+  ],
+  "native_visible_reply": "The capital of France is Paris.",
+  "selected_ui_model": "qwen3:4b-instruct-2507-q4_K_M through real Mac Ollama compatible API",
+  "native_microphone_retry": "Same Microphone access denied after installing/confirming real PulseAudio GStreamer source plugin",
+  "initial_unsubmitted_attempt": "Observer typing/focus failed; no chat request; silent recording is inconclusive, not an application output failure",
+  "cleanup": {
+    "owned_root_processes_absent": true,
+    "api_port_closed": true,
+    "source_restored": true,
+    "config_backup_restored": true,
+    "task_keyring_removed": true,
+    "guest_lease_copy_removed": true,
+    "copied_codex_auth_absent": true,
+    "candidate_git_status": "",
+    "audio_task_modules_absent": true
+  },
+  "raw_evidence_archive_sha256": "cb68d106b0a3d8ba5c3adeb055fdf11d7b7182c6851f72f50a5fd627757e1078"
+}

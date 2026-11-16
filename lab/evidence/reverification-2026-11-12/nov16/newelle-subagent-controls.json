@@ -1,0 +1,34 @@
+{
+  "native_subagent_visible": true,
+  "nested_command_card_visible": true,
+  "worker_absent_pending": true,
+  "heartbeat_absent_pending": true,
+  "heartbeat_after_run": 2,
+  "after_native_stop": [
+    {
+      "seconds": 0,
+      "same_worker_alive": true,
+      "heartbeat_bytes": 2,
+      "natural_completion": false
+    },
+    {
+      "seconds": 1,
+      "same_worker_alive": true,
+      "heartbeat_bytes": 6,
+      "natural_completion": false
+    },
+    {
+      "seconds": 3,
+      "same_worker_alive": true,
+      "heartbeat_bytes": 14,
+      "natural_completion": false
+    },
+    {
+      "seconds": 5,
+      "same_worker_alive": true,
+      "heartbeat_bytes": 23,
+      "natural_completion": false
+    }
+  ],
+  "harness_cleanup_required": true
+}

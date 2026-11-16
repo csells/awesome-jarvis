@@ -3,8 +3,23 @@
   "ignore": [
     {
       "key": "watch:promote:rayl15/openvision",
-      "reason": "Reviewed 2026-10-06: two source reviews plus successful simulator build; example-config launch crashes in Meta SDK. Visual and oversight remain partial. See lab/evidence/2026-10-06-retest/README.md. Revisit next month.",
-      "until": "2026-11-06"
+      "reason": "Reviewed November16: conditional Hermes voice approval code, partial visual/oversight, simulator startup failure and physical iPhone/glasses/signing gates. Retain Watch List; no promotion. See lab/evidence/reverification-2026-11-12/assessment.md.",
+      "until": "2026-12-16"
+    },
+    {
+      "key": "watch:promote:dodaios/dodaios",
+      "reason": "Reviewed November16: actual Ask-mode managed run_shell wrote without a human card; provider switch reset policy and worker cancellation failed. Retain Watch List despite contributor trigger. See lab/evidence/reverification-2026-11-12/assessment.md.",
+      "until": "2026-12-16"
+    },
+    {
+      "key": "watch:promote:getpaseo/paseo",
+      "reason": "Reviewed November16: moved to Watch List after current native voice interruption remained partial and actual Codex Stop left work running. Manual approvals/Auto-review speech successes retained. See lab/evidence/reverification-2026-11-12/assessment.md.",
+      "until": "2026-12-16"
+    },
+    {
+      "key": "watch:promote:vierisid/jarvis",
+      "reason": "Reviewed November16: moved to Watch List; native onboarding failed authentication, current speech setup gated and oversight conditional. Earlier wake/interruption limits retained. See lab/evidence/reverification-2026-11-12/assessment.md.",
+      "until": "2026-12-16"
     }
   ]
 }

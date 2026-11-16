@@ -1,3 +1,5 @@
+> **November16 update:** DotDial's profile-lookup404 is diagnosed: the app expects a conversation UUID but the supplied URL identifies a composite dot profile. The actual authenticated page loaded successfully. Using its observed active conversation UUID reached a real connected call without changing candidate source. The52.82-second output capture had an empty speech transcript despite an independently transcribed microphone question; no reply/barge-in pass. Native mute/unmute state changes and reconnect to active were observed, then Stop returned ready and the native app was quit. [Sanitized diagnosis and exact limits](dotdial-nov16-diagnosis.json). Account and conversation contents are excluded.
+
 # Submission triage — November 12, 2026
 
 Issue [#1](https://github.com/csells/awesome-jarvis/issues/1), PR [#3](https://github.com/csells/awesome-jarvis/pull/3) and PR [#4](https://github.com/csells/awesome-jarvis/pull/4) are evaluation requests. No merge, listing, scorecard change or external response is authorized by these findings. All remain pending. No application was installed or run in this pass.

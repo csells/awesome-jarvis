@@ -20,6 +20,8 @@ The September 2026 lab reached models through a Claude subscription on the offic
 
 ## Results
 
+The table below records the September run and its explicitly dated historical follow-ups. The November assessment below supersedes corresponding current-release claims.
+
 PASS means it worked end to end, PARTIAL means some of the pillar worked, FAIL means it didn't work, and BLOCKED means it needs a paid key or hardware the lab didn't have.
 
 | Agent | Voice | Hands-free | Visual | Oversight | Notes |
@@ -37,7 +39,7 @@ PASS means it worked end to end, PARTIAL means some of the pillar worked, FAIL m
 | omavoice | PASS | ◐ | PASS | BLOCKED | Tested with a one-line URL change against the local voice server. Answered aloud with barge-in and a live trace of each step. Delegation wasn't completed because the lab's Claude login had expired in that VM. |
 | omarchy-voice | PARTIAL | ◐ | PARTIAL | FAIL | Tested with a one-line URL change. Answered a desktop question aloud. The local 7B model read tool calls aloud instead of making them, which is a limit of the model, not the app. |
 
-Not run hands-on (scored from code only): Qwen Audio Agent, Sutando and OpenClicky, which need paid voice keys; N.E.K.O, AIRI and Newelle. The commercial assistants were scored from vendor documentation.
+Not run hands-on in the September campaign (later November checks are documented below): Qwen Audio Agent, Sutando and OpenClicky, which need paid voice keys; N.E.K.O, AIRI and Newelle. The commercial assistants were scored from vendor documentation.
 
 ## Candidate Follow-ups
 
@@ -106,3 +108,23 @@ Continued the November re-verification in disposable Linux/macOS guests using th
 On November15, Sutando0.13.0's explicitly authorized native Codex core completed real file work and recovered through the menu's restart control. Stop Core CLI stopped the core but left its executing worker writing heartbeats; the harness then terminated that worker. The copied guest Codex credentials were removed afterward. OpenJarvis's actual Bash installer, running backend and official desktop1.0.5 were tested for consent, saved opt-out and native restart behavior with real Mac Ollama replies. Analytics delivery was blocked in the guest throughout; the tests observe attempted connections, not external payloads. See the [case results, setup qualifications and dependency-audit limits](lab/evidence/reverification-2026-11-12/nov15/README.md). No full E2E certification or submission acceptance is implied.
 
 On November16 UTC, Newelle1.6.1's native Run/Skip controls enforced independently checked file effects. Voice Mode cancellation left the real foreground worker running; new manually approved work afterward succeeded. The current official AIRI0.15.4 native build passed local-model chat, saved analytics-off after process restart, and Hearing recognition through Pocket. Both its speech preview and main runtime received Pocket audio but produced silent speaker captures; an independent speaker-route control passed. OpenJarvis desktop1.0.5 also completed its own Linux backend dependency installation/start and visibly answered “Four,” after resolving the guest's Rust and configuration-path prerequisites. See [exact cases, observer qualifications and cleanup](lab/evidence/reverification-2026-11-12/nov16/README.md). These are scoped results; the remaining matrix and full-release score dates are unchanged by a partial result alone.
+
+## November 16 assessment — partial qualification
+
+The six stale releases now have reconciled decisions, using independent source reviews and real lab evidence. Current scorecard records for OpenClaw v2026.11.3, AIRI v0.15.4 and Sutando v0.13.0 carry **Partial** coverage and the assessment date/version. Their full voice scores retain source or earlier provider evidence where current native/paid-provider tests remain blocked or partial; they are not November native voice passes. OpenClaw and Sutando oversight drop to partial.
+
+Newelle1.6.1 moves to Voice Assistants: real manual approvals passed, but native Stop left both direct and managed-subagent workers alive. Paseo0.15.4 and usejarvis0.17.6 move to the Watch List, with their voice/setup and oversight limits preserved. OpenJarvis moves from Mission Control to Agent Frameworks after real Pause failed to stop work. Dodaios and OpenVision remain on the Watch List; Jarvis Vocal's author aliases do not justify promotion.
+
+Paseo's corrected native MCP/turn-detector setup produced an independently transcribed spoken answer in original Auto-review mode without a click. Default permissions required speech approval clicks; current interruption/new answer remained partial. OpenJarvis's packaged desktop also spoke an independently transcribed factual answer with the disclosed one-line TTS URL change; native microphone access remained denied despite a passed independent route control. DotDial's authenticated404 was traced to profile versus conversation-ID handling; a supported configuration workaround connected, but its recorded reply had no speech transcript.
+
+| Current release/configuration | Voice | Hands-free | Visual | Oversight |
+|---|---|---|---|---|
+| OpenClaw v2026.11.3 | PARTIAL native; full retained from source/prior browser | PARTIAL | PASS UI | PARTIAL; exec safely refused approval binding |
+| AIRI v0.15.4 | PARTIAL; Hearing passed, tested Pocket output failed | PARTIAL source | PASS native state/chat | PARTIAL source; no native task pass |
+| Sutando v0.13.0 | BLOCKED live: Gemini key | PARTIAL source | PASS native UI | PARTIAL; real core task passed, worker stop failed |
+| Newelle1.6.1 | PARTIAL; repeated wake/reply passed, interruption limited | PARTIAL; pending card not resolved by voice | PASS native state/subagent UI | PARTIAL; nested approval worked, worker stop failed |
+| Paseo0.15.4/Codex | PARTIAL; original-mode speech passed, barge-in exchange unqualified | PARTIAL; mode-specific speech cards | PASS actual workspace | PARTIAL; file approval effects passed, actual stop failed |
+| usejarvis0.17.6/sidecar0.12.1 | BLOCKED current adapter setup; earlier voice partial | PARTIAL source | PARTIAL native onboarding; browser chat passed | PARTIAL source; current runtime not certified |
+| OpenJarvis13706f2/desktop1.0.5 | PARTIAL; CLI and native output passed with URL change, native input denied | No wake/full spoken loop established | PASS actual chat/dashboard | PARTIAL; approval effects passed, Pause worker stop failed |
+
+See [decisions, source disagreements, safety/license audit and remaining gaps](lab/evidence/reverification-2026-11-12/assessment.md), [November16 case evidence](lab/evidence/reverification-2026-11-12/nov16/README.md), and [DotDial's sanitized diagnosis](lab/evidence/submissions-2026-11-12/dotdial-nov16-diagnosis.json). PR#3 ibara and PR#4 /call-me remain unaccepted evaluation requests. Supported paired-desktop, ready-phone, physical-device, Windows and enumerated permission/recovery coverage remain visible in the [original test matrix](specs/plans/0001-november-reverification.md); complete cross-repository E2E is still not claimed.

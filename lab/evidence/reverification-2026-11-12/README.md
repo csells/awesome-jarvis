@@ -1,10 +1,12 @@
-# November 12 re-verification — in progress
+# November re-verification — reconciled partial assessment
 
-> Current service selection: Chris explicitly authorized Mac Ollama and permanent Pocket. Their Linux guest routes are restored; the earlier Dragon-only restriction no longer blocks testing. The broader re-verification remains in progress.
+> Current service selection: Chris explicitly authorized Mac Ollama and permanent Pocket. Their Linux guest routes are restored; the earlier Dragon-only restriction no longer blocks testing. The bounded release assessments are reconciled; broader E2E gaps remain explicit.
 
-This run covers issue2's Nov9 staleness report, fresh Nov12 checks, issue1 and PRs3/4, plus OpenJarvis requested directly. No submitted entry is accepted merely because it is a PR. DotDial guest sign-in completed November15; authenticated calls fail at profile lookup with HTTP404. See [submission evidence](../submissions-2026-11-12/README.md).
+This run covers issue2's Nov9 staleness report, fresh Nov12 checks, issue1 and PRs3/4, plus OpenJarvis requested directly. No submitted entry is accepted merely because it is a PR. DotDial guest sign-in completed November15. November16 diagnosed the profile/conversation identifier mismatch; a configuration workaround connected, but no spoken reply was independently verified. See [submission evidence](../submissions-2026-11-12/README.md).
 
-Latest continuation: [November16 Newelle controls, AIRI0.15.4 and OpenJarvis desktop-managed backend](nov16/README.md). Newelle manual Run/Skip enforced file effects, but Voice Mode cancel left the actual worker alive. AIRI's native chat/privacy persistence and Hearing recognition passed; its Pocket output recordings were silent. OpenJarvis's desktop installed and launched its own Linux backend and answered a native chat question. See also [November15 Sutando and privacy evidence](nov15/README.md). These scoped checks do not complete the campaign or refresh full-test dates. Earlier sections retain their original observations; later dated results supersede corresponding pending states.
+Current decisions: [reconciled scores, placements, safety/license audit and remaining gaps](assessment.md). Newelle moves to Voice Assistants; Paseo/usejarvis to Watch List; OpenJarvis to Agent Frameworks. Retained scorecard rows now record Partial coverage and the assessed versions. Later dated results supersede historical pending claims below.
+
+Latest continuation: [November16 Newelle controls, AIRI0.15.4 and OpenJarvis desktop-managed backend](nov16/README.md). Newelle manual Run/Skip enforced file effects, but Voice Mode cancel left the actual worker alive. AIRI's native chat/privacy persistence and Hearing recognition passed; its Pocket output recordings were silent. OpenJarvis's desktop installed and launched its own Linux backend and answered a native chat question. See also [November15 Sutando and privacy evidence](nov15/README.md). These scoped checks inform the reconciled Partial assessments and do not certify complete E2E. Earlier sections retain their original observations; later dated results supersede corresponding pending states.
 
 ## Verified maintenance corrections
 

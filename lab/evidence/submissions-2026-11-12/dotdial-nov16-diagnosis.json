@@ -1,0 +1,176 @@
+{
+  "artifact": "DotDial beta.4/mac preview1",
+  "source": "98a41e09",
+  "authenticated_profile_access": "PASS: supplied composite dot URL loaded; native web profile lookup200; correct signed-in profile rendered",
+  "root_cause": "Native config validates only UUID and resolveProfile uses /tbo/by-thread/{uuid}; supplied URL identifies a composite dot profile, not its active root conversation. Previously tested bare profile UUID and share suffix returned404.",
+  "observed_active_conversation_lookup": "200 through the normal authenticated page",
+  "workaround": "Set supported dot.url UUID to the active root conversation UUID observed from that page; candidate source unchanged",
+  "native_call": "PASS connection only: identity verified, stage active, WebRTC connected, microphone active, playback started; not proof of audible speech",
+  "recorded_question": [
+    {
+      "name": "nov16-reply",
+      "transcription": ""
+    },
+    {
+      "name": "nov16-reply-mic",
+      "transcription": "What is the capital of France?"
+    }
+  ],
+  "speaker_observation": {
+    "seconds": 52.8213333333,
+    "peak": 5527,
+    "rms": 103.31385785,
+    "speech_transcript": ""
+  },
+  "limits": [
+    "No spoken reply or barge-in pass; microphone control transcribed the full factual question",
+    "Mute/unmute state changes are separate from measured acoustic enforcement",
+    "Wake and task approval/cancel remain unqualified; companion source has no worker oversight"
+  ],
+  "privacy": {
+    "recording_default_enabled": true,
+    "recording_cap_megabytes": 200,
+    "account_and_conversation_text_exported_publicly": false
+  },
+  "native_controls": [
+    {
+      "command": "MUTE",
+      "result": {
+        "status": "muting_microphone"
+      },
+      "state": "active",
+      "microphone_muted": true,
+      "speakers_muted": false,
+      "microphone_settings": {
+        "sampleRate": 48000,
+        "channelCount": 1,
+        "echoCancellation": true,
+        "noiseSuppression": true,
+        "autoGainControl": true
+      },
+      "microphone_active": false,
+      "connection_state": "connected"
+    },
+    {
+      "command": "UNMUTE",
+      "result": {
+        "status": "unmuting_microphone"
+      },
+      "state": "active",
+      "microphone_muted": false,
+      "speakers_muted": false,
+      "microphone_settings": {
+        "sampleRate": 48000,
+        "channelCount": 1,
+        "echoCancellation": true,
+        "noiseSuppression": true,
+        "autoGainControl": true
+      },
+      "microphone_active": true,
+      "connection_state": "connected"
+    },
+    {
+      "command": "SPEAKERS_MUTE",
+      "result": {
+        "status": "muting_speakers"
+      },
+      "state": "active",
+      "microphone_muted": false,
+      "speakers_muted": true,
+      "microphone_settings": {
+        "sampleRate": 48000,
+        "channelCount": 1,
+        "echoCancellation": true,
+        "noiseSuppression": true,
+        "autoGainControl": true
+      },
+      "microphone_active": true,
+      "connection_state": "connected"
+    },
+    {
+      "command": "SPEAKERS_UNMUTE",
+      "result": {
+        "status": "unmuting_speakers"
+      },
+      "state": "active",
+      "microphone_muted": false,
+      "speakers_muted": false,
+      "microphone_settings": {
+        "sampleRate": 48000,
+        "channelCount": 1,
+        "echoCancellation": true,
+        "noiseSuppression": true,
+        "autoGainControl": true
+      },
+      "microphone_active": true,
+      "connection_state": "connected"
+    },
+    {
+      "command": "STOP",
+      "result": {
+        "status": "accepted_stop"
+      },
+      "state": "stopping",
+      "microphone_muted": false,
+      "speakers_muted": false,
+      "microphone_settings": {
+        "sampleRate": 48000,
+        "channelCount": 1,
+        "echoCancellation": true,
+        "noiseSuppression": true,
+        "autoGainControl": true
+      },
+      "microphone_active": true,
+      "connection_state": "connected"
+    },
+    {
+      "command": "WAKE",
+      "result": {
+        "status": "stopping"
+      },
+      "state": "stopping",
+      "microphone_muted": false,
+      "speakers_muted": false,
+      "microphone_settings": {
+        "sampleRate": 48000,
+        "channelCount": 1,
+        "echoCancellation": true,
+        "noiseSuppression": true,
+        "autoGainControl": true
+      },
+      "microphone_active": true,
+      "connection_state": "connected"
+    },
+    {
+      "command": "STOP",
+      "result": {
+        "status": "accepted_stop"
+      },
+      "state": "ready",
+      "microphone_muted": false,
+      "speakers_muted": false,
+      "microphone_settings": {
+        "sampleRate": 48000,
+        "channelCount": 1,
+        "echoCancellation": true,
+        "noiseSuppression": true,
+        "autoGainControl": true
+      },
+      "microphone_active": true,
+      "connection_state": "connected"
+    }
+  ],
+  "reconnect": {
+    "wake": {
+      "status": "accepted_wake"
+    },
+    "state_after_reconnect": "active",
+    "connection_after_reconnect": null,
+    "stop": {
+      "status": "accepted_stop"
+    },
+    "state_after_stop": "ready",
+    "local_listening_after_stop": false,
+    "qualification": "Media metrics retained connected/active fields after stop; ready/local_listening=false is not independent proof every media resource was released. Native app was quit afterward."
+  }
+}

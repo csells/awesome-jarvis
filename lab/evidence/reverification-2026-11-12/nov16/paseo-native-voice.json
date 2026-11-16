@@ -1,0 +1,103 @@
+{
+  "version": "0.15.4",
+  "codex": "0.167.2",
+  "provider": "GPT-5.6-Sol",
+  "speech": "Permanent Pocket/Alfred through stock compatible providers",
+  "setup_corrections": [
+    "Supported daemon.mcp.injectIntoAgents=true",
+    "Supported providers.local.modelsDir required for local turn detector with remote speech providers",
+    "One continuous debugger connection retained microphone grant; earlier disconnected-grant attempts are inconclusive"
+  ],
+  "auto_review": {
+    "factual_roundtrip": "PASS without approval click",
+    "independent_transcripts": [
+      {
+        "name": "factual-question-microphone",
+        "transcription": "Computer, what is the capital of France?"
+      },
+      {
+        "name": "factual-question-speaker",
+        "transcription": "The capital of France is Paris."
+      }
+    ],
+    "interruption": {
+      "autoreview_persisted_after_restart": true,
+      "input_before_question": [
+        {
+          "source": 28,
+          "corked": false
+        }
+      ],
+      "sustained_output_after_fixture_s": 10.160585149998951,
+      "input_during_output": [
+        {
+          "source": 28,
+          "corked": false
+        }
+      ],
+      "barge_input_injected": true,
+      "pending_accept_buttons_after": 0,
+      "speaker": {
+        "duration_s": 40.890145833333335,
+        "peak": 14105,
+        "rms": 463.86404720287135
+      },
+      "microphone": {
+        "duration_s": 40.323875,
+        "peak": 18126,
+        "rms": 1040.2897983278021
+      },
+      "assessment": "PARTIAL: independent microphone includes Stop/new question; speaker transcript has counting only; no new native chat turn or spoken Four within25seconds. Does not establish complete barge-in roundtrip."
+    },
+    "interruption_transcripts": [
+      {
+        "name": "speaker",
+        "transcription": "One, one, two, two, three, four, five."
+      },
+      {
+        "name": "microphone",
+        "transcription": "Count from one to thirty slowly. Say all the numbers in one spoken reply. Stop. What is two plus two?"
+      }
+    ]
+  },
+  "default_permissions": {
+    "speak_requires_manual_accept": true,
+    "spoken_choices_become_new_chat_turns": true,
+    "voice_only_bound_file_approval": "NOT ESTABLISHED",
+    "independent_transcripts": [
+      {
+        "name": "denial-question-microphone",
+        "transcription": "Computer, what is the capital of France?"
+      },
+      {
+        "name": "spoken-no-microphone",
+        "transcription": "Do not run that command."
+      },
+      {
+        "name": "spoken-yes-microphone",
+        "transcription": "Yes, approve the command."
+      },
+      {
+        "name": "manual-speech-reply-speaker",
+        "transcription": "Which command would you like me to approve or run?"
+      },
+      {
+        "name": "long-reply-speaker",
+        "transcription": "One, two, three."
+      },
+      {
+        "name": "long-reply-microphone",
+        "transcription": "Stop. What is two plus two?"
+      }
+    ]
+  },
+  "cleanup": {
+    "owned_process_roots_absent": true,
+    "ports_6767_9224_closed": true,
+    "three_audio_modules_absent": true,
+    "copied_guest_codex_auth_removed": true,
+    "task_browser_profile_password_and_lease_copies_removed": true,
+    "pocket_lease_released": true,
+    "raw_archive_outside_vm_sha256": "fbc93b249d5d560792256542e4b6698276d38d8f37384c1a078f9f2d2b5929ff"
+  }
+}

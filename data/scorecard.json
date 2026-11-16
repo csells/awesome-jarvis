@@ -11,12 +11,12 @@
         "voice": "full",
         "handsFree": "partial",
         "visual": "full",
-        "oversight": "full"
+        "oversight": "partial"
       },
-      "tested": "hands-on",
-      "testedAt": "2026-09-27",
-      "testedVersion": "2026.9.6",
-      "watchOut": "Runs commands without asking by default"
+      "tested": "partial",
+      "testedAt": "2026-11-16",
+      "testedVersion": "v2026.11.3",
+      "watchOut": "Commands auto-run by default; native voice remains partial"
     },
     {
       "name": "Hermes Agent",
@@ -53,24 +53,6 @@
       "watchOut": "Cloud voice by default, Mandarin wake word"
     },
     {
-      "name": "usejarvis",
-      "platform": "Daemon plus desktop sidecar",
-      "repo": "vierisid/jarvis",
-      "url": "https://github.com/vierisid/jarvis",
-      "section": "Jarvis Agents › Open Source",
-      "scores": {
-        "voice": "partial",
-        "handsFree": "partial",
-        "visual": "full",
-        "oversight": "full"
-      },
-      "tested": "partial",
-      "testedAt": "2026-10-06",
-      "testedVersion": "@usejarvis/brain 0.15.0",
-      "tagPattern": "^v\\d",
-      "watchOut": "No spoken interruption; commands run without asking"
-    },
-    {
       "name": "JARVIS for Claude Code",
       "platform": "macOS",
       "repo": "ethanplusai/jarvis",
@@ -97,13 +79,13 @@
         "voice": "full",
         "handsFree": "partial",
         "visual": "full",
-        "oversight": "full"
+        "oversight": "partial"
       },
-      "tested": "code",
-      "testedAt": "2026-09-26",
-      "testedVersion": null,
+      "tested": "partial",
+      "testedAt": "2026-11-16",
+      "testedVersion": "v0.13.0",
       "tagPattern": "^v\\d",
-      "watchOut": "Skips permissions, Gemini key, telemetry on"
+      "watchOut": "Skips permissions; Stop Core left worker running; Gemini key"
     },
     {
       "name": "OpenClicky",
@@ -151,10 +133,10 @@
         "visual": "full",
         "oversight": "partial"
       },
-      "tested": "code",
-      "testedAt": "2026-09-26",
-      "testedVersion": null,
-      "watchOut": "Analytics on (opt-out)"
+      "tested": "partial",
+      "testedAt": "2026-11-16",
+      "testedVersion": "v0.15.4",
+      "watchOut": "Analytics on; tested Pocket playback incompatible"
     },
     {
       "name": "hey-jarvis",
@@ -189,40 +171,6 @@
       "testedAt": "2026-09-27",
       "testedVersion": "v1.12.2",
       "watchOut": "Bundled APKs, root or Shizuku, \"O\" wake phrase"
-    },
-    {
-      "name": "Newelle",
-      "platform": "Linux",
-      "repo": "qwersyk/Newelle",
-      "url": "https://github.com/qwersyk/Newelle",
-      "section": "Jarvis Agents › Linux",
-      "scores": {
-        "voice": "full",
-        "handsFree": "partial",
-        "visual": "full",
-        "oversight": "partial"
-      },
-      "tested": "code",
-      "testedAt": "2026-09-26",
-      "testedVersion": null,
-      "watchOut": "Flatpak can run host commands"
-    },
-    {
-      "name": "Paseo",
-      "platform": "Desktop, mobile, web",
-      "repo": "getpaseo/paseo",
-      "url": "https://github.com/getpaseo/paseo",
-      "section": "Jarvis Agents › Open Source",
-      "scores": {
-        "voice": "full",
-        "handsFree": "partial",
-        "visual": "full",
-        "oversight": "partial"
-      },
-      "tested": "hands-on",
-      "testedAt": "2026-10-06",
-      "testedVersion": "0.10.3",
-      "watchOut": "Codex stop left work running; speech approval needs clicks"
     },
     {
       "name": "Happy",
