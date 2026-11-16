@@ -1,0 +1,77 @@
+{
+  "startup": {
+    "owned_native": {
+      "openbox": 35364,
+      "native": 35365
+    },
+    "managed_api_processes": [
+      {
+        "pid": 35594,
+        "parent_pid": 35365,
+        "args": "/home/tester/.local/bin/uv run jarvis serve --port 8000 --engine lmstudio --model qwen2.5:7b-instruct-q4_K_M --agent simple "
+      },
+      {
+        "pid": 35597,
+        "parent_pid": 35594,
+        "args": "/home/tester/jarvis-lab/fresh-installer/src/.venv/bin/python /home/tester/jarvis-lab/fresh-installer/src/.venv/bin/jarvis serve --port 8000 --engine lmstudio --model qwen2.5:7b-instruct-q4_K_M --agent simple "
+      }
+    ],
+    "health": {
+      "status": "ok"
+    },
+    "engine_config": {
+      "lmstudio": {
+        "host": "http://127.0.0.1:11434"
+      }
+    },
+    "native_source_changed": false,
+    "native_rust_dependencies_installed_by_desktop": true,
+    "config_path_qualification": "XDG_DATA_HOME isolated Secret Service; supported OPENJARVIS_HOME explicitly aligns backend with native config path",
+    "native_chat": {
+      "observed_answer": "Four",
+      "model_selected": "qwen2.5:7b-instruct-q4_K_M",
+      "ui_reported_engine": "ollama",
+      "ui_reported_duration_s": 1.5,
+      "actual_screenshot_inspected": true,
+      "qualification": "Desktop boot configured OpenAI-compatible LMStudio adapter to real Ollama; frontend request ultimately reports Ollama. No guest Ollama daemon was started."
+    },
+    "/v1/speech/health": {
+      "available": true,
+      "backend": "faster-whisper"
+    },
+    "/v1/speech/tts/health": {
+      "available": false,
+      "reason": "No text-to-speech backend available"
+    }
+  },
+  "cleanup": {
+    "native_and_openbox_stopped": true,
+    "api_left_after_external_native_SIGTERM": [
+      35594,
+      35597
+    ],
+    "harness_cleaned_exact_api_children": true,
+    "api_port_closed": true,
+    "prior_guest_config_restored": true,
+    "three_owned_xdg_profiles_removed": true,
+    "keyring_password_file_removed": true,
+    "qualification": "External process termination is not a native Stop Backend control test."
+  },
+  "earlier_setup_attempts": [
+    {
+      "outcome": "Rust cargo missing",
+      "resolution": "Installed official checksum-verified Rustup and declared Rust1.89.0 in guest; no shared changes"
+    },
+    {
+      "outcome": "Managed API engine unavailable after dependency compilation",
+      "qualification": "Harness isolated XDG_DATA_HOME for keyring but native desktop writes ~/.openjarvis while backend honors XDG path",
+      "resolution": "Supported OPENJARVIS_HOME explicitly aligned both paths; actual native setup and chat then passed"
+    }
+  ],
+  "evidence_archive": {
+    "retained_outside_vm": true,
+    "sha256": "3c10f0d23c0b3fbddd653b8c8d9a4ab521d97b781415b0f640b9afcf12be62e5",
+    "bytes": 10464195
+  },
+  "qualification": "Linux managed-backend install against pinned actual source, not Windows installer or native frontend speech certification."
+}

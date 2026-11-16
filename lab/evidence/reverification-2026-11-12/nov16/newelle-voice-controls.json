@@ -1,0 +1,54 @@
+{
+  "scope": "Actual native Voice Mode; source-approved task remains gated; real PulseAudio input; independent guest process identity",
+  "capture_streams_before_spoken_choices": [],
+  "spoken_choices": [
+    {
+      "input": "yes",
+      "worker_started": false
+    },
+    {
+      "input": "no",
+      "worker_started": false
+    }
+  ],
+  "actual_worker_pid": 22478,
+  "worker_identity": "Mon Nov 16 01:36:54 2026 python3 worker.py",
+  "heartbeat_before_spoken_stop": 15,
+  "after_spoken_stop": {
+    "same_worker_alive": true,
+    "heartbeat_bytes": 195,
+    "natural_completion": false
+  },
+  "native_cancel_observations": [
+    {
+      "after_native_cancel_s": 0,
+      "same_worker_alive": true,
+      "heartbeat_bytes": 195,
+      "natural_completion": false
+    },
+    {
+      "after_native_cancel_s": 1,
+      "same_worker_alive": true,
+      "heartbeat_bytes": 225,
+      "natural_completion": false
+    },
+    {
+      "after_native_cancel_s": 3,
+      "same_worker_alive": true,
+      "heartbeat_bytes": 285,
+      "natural_completion": false
+    },
+    {
+      "after_native_cancel_s": 5,
+      "same_worker_alive": true,
+      "heartbeat_bytes": 345,
+      "natural_completion": false
+    }
+  ],
+  "native_cancel_pass": false,
+  "harness_cleanup_required": true,
+  "manual_recovery_file_exact": true,
+  "worker_absent_after_cleanup": true,
+  "capture_control_transcript": "Do not run that command.",
+  "spoken_choice_scope": "Separate prerecorded yes/no fixtures independently transcribed; combined actual input capture only transcribed denial. No ASR-verified yes input claim from combined control. Before both plays there were no app capture streams; native card remained pending. Manual native Run then started actual worker."
+}

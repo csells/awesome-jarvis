@@ -1,0 +1,8 @@
+{
+  "auto_run": false,
+  "deny_ui": "Skip",
+  "deny_proof_absent": true,
+  "allow_ui": "Run",
+  "allow_proof_exists": true,
+  "allow_exact": true
+}

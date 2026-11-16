@@ -1,0 +1,13 @@
+{
+  "original_settings_restored": true,
+  "settings_count": 128,
+  "copied_credentials_removed": [
+    "newelle-api-token",
+    "newelle-voice-session.json",
+    "newelle-voice-session.json"
+  ],
+  "app_absent": true,
+  "fixture_worker_absent": true,
+  "owned_audio_sinks_removed": true,
+  "pocket_lease_released": true
+}

@@ -1,0 +1,168 @@
+{
+  "artifact": {
+    "version": "0.15.4",
+    "kind": "official amd64 Debian release",
+    "sha256": "5859a23585e524acd4215277b17967efe78e02d3b11b68585a17c0d40963173b"
+  },
+  "privacy": {
+    "analytics_before_restart": false,
+    "analytics_after_restart": false,
+    "actual_settings_url": "file:///opt/AIRI/resources/app.asar/out/bundle/renderer/index.html?synced-leader=false#/settings/system/general"
+  },
+  "chat": {
+    "saved_analytics_off": true,
+    "elapsed_s": 46.07756388999951,
+    "visible_four_answer": true,
+    "visible_chat": "Iru\n02:11 AM\n\nWhat is two plus two? Reply with one short sentence.\n\n02:25 AM\n\nWhat is two plus two? Reply in a short sentence.\n\nTwo plus two is four! But what a cute way to ask.\n\nReplying to\nMessage"
+  },
+  "speech_preview": {
+    "speaker": {
+      "duration_s": 16.353958333333335,
+      "peak": 0,
+      "rms": 0.0
+    },
+    "media": [
+      {
+        "paused": true,
+        "currentTime": 0,
+        "duration": null,
+        "error": {
+          "code": 4,
+          "message": "PipelineStatus::DEMUXER_ERROR_COULD_NOT_OPEN: FFmpegDemuxer: open context failed"
+        }
+      }
+    ],
+    "network": [
+      {
+        "kind": "request",
+        "id": "25367.1235",
+        "url": "http://127.0.0.1:18800/v1/audio/speech",
+        "method": "POST",
+        "audio_options": {
+          "model": "pocket-tts",
+          "voice": "alfred"
+        }
+      },
+      {
+        "kind": "response",
+        "id": "25367.1235",
+        "status": 200,
+        "url": "http://127.0.0.1:18800/v1/audio/speech",
+        "mime": "audio/pcm"
+      }
+    ]
+  },
+  "runtime_speech": {
+    "speaker": {
+      "duration_s": 64.39479166666666,
+      "peak": 0,
+      "rms": 0.0
+    },
+    "network": [
+      {
+        "kind": "request",
+        "id": "25259.1140",
+        "url": "http://127.0.0.1:11434/v1/chat/completions",
+        "method": "POST"
+      },
+      {
+        "kind": "response",
+        "id": "25259.1140",
+        "url": "http://127.0.0.1:11434/v1/chat/completions",
+        "status": 200,
+        "mime": "text/event-stream"
+      },
+      {
+        "kind": "request",
+        "id": "25259.1142",
+        "url": "http://127.0.0.1:18800/v1/audio/speech",
+        "method": "POST",
+        "audio_options": {
+          "model": "pocket-tts",
+          "voice": "alfred"
+        }
+      },
+      {
+        "kind": "response",
+        "id": "25259.1142",
+        "url": "http://127.0.0.1:18800/v1/audio/speech",
+        "status": 200,
+        "mime": "audio/pcm"
+      }
+    ],
+    "visible_chat": "Iru\n02:11 AM\n\nWhat is two plus two? Reply with one short sentence.\n\n02:25 AM\n\nWhat is two plus two? Reply in a short sentence.\n\nTwo plus two is four! But what a cute way to ask... Is there a special reason?\n\n02:44 AM\n\nSay exactly: The code is orange eight.\n\nThe code is orange eight. Is that a secret message or... oh! Is it a fun game? I love surprises!\n\nReplying to\nMessage\nSend key\nEnter\nCtrl + Enter\nDouble Enter"
+  },
+  "hearing": {
+    "visible_text": "Settings\nHearing\nSpeech recognition\nHearing\nInput device\nHearing and the playground use this microphone.\nDefault\nAIRI_Test_Microphone\nProviders\nSelect the suitable speech recognition provider\nNone\nOpenAI Compatible\nOpenAI Compatible\nSherpaw\nLocal speech recognition with bundled or on-demand models. No API key is required.\nWeb Speech API\nBrowser-native STT (requires Chrome/Edge/Safari)\nModel\nEnter the transcription model to use (e.g., 'whisper-1', 'gpt-4o-transcribe')\nCurrent model: whisper-1\nConfidence Threshold\nFilter out low-confidence transcriptions to reduce Whisper hallucinations. Values closer to 0 are more strict; drag to the leftmost to disable. Only effective for providers supporting Whisper API (e.g., OpenAI, Groq).\nDisabled\nHearing playground\n\nListen through the active Hearing pipeline and keep each completed speech segment below.\n\nStop monitoring\nCurrent transcript\n\nComputer, what is the capital of France?\n\nSpeech segment 1\n\nComputer, what is the capital of France?\n\nInput Level\n0%\nSensitivity\nAdjust the threshold for speech detection\n10%\nSilence\nVolume Based\nModel Based\nUse AI models for more accurate speech detection",
+    "network": [
+      {
+        "kind": "request",
+        "id": "26755.1157",
+        "url": "http://127.0.0.1:18800/v1/audio/transcriptions",
+        "method": "POST"
+      },
+      {
+        "kind": "response",
+        "id": "26755.1157",
+        "url": "http://127.0.0.1:18800/v1/audio/transcriptions",
+        "status": 200,
+        "mime": "application/json"
+      }
+    ]
+  },
+  "always_on_attempt": {
+    "elapsed_s": 120.43806680099988,
+    "speaker": {
+      "duration_s": 125.12072916666666,
+      "peak": 0,
+      "rms": 0.0
+    },
+    "local_api_requests": [],
+    "qualification": "No new chat or local STT/model request observed after opening floating chat and injecting question. This attempt lacks a simultaneous microphone control recording; not a universal voice failure."
+  },
+  "computer_task": {
+    "visible_chat": "Iru\n02:11 AM\n\nWhat is two plus two? Reply with one short sentence.\n\n02:25 AM\n\nWhat is two plus two? Reply in a short sentence.\n\nTwo plus two is four! But what a cute way to ask... Is there a special reason?\n\n02:44 AM\n\nSay exactly: The code is orange eight.\n\nThe code is orange eight. Is that a secret message or... oh! Is it a fun game? I love surprises!\n\n02:54 AM\n\nUse the computer_use tool now with argv [\"invoke\", \"window.list\"]. Report the actual result. Do not claim it worked without executing the tool.\n\nLet's see what we can find out!\n\nReplying to\nMessage\nSend key\nEnter\nCtrl + Enter\nDouble Enter",
+    "computer_access_selected": "true",
+    "owned_store_directories": [],
+    "qualification": "No actual desktop tool execution/worker observed; no permission or worker cancellation pass."
+  },
+  "speaker_route_control": {
+    "duration_s": 3.483,
+    "peak": 18823,
+    "rms": 1957.4612969336597
+  },
+  "independent_transcripts": [
+    {
+      "name": "hearing-microphone",
+      "transcription": "Computer, what is the capital of France?"
+    },
+    {
+      "name": "speaker-route-control",
+      "transcription": "Airy root control. The code is purple 9."
+    },
+    {
+      "name": "runtime-speech-speaker",
+      "transcription": ""
+    }
+  ],
+  "cleanup": {
+    "native_processes_absent": {
+      "openbox": 26422,
+      "native": 26423
+    },
+    "owned_audio_modules_absent": true,
+    "task_profile_and_cached_lease_key_removed": true,
+    "guest_lease_copy_removed": true,
+    "airi_egress_guard_removed": true,
+    "other_privacy_guard_preserved": true,
+    "stable_service_changes": false
+  },
+  "pocket_lease_released": true,
+  "local_lease_copy_removed": true,
+  "limitations": [
+    "New external flows blocked at guest UID firewall until opt-out; no analytics payload/delivery certification; vendor feature-flags fetch blocked",
+    "Actual native Electron app under Xvfb/Openbox/SwiftShader; avatar ghosting and portal warnings retained",
+    "First pre-restart chat had no observed answer for several minutes; root cause unresolved; successful native retry used a much larger prompt than the direct endpoint control",
+    "No paid voice key, physical microphone or supported desktop action established by these results"
+  ]
+}

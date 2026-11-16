@@ -4,7 +4,7 @@
 
 This run covers issue2's Nov9 staleness report, fresh Nov12 checks, issue1 and PRs3/4, plus OpenJarvis requested directly. No submitted entry is accepted merely because it is a PR. DotDial guest sign-in completed November15; authenticated calls fail at profile lookup with HTTP404. See [submission evidence](../submissions-2026-11-12/README.md).
 
-Latest continuation: [November15 native Sutando and OpenJarvis privacy evidence](nov15/README.md). Sutando completed native file and recovery tasks but its native core stop left the executing worker alive. OpenJarvis installer/backend consent and desktop opt-out persistence have now been exercised against actual lab inference. These scoped checks do not complete the campaign or refresh full-test dates. Earlier sections below retain their original observations; later dated results supersede the corresponding pending state.
+Latest continuation: [November16 Newelle controls, AIRI0.15.4 and OpenJarvis desktop-managed backend](nov16/README.md). Newelle manual Run/Skip enforced file effects, but Voice Mode cancel left the actual worker alive. AIRI's native chat/privacy persistence and Hearing recognition passed; its Pocket output recordings were silent. OpenJarvis's desktop installed and launched its own Linux backend and answered a native chat question. See also [November15 Sutando and privacy evidence](nov15/README.md). These scoped checks do not complete the campaign or refresh full-test dates. Earlier sections retain their original observations; later dated results supersede corresponding pending states.
 
 ## Verified maintenance corrections
 
