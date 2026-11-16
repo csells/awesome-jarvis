@@ -22,6 +22,7 @@ Final upstream readback: DotDial remains at `dc001d646d51a893b8e60b4cc75a4669013
 | Archived UI-TARS Desktop and Stretch AI | Move to history. |
 | Inactive Vibe Notch and OpenYabby | Move to history. |
 | mlx-audio, Personal Jarvis/Dodaios and Meta toolkit moves | Update canonical repository references. |
+| reSpeaker XVF3800 repository archived during final scan | The archived README explicitly points to formatBCE/Respeaker-ESPHome-integration. Verify the destination is active and contains the XVF3800 firmware documentation, then update the reference. No new hardware runtime claim. |
 | Newelle 1.6.1 | Place in Voice Assistants: manual gates passed; actual direct/subagent worker cancellation failed. |
 | OpenJarvis | Retain as an Agent Framework. Managed Linux desktop install/chat, manual file gates and scoped opt-out behavior were exercised; Pause left work running. No full native voice, Windows or cancellation claim. |
 | Paseo 0.16 | Place in Mission Control with Partial coverage. Actual current-turn/background controls passed. Configured voice/barge-in passed with Codex apps disabled; spoken approvals remain limited. |

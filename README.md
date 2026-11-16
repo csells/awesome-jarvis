@@ -471,7 +471,7 @@ Microphones and speakers for every room.
 - [ESPHome](https://github.com/esphome/esphome) - YAML-configured firmware for ESP32 boards that runs most DIY voice satellites and presence sensors.
 - [ESPHome wake word voice assistants](https://github.com/esphome/wake-word-voice-assistants) - Official firmware for ESP32-S3-BOX-3, M5Stack Atom Echo and other boards.
 - [reSpeaker Lite](https://wiki.seeedstudio.com/respeaker_lite_ha/) - Low-cost dual-microphone kit with an ESP32-S3 that works as a voice satellite.
-- [reSpeaker XVF3800 for ESPHome](https://github.com/formatBCE/Respeaker-XVF3800-ESPHome-integration) - Turns Seeed's 4-microphone beamforming array into a far-field satellite.
+- [reSpeaker XVF3800 for ESPHome](https://github.com/formatBCE/Respeaker-ESPHome-integration) - Turns Seeed's 4-microphone beamforming array into a far-field satellite.
 - [Willow](https://github.com/HeyWillow/willow) - Community-maintained ESP32-S3-BOX wake-word firmware that sends voice commands to Home Assistant, openHAB or REST through a self-hosted application server.
 - [Linux Voice Assistant](https://github.com/OHF-Voice/linux-voice-assistant) - Official satellite for any Linux box, with local wake word, timers, announcements and continued conversation.
 - [Voice Satellite Card](https://github.com/jxlarrea/voice-satellite-card-integration) - Turns any tablet or browser dashboard into a hands-free, wake-word-driven satellite with announcements and assistant-initiated conversations.
