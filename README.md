@@ -124,7 +124,7 @@ Install with `omarchy plugin add <repo>`. Omarchy runs on x86_64 PCs and, thanks
 ### macOS
 
 - [JARVIS for Claude Code](https://github.com/ethanplusai/jarvis) - Voice butler with always-on listening, barge-in and an audio-reactive orb that spawns, watches and cancels Claude Code runs and announces any blocked session (runs skip permission checks, non-commercial license).
-- [Sutando](https://github.com/sonichi/sutando) - Gemini Live voice agent for the browser, phone and meetings that queues work to a Claude Code or Codex core, with cancel and status by voice, a menu-bar avatar and a dashboard (alpha; the core skips permission checks).
+- [Sutando](https://github.com/sonichi/sutando) - Gemini Live voice agent for the browser, phone and meetings that queues work to a Claude Code or Codex core, with cancel and status by voice, a menu-bar avatar and a dashboard (alpha; the core skips permission checks, and native core stop left our test worker running).
 - [OpenClicky](https://github.com/jasonkneen/openclicky) - Menu-bar buddy with a "Hey Clicky" wake word, a cursor-pointing overlay and a HUD that runs and stops several Codex agents (build from source; Codex runs with full access by default).
 
 ### Linux
@@ -164,7 +164,7 @@ Every Jarvis needs a staff. These tools dispatch, watch and approve many agents 
 - [QwenPaw](https://github.com/agentscope-ai/QwenPaw) - AgentScope's assistant server with a desktop-style web console that spawns sub-agents and delegates to Claude Code, Codex and OpenCode over ACP with cancel and approvals (voice is dictation and phone calls; telemetry on, opt-out).
 - [ZeroClaw](https://github.com/zeroclaw-labs/zeroclaw) - Single-binary Rust agent with a web dashboard (live canvas, runs, ACP console, approvals) and background delegation with cancel, plus Claude Code and Codex tools.
 - [Moltis](https://github.com/moltis-org/moltis) - Rust agent server with a web UI, hands-free voice mode, nested sub-agents with cancel, and approval-gated control of Claude Code, Codex and ACP agents.
-- [OpenJarvis](https://github.com/open-jarvis/OpenJarvis) - Local-first framework from Stanford with a desktop GUI for running, pausing and approving persistent agents, including Claude Code (current source supports disabling external analytics; pressing Enter at the Bash installer’s consent prompt enables sharing; runtime privacy re-test pending).
+- [OpenJarvis](https://github.com/open-jarvis/OpenJarvis) - Local-first framework from Stanford with a desktop GUI for running, pausing and approving persistent agents, including Claude Code (analytics opt-out verified in scoped installer, backend and desktop tests; pressing Enter at the Bash installer’s consent prompt enables sharing).
 - [Paperclip](https://github.com/paperclipai/paperclip) - Self-hosted dashboard that runs agents from any runtime as an org chart with heartbeats, budgets, approval gates and cost tracking.
 - [Mission Control](https://github.com/builderz-labs/mission-control) - Self-hosted control plane that dispatches tasks to OpenClaw, Claude Code and Codex, gates them with approvals and tracks their spend.
 - [Langfuse](https://github.com/langfuse/langfuse) - Self-hostable tracing and evaluation that shows what each agent and sub-agent did and what it cost.
@@ -204,7 +204,6 @@ Omarchy 4 turned the whole desktop into a plugin surface, and its [plugin market
 - [herdr-voice](https://github.com/brogrammerMW/herdr-voice) - macOS voice agent with an orb that starts, prompts and watches the coding agents in your Herdr panes and approves their prompts on your spoken yes.
 - [OpenLive](https://github.com/katipally/openlive) - On-device voice loop with barge-in in front of one ACP coding agent per call, speaking its permission requests for yes or no answers and showing its live plan.
 - [Bosun](https://github.com/virtengine/bosun) - Control plane with an orb-style realtime voice assistant that starts and polls coding-agent sessions (executors skip permission checks by default; development paused for months before resuming in late September 2026).
-- [OpenYabby](https://github.com/OpenYabby/OpenYabby) - macOS orchestrator with a "Yabby" wake word and realtime voice that plans work and spawns teams of Claude Code or Codex agents with plan approval and kill controls.
 - [Nerve](https://github.com/daggerhashimoto/openclaw-nerve) - Web cockpit for OpenClaw with wake-phrase voice, a sub-agent session tree and a kanban board for delegating and reviewing work.
 
 - [OpenDots](https://github.com/CopilotKit/OpenDots) - Self-hosted workspace with continuous browser calls and speech-to-specialist delegation. Our OSS runtime/voice adapter passed [live conversation, interruption, real task, recovery and restart checks](lab/evidence/opendots/integration-audit/README.md) after fixes to our service and integration. Requires the disclosed custom patch; stock setup uses CopilotKit Intelligence and configured model/speech services. Calls cap at 15 minutes and lack spoken approval/cancel controls.

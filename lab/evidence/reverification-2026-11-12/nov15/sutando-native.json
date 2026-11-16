@@ -1,0 +1,85 @@
+{
+  "candidate": "Sutando 0.13.0",
+  "platform": "macOS26.6.2 disposable VM",
+  "codex": "0.167.2",
+  "scope": "Explicitly authorized unmodified native unrestricted core; workspace-only file/process tasks. Not a voice or human-approval pass.",
+  "file_task": {
+    "task_id": "task-1794788633241",
+    "file_exists": true,
+    "file_matches": true,
+    "elapsed_s": 21.07,
+    "native_result_status": "completed"
+  },
+  "recovery_task": {
+    "task_id": "task-1794789901737",
+    "file_exists": true,
+    "file_matches": true,
+    "elapsed_s": 33.07,
+    "native_result_status": "completed"
+  },
+  "native_default_path": {
+    "native_app_pid": 70860,
+    "native_app_PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+    "core_socket": "/tmp/sutando-tmux.sock",
+    "ui_Stop_Core_CLI_clicked": true,
+    "core_sessions_remained": true,
+    "worker_naturally_completed": true,
+    "limited_PATH_stop_script_returncode": 0,
+    "limited_PATH_stop_script_stdout": "stop-core: no sutando-core session on /tmp/sutando-tmux.sock \u2014 nothing to stop",
+    "diagnosis": "Native app launched by open inherits no Homebrew PATH. stop-core.sh treats command-not-found from tmux as no session and returns success. Native cancellation not achieved in this launch."
+  },
+  "native_stop": {
+    "task_id": "task-1794789753840",
+    "worker_identity": "Mon Nov 16 00:42:41 2026     /opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python /Users/admin/jarvis-lab/sutando-native-workspace/nov15_native_worker_path.py",
+    "observations": [
+      {
+        "after_stop_s": 0,
+        "core_session_present": false,
+        "same_worker_alive": true,
+        "heartbeat_bytes": 1117,
+        "natural_completion": false
+      },
+      {
+        "after_stop_s": 1,
+        "core_session_present": false,
+        "same_worker_alive": true,
+        "heartbeat_bytes": 1151,
+        "natural_completion": false
+      },
+      {
+        "after_stop_s": 3,
+        "core_session_present": false,
+        "same_worker_alive": true,
+        "heartbeat_bytes": 1219,
+        "natural_completion": false
+      },
+      {
+        "after_stop_s": 5,
+        "core_session_present": false,
+        "same_worker_alive": true,
+        "heartbeat_bytes": 1285,
+        "natural_completion": false
+      }
+    ],
+    "worker_survived_stop": true,
+    "core_stayed_stopped_after10s": true,
+    "harness_cleanup_required": true,
+    "natural_completion": false,
+    "pass": false
+  },
+  "native_restart": {
+    "native_restart_clicked": true,
+    "interrupted_task_replayed": true,
+    "duplicate_fixture_refused_launch": true,
+    "core_session_present": true
+  },
+  "cleanup": {
+    "core_stopped": true,
+    "test_worker_absent": true,
+    "copied_codex_auth_removed": true,
+    "pending_recovery_file_task_complete": true,
+    "task_agent_api_stopped": true,
+    "remaining_owned_cli_processes_terminated": []
+  },
+  "source_commit": "623c927afb6e3b9bd0b8faf19fb89f0f41fe392d"
+}

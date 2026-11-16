@@ -1,0 +1,62 @@
+[
+  {
+    "case": "cold-disabled",
+    "metadata_egress_blocked": true,
+    "external_payload_delivery_tested": false,
+    "initial_identity_enabled": false,
+    "observed_identity_enabled": false,
+    "answer_four": true,
+    "saved_enabled": false,
+    "blocked_analytics_connections": 0,
+    "elapsed_s": 3.86,
+    "pass": true
+  },
+  {
+    "case": "cold-enabled-control",
+    "metadata_egress_blocked": true,
+    "external_payload_delivery_tested": false,
+    "initial_identity_enabled": true,
+    "observed_identity_enabled": true,
+    "answer_four": true,
+    "saved_enabled": true,
+    "blocked_analytics_connections": 12,
+    "elapsed_s": 9.5,
+    "pass": true
+  },
+  {
+    "case": "live-disable-before-chat",
+    "metadata_egress_blocked": true,
+    "external_payload_delivery_tested": false,
+    "initial_identity_enabled": true,
+    "observed_identity_enabled": false,
+    "answer_four": true,
+    "saved_enabled": false,
+    "blocked_analytics_connections": 0,
+    "elapsed_s": 1.93,
+    "pass": true
+  },
+  {
+    "case": "restart-saved-disabled",
+    "metadata_egress_blocked": true,
+    "external_payload_delivery_tested": false,
+    "initial_identity_enabled": false,
+    "observed_identity_enabled": false,
+    "answer_four": true,
+    "saved_enabled": false,
+    "blocked_analytics_connections": 0,
+    "elapsed_s": 2.01,
+    "pass": true
+  },
+  {
+    "case": "live-enable-control",
+    "metadata_egress_blocked": true,
+    "external_payload_delivery_tested": false,
+    "initial_identity_enabled": false,
+    "observed_identity_enabled": true,
+    "answer_four": true,
+    "saved_enabled": true,
+    "blocked_analytics_connections": 12,
+    "elapsed_s": 9.11,
+    "pass": true
+  }
+]

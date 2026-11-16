@@ -89,7 +89,7 @@ Test gates:
 
 - [ ] Complete independent reviews and reconcile hallmark scores against wired execution paths, including desktop and web interfaces.
 - [ ] Install pinned source in a registry-reserved disposable VM; use an existing supported local inference backend through its normal interface. Never deploy over stable lab services.
-- [ ] Fresh-install privacy tests: explicit decline, unattended mode, EOF and consent; restart server/reload frontend; verify preference persistence and observe actual outbound traffic. Inspect Windows/desktop installer behavior separately before generalizing the Bash finding.
+- [ ] Finish privacy scope: November15 passed six fresh Bash consent cases, seven initial/rerun installer cases, five real backend privacy cases and official desktop opt-out/native restart with real lab-model replies. See [case results and limits](../reverification-2026-11-12/nov15/README.md). Analytics destination was kernel-blocked: attempts and saved choices observed, external payload/delivery untested. Windows/desktop backend installer behavior remains separate.
 - [ ] Prove virtual microphone/speaker isolation; transcribe actual speech input/output, test interruption and determine whether any interface offers a continuous voice loop.
 - [ ] Spawn a real agent on a harmless file task, inspect live state, approve/deny, pause/resume and cancel; independently verify artifacts and process state.
 - [ ] Attempt stale/expired approvals and confirm API authorization protects approval mutations. Check permission defaults and the Claude Code subprocess configuration.

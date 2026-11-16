@@ -2,7 +2,9 @@
 
 > Current service selection: Chris explicitly authorized Mac Ollama and permanent Pocket. Their Linux guest routes are restored; the earlier Dragon-only restriction no longer blocks testing. The broader re-verification remains in progress.
 
-This run covers issue2's Nov9 staleness report, fresh Nov12 checks, issue1 and PRs3/4, plus OpenJarvis requested directly. No submitted entry is accepted merely because it is a PR. DotDial sign-in waits for Chris to return to a computer. See [submission evidence](../submissions-2026-11-12/README.md).
+This run covers issue2's Nov9 staleness report, fresh Nov12 checks, issue1 and PRs3/4, plus OpenJarvis requested directly. No submitted entry is accepted merely because it is a PR. DotDial guest sign-in completed November15; authenticated calls fail at profile lookup with HTTP404. See [submission evidence](../submissions-2026-11-12/README.md).
+
+Latest continuation: [November15 native Sutando and OpenJarvis privacy evidence](nov15/README.md). Sutando completed native file and recovery tasks but its native core stop left the executing worker alive. OpenJarvis installer/backend consent and desktop opt-out persistence have now been exercised against actual lab inference. These scoped checks do not complete the campaign or refresh full-test dates. Earlier sections below retain their original observations; later dated results supersede the corresponding pending state.
 
 ## Verified maintenance corrections
 
@@ -13,6 +15,8 @@ This run covers issue2's Nov9 staleness report, fresh Nov12 checks, issue1 and P
 - `rewind.ai` explicitly identifies itself as an unrelated new owner. History now points to [Limitless's own announcement](https://www.limitless.ai/) and distinguishes Rewind's capture shutdown, ended Pendant sales and existing-user support through2026. A working HTTP response alone would have missed this semantic link rot.
 
 ## Environments and evidence
+
+The original Lynx VM210 described below was retired November15 after its evidence/source archive was preserved outside the VM. Remaining Linux tests use task-owned Otter VM240, Debian13,4cores,5632MiB,48GiB, registered as `test-jarvis-linux-resume-69yhhw5bmr`, expiring November17. The authenticated macOS guest is retained for the unresolved DotDial profile lookup. Shared model/speech services are unchanged.
 
 Dedicated Linux VM210 `jarvis-retest-69yhhw5bmr` on registry-discovered Lynx:4vCPU,8GiB,64GiB, official Debian13 template9001, private DHCP. Worker capacity and running guests checked before provisioning. Registry record `test-jarvis-linux-69yhhw5bmr` owns task/expiry/cleanup. Task SSH key restricts the host hop to this guest's SSH; no existing host login was copied into the guest. Node24.8.0 official archive checksum verified; Paseo0.15.4 package installed. Initial candidate model/speech calls used the registered Orca services through task-owned SSH forwards, with a short-lived voice reservation separate from administrative credentials. After Chris requested Dragon for Ollama and a permanent speech service outside the Mac, both service forwards were removed and the voice reservation released. UI/CDP forwards remain; further inference/speech tests await the correct placement or explicit clarification.
 

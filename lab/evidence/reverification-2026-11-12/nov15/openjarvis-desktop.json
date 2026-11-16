@@ -1,0 +1,30 @@
+{
+  "candidate_source": "13706f2b5b5ba6cac9ad31bc575d9e115213784f",
+  "official_desktop": "1.0.5",
+  "artifact_sha256": "abea3b3744953ee1801185345e6e2be1107a86e90a1fc3265558a5f5f31e71f1",
+  "mode": "Official packaged desktop attached normally to real candidate API; Bash minimal installation. Not a packaged backend installation pass.",
+  "onboarding_choice": "Continue without sharing; no personal fields entered",
+  "before_restart_answer_observed": "Four",
+  "native_process_restart": {
+    "before_pid": 14917,
+    "after_pid": 15938,
+    "mechanism": "SIGTERM old native process, launch official same binary/profile; API remains real running candidate"
+  },
+  "prior_chat_retained": true,
+  "sharing_badge_after_restart": "OFF",
+  "onboarding_consent_not_repeated": true,
+  "saved_analytics_enabled": false,
+  "choice_recorded": true,
+  "after_restart_new_answer_observed": "Seven.",
+  "after_restart_analytics_destination_attempts": 0,
+  "before_restart_analytics_destination_attempts": 0,
+  "analytics_destination": "34.231.106.201:443",
+  "external_analytics_delivery_blocked": true,
+  "external_payload_not_tested": true,
+  "limits": [
+    "UI model selector returned to Qwen3 after native restart; selected cached Qwen2.5 again for post-restart turn.",
+    "Minimal backend has no native Rust memory extension; native Settings correctly reports memory unavailable.",
+    "Xvfb/Openbox/actual DBus Secret Service required in lab; no synthetic server/model/keychain.",
+    "Voice, approvals and actual worker cancellation are separate observations."
+  ]
+}

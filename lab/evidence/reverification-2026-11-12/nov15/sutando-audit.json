@@ -1,0 +1,19 @@
+{
+  "candidate": "Sutando 0.13.0 pinned production lock",
+  "audit_counts": {
+    "info": 0,
+    "low": 1,
+    "moderate": 2,
+    "high": 12,
+    "critical": 1,
+    "total": 16
+  },
+  "critical_dependency": "protobufjs 7.5.4",
+  "chains": [
+    "@google/genai 1.52.0 -> protobufjs 7.5.4",
+    "bodhi-realtime-agent 0.4.9 -> @google/genai 2.30.0 -> protobufjs 7.5.4"
+  ],
+  "advisory": "https://github.com/advisories/GHSA-xq3m-2v4x-88gg",
+  "app_exploit_proven": false,
+  "limit": "Advisory requires attacker-controlled protobuf schema or JSON descriptor reaching reflection/code generation; trusted app-defined schemas are not directly affected. No lockfile upgrade was made."
+}

@@ -32,6 +32,8 @@ Retired, archived and discontinued projects that shaped real-life Jarvis. They'r
 
 ## Interfaces
 
+- [OpenYabby](https://github.com/OpenYabby/OpenYabby) - macOS voice orchestrator that plans work and spawns Claude Code or Codex teams with plan approval and kill controls (inactive since May 2026).
+
 - [Vibe Notch](https://github.com/farouqaldori/vibe-notch) - macOS notch overlay that tracks several Claude Code sessions and lets you approve or deny their tool calls (inactive since April 2026).
 
 - [eDEX-UI](https://github.com/GitSquared/edex-ui) - The canonical sci-fi fullscreen terminal and system monitor, inspired by TRON Legacy.
