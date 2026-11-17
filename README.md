@@ -15,6 +15,8 @@ Tony Stark never typed a prompt. He talked to Jarvis, watched the work take shap
 
 I didn't take anyone's marketing at face value. Two independent reviews checked every agent in the scorecard against its code, or against the vendor's docs for the commercial ones, and then most of them went into a test lab where they had to hear, answer and take orders out loud ([results](testing.md)). The short version: nobody is fully hands-free yet, and several of the most popular agents ship with their approvals switched off or automated. After the agents come the building blocks, layer by layer. If you're building your own, start with the [blueprint](blueprint.md).
 
+For a guided build, use the [build-jarvis skill](skills/build-jarvis/SKILL.md): requirements, architecture, implementation, real-world acceptance tests and operations, with the lessons from this lab.
+
 ## Contents
 
 - [Jarvis Agents](#jarvis-agents)
