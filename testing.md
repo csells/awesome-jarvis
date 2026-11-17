@@ -145,4 +145,6 @@ In 0.16 Default permissions, spoken yes/no again became new chat turns and ackno
 
 ## November curation finalized
 
-The [final decisions](specs/research/november-final-dispositions.md) decline DotDial, ibara and /call-me for this update and retain the conservative existing-entry placements above. Tests with failed outcomes are complete observations; unexecuted platform, device and permission variants remain unqualified in the archived matrix. This closes the curation campaign without claiming every project passed complete E2E testing.
+The [final decisions](specs/research/november-final-dispositions.md) decline DotDial and include ibara and /call-me as building blocks with explicit coverage limits and retain the conservative existing-entry placements above. Tests with failed outcomes are complete observations; unexecuted platform, device and permission variants remain unqualified in the archived matrix. This closes the curation campaign without claiming every project passed complete E2E testing.
+
+Component-placement correction: /call-me is listed under Tools and Protocols as a phone question/answer transport; actual spoken replies passed, and intermittent Android/Bluetooth background failures remain disclosed. ibara is listed under Computer and Browser Use: local build/MCP/daemon checks support the component listing, while its required Omarchy/Tailscale paired-desktop E2E remains unverified. Neither receives a Jarvis scorecard row, and neither entry claims complete spoken action enforcement or cancellation.

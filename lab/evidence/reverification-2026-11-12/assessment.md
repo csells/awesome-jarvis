@@ -1,6 +1,6 @@
 # November assessment — November 16 UTC
 
-**Final curation decision, November 16:** this evaluation is closed by the [final dispositions](../../../specs/research/november-final-dispositions.md). DotDial, ibara and /call-me are declined for this update; existing entries retain their bounded assessments. The dated progress and unexecuted coverage below remain historical evidence, not pending acceptance or full E2E passes.
+**Final curation decision, November 16:** this evaluation is closed by the [final dispositions](../../../specs/research/november-final-dispositions.md). DotDial is declined; ibara and /call-me are included as narrowly described building blocks following the maintainer's component-placement correction. Existing entries retain their bounded assessments. The dated progress and unexecuted coverage below remain historical evidence, not pending acceptance or full E2E passes.
 
 The assessed release reviews now have reconciled dispositions. This is a dated, partial qualification across the recorded Linux/macOS configurations. It does **not** certify every provider, platform or remaining submission test. Open PRs remain evaluation requests, and the staleness issue must not be closed while those requests remain unresolved. No PR was merged or entry accepted through this report.
 

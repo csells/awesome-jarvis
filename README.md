@@ -396,6 +396,7 @@ What turns a chatbot into an assistant that knows you.
 - [Composio](https://github.com/ComposioHQ/composio) - 1,000+ managed toolkits with OAuth, so an agent can act in Gmail, Calendar, Slack and more without custom integrations.
 - [Zapier MCP](https://docs.zapier.com/mcp/home) - Hosted MCP server that exposes thousands of Zapier apps through a few meta-tools.
 - [n8n](https://github.com/n8n-io/n8n) - Self-hostable workflow automation with AI agent nodes and MCP support, a common home for a Jarvis's triggers and integrations.
+- [/call-me](https://github.com/radres/call-me) - Hosted MCP server and coding-agent plugin that calls an iPhone or Android phone, speaks an agent's question and returns the spoken reply as text (paid app; hosted audio processing; intermittent background replies in our Android/Bluetooth tests).
 
 ### Computer and Browser Use
 
@@ -413,6 +414,7 @@ Hands for the screen: agents that click, type and navigate while you watch.
 - [UFO](https://github.com/microsoft/UFO) - Microsoft's Windows desktop automation agents that coordinate across devices.
 - [Fara](https://github.com/microsoft/fara) - Open-weight computer-use models in 4B, 9B and 27B sizes; the 4B is small enough to run on device.
 - [OpenAdapt](https://github.com/OpenAdaptAI/OpenAdapt) - Compiles a GUI task you demonstrate into a replayable program that a person approves and that reports success only when an independent check passes.
+- [ibara](https://github.com/MayberryDT/ibara) - Omarchy-only MCP server for browser and desktop tasks on owned computers over Tailscale, with a live viewing and takeover console (local component checks passed; paired-desktop E2E unverified; desktop access is not a sandbox).
 
 ### Proactivity
 
