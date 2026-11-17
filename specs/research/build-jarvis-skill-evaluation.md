@@ -1,6 +1,8 @@
-# build-jarvis skill evaluation
+# Initial build-jarvis instruction smoke tests
 
 Authoring and evaluations completed November17, 2026 UTC on `review/build-jarvis-skill`, based on published main `284874b`. The artifact is a portable instruction/reference package, not a running Jarvis implementation. The [plan](../plans/archive/0002-build-jarvis-skill.md) and [skill](../../skills/build-jarvis/SKILL.md) define its scope.
+
+The maintainer correctly challenged response generation as a functional validation method. These results cover instruction interpretation only. The [live implementation evaluation](build-jarvis-live-evaluation.md) separately records a fresh build, actual native voice, file/process effects, failures and repairs. It supplies the functional evidence absent from these smoke tests.
 
 ## Source coverage
 

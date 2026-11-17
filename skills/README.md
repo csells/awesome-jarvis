@@ -11,3 +11,5 @@ Give the agent this folder, or install the complete `build-jarvis/` directory us
 The entrypoint routes to detailed references as needed. Read [the reference map](build-jarvis/SKILL.md#reference-map) to explore the full guide. Start a brief and test plan from the [templates](build-jarvis/assets/build-record.md). Existing lab findings are dated observations, not current installation guarantees.
 
 This skill is guidance and reusable templates. It does not ship a running voice service, install global agent configuration, or enable tools merely by being loaded. It uses the user's existing environment, permissions, chosen providers and deployment policy.
+
+The [live build evaluation](../specs/research/build-jarvis-live-evaluation.md) records a fresh implementation exercised through real voice, approvals, worker cancellation and restart, including the defects found and repaired. The earlier response scenarios are labelled as instruction smoke tests.

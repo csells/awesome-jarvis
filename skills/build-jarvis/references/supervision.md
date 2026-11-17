@@ -22,6 +22,8 @@ Speak a concise description of the real proposed action, target and consequence.
 
 Test affirmative, negative, unclear, silence, timeout, conflicting and late answers at an actual waiting native card/request. Verify the independently observed effect. When multiple approvals wait, resolve which one is being discussed before acting. Provide a visible/manual fallback and label every click used during testing.
 
+Exercise real short utterances and natural replies through capture and transcription. STT can repeat a short word (for example, “No, no.”); an exact-string router may leave an understandable denial unresolved. Define conservative normalization and a narrow response grammar against the specific waiting request. Repeated denial may reject that request; an empty, ambiguous, conflicting or unrelated transcript must never become an affirmative grant. Preserve the native transcript and independent observer transcript separately when they disagree. A clearer follow-up fixture is a separate case, not a replacement for the failed short-word test.
+
 A recognized yes/no appearing as a new chat turn is not proof the waiting permission was resolved. Speech itself may require an approval under a stricter backend mode; an acknowledgment then waits at another card. Keep this behavior distinct from the original Auto-review mode, where speaking may work without a click. Provider/mode behavior must be recorded exactly.
 
 Phone answer transport supplies text to an existing agent. Permission enforcement belongs to that agent's action policy. A harness refusing to write a file after an empty phone transcript proves that harness's conservative behavior; it does not certify product-level action authorization or session isolation.
@@ -35,6 +37,8 @@ Expose distinct operations where useful:
 - Cancel one executing worker and its owned descendants.
 - Stop selected intentional background work.
 - Emergency-stop all work owned by this assistant/session under the user's policy.
+
+Bind conversation interruption to the exact old turn and compare that identity atomically on the backend. Await the old-turn acknowledgment or use explicitly generation-scoped replacement semantics before creating a new turn. A fire-and-forget global interrupt can arrive late and cancel the new question. Exercise delayed/reordered interrupt requests against the actual concurrent server, then repeat native voice; a passing direct HTTP test does not prove the browser sequences requests correctly.
 
 Propagate cancellation through model generation, provider request, worker session, subprocess tree and pending tool effects. Define grace periods, escalation and remote acknowledgment. Some effects, such as a sent email or unlocked door, cannot be undone by cancellation; display completed versus prevented versus uncertain effects accurately.
 

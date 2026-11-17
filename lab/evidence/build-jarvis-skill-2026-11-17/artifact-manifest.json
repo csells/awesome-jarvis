@@ -1,0 +1,108 @@
+{
+  "archives": [
+    {
+      "name": "final-evidence.tar.gz",
+      "bytes": 11520468,
+      "sha256": "bbe7d7c93d62fd00e03f1b3b32b8889d87f5cc99530c6a51f9814e27f9082d8e",
+      "members": 297,
+      "credential_paths_absent": true,
+      "credential_value_scan": true
+    },
+    {
+      "name": "pre-normal-evidence.tar.gz",
+      "bytes": 4814582,
+      "sha256": "d8c5d06a86c764e20f7c8aae78692eb1ac8f8f41821064863dc9a2b97219d927",
+      "members": 65,
+      "credential_paths_absent": true,
+      "credential_value_scan": true
+    }
+  ],
+  "source_snapshots": [
+    {
+      "version": "v1",
+      "file": "server.py",
+      "sha256": "60f1e3ebababf60c705645433587f50884d0215763f1d4ce1d0a9a5b2604673e"
+    },
+    {
+      "version": "v1",
+      "file": "index.html",
+      "sha256": "b4d87afeff6eadaa530b9054881fa23228fbd9caec5c0e89c11a483421738749"
+    },
+    {
+      "version": "v2",
+      "file": "server.py",
+      "sha256": "5ea1893517f51c665f4570749f5556aa8ec6f11f6716f5b41df880bbf54104d6"
+    },
+    {
+      "version": "v2",
+      "file": "index.html",
+      "sha256": "9b42a04cc46aef5e576fee18b23986ce6448069c2f0225024d4bbec192b3f09b"
+    },
+    {
+      "version": "v3",
+      "file": "server.py",
+      "sha256": "72b943baeb25be49cfda6d35f1fe57ef2fbb2e9b6e26a8e90180e5d3cc74006f"
+    },
+    {
+      "version": "v3",
+      "file": "index.html",
+      "sha256": "c34a6d2746ad374041d7fd0d8cdf6c48de7065804bbb2d668036bdd76083fd8a"
+    },
+    {
+      "version": "v4",
+      "file": "server.py",
+      "sha256": "e1a6f11efe9a9c128acf88b6cdb55bc71939037b53c28414aba37e6eb8c86c32"
+    },
+    {
+      "version": "v4",
+      "file": "index.html",
+      "sha256": "2473360fed7a5326a521e8a7e542a1b112c16463699f27fbd724f10272f2b094"
+    },
+    {
+      "version": "v5",
+      "file": "server.py",
+      "sha256": "bb4db64a407b5497663b313afd3b4fb754b4faced8ef3f1ec6f17b031928ac85"
+    },
+    {
+      "version": "v5",
+      "file": "index.html",
+      "sha256": "039ab6e2e9e085bf412c789c63a8aaf85caff2001c1c6bd89cf0ad38ba2e8efd"
+    },
+    {
+      "version": "v6",
+      "file": "server.py",
+      "sha256": "3d3422b61a3a047d1dc489cb9dde78be5697d49b008ff32edd68e001441bafbc"
+    },
+    {
+      "version": "v6",
+      "file": "index.html",
+      "sha256": "039ab6e2e9e085bf412c789c63a8aaf85caff2001c1c6bd89cf0ad38ba2e8efd"
+    },
+    {
+      "version": "v7",
+      "file": "server.py",
+      "sha256": "3d3422b61a3a047d1dc489cb9dde78be5697d49b008ff32edd68e001441bafbc"
+    },
+    {
+      "version": "v7",
+      "file": "index.html",
+      "sha256": "cf56176545136e00bf1b323819a7ee0def222eff5cc89908a973838ce582c7c1"
+    }
+  ],
+  "final_runtime": {
+    "at": 1794892293.011348,
+    "health": {
+      "ok": true,
+      "uptime": 415.18,
+      "pid": 7635,
+      "model": "qwen3:4b-instruct-2507-q4_K_M"
+    },
+    "diagnostics_directory_exists": false,
+    "capture_diagnostic": false,
+    "source": {
+      "server.py": "3d3422b61a3a047d1dc489cb9dde78be5697d49b008ff32edd68e001441bafbc",
+      "index.html": "cf56176545136e00bf1b323819a7ee0def222eff5cc89908a973838ce582c7c1",
+      "worker.py": "a931db5178fbc0ad1ed1bed283562b4f067177e8f4a6d4c2455b435491d697d1"
+    }
+  }
+}

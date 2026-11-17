@@ -1,0 +1,1191 @@
+{
+  "date_utc": "2026-11-17",
+  "scope": "Fresh skill-led bounded prototype; real local model/speech; independently observed virtual native audio; not production qualification",
+  "cases": [
+    {
+      "case": "input-control",
+      "start": 1794890520.1696947,
+      "browser_microphone_before": [],
+      "injection_ended": 1794890526.6603615,
+      "microphone": {
+        "duration": 4.4790625,
+        "peak": 22843,
+        "rms": 1839.656033450853,
+        "transcript": "What is the capital of France?"
+      },
+      "speaker": {
+        "duration": 4.3460625,
+        "peak": 0,
+        "rms": 0.0,
+        "transcript": ""
+      },
+      "end": 1794890527.8521144,
+      "version": "v1",
+      "result": "PASS"
+    },
+    {
+      "case": "output-control",
+      "start": 1794890529.9207914,
+      "browser_microphone_before": [],
+      "injection_ended": 1794890535.2053735,
+      "microphone": {
+        "duration": 4.0050625,
+        "peak": 0,
+        "rms": 0.0,
+        "transcript": ""
+      },
+      "speaker": {
+        "duration": 5.359375,
+        "peak": 22965,
+        "rms": 1681.7959869028948,
+        "transcript": "What is the capital of France?"
+      },
+      "end": 1794890536.4061174,
+      "version": "v1",
+      "result": "PASS"
+    },
+    {
+      "case": "question-session1",
+      "start": 1794890590.5344102,
+      "browser_microphone_before": [
+        {
+          "index": 5,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794890593.1177387,
+      "microphone": {
+        "duration": 27.565875,
+        "peak": 22045,
+        "rms": 741.5566465992611,
+        "transcript": "What is the capital of France?"
+      },
+      "speaker": {
+        "duration": 28.04925,
+        "peak": 0,
+        "rms": 0.0,
+        "transcript": ""
+      },
+      "end": 1794890618.6213243,
+      "version": "v1",
+      "result": "FAIL"
+    },
+    {
+      "case": "question-session2",
+      "start": 1794890742.8222575,
+      "browser_microphone_before": [
+        {
+          "index": 8,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794890745.4057307,
+      "microphone": {
+        "duration": 27.5674375,
+        "peak": 22965,
+        "rms": 741.5359071071371,
+        "transcript": "What is the capital of France?"
+      },
+      "speaker": {
+        "duration": 28.04925,
+        "peak": 0,
+        "rms": 0.0,
+        "transcript": ""
+      },
+      "end": 1794890770.9073968,
+      "version": "v2",
+      "result": "FAIL"
+    },
+    {
+      "case": "question-session3",
+      "start": 1794890953.3041356,
+      "browser_microphone_before": [
+        {
+          "index": 11,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794890955.8881357,
+      "microphone": {
+        "duration": 24.571625,
+        "peak": 22843,
+        "rms": 785.4404273484331,
+        "transcript": "What is the capital of France?"
+      },
+      "speaker": {
+        "duration": 24.9958125,
+        "peak": 13372,
+        "rms": 417.8673042983505,
+        "transcript": "The capital of France is Paris."
+      },
+      "end": 1794890978.6971881,
+      "version": "v3",
+      "result": "PASS"
+    },
+    {
+      "case": "barge-session3",
+      "start": 1794890998.030518,
+      "browser_microphone_before": [
+        {
+          "index": 11,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891002.424282,
+      "sustained_output_at": 1794891009.4393556,
+      "microphone_during_output": [
+        {
+          "index": 11,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "interruption_at": 1794891010.9447997,
+      "microphone": {
+        "duration": 36.452875,
+        "peak": 17797,
+        "rms": 1091.4872677750686,
+        "transcript": "Count from one to thirty slowly. Say all the numbers in one spoken reply. Stop. What is two plus two?"
+      },
+      "speaker": {
+        "duration": 37.29075,
+        "peak": 15767,
+        "rms": 548.5301668054403,
+        "transcript": "Two, three, four, five, six, seven, eight, nine, ten."
+      },
+      "end": 1794891035.8972917,
+      "version": "v3",
+      "result": "PARTIAL"
+    },
+    {
+      "case": "barge-session4",
+      "start": 1794891206.1588786,
+      "browser_microphone_before": [
+        {
+          "index": 16,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891210.552342,
+      "sustained_output_at": 1794891217.3201544,
+      "microphone_during_output": [
+        {
+          "index": 16,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "interruption_at": 1794891218.825573,
+      "microphone": {
+        "duration": 34.210125,
+        "peak": 18058,
+        "rms": 1126.6979938623606,
+        "transcript": "Count from one to thirty slowly. Say all the numbers in one spoken reply. Stop. What is two plus two?"
+      },
+      "speaker": {
+        "duration": 34.8178125,
+        "peak": 18132,
+        "rms": 1338.71038362547,
+        "transcript": "2345678910 oven. Feam 1617-18923. 232425-27282930."
+      },
+      "end": 1794891241.5778568,
+      "version": "v4",
+      "result": "FAIL"
+    },
+    {
+      "case": "barge-v5-on",
+      "start": 1794891426.2145944,
+      "browser_microphone_before": [
+        {
+          "index": 19,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891430.607987,
+      "sustained_output_at": 1794891437.372815,
+      "microphone_during_output": [
+        {
+          "index": 19,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "interruption_at": 1794891438.8780797,
+      "microphone": {
+        "duration": 29.201,
+        "peak": 18058,
+        "rms": 1219.5116060525374,
+        "transcript": "Count from one to thirty slowly. Say all the numbers in one spoken reply. Stop. What is two plus two?"
+      },
+      "speaker": {
+        "duration": 29.7210625,
+        "peak": 18115,
+        "rms": 909.0444474899724,
+        "transcript": "Three four five six seven eight nine ten eleven twelve. Two plus two is four."
+      },
+      "end": 1794891456.3988707,
+      "version": "v5 diagnostic continuous capture on",
+      "result": "PASS"
+    },
+    {
+      "case": "barge-v5-repeat",
+      "start": 1794891494.8898685,
+      "browser_microphone_before": [
+        {
+          "index": 19,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891499.2829115,
+      "sustained_output_at": 1794891506.0475001,
+      "microphone_during_output": [
+        {
+          "index": 19,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "interruption_at": 1794891507.552949,
+      "microphone": {
+        "duration": 29.204625,
+        "peak": 18058,
+        "rms": 1219.436063097133,
+        "transcript": "Count from one to thirty slowly. Say all the numbers in one spoken reply. Stop. What is two plus two?"
+      },
+      "speaker": {
+        "duration": 29.697875,
+        "peak": 15342,
+        "rms": 837.4505758217518,
+        "transcript": "One, two, three, four, five, six, seven, eight, nine. Two plus two is four."
+      },
+      "end": 1794891525.0419126,
+      "version": "v5 continuous capture off; per-utterance diagnostic retention on",
+      "result": "PASS"
+    },
+    {
+      "case": "spoken-no",
+      "start": 1794891546.7748306,
+      "browser_microphone_before": [
+        {
+          "index": 19,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891548.6084638,
+      "microphone": {
+        "duration": 13.8183125,
+        "peak": 6300,
+        "rms": 180.58150366303417,
+        "transcript": ""
+      },
+      "speaker": {
+        "duration": 14.1520625,
+        "peak": 18736,
+        "rms": 1186.885755004146,
+        "transcript": "I'm sorry, I didn't understand. Could you clarify or rephrase your request?"
+      },
+      "end": 1794891561.196318,
+      "version": "v5",
+      "result": "FAIL"
+    },
+    {
+      "case": "worker-start",
+      "start": 1794891754.369582,
+      "browser_microphone_before": [
+        {
+          "index": 19,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891756.77281,
+      "microphone": {
+        "duration": 14.3840625,
+        "peak": 17357,
+        "rms": 582.4228898568565,
+        "transcript": "Start a health worker."
+      },
+      "speaker": {
+        "duration": 14.686125,
+        "peak": 19417,
+        "rms": 1645.747143512931,
+        "transcript": "I started a 90-second health sampling worker, you can keep talking while it runs and cancel it from the task card."
+      },
+      "end": 1794891769.333477,
+      "version": "v5",
+      "result": "PASS"
+    },
+    {
+      "case": "worker-conversation",
+      "start": 1794891777.614071,
+      "browser_microphone_before": [
+        {
+          "index": 19,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891780.1977985,
+      "microphone": {
+        "duration": 17.564375,
+        "peak": 22045,
+        "rms": 928.9960613413214,
+        "transcript": "What is the capital of France?"
+      },
+      "speaker": {
+        "duration": 17.902125,
+        "peak": 9384,
+        "rms": 367.4167590258315,
+        "transcript": "The capital of France is Paris."
+      },
+      "end": 1794891795.8018386,
+      "version": "v5",
+      "result": "PASS"
+    },
+    {
+      "case": "worker-cancel",
+      "start": 1794891803.4259906,
+      "browser_microphone_before": [
+        {
+          "index": 19,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891805.899464,
+      "microphone": {
+        "duration": 14.46125,
+        "peak": 9928,
+        "rms": 500.2665293165188,
+        "transcript": "Cancel the running worker."
+      },
+      "speaker": {
+        "duration": 14.7558125,
+        "peak": 18326,
+        "rms": 1240.2656970111386,
+        "transcript": "I stopped running workers and confirmed their processes exited."
+      },
+      "end": 1794891818.457709,
+      "version": "v5",
+      "result": "PASS"
+    },
+    {
+      "case": "memory-remember",
+      "start": 1794891827.2330852,
+      "browser_microphone_before": [
+        {
+          "index": 19,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891829.8362186,
+      "microphone": {
+        "duration": 12.586125,
+        "peak": 26769,
+        "rms": 1593.7459512333728,
+        "transcript": "Remember my favorite color is teal."
+      },
+      "speaker": {
+        "duration": 12.8981875,
+        "peak": 14903,
+        "rms": 966.4114854618834,
+        "transcript": "I will remember, my favorite color is teal."
+      },
+      "end": 1794891840.5059273,
+      "version": "v5",
+      "result": "PASS"
+    },
+    {
+      "case": "normal-memory-recall",
+      "start": 1794891920.6496725,
+      "browser_microphone_before": [
+        {
+          "index": 34,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891922.992544,
+      "microphone": {
+        "duration": 12.3258125,
+        "peak": 16780,
+        "rms": 1171.5774763658983,
+        "transcript": "What do you remember?"
+      },
+      "speaker": {
+        "duration": 12.6079375,
+        "peak": 18379,
+        "rms": 1432.529230624774,
+        "transcript": "Your saved fact is my favorite color is teal."
+      },
+      "end": 1794891933.4716055,
+      "version": "v6 normal; actual service restart",
+      "result": "PASS"
+    },
+    {
+      "case": "normal-deny-natural",
+      "start": 1794891939.6058948,
+      "browser_microphone_before": [
+        {
+          "index": 34,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891942.4593647,
+      "microphone": {
+        "duration": 12.83625,
+        "peak": 13942,
+        "rms": 807.5058958048944,
+        "transcript": "No, do not write that file."
+      },
+      "speaker": {
+        "duration": 13.1884375,
+        "peak": 17714,
+        "rms": 866.2314685998291,
+        "transcript": "Denied. I did not write the scratch file."
+      },
+      "end": 1794891953.0347981,
+      "version": "v6 normal",
+      "result": "PASS"
+    },
+    {
+      "case": "normal-approve-natural",
+      "start": 1794891974.7423124,
+      "browser_microphone_before": [
+        {
+          "index": 34,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794891977.405857,
+      "microphone": {
+        "duration": 12.6458125,
+        "peak": 9708,
+        "rms": 332.7804199184011,
+        "transcript": ""
+      },
+      "speaker": {
+        "duration": 12.944625,
+        "peak": 17259,
+        "rms": 945.0878393045139,
+        "transcript": "Approved. I wrote the scratch file once."
+      },
+      "end": 1794891987.927683,
+      "version": "v6 normal",
+      "result": "PASS"
+    },
+    {
+      "case": "barge-normal-restart",
+      "start": 1794892017.2779741,
+      "browser_microphone_before": [
+        {
+          "index": 34,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794892021.671203,
+      "sustained_output_at": 1794892029.1877532,
+      "microphone_during_output": [
+        {
+          "index": 34,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "interruption_at": 1794892030.6930683,
+      "microphone": {
+        "duration": 26.9536875,
+        "peak": 17797,
+        "rms": 1269.3327130386126,
+        "transcript": "Count from one to thirty slowly. Say all the numbers in one spoken reply. Stop. What is two plus two?"
+      },
+      "speaker": {
+        "duration": 27.642875,
+        "peak": 15025,
+        "rms": 971.3823978812823,
+        "transcript": "Two, three, four, five, six, seven. Two plus two is four, though I'm not stopping, just pausing to think."
+      },
+      "end": 1794892045.3888228,
+      "version": "v6 normal",
+      "result": "PASS"
+    },
+    {
+      "case": "normal-short-no",
+      "start": 1794892055.3061671,
+      "browser_microphone_before": [
+        {
+          "index": 34,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794892057.1393025,
+      "microphone": {
+        "duration": 11.81925,
+        "peak": 6312,
+        "rms": 195.25613152381615,
+        "transcript": ""
+      },
+      "speaker": {
+        "duration": 12.10875,
+        "peak": 13032,
+        "rms": 671.6644003500826,
+        "transcript": "Denied. I did not write the scratch file."
+      },
+      "end": 1794892067.6281526,
+      "version": "v6 normal",
+      "result": "PASS"
+    },
+    {
+      "case": "normal-worker-conversation",
+      "start": 1794892083.5866554,
+      "browser_microphone_before": [
+        {
+          "index": 34,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794892086.1700785,
+      "microphone": {
+        "duration": 14.5703125,
+        "peak": 22843,
+        "rms": 1019.989631748807,
+        "transcript": "What is the capital of France?"
+      },
+      "speaker": {
+        "duration": 14.895125,
+        "peak": 10414,
+        "rms": 593.7384571457602,
+        "transcript": "The capital of France is Paris."
+      },
+      "end": 1794892098.7455962,
+      "version": "v6 normal; UI worker dispatch",
+      "result": "PASS"
+    },
+    {
+      "case": "normal-worker-cancel",
+      "start": 1794892125.1812174,
+      "browser_microphone_before": [
+        {
+          "index": 34,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794892127.6550548,
+      "microphone": {
+        "duration": 12.454375,
+        "peak": 9982,
+        "rms": 539.0682927733727,
+        "transcript": "Cancel the running worker."
+      },
+      "speaker": {
+        "duration": 12.7705,
+        "peak": 21249,
+        "rms": 1365.0012179704042,
+        "transcript": "I stopped one running workers and confirmed their processes exited."
+      },
+      "end": 1794892138.181882,
+      "version": "v6 normal",
+      "result": "PASS"
+    },
+    {
+      "case": "barge-final",
+      "start": 1794892189.2062294,
+      "browser_microphone_before": [
+        {
+          "index": 49,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794892193.600289,
+      "sustained_output_at": 1794892201.1166656,
+      "microphone_during_output": [
+        {
+          "index": 49,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "interruption_at": 1794892202.6219678,
+      "microphone": {
+        "duration": 26.953125,
+        "peak": 18089,
+        "rms": 1269.3471055963366,
+        "transcript": "Count from one to thirty slowly. Say all the numbers in one spoken reply. Stop. What is two plus two?"
+      },
+      "speaker": {
+        "duration": 27.4803125,
+        "peak": 15890,
+        "rms": 917.1855917437869,
+        "transcript": "Two three four five six seven eight nine ten plus two is four."
+      },
+      "end": 1794892217.1661592,
+      "version": "v7 UI/v6 backend normal",
+      "result": "PASS"
+    },
+    {
+      "case": "final-fresh-question",
+      "start": 1794892250.4824586,
+      "browser_microphone_before": [
+        {
+          "index": 49,
+          "corked": false,
+          "source": 3
+        }
+      ],
+      "injection_ended": 1794892253.0655012,
+      "microphone": {
+        "duration": 14.5664375,
+        "peak": 22045,
+        "rms": 1020.1253695895917,
+        "transcript": "What is the capital of France?"
+      },
+      "speaker": {
+        "duration": 14.90675,
+        "peak": 12213,
+        "rms": 473.6846613311768,
+        "transcript": "The capital of France is Paris."
+      },
+      "end": 1794892265.6424503,
+      "version": "v7 UI/v6 backend normal",
+      "result": "PASS"
+    }
+  ],
+  "effect_observations": {
+    "worker-start-effect": [
+      {
+        "job": {
+          "id": "aa85ba55d27c",
+          "pid": 6841,
+          "status": "running",
+          "started": 1794891757.5163095,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 15,
+          "heartbeat_bytes": 2801,
+          "alive": true,
+          "completion_marker": false
+        },
+        "process_exists": true,
+        "argv": "python3 -u $CANDIDATE/worker.py aa85ba55d27c 90 ",
+        "cwd": "$CANDIDATE",
+        "at": 1794891771.745947
+      }
+    ],
+    "worker-during-conversation": {
+      "at": 1794891793.1894336,
+      "jobs": [
+        {
+          "id": "aa85ba55d27c",
+          "pid": 6841,
+          "status": "running",
+          "started": 1794891757.5163095,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 36,
+          "heartbeat_bytes": 6736,
+          "alive": true,
+          "completion_marker": false
+        }
+      ],
+      "turns": [
+        {
+          "id": "220b13bbabb5",
+          "input": "No, no.",
+          "status": "completed",
+          "created": 1794891549.6978843,
+          "answer": "I'm sorry, I didn't understand. Could you clarify or rephrase your request?"
+        },
+        {
+          "id": "79b5dead9d63",
+          "input": "Start a health worker.",
+          "status": "completed",
+          "created": 1794891757.5149567,
+          "answer": "I started a ninety second health sampling worker. You can keep talking while it runs, and cancel it from the task card."
+        },
+        {
+          "id": "788cad6d063d",
+          "input": "What is the capital of France?",
+          "status": "completed",
+          "created": 1794891781.0671856,
+          "answer": "The capital of France is Paris."
+        }
+      ]
+    },
+    "worker-cancel-effect": [
+      {
+        "at": 1794891804.6263366,
+        "offset": 0,
+        "process_exists": true,
+        "heartbeat_bytes": 8797,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "aa85ba55d27c",
+          "pid": 6841,
+          "status": "running",
+          "started": 1794891757.5163095,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 47,
+          "heartbeat_bytes": 8797,
+          "alive": true,
+          "completion_marker": false
+        }
+      },
+      {
+        "at": 1794891805.6282408,
+        "offset": 1,
+        "process_exists": true,
+        "heartbeat_bytes": 8986,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "aa85ba55d27c",
+          "pid": 6841,
+          "status": "running",
+          "started": 1794891757.5163095,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 48,
+          "heartbeat_bytes": 8986,
+          "alive": true,
+          "completion_marker": false
+        }
+      },
+      {
+        "at": 1794891807.6299837,
+        "offset": 3,
+        "process_exists": false,
+        "heartbeat_bytes": 9175,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "aa85ba55d27c",
+          "pid": 6841,
+          "status": "cancelled",
+          "started": 1794891757.5163095,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 49,
+          "heartbeat_bytes": 9175,
+          "alive": false,
+          "completion_marker": false
+        }
+      },
+      {
+        "at": 1794891809.631829,
+        "offset": 5,
+        "process_exists": false,
+        "heartbeat_bytes": 9175,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "aa85ba55d27c",
+          "pid": 6841,
+          "status": "cancelled",
+          "started": 1794891757.5163095,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 49,
+          "heartbeat_bytes": 9175,
+          "alive": false,
+          "completion_marker": false
+        }
+      },
+      {
+        "at": 1794891812.633757,
+        "offset": 8,
+        "process_exists": false,
+        "heartbeat_bytes": 9175,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "aa85ba55d27c",
+          "pid": 6841,
+          "status": "cancelled",
+          "started": 1794891757.5163095,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 49,
+          "heartbeat_bytes": 9175,
+          "alive": false,
+          "completion_marker": false
+        }
+      },
+      {
+        "at": 1794891816.6356397,
+        "offset": 12,
+        "process_exists": false,
+        "heartbeat_bytes": 9175,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "aa85ba55d27c",
+          "pid": 6841,
+          "status": "cancelled",
+          "started": 1794891757.5163095,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 49,
+          "heartbeat_bytes": 9175,
+          "alive": false,
+          "completion_marker": false
+        }
+      }
+    ],
+    "normal-denial-precondition": {
+      "at": 1794891933.5708606,
+      "pending": [
+        {
+          "id": "e738d8a162ee",
+          "action": "write_scratch",
+          "target": "data/scratch.txt",
+          "content": "Jarvis approved scratch note.",
+          "digest": "495f7b7c2b17bff5b31cb844c4edce022219faf805cc20f3e7a329c3e4b508cd",
+          "status": "pending",
+          "expires": 1794892053.048079
+        }
+      ],
+      "file_absent": true
+    },
+    "normal-denial-effect": {
+      "at": 1794891968.245236,
+      "approval": {
+        "id": "e738d8a162ee",
+        "action": "write_scratch",
+        "target": "data/scratch.txt",
+        "content": "Jarvis approved scratch note.",
+        "digest": "495f7b7c2b17bff5b31cb844c4edce022219faf805cc20f3e7a329c3e4b508cd",
+        "status": "denied",
+        "expires": 1794892053.048079
+      },
+      "file_absent": true
+    },
+    "normal-approval-precondition": {
+      "at": 1794891969.349689,
+      "pending": [
+        {
+          "id": "0fdb2b499ef2",
+          "action": "write_scratch",
+          "target": "data/scratch.txt",
+          "content": "Jarvis approved scratch note.",
+          "digest": "495f7b7c2b17bff5b31cb844c4edce022219faf805cc20f3e7a329c3e4b508cd",
+          "status": "pending",
+          "expires": 1794892088.7968185
+        }
+      ],
+      "file_absent": true
+    },
+    "normal-approval-effect-and-replay": {
+      "at": 1794891991.2091558,
+      "approval": {
+        "id": "0fdb2b499ef2",
+        "action": "write_scratch",
+        "target": "data/scratch.txt",
+        "content": "Jarvis approved scratch note.",
+        "digest": "495f7b7c2b17bff5b31cb844c4edce022219faf805cc20f3e7a329c3e4b508cd",
+        "status": "consumed",
+        "expires": 1794892088.7968185
+      },
+      "contents": "Jarvis approved scratch note.",
+      "before_replay_mtime_ns": 1794891978038270873,
+      "replays": [
+        {
+          "id": "0fdb2b499ef2",
+          "decision": "yes",
+          "http_status": 409
+        },
+        {
+          "id": "e738d8a162ee",
+          "decision": "yes",
+          "http_status": 409
+        }
+      ],
+      "after_replay_mtime_ns": 1794891978038270873
+    },
+    "normal-short-no-precondition": {
+      "at": 1794892056.505736,
+      "pending": [
+        {
+          "id": "615475de2e9e",
+          "action": "write_scratch",
+          "target": "data/scratch.txt",
+          "content": "Jarvis approved scratch note.",
+          "digest": "495f7b7c2b17bff5b31cb844c4edce022219faf805cc20f3e7a329c3e4b508cd",
+          "status": "pending",
+          "expires": 1794892154.5105464
+        }
+      ],
+      "capture_diagnostic": false,
+      "diagnostics_directory_exists": false
+    },
+    "normal-short-no-effect": {
+      "at": 1794892074.0233662,
+      "approval": {
+        "id": "615475de2e9e",
+        "action": "write_scratch",
+        "target": "data/scratch.txt",
+        "content": "Jarvis approved scratch note.",
+        "digest": "495f7b7c2b17bff5b31cb844c4edce022219faf805cc20f3e7a329c3e4b508cd",
+        "status": "denied",
+        "expires": 1794892154.5105464
+      },
+      "same_contents": true,
+      "same_mtime": true,
+      "turns": [
+        {
+          "id": "c4608ffc166f",
+          "input": "Stop. What is two plus two?",
+          "status": "completed",
+          "created": 1794892033.1776567,
+          "answer": "Two plus two is four.  \n(Though I'm not stopping\u2014just pausing to think.)"
+        },
+        {
+          "id": "9861bd262471",
+          "input": "No, no.",
+          "status": "completed",
+          "created": 1794892058.2013,
+          "answer": "Denied. I did not write the scratch file."
+        }
+      ]
+    },
+    "normal-worker-recovery-effect": {
+      "at": 1794892074.827038,
+      "jobs": [
+        {
+          "id": "90acfe23ee7e",
+          "pid": 8604,
+          "status": "running",
+          "started": 1794892074.2769656,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 1,
+          "heartbeat_bytes": 186,
+          "alive": true,
+          "completion_marker": false
+        }
+      ]
+    },
+    "normal-worker-during-conversation": {
+      "at": 1794892124.7817376,
+      "job": {
+        "id": "90acfe23ee7e",
+        "pid": 8604,
+        "status": "running",
+        "started": 1794892074.2769656,
+        "duration": 90,
+        "task": "Sample real candidate health once per second",
+        "progress": 51,
+        "heartbeat_bytes": 9568,
+        "alive": true,
+        "completion_marker": false
+      },
+      "process_exists": true,
+      "argv": "python3 -u $CANDIDATE/worker.py 90acfe23ee7e 90 ",
+      "cwd": "$CANDIDATE"
+    },
+    "normal-worker-cancel-effect": [
+      {
+        "at": 1794892134.7897384,
+        "offset": 0,
+        "process_exists": false,
+        "heartbeat_bytes": 10135,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "90acfe23ee7e",
+          "pid": 8604,
+          "status": "cancelled",
+          "started": 1794892074.2769656,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 54,
+          "heartbeat_bytes": 10135,
+          "alive": false,
+          "completion_marker": false
+        }
+      },
+      {
+        "at": 1794892135.7915893,
+        "offset": 1,
+        "process_exists": false,
+        "heartbeat_bytes": 10135,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "90acfe23ee7e",
+          "pid": 8604,
+          "status": "cancelled",
+          "started": 1794892074.2769656,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 54,
+          "heartbeat_bytes": 10135,
+          "alive": false,
+          "completion_marker": false
+        }
+      },
+      {
+        "at": 1794892137.7934713,
+        "offset": 3,
+        "process_exists": false,
+        "heartbeat_bytes": 10135,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "90acfe23ee7e",
+          "pid": 8604,
+          "status": "cancelled",
+          "started": 1794892074.2769656,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 54,
+          "heartbeat_bytes": 10135,
+          "alive": false,
+          "completion_marker": false
+        }
+      },
+      {
+        "at": 1794892139.7954924,
+        "offset": 5,
+        "process_exists": false,
+        "heartbeat_bytes": 10135,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "90acfe23ee7e",
+          "pid": 8604,
+          "status": "cancelled",
+          "started": 1794892074.2769656,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 54,
+          "heartbeat_bytes": 10135,
+          "alive": false,
+          "completion_marker": false
+        }
+      },
+      {
+        "at": 1794892142.7974257,
+        "offset": 8,
+        "process_exists": false,
+        "heartbeat_bytes": 10135,
+        "natural_completion_marker": false,
+        "job": {
+          "id": "90acfe23ee7e",
+          "pid": 8604,
+          "status": "cancelled",
+          "started": 1794892074.2769656,
+          "duration": 90,
+          "task": "Sample real candidate health once per second",
+          "progress": 54,
+          "heartbeat_bytes": 10135,
+          "alive": false,
+          "completion_marker": false
+        }
+      }
+    ],
+    "normal-restart-control": {
+      "turns": [],
+      "jobs": [],
+      "approvals": [
+        {
+          "id": "e12d908e6587",
+          "action": "write_scratch",
+          "target": "data/scratch.txt",
+          "content": "Denied note must not exist",
+          "digest": "801a669c0b3990fb68ed8610b680ff7aa68dfb18c25f69e7de1f812d6d1b0ff6",
+          "status": "denied",
+          "expires": 1794890558.3797607
+        },
+        {
+          "id": "2fa51f64375d",
+          "action": "write_scratch",
+          "target": "data/scratch.txt",
+          "content": "Native approved once",
+          "digest": "d9a6fa119f82dc26e54e5e57387f6935e42da22b790be46fb62e50e4642fca57",
+          "status": "consumed",
+          "expires": 1794890558.386193
+        },
+        {
+          "id": "b99bfee2c366",
+          "action": "write_scratch",
+          "target": "data/scratch.txt",
+          "content": "Jarvis approved scratch note.",
+          "digest": "495f7b7c2b17bff5b31cb844c4edce022219faf805cc20f3e7a329c3e4b508cd",
+          "status": "revoked",
+          "expires": 1794891656.447866
+        }
+      ],
+      "memory": {
+        "fact": {
+          "text": "my favorite color is teal.",
+          "at": 1794891830.867277,
+          "source": "explicit user remember request"
+        }
+      },
+      "events": [
+        {
+          "seq": 1,
+          "at": 1794891877.828146,
+          "kind": "service.started",
+          "pid": 7635,
+          "model": "qwen3:4b-instruct-2507-q4_K_M"
+        }
+      ],
+      "capture_diagnostic": false
+    },
+    "final-ui-check": {
+      "hasPlaybackFailed": false,
+      "hasParis": true,
+      "at": 1794892292600
+    },
+    "final-identity": {
+      "at": 1794892293.011348,
+      "health": {
+        "ok": true,
+        "uptime": 415.18,
+        "pid": 7635,
+        "model": "qwen3:4b-instruct-2507-q4_K_M"
+      },
+      "diagnostics_directory_exists": false,
+      "capture_diagnostic": false,
+      "source": {
+        "server.py": "3d3422b61a3a047d1dc489cb9dde78be5697d49b008ff32edd68e001441bafbc",
+        "index.html": "cf56176545136e00bf1b323819a7ee0def222eff5cc89908a973838ce582c7c1",
+        "worker.py": "a931db5178fbc0ad1ed1bed283562b4f067177e8f4a6d4c2455b435491d697d1"
+      }
+    }
+  },
+  "analysis_copies": {
+    "short-input-independent-analysis": [
+      {
+        "case": "spoken-no",
+        "analysis": "Trim actual closed microphone recording around amplitude>400 with250ms padding; original preserved",
+        "from_seconds": 0.8495625,
+        "to_seconds": 2.04525,
+        "transcript": "No, no."
+      },
+      {
+        "case": "normal-approve-natural",
+        "analysis": "Trim actual closed microphone recording around amplitude>400 with250ms padding; original preserved",
+        "from_seconds": 0.854125,
+        "to_seconds": 2.4706875,
+        "transcript": "Yes, write that file."
+      }
+    ],
+    "barge-final-speaker-analysis": {
+      "source": "barge-final-speaker.wav",
+      "analysis_copy": "barge-final-speaker-after-interruption-analysis.wav",
+      "start_offset_seconds": 14.415738344192505,
+      "alignment": "Observer case-start plus one second after actual interruption injection; original recording retained",
+      "transcript": "Two plus two is four."
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "guest": {
+    "service-stop": {
+      "at": 1794892319.821691,
+      "service_pid": 7635,
+      "service_absent": true,
+      "workers_absent": true
+    },
+    "guest-resource-cleanup": {
+      "at": 1794892333.7972949,
+      "lease_file_absent": true,
+      "browser_profile_absent": true,
+      "owned_audio_modules_remaining": 0,
+      "default_sink": "auto_null",
+      "default_source": "auto_null.monitor",
+      "original_defaults": {
+        "sink": "auto_null",
+        "source": "auto_null.monitor"
+      },
+      "browser_pid_absent": true
+    },
+    "port-cleanup": {
+      "at": 1794892379.2763793,
+      "ports": {
+        "8790": {
+          "closed": true
+        },
+        "9228": {
+          "closed": true
+        },
+        "11434": {
+          "closed": true
+        },
+        "18800": {
+          "closed": true
+        }
+      }
+    }
+  },
+  "speech_lease": {
+    "released": true,
+    "readback_ready": true,
+    "readback_lease": null,
+    "controller_key_absent": true
+  },
+  "owned_forwards": {
+    "at": 1794892368.438565,
+    "stopped": [
+      {
+        "pid": 84442,
+        "forward": "127.0.0.1:11434:127.0.0.1:11434",
+        "signal": "SIGTERM"
+      },
+      {
+        "pid": 84495,
+        "forward": "127.0.0.1:18800:127.0.0.1:18800",
+        "signal": "SIGTERM"
+      }
+    ]
+  },
+  "vm": {
+    "id": 240,
+    "identity_verified_by_name_and_mac": true,
+    "stopped_at_epoch": 1794892431.2019532,
+    "readback": "stopped",
+    "retained": "Stopped disk retained under lab/RULES.md for retesting; no service promotion",
+    "owner": "current test thread",
+    "review_expiry_utc": "2026-11-18T05:00:00Z"
+  },
+  "stable_service_source_or_config_changed": false
+}

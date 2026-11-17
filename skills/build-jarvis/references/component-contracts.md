@@ -18,6 +18,8 @@ Use current official documentation and the actual native request path to build a
 
 “OpenAI-compatible” is a starting hypothesis. Separate chat completions, Responses, HTTP transcription, HTTP speech, Realtime WebSocket and WebRTC. Separate HTTP STT/TTS do not by themselves supply a Realtime conversation service. A working text model says nothing about microphone transport or playable synthesis. A Realtime adapter's model label may describe its wire format rather than the actual local backend.
 
+Probe the actual client-produced audio container through the native adapter before claiming input compatibility. A WAV fixture can pass while the browser's WebM/Opus upload fails. Preserve the original payload class and sanitized upstream status, then test any bounded conversion with the same real input; repeat the actual microphone flow afterward.
+
 Validate base-URL composition through observed requests: duplicate `/v1`, an omitted path prefix, a wrong route or a content-type mismatch can produce confusing failures. HTTP 200 with raw PCM can still fail a player expecting a WAV/MP3 container. Match both parties deliberately. First run a small direct endpoint control, then the actual application adapter; retain the distinction if only the control passes.
 
 ## Authentication and installed providers

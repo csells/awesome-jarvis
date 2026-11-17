@@ -16,6 +16,8 @@ Keep original recordings. Make clearly named analysis copies for resampling, mon
 
 Choose activation deliberately: wake word, a bounded continuous session, push-to-talk or a native device gesture. Indicate the listening state and provide an immediate physical/software mute. Continuous capture does not require continuous retention. Measure false accepts/rejects in the user's noise, speaker distance, language and playback conditions; transcripts containing a short wake fragment are a poor activation boundary.
 
+Capture a bounded in-memory pre-roll so detection latency does not discard the beginning of the utterance. Measure the actual processed input as well as the raw virtual microphone: track existence alone does not prove that usable frames reach the detector during playback. For isolated-graph diagnosis, compare explicit browser processing settings one condition at a time and retain the physical echo-cancellation limitation. Any diagnostic audio retention must be opt-in, scoped and cleaned up.
+
 VAD answers whether speech-like audio is present; turn detection decides whether a person has finished. Tune endpointing, silence thresholds and minimum utterance length against natural pauses. Capture timestamps and false interruptions. Explicitly handle accidental wakes, overlapping speakers, long pauses, self-playback and recognition uncertainty.
 
 Use echo cancellation where the native stack supports it, with the correct playback reference and timing. Distinguish echo cancellation from a completely isolated virtual graph. A synthetic no-feedback result does not establish acoustic echo performance in a room. Test loudspeaker, headphones and Bluetooth routes separately.
@@ -31,6 +33,8 @@ Browser automation often launches with audio muted. Inspect actual launch argume
 ## Barge-in has two targets
 
 Define conversational interruption separately from task cancellation. On real user speech, stop queued/current playback, cancel or supersede the relevant conversation generation, and process the new turn. Worker cancellation follows the user's separate task intent and ownership policy. Old text/audio callbacks must not resume interrupted output or claim completion later.
+
+Scope playback callbacks and rejected playback promises to both the current generation and player instance, including error handlers. Clearing an interrupted player's source can trigger a late media error; that expected abort must not overwrite a newer successful turn with a false failure banner. Preserve genuine errors from the current player. Inspect the resulting UI as well as the captured sound after interruption.
 
 To test conversational interruption:
 
