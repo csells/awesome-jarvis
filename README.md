@@ -210,6 +210,7 @@ Omarchy 4 turned the whole desktop into a plugin surface, and its [plugin market
 - [OpenVision](https://github.com/rayl15/OpenVision) - iOS voice client for Meta Ray-Ban glasses with an "Ok Vision" wake word, on-device or cloud models, and a Hermes approval bridge. Remains under review after iPad simulator startup failures; physical device testing is pending.
 - [cc-g2](https://github.com/wmoto-ai/cc-g2) - Even Realities G2 companion that shows coding-agent completions on the HUD and lets you approve their permission prompts.
 - [Meta Muse](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/) - Meta's personal agent in a cloud VM you can watch and take over, with a separate agent that gates its actions; Meta has announced voice mode and glasses support but hasn't shipped them.
+- [DotDial](https://github.com/aaamosh/DotDial) - Desktop voice client for an existing ChatGPT dot with an optional offline wake word and floating call panel (Linux beta, macOS preview; internal ChatGPT APIs; our connected-call test produced no verified audible reply).
 
 ## Voice Assistants
 

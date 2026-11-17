@@ -172,5 +172,13 @@
     "state_after_stop": "ready",
     "local_listening_after_stop": false,
     "qualification": "Media metrics retained connected/active fields after stop; ready/local_listening=false is not independent proof every media resource was released. Native app was quit afterward."
+  },
+  "audible_reply_test": {
+    "result": "FAIL",
+    "scope": "Native authenticated macOS guest call after supported conversation-ID configuration workaround; 52.8213333333-second output capture",
+    "input_control": "Independent microphone recording transcribed What is the capital of France?",
+    "observed_output": "No independently verified speech in the speaker recording",
+    "root_cause": "Unresolved media/input/service behavior; not a universal failure claim",
+    "curation": "Accepted on Watch List; no full voice or Jarvis scorecard endorsement"
   }
 }
