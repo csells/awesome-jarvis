@@ -67,3 +67,11 @@ def test_transcription_worker_cannot_load_speech_models():
         assert c.get('/health').json()=={'ok':True,'stt_model':'parakeet'}
         for path in ['/v1/audio/speech','/v1/models','/models/load']:
             assert c.post(path,json={'model':'speech'}).status_code==404
+
+def test_transcription_health_exposes_only_memory_statistics():
+    from transcription_app import create_app as stt_app
+    app=stt_app(lambda: None,'parakeet')
+    app.state.stt_memory={'cache_limit_bytes':268435456,'completed_requests':3,
+                          'active_bytes':2500000000,'cache_bytes':0,'peak_bytes':4000000000}
+    with TestClient(app) as c:
+        assert c.get('/health').json()['memory']==app.state.stt_memory

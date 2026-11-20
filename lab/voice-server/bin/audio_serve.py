@@ -1,14 +1,25 @@
 """Pocket service's Parakeet transcription worker."""
 import argparse
+from contextlib import asynccontextmanager
+import logging
 import os
 from typing import List, Optional
 import uvicorn
 from fastapi import File, Form, Request, UploadFile
 import mlx_audio.server as S
 from transcription_app import create_app
+from stt_memory import install_memory_policy
 STT_MODEL=os.environ.get('VOICE_STT_MODEL','mlx-community/parakeet-tdt-0.6b-v3')
 def _hf_id(name, default):
     return name if name and '/' in name else default
+
+
+@asynccontextmanager
+async def lifespan(app):
+    cache_limit = int(os.environ.get('VOICE_MLX_CACHE_LIMIT_MIB', '256')) * 1024**2
+    async with S.app_lifespan(app):
+        app.state.stt_memory = install_memory_policy(S, cache_limit)
+        yield
 
 async def transcriptions(
     request: Request,
@@ -31,9 +42,10 @@ async def transcriptions(
 
 
 def main():
+    logging.basicConfig(level=logging.INFO)
     ap=argparse.ArgumentParser()
     ap.add_argument('--host',default='127.0.0.1')
     ap.add_argument('--port',type=int,default=8766)
     args=ap.parse_args()
-    uvicorn.run(create_app(transcriptions,STT_MODEL,S.app_lifespan),host=args.host,port=args.port)
+    uvicorn.run(create_app(transcriptions,STT_MODEL,lifespan),host=args.host,port=args.port)
 if __name__=='__main__':main()

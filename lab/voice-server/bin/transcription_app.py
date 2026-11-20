@@ -5,5 +5,9 @@ def create_app(transcribe,model,lifespan=None):
     app=FastAPI(lifespan=lifespan,docs_url=None,redoc_url=None)
     app.add_api_route('/v1/audio/transcriptions',transcribe,methods=['POST'])
     @app.get('/health')
-    async def health():return {'ok':True,'stt_model':model}
+    async def health():
+        result = {'ok':True,'stt_model':model}
+        if hasattr(app.state, 'stt_memory'):
+            result['memory'] = dict(app.state.stt_memory)
+        return result
     return app

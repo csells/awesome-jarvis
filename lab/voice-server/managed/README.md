@@ -48,6 +48,14 @@ Requests are bounded to 8 MiB; speech input to 2,000 characters; model IDs to th
 
 ## Operations
 
+The Parakeet worker bounds its MLX GPU allocator cache to 256 MiB by default
+(`VOICE_MLX_CACHE_LIMIT_MIB`, nonnegative integer). On the serialized inference
+thread it synchronizes and releases unused GPU buffers after every transcription,
+including short recordings, failures and cancellation. Model weights remain warm.
+The worker logs active, cached and peak GPU bytes after cleanup without recording
+audio or transcript contents. This is a cache policy, not a hard process memory
+limit; active inference allocations can exceed the idle model footprint.
+
 `GET /healthz` returns only `{ "ok": true }` or HTTP 503. `client.py status` gives authenticated component health and reservation ownership. Administrative recovery of an abandoned reservation is `client.py force-release`; it terminates that caller's audio.
 
 The supervisor restarts failed children, probes health every 30 seconds after a 150-second warmup allowance, and restarts a child after three failed probes. launchd restarts a failed supervisor. Logs are in `$VOICE_HOME/logs`, at most four 5 MiB files per logger. They can contain speech transcripts; the installation directory and log files are private. Access logs at the gateway are disabled, and keys are never deliberately logged.
